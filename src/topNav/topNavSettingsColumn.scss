@@ -1,0 +1,31 @@
+@use "../assets/index.scss" as *;
+
+.settings-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75vh;
+  width: 100vw;
+  background-color: $color-3;
+  border: none;
+  color: white;
+  .modal-title {
+    margin: 1rem;
+    font-size: 3rem;
+    color: white;
+  }
+  .modal-body {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+  .modal-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 2rem;
+    color: white;
+  }
+
+}

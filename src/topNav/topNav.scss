@@ -1,0 +1,29 @@
+@use "../assets/index.scss" as *;
+
+.top-nav-row {
+	background: $color-3;
+	color: $color-5;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	.top-nav-left-col {
+		padding-left: 1rem;
+		.h1 {
+			font-size: 1rem;
+		}
+	}
+	.top-nav-right-col {
+		display: flex;
+		flex-direction: row;
+		padding-right: 1rem;
+		.nav-icon {
+			margin-left: 1rem;
+			font-size: 2rem;
+			&:hover {
+				cursor: pointer;
+				color: white;
+			}
+		}
+	}
+}
