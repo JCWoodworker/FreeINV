@@ -1,31 +1,56 @@
 @use "../assets/index.scss" as *;
 
 .settings-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 75vh;
-  width: 100vw;
-  background-color: $color-3;
-  border: none;
-  color: white;
-  .modal-title {
-    margin: 1rem;
-    font-size: 3rem;
-    color: white;
-  }
-  .modal-body {
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-  }
-  .modal-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin-bottom: 2rem;
-    color: white;
-  }
+	font-family: $font-1;
+	font-family: $font-2;
+	position: fixed;
+	top: 90px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	height: 85vh;
+	width: 97vw;
+	max-width: none;
+	background-color: $color-3;
+	&.settings-modal-border {
+		border: 3px solid red !important;
+	}
 
+	.modal-title {
+		margin: 1rem;
+		padding-bottom: 0.5rem;
+		font-size: 3rem;
+		border-bottom: 3px solid $color-5;
+	}
+	.modal-body {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+	.modal-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		margin-bottom: 2rem;
+		button {
+			height: 5rem;
+			width: 20rem;
+			border: none;
+			border-radius: 1rem;
+			background-color: $color-1;
+			color: $color-5;
+			font-size: 1.5rem;
+			&:hover {
+				cursor: pointer;
+				background-color: $color-5;
+				color: $color-1;
+				font-weight: bold;
+			}
+		}
+	}
+  p {
+    &:hover {
+      cursor: pointer;
+      color: $color-4;
+      font-weight: bold;
+    }
+  }
 }
