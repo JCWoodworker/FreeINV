@@ -11,43 +11,42 @@
 	width: 97vw;
 	max-width: none;
 	background-color: $color-3;
-	}
+}
 
-	.modal-body {
-		@include flex-col-center;
-		margin-top: 4rem;
-		font-size: 2rem;
-		font-weight: bold;
-		p {
-			margin: 1rem;
-		}
-	}
-	.modal-footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		margin-bottom: 2rem;
-		button {
-			height: 5rem;
-			width: 20rem;
-			border: none;
-			border-radius: 1rem;
-			background-color: $color-1;
-			color: $color-5;
-			font-size: 1.5rem;
-			&:hover {
-				cursor: pointer;
-				background-color: $color-5;
-				color: $color-1;
-				font-weight: bold;
-			}
-		}
-	}
+.modal-body {
+	@include flex-col-center;
+	margin: 4rem 1rem 2rem 1rem;
+	font-size: 2rem;
+	font-weight: bold;
 	p {
+		margin: 1rem;
+	}
+}
+.modal-footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-bottom: 2rem;
+	button {
+		height: 5rem;
+		width: 20rem;
+		border: none;
+		border-radius: 1rem;
+		background-color: $color-1;
+		color: $color-5;
+		font-size: 1.5rem;
 		&:hover {
 			cursor: pointer;
-			color: $color-4;
+			background-color: $color-5;
+			color: $color-1;
 			font-weight: bold;
 		}
+	}
+}
+p {
+	&:hover {
+		cursor: pointer;
+		color: $color-4;
+		font-weight: bold;
 	}
 }
