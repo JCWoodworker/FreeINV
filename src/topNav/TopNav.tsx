@@ -8,6 +8,7 @@ const TopNav: React.FC = () => {
 	let title = 'NextRecruiter'
 	showSettings ? title = 'Settings' : 'NextRecruiter'
 
+
 	const toggleSettings = () => {
 		setShowSettings(!showSettings)
 	}

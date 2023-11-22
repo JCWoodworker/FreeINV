@@ -1,5 +1,5 @@
 import "./App.scss"
-import { useState } from "react"
+import { useState, createContext } from "react"
 import { Button } from "react-bootstrap"
 
 import TopNav from "./topNav/TopNav"
@@ -7,13 +7,31 @@ import PlayerIndex from "./users/players/PlayerIndex"
 import CoachIndex from "./users/coaches/coachIndex"
 import HomeIndex from "./HomeIndex"
 
+// eslint-disable-next-line react-refresh/only-export-components
+export interface User {
+	name: string
+	avatar: string
+	id: string
+	userType: string
+	isPresent: boolean
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const userContext = createContext<User>({
+	name: "",
+	avatar: "",
+	id: "",
+	userType: "",
+	isPresent: false,
+})
+
 function App() {
-	const [userIsPresent, setUserIsPresent] = useState(false)
-	const [userInfo, setUserInfo] = useState({
+	const [userInfo, setUserInfo] = useState<User>({
 		name: "Fake User",
 		avatar: "https://avatars.dicebear.com/api/avataaars/123.svg",
 		id: "123",
 		userType: "player",
+		isPresent: false,
 	})
 
 	const signFakeUserInAndOut = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -21,25 +39,25 @@ function App() {
 		setUserInfo({
 			...userInfo,
 			userType: event.currentTarget.id,
-			name: `Fake ${event.currentTarget.id}`
+			name: `Fake ${event.currentTarget.id}`,
+			isPresent: !userInfo.isPresent,
 		})
-		setUserIsPresent(!userIsPresent)
 	}
 
 	return (
-		<>
+		<userContext.Provider value={userInfo}>
 			<TopNav />
 			<div className="app-body">
-				{userIsPresent && userInfo.userType === "coach" ? (
+				{userInfo.isPresent && userInfo.userType === "coach" ? (
 					<CoachIndex userInfo={userInfo} />
-				) : userIsPresent && userInfo.userType === "player" ? (
+				) : userInfo.isPresent && userInfo.userType === "player" ? (
 					<PlayerIndex userInfo={userInfo} />
 				) : (
 					<HomeIndex />
 				)}
 			</div>
 			<div className="sign-in-button-container">
-				{!userIsPresent ? (
+				{!userInfo.isPresent ? (
 					<>
 						{" "}
 						<Button
@@ -47,24 +65,27 @@ function App() {
 							id="coach"
 							onClick={signFakeUserInAndOut}
 						>
-							{userIsPresent ? "Sign Out" : "Sign In Coach"}
+							{userInfo.isPresent ? "Sign Out" : "Sign In Coach"}
 						</Button>
 						<Button
 							className="sign-in-button"
 							id="player"
 							onClick={signFakeUserInAndOut}
 						>
-							{userIsPresent ? "Sign Out" : "Sign In Player"}
+							{userInfo.isPresent ? "Sign Out" : "Sign In Player"}
 						</Button>
 					</>
 				) : (
 					<Button
 						className="sign-in-button"
+						id="undefined"
 						onClick={signFakeUserInAndOut}
-					>Sign Out</Button>
+					>
+						Sign Out
+					</Button>
 				)}
 			</div>
-		</>
+		</userContext.Provider>
 	)
 }
 
