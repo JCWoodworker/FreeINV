@@ -16,10 +16,7 @@
 	}
 
 	.modal-body {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		@include flex-col-center;
 		margin-top: 4rem;
 		font-size: 2rem;
 		font-weight: bold;

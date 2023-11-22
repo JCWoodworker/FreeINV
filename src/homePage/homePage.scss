@@ -1,12 +1,9 @@
 @use "../assets/index.scss" as *;
 
 .home-page-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 4rem;
-  h2 {
-    width: 70%
-  }
+	@include flex-col-center;
+	margin-top: 4rem;
+	h2 {
+		width: 70%;
+	}
 }

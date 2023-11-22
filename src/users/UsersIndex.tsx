@@ -24,8 +24,6 @@ const UsersIndex: React.FC<Props> = ({ userInfo }) => {
 				<img id="avatar" src={userInfo.avatar} alt="avatar" />
 				<h2>{userInfo.name}</h2>
 			</div>
-			<p>ID: {userInfo.id}</p>
-			<p>Type: {userInfo.userType}</p>
 			{userTypeComponent}
 		</div>
 	)
