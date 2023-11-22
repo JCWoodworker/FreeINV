@@ -1,4 +1,4 @@
-import "./Main.scss"
+import "./main.scss"
 import { useState, createContext } from "react"
 import { Button } from "react-bootstrap"
 
