@@ -23,7 +23,7 @@ const TopNav: React.FC = () => {
 						{showSettings ? (
 							<i className="bi bi-gear-fill nav-icon" onClick={toggleSettings}></i>
 						) : (
-							<i className="bi bi-gear nav-icon" onClick={toggleSettings}></i>
+							<i className="bi bi-gear nav-icon rotated" onClick={toggleSettings}></i>
 						)}
 					</Col>
 				</Row>

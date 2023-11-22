@@ -26,3 +26,10 @@
 		}
 	}
 }
+
+.nav-icon {
+	transition: transform 0.5s ease-in-out;
+	&.rotated {
+		transform: rotate(-180deg);
+	}
+}
