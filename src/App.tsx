@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap"
 
 import TopNav from "./topNav/TopNav"
 import UsersIndex from "./users/UsersIndex"
-import HomeIndex from "./HomeIndex"
+import HomePage from "./homePage/HomePage"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export interface User {
@@ -50,7 +50,7 @@ function App() {
 				{userInfo.isPresent ? (
 					<UsersIndex userInfo={userInfo} />
 				) : (
-					<HomeIndex />
+					<HomePage />
 				)}
 			</div>
 			<div className="sign-in-button-container">

@@ -11,21 +11,22 @@ interface Props {
 }
 
 const UsersIndex: React.FC<Props> = ({ userInfo }) => {
-
-  let userTypeComponent = null
-  userInfo.userType === "player" 
-  ? (userTypeComponent = <PlayerHome />)
-  : userInfo.userType === "coach"
-  ? (userTypeComponent = <CoachHome />)
-  : null
+	let userTypeComponent = null
+	userInfo.userType === "player"
+		? (userTypeComponent = <PlayerHome />)
+		: userInfo.userType === "coach"
+		? (userTypeComponent = <CoachHome />)
+		: null
 
 	return (
-		<div>
-			<h1>{userInfo.name}</h1>
-			<img id="avatar" src={userInfo.avatar} alt="avatar" />
+		<div className="users-index-container">
+			<div className="users-index-header">
+				<img id="avatar" src={userInfo.avatar} alt="avatar" />
+				<h2>{userInfo.name}</h2>
+			</div>
 			<p>ID: {userInfo.id}</p>
 			<p>Type: {userInfo.userType}</p>
-      {userTypeComponent}
+			{userTypeComponent}
 		</div>
 	)
 }
