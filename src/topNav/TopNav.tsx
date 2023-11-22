@@ -5,6 +5,9 @@ import TopNavSettingsColumn from "./TopNavSettingsColumn"
 const TopNav: React.FC = () => {
 	const [showSettings, setShowSettings] = useState(false)
 
+	let title = 'NextRecruiter'
+	showSettings ? title = 'Settings' : 'NextRecruiter'
+
 	const toggleSettings = () => {
 		setShowSettings(!showSettings)
 	}
@@ -13,7 +16,7 @@ const TopNav: React.FC = () => {
 			<Container className="top-nav-container">
 				<Row className="top-nav-row">
 					<Col className="top-nav-left-col">
-						<h1>NextRecruiter</h1>
+						<h1>{title}</h1>
 					</Col>
 					<Col className="top-nav-right-col">
 						{showSettings ? (

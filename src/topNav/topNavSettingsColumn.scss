@@ -15,15 +15,17 @@
 		border: 3px solid red !important;
 	}
 
-	.modal-title {
-		margin: 1rem;
-		padding-bottom: 0.5rem;
-		font-size: 3rem;
-		border-bottom: 3px solid $color-5;
-	}
 	.modal-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 4rem;
 		font-size: 2rem;
 		font-weight: bold;
+		p {
+			margin: 1rem;
+		}
 	}
 	.modal-footer {
 		position: absolute;

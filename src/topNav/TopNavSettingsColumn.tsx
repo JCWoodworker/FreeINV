@@ -29,9 +29,6 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 }) => {
 	return (
 		<Modal show={showSettings} className="settings-modal">
-			<Modal.Header>
-				<Modal.Title>Settings</Modal.Title>
-			</Modal.Header>
 			<Modal.Body>
         {settingsAlerts.map((alert) => (
           <p id={alert.title} onClick={(event) => sendAlert(event)}>{alert.title}</p>
