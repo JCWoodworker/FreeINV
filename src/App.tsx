@@ -3,8 +3,7 @@ import { useState, createContext } from "react"
 import { Button } from "react-bootstrap"
 
 import TopNav from "./topNav/TopNav"
-import PlayerIndex from "./users/players/PlayerIndex"
-import CoachIndex from "./users/coaches/coachIndex"
+import UsersIndex from "./users/UsersIndex"
 import HomeIndex from "./HomeIndex"
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -48,10 +47,8 @@ function App() {
 		<userContext.Provider value={userInfo}>
 			<TopNav />
 			<div className="app-body">
-				{userInfo.isPresent && userInfo.userType === "coach" ? (
-					<CoachIndex userInfo={userInfo} />
-				) : userInfo.isPresent && userInfo.userType === "player" ? (
-					<PlayerIndex userInfo={userInfo} />
+				{userInfo.isPresent ? (
+					<UsersIndex userInfo={userInfo} />
 				) : (
 					<HomeIndex />
 				)}
@@ -65,14 +62,14 @@ function App() {
 							id="coach"
 							onClick={signFakeUserInAndOut}
 						>
-							{userInfo.isPresent ? "Sign Out" : "Sign In Coach"}
+							{userInfo.isPresent ? "Sign Out" : "Sign In Fake Coach"}
 						</Button>
 						<Button
 							className="sign-in-button"
 							id="player"
 							onClick={signFakeUserInAndOut}
 						>
-							{userInfo.isPresent ? "Sign Out" : "Sign In Player"}
+							{userInfo.isPresent ? "Sign Out" : "Sign In Fake Player"}
 						</Button>
 					</>
 				) : (

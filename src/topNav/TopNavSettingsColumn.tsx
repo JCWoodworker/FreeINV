@@ -42,18 +42,13 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 				</>
 			))
 		: !user?.isPresent
-		? (modalBody = "Sign In From The Home Screen")
+		? (modalBody = "Please Close This Menu And Sign In From The Home Screen")
 		: null
 
 	return (
 		<Modal show={showSettings} className="settings-modal">
 			<Modal.Body>
 				{modalBody}
-				{/* {playerSettingsOptions.map((alert) => (
-					<p id={alert.title} onClick={(event) => sendAlert(event)}>
-						{alert.title}
-					</p>
-				))} */}
 			</Modal.Body>
 			<Modal.Footer>
 				<button onClick={() => toggleSettings()}>Close</button>
