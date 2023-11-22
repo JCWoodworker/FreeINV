@@ -1,15 +1,49 @@
-@use './components.scss';
-@use './assets/index.scss' as *;
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu:wght@500&display=swap');
+@use "./components.scss";
+@use "./assets/index.scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu:wght@500&display=swap");
 
 #root {
-  font-family: $font-1;
-  font-family: $font-2;
+	font-family: $font-1;
+	font-family: $font-2;
 }
 
 body {
-  margin: 0 auto;
-  text-align: center;
-  background-color: $color-1;
-  color: $color-5;
+	margin: 0 auto;
+	text-align: center;
+	background-color: $color-1;
+	color: $color-5;
+}
+
+.app-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.sign-in-button-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+	margin-bottom: 1rem;
+}
+.sign-in-button {
+	margin: 1rem;
+	padding: 0.5rem;
+	height: 5rem;
+	width: 5rem;
+	border: none;
+	border-radius: 5px;
+	background-color: $color-3;
+	color: $color-5;
+	cursor: pointer;
+	&:hover {
+		background-color: $color-2;
+		color: $color-4;
+	}
 }
