@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { Modal } from "react-bootstrap"
 import { userContext, User } from "../App"
 import { playerSettingsOptions, coachSettingsOptions } from "./settingsOptions"
+
 interface Props {
 	showSettings: boolean
 	toggleSettings: () => void
@@ -19,7 +20,8 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 	const user = useContext<User>(userContext)
 
 	let modalBody = null
-	user?.userType === "player"
+
+	user?.isPresent && user?.userType === "player"
 		? (modalBody = (
 				<>
 					{playerSettingsOptions.map((alert) => (
@@ -29,7 +31,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 					))}
 				</>
 			))
-		: user?.userType === "coach"
+		: user?.isPresent && user?.userType === "coach"
 		? (modalBody = (
 				<>
 					{coachSettingsOptions.map((alert) => (
@@ -39,7 +41,9 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 					))}
 				</>
 			))
-		: (modalBody = "Sign In From The Home Screen")
+		: !user?.isPresent
+		? (modalBody = "Sign In From The Home Screen")
+		: null
 
 	return (
 		<Modal show={showSettings} className="settings-modal">

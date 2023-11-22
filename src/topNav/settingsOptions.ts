@@ -6,10 +6,10 @@ export const playerSettingsOptions = [
 		title: "Messages",
 	},
 	{
-		title: "My Saved Coaches",
+		title: "My Coaches",
 	},
 	{
-		title: "My Saved Teams",
+		title: "My Teams",
 	},
 	{
 		title: "Settings",
