@@ -1,6 +1,6 @@
 import "./main.scss"
 import { useState, createContext } from "react"
-import { Button } from "react-bootstrap"
+import InvButton from "./components/InvButton"
 
 import TopNav from "./topNav/TopNav"
 import UsersIndex from "./users/UsersIndex"
@@ -21,6 +21,7 @@ export const userContext = createContext<User>({
 })
 
 function App() {
+	const [userLoaded, setUserLoaded] = useState(false)
 	const [userInfo, setUserInfo] = useState<User>({
 		name: "",
 		avatar: "",
@@ -30,9 +31,20 @@ function App() {
 	return (
 		<userContext.Provider value={userInfo}>
 			<TopNav />
-			{userInfo ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
+			{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
 			<div className="app-body">
-				<Button>Sign In</Button>
+				<div className="sign-in-up-container">
+					<InvButton
+						label="Sign In"
+						classNames="button"
+						onClick={() => alert("Sign In")}
+					/>
+					<InvButton
+						label="Sign Up"
+						classNames="button"
+						onClick={() => alert("Sign Up")}
+					/>
+				</div>
 			</div>
 		</userContext.Provider>
 	)

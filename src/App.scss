@@ -16,7 +16,7 @@ body {
 	@include flex-col-center
 }
 
-.sign-in-button-container {
+.sign-in-up-container {
 	@include flex-row-center;
 	position: fixed;
 	bottom: 0;
@@ -24,10 +24,10 @@ body {
 	transform: translate(-50%, 0);
 	margin-bottom: 1rem;
 }
-.sign-in-button {
+.button {
 	margin: 1rem;
 	padding: 0.5rem;
-	height: 5rem;
+	height: 50px;
 	width: 5rem;
 	border: none;
 	border-radius: 5px;

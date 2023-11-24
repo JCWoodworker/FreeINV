@@ -3,11 +3,11 @@ import { Button } from "react-bootstrap"
 interface Props {
 	onClick: () => void
 	classNames: string
-	ids: string
 	label: string
+	ids?: string
 }
 
-const InvButton: React.FC<Props> = ({ onClick, classNames, ids, label }) => {
+const InvButton: React.FC<Props> = ({ onClick, classNames, label, ids = "" }) => {
 	return (
 		<Button className={classNames} onClick={onClick} id={ids}>
 			{label}

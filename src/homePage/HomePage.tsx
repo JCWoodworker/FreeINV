@@ -5,9 +5,18 @@ const HomeIndex = () => {
 		<Container>
 			<Row>
 				<Col className="home-page-list">
-					<h2>Need to find your next needle in a haystack?</h2>
-					<h2>Are you the needle that's lost in the shuffle?</h2>
-					<h2>NextRecruiter is here to connect you!!</h2>
+					<h2>Do you keep losing track of stuff?</h2>
+					<h2>Wouldn't it be nice<br />to have it all in one place?</h2>
+					<h2>
+						Welcome to the inventory app
+						<br />
+						you've been waiting for!!
+					</h2>
+					<p>
+						Now sign the fuck up
+						<br />
+						or sign the fuck in ...
+					</p>
 				</Col>
 			</Row>
 		</Container>
