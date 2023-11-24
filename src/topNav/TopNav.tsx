@@ -5,8 +5,8 @@ import TopNavSettingsColumn from "./TopNavSettingsColumn"
 const TopNav: React.FC = () => {
 	const [showSettings, setShowSettings] = useState(false)
 
-	let title = 'NextRecruiter'
-	showSettings ? title = 'Settings' : 'NextRecruiter'
+	let title = 'Inventory Pro'
+	showSettings ? title = 'Settings' : 'Inventory Pro'
 
 
 	const toggleSettings = () => {
