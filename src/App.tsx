@@ -31,8 +31,8 @@ function App() {
 	return (
 		<userContext.Provider value={userInfo}>
 			<TopNav />
-			{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
 			<div className="app-body">
+				{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
 				<div className="sign-in-up-container">
 					<InvButton
 						label="Sign In"

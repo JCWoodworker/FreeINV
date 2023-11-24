@@ -8,11 +8,11 @@
 	left: 50%;
 	transform: translate(-50%, 0);
 	height: 88%;
-	width: 97vw;
+	width: 100vw;
 	max-width: none;
 	background-color: $color-3;
 	opacity: 0;
-	transition: opacity 0.4s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
 }
 
 .modal-body {
@@ -24,6 +24,7 @@
 		margin: 1rem;
 	}
 }
+
 .modal-footer {
 	position: absolute;
 	bottom: 0;
@@ -45,6 +46,7 @@
 		}
 	}
 }
+
 p {
 	&:hover {
 		cursor: pointer;
