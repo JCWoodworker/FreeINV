@@ -1,5 +1,19 @@
 {
-  "name": "nextrecruiter",
+  "name": "homeinventory",
+  "displayName": "Home Inventory",
+  "description": "Home Inventory Application with React and TypeScript",
+  "license": "MIT",
+  "keywords": [
+    "home",
+    "inventory",
+    "react",
+    "typescript"
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradleyw/homeinventory.git"
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",
