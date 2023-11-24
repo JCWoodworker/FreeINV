@@ -46,10 +46,11 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 		: null
 
 	return (
-		<Modal show={showSettings} className="settings-modal">
-			<Modal.Body>
-				{modalBody}
-			</Modal.Body>
+		<Modal
+			show={showSettings}
+			className={`settings-modal ${showSettings ? "modal-open" : "modal-closed"}`}
+		>
+			<Modal.Body>{modalBody}</Modal.Body>
 			<Modal.Footer>
 				<button onClick={() => toggleSettings()}>Close</button>
 			</Modal.Footer>

@@ -11,7 +11,9 @@
 	width: 97vw;
 	max-width: none;
 	background-color: $color-3;
-}	
+	opacity: 0;
+	transition: opacity 0.4s ease-in-out;
+}
 
 .modal-body {
 	@include flex-col-center;
@@ -49,4 +51,11 @@ p {
 		color: $color-4;
 		font-weight: bold;
 	}
+}
+
+.modal-open {
+	opacity: 1;
+}
+.modal-closed {
+	opacity: 0;
 }
