@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Modal } from "react-bootstrap"
 import { userContext, User } from "../App"
-import { playerSettingsOptions, coachSettingsOptions } from "./settingsOptions"
+import { userSettingsOptions } from "./settingsOptions"
 
 interface Props {
 	showSettings: boolean
@@ -21,34 +21,24 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 
 	let modalBody = null
 
-	user?.isPresent && user?.userType === "player"
+	user?.isPresent
 		? (modalBody = (
 				<>
-					{playerSettingsOptions.map((alert) => (
+					{userSettingsOptions.map((alert) => (
 						<p id={alert.title} onClick={(event) => sendAlert(event)}>
 							{alert.title}
 						</p>
 					))}
 				</>
 			))
-		: user?.isPresent && user?.userType === "coach"
-		? (modalBody = (
-				<>
-					{coachSettingsOptions.map((alert) => (
-						<p id={alert.title} onClick={(event) => sendAlert(event)}>
-							{alert.title}
-						</p>
-					))}
-				</>
-			))
-		: !user?.isPresent
-		? (modalBody = "Please Close This Menu And Sign In From The Home Screen")
-		: null
+		: (modalBody = "Please Sign In")
 
 	return (
 		<Modal
 			show={showSettings}
-			className={`settings-modal ${showSettings ? "modal-open" : "modal-closed"}`}
+			className={`settings-modal ${
+				showSettings ? "modal-open" : "modal-closed"
+			}`}
 		>
 			<Modal.Body>{modalBody}</Modal.Body>
 			<Modal.Footer>

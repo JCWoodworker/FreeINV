@@ -1,33 +1,15 @@
-export const playerSettingsOptions = [
+export const userSettingsOptions = [
 	{
 		title: "Profile",
 	},
 	{
-		title: "Messages",
+		title: "Locations",
 	},
 	{
-		title: "My Coaches",
+		title: "Rooms",
 	},
 	{
-		title: "My Teams",
-	},
-	{
-		title: "Settings",
-	},
-]
-
-export const coachSettingsOptions = [
-	{
-		title: "Profile",
-	},
-	{
-		title: "Messages",
-	},
-	{
-		title: "My Prospects",
-	},
-	{
-		title: "My Scouting",
+		title: "Items",
 	},
 	{
 		title: "Settings",
