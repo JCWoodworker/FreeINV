@@ -5,6 +5,7 @@ import InvButton from "./components/InvButton"
 import TopNav from "./topNav/TopNav"
 import UsersIndex from "./users/UsersIndex"
 import HomePage from "./homePage/HomePage"
+import SignUpInButtons from "./registerAndSignIn/SignUpInButtons"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export interface User {
@@ -34,21 +35,12 @@ function App() {
 	return (
 		<userContext.Provider value={userInfo}>
 			<TopNav userLoaded={userLoaded} setUserLoaded={setUserLoaded} />
-			<div className="app-body">
-				{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
-				<div className="sign-in-up-container">
-					<InvButton
-						label="Sign In"
-						classNames="button"
-						onClick={() => alert("Sign In")}
-					/>
-					<InvButton
-						label="Sign Up"
-						classNames="button"
-						onClick={() => alert("Sign Up")}
-					/>
-				</div>
-			</div>
+			{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
+			<SignUpInButtons
+				userInfo={userInfo}
+				userLoaded={userLoaded}
+				setUserLoaded={setUserLoaded}
+			/>
 		</userContext.Provider>
 	)
 }

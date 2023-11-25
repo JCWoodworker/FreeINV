@@ -40,7 +40,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 						</p>
 					))}
 				</>
-			))
+		  ))
 		: (modalBody = "Please Sign In")
 
 	return (
@@ -54,10 +54,14 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 			<Modal.Footer>
 				<InvButton
 					label={!userLoaded ? "Load Fake User" : "Sign Out Fake User"}
-					classNames="button"
+					classNames="button nav-button"
 					onClick={() => loadUnloadFakeUser()}
 				/>
-				<button onClick={() => toggleSettings()}>Close</button>
+				<InvButton
+					label={"Close"}
+					classNames={"button nav-button"}
+					onClick={() => toggleSettings()}
+				/>
 			</Modal.Footer>
 		</Modal>
 	)
