@@ -24,7 +24,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 
 	let modalBody = null
 
-	user?.isPresent
+	user?.isPresent && userLoaded
 		? (modalBody = (
 				<>
 					{userSettingsOptions.map((alert) => (
@@ -33,7 +33,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 						</p>
 					))}
 				</>
-		  ))
+			))
 		: (modalBody = "Please Sign In")
 
 	return (

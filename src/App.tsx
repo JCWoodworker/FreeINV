@@ -1,5 +1,5 @@
 import "./main.scss"
-import { useState, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
@@ -32,6 +32,11 @@ function App() {
 		id: "fake-user",
 		isPresent: false,
 	})
+
+	useEffect(() => {
+		console.log(setUserLoaded)
+		console.log(setUserInfo)
+	}, [])
 
 	return (
 		<userContext.Provider value={userInfo}>
