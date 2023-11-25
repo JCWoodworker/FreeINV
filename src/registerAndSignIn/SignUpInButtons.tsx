@@ -1,25 +1,21 @@
 import React from "react"
 import InvButton from "../components/InvButton"
+import { Link } from "react-router-dom"
 
-interface Props {
-	userLoaded: boolean
-	setUserLoaded: (userLoaded: boolean) => void
-}
-
-const SignUpInButtons: React.FC<Props> = ({ userLoaded, setUserLoaded }) => {
+const SignUpInButtons: React.FC = () => {
 	return (
 		<div className="app-body">
 			<div className="sign-in-up-container">
-				<InvButton
-					label="Sign Up"
-					classNames="button"
-					onClick={() => alert("Sign Up")}
-				/>
-				<InvButton
-					label="Sign In"
-					classNames="button"
-					onClick={() => alert("Sign In")}
-				/>
+				<Link to="/signup">
+					<InvButton label="Sign Up" classNames="button" onClick={() => {}} />
+				</Link>
+				<Link to="/signin">
+					<InvButton
+						label="Sign In"
+						classNames="button"
+						onClick={() => {}}
+					/>
+				</Link>
 			</div>
 		</div>
 	)

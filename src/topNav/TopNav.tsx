@@ -4,15 +4,13 @@ import TopNavSettingsColumn from "./TopNavSettingsColumn"
 
 interface Props {
 	userLoaded: boolean
-	setUserLoaded: (userLoaded: boolean) => void
 }
 
-const TopNav: React.FC<Props> = ({ userLoaded, setUserLoaded }) => {
+const TopNav: React.FC<Props> = ({ userLoaded }) => {
 	const [showSettings, setShowSettings] = useState(false)
 
-	let title = 'Inventory Pro'
-	showSettings ? title = 'Settings' : 'Inventory Pro'
-
+	let title = "Inventory Pro"
+	showSettings ? (title = "Settings") : "Inventory Pro"
 
 	const toggleSettings = () => {
 		setShowSettings(!showSettings)
@@ -26,9 +24,15 @@ const TopNav: React.FC<Props> = ({ userLoaded, setUserLoaded }) => {
 					</Col>
 					<Col className="top-nav-right-col">
 						{showSettings ? (
-							<i className="bi bi-gear-fill nav-icon" onClick={toggleSettings}></i>
+							<i
+								className="bi bi-gear-fill nav-icon"
+								onClick={toggleSettings}
+							></i>
 						) : (
-							<i className="bi bi-gear nav-icon rotated" onClick={toggleSettings}></i>
+							<i
+								className="bi bi-gear nav-icon rotated"
+								onClick={toggleSettings}
+							></i>
 						)}
 					</Col>
 				</Row>
@@ -37,7 +41,6 @@ const TopNav: React.FC<Props> = ({ userLoaded, setUserLoaded }) => {
 				showSettings={showSettings}
 				toggleSettings={toggleSettings}
 				userLoaded={userLoaded}
-				setUserLoaded={setUserLoaded}
 			/>
 		</>
 	)

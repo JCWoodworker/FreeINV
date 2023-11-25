@@ -1,11 +1,12 @@
 import "./main.scss"
 import { useState, createContext } from "react"
-import InvButton from "./components/InvButton"
+import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
 import UsersIndex from "./users/UsersIndex"
 import HomePage from "./homePage/HomePage"
-import SignUpInButtons from "./registerAndSignIn/SignUpInButtons"
+import SignIn from "./registerAndSignIn/SignIn"
+import SignUp from "./registerAndSignIn/SignUp"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export interface User {
@@ -34,13 +35,16 @@ function App() {
 
 	return (
 		<userContext.Provider value={userInfo}>
-			<TopNav userLoaded={userLoaded} setUserLoaded={setUserLoaded} />
-			{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
-			<SignUpInButtons
-				userInfo={userInfo}
-				userLoaded={userLoaded}
-				setUserLoaded={setUserLoaded}
-			/>
+			<TopNav userLoaded={userLoaded} />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route
+					path="/users"
+					element={<UsersIndex userInfo={userInfo} userLoaded={userLoaded} />}
+				/>
+				<Route path="/signin" element={<SignIn />} />
+				<Route path="/signup" element={<SignUp />} />
+			</Routes>
 		</userContext.Provider>
 	)
 }
