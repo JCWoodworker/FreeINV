@@ -11,6 +11,7 @@ export interface User {
 	name: string
 	avatar: string
 	id: string
+	isPresent: boolean
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -18,19 +19,21 @@ export const userContext = createContext<User>({
 	name: "",
 	avatar: "",
 	id: "",
+	isPresent: false,
 })
 
 function App() {
 	const [userLoaded, setUserLoaded] = useState(false)
 	const [userInfo, setUserInfo] = useState<User>({
-		name: "",
-		avatar: "",
-		id: "",
+		name: "Fake User",
+		avatar: "https://i.pravatar.cc/300",
+		id: "fake-user",
+		isPresent: false,
 	})
 
 	return (
 		<userContext.Provider value={userInfo}>
-			<TopNav />
+			<TopNav userLoaded={userLoaded} setUserLoaded={setUserLoaded} />
 			<div className="app-body">
 				{userLoaded ? <UsersIndex userInfo={userInfo} /> : <HomePage />}
 				<div className="sign-in-up-container">

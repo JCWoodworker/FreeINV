@@ -2,10 +2,13 @@ import React, { useContext } from "react"
 import { Modal } from "react-bootstrap"
 import { userContext, User } from "../App"
 import { userSettingsOptions } from "./settingsOptions"
+import InvButton from "../components/InvButton"
 
 interface Props {
 	showSettings: boolean
 	toggleSettings: () => void
+	userLoaded: boolean
+	setUserLoaded: (userLoaded: boolean) => void
 }
 
 const sendAlert = (event: React.MouseEvent<HTMLParagraphElement>) => {
@@ -16,7 +19,14 @@ const sendAlert = (event: React.MouseEvent<HTMLParagraphElement>) => {
 export const TopNavSettingsColumn: React.FC<Props> = ({
 	showSettings,
 	toggleSettings,
+	userLoaded,
+	setUserLoaded,
 }) => {
+	const loadUnloadFakeUser = () => {
+		setUserLoaded(!userLoaded)
+		toggleSettings()
+	}
+
 	const user = useContext<User>(userContext)
 
 	let modalBody = null
@@ -42,6 +52,11 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 		>
 			<Modal.Body>{modalBody}</Modal.Body>
 			<Modal.Footer>
+				<InvButton
+					label={!userLoaded ? "Load Fake User" : "Sign Out Fake User"}
+					classNames="button"
+					onClick={() => loadUnloadFakeUser()}
+				/>
 				<button onClick={() => toggleSettings()}>Close</button>
 			</Modal.Footer>
 		</Modal>

@@ -2,7 +2,12 @@ import React, { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import TopNavSettingsColumn from "./TopNavSettingsColumn"
 
-const TopNav: React.FC = () => {
+interface Props {
+	userLoaded: boolean
+	setUserLoaded: (userLoaded: boolean) => void
+}
+
+const TopNav: React.FC<Props> = ({ userLoaded, setUserLoaded }) => {
 	const [showSettings, setShowSettings] = useState(false)
 
 	let title = 'Inventory Pro'
@@ -31,6 +36,8 @@ const TopNav: React.FC = () => {
 			<TopNavSettingsColumn
 				showSettings={showSettings}
 				toggleSettings={toggleSettings}
+				userLoaded={userLoaded}
+				setUserLoaded={setUserLoaded}
 			/>
 		</>
 	)
