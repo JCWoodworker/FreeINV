@@ -27,11 +27,21 @@ export const userContext = createContext<User>({
 function App() {
 	const [userLoaded, setUserLoaded] = useState(false)
 	const [userInfo, setUserInfo] = useState<User>({
-		name: "Fake User",
-		avatar: "https://i.pravatar.cc/300",
-		id: "fake-user",
+		name: "",
+		avatar: "",
+		id: "",
 		isPresent: false,
 	})
+
+	const handleSignIn = () => {
+		setUserLoaded(true)
+		setUserInfo({
+			name: "Fake User",
+			avatar: "https://i.pravatar.cc/300",
+			id: "fake-user",
+			isPresent: true,
+		})
+	}
 
 	useEffect(() => {
 		console.log(setUserLoaded)
@@ -47,7 +57,10 @@ function App() {
 					path="/users"
 					element={<UsersIndex userInfo={userInfo} userLoaded={userLoaded} />}
 				/>
-				<Route path="/signin" element={<SignIn />} />
+				<Route
+					path="/signin"
+					element={<SignIn handleSignIn={handleSignIn} />}
+				/>
 				<Route path="/signup" element={<SignUp />} />
 			</Routes>
 		</userContext.Provider>
