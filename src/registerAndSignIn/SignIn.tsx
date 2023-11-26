@@ -71,7 +71,7 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 	return (
 		<div>
 			<h1>Sign In</h1>
-			<Form className="sign-in-form" onSubmit={handleSubmit}>
+			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
 				<Form.Group className="text-input-group" controlId="signInForm">
 					<Form.Label className="input-label-class">Username</Form.Label>
 					<Form.Control

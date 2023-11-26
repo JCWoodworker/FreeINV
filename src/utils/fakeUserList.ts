@@ -12,7 +12,7 @@ export const fakeUserList: FakeUser[] = [
     username: "Faker01",
     password: "password",
     avatar: "https://i.pravatar.cc/300",
-    id: "fake-user",
+    id: "Faker01",
     isPresent: true,
   },
   {
@@ -20,7 +20,7 @@ export const fakeUserList: FakeUser[] = [
     username: "Faker02",
     password: "password",
     avatar: "https://i.pravatar.cc/300",
-    id: "fake-user",
+    id: "Faker02",
     isPresent: true,
   },
   {
@@ -28,7 +28,7 @@ export const fakeUserList: FakeUser[] = [
     username: "Faker03",
     password: "password",
     avatar: "https://i.pravatar.cc/300",
-    id: "fake-user",
+    id: "Faker03",
     isPresent: true,
   },
 ]
