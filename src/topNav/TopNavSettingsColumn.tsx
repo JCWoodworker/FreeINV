@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
-import { Modal } from "react-bootstrap"
+import { Modal, Button } from "react-bootstrap"
 import { userContext, User } from "../App"
 import { userSettingsOptions } from "./settingsOptions"
-import InvButton from "../components/InvButton"
 
 interface Props {
 	showSettings: boolean
@@ -45,11 +44,9 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 		>
 			<Modal.Body>{modalBody}</Modal.Body>
 			<Modal.Footer>
-				<InvButton
-					label={"Close"}
-					classNames={"button nav-button"}
-					onClick={() => toggleSettings()}
-				/>
+				<Button className="button nav-button" onClick={() => toggleSettings()}>
+					Close
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	)

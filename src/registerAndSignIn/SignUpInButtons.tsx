@@ -1,22 +1,20 @@
 import React from "react"
-import InvButton from "../components/InvButton"
 import { Link } from "react-router-dom"
+import { Form, Button } from "react-bootstrap"
 
 const SignUpInButtons: React.FC = () => {
 	return (
 		<div className="app-body">
-			<div className="sign-in-up-container">
+			<Form className="sign-in-up-container">
 				<Link to="/signup">
-					<InvButton label="Sign Up" classNames="button" onClick={() => {}} />
+					<Button className="button">
+						Sign Up
+					</Button>
 				</Link>
 				<Link to="/signin">
-					<InvButton
-						label="Sign In"
-						classNames="button"
-						onClick={() => {}}
-					/>
+					<Button className="button">Sign In</Button>
 				</Link>
-			</div>
+			</Form>
 		</div>
 	)
 }

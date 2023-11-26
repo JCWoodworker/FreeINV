@@ -14,8 +14,8 @@ const SignIn: React.FC<Props> = ({ handleSignIn }) => {
 	return (
 		<div>
 			<h1>Sign In</h1>
-			<Form className="sign-in-form">
-				<Form.Group className="label-text-group" controlId="signInForm">
+			<Form className="sign-in-form" onSubmit={handleSubmit}>
+				<Form.Group className="text-input-group" controlId="signInForm">
 					<Form.Label className="input-label-class">Username</Form.Label>
 					<Form.Control
 						className="input-text-class"
@@ -23,7 +23,7 @@ const SignIn: React.FC<Props> = ({ handleSignIn }) => {
 						required={true}
 					/>
 				</Form.Group>
-				<Form.Group className="label-text-group" controlId="signInForm">
+				<Form.Group className="text-input-group" controlId="signInForm">
 					<Form.Label className="input-label-class">Password</Form.Label>
 					<Form.Control
 						className="input-text-class"
@@ -31,8 +31,7 @@ const SignIn: React.FC<Props> = ({ handleSignIn }) => {
 						required={true}
 					/>
 				</Form.Group>
-				<Button className="button" onSubmit={handleSubmit}
-				></Button>
+				<Button className="button" type="submit">Submit</Button>
 			</Form>
 		</div>
 	)

@@ -33,19 +33,21 @@ function App() {
 		isPresent: false,
 	})
 
-	const handleSignIn = () => {
-		setUserLoaded(true)
-		setUserInfo({
-			name: "Fake User",
-			avatar: "https://i.pravatar.cc/300",
-			id: "fake-user",
-			isPresent: true,
-		})
+	const handleSignIn = async () => {
+		try {
+			setUserLoaded(true)
+			setUserInfo({
+				name: "Fake User",
+				avatar: "https://i.pravatar.cc/300",
+				id: "fake-user",
+				isPresent: true,
+			})
+		} catch(error) {
+			console.log(`Sign in error: ${error}`)
+		}
 	}
 
 	useEffect(() => {
-		console.log(setUserLoaded)
-		console.log(setUserInfo)
 	}, [])
 
 	return (
