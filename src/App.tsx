@@ -8,8 +8,6 @@ import HomePage from "./homePage/HomePage"
 import SignIn from "./registerAndSignIn/SignIn"
 import SignUp from "./registerAndSignIn/SignUp"
 
-import { fakeUserList, FakeUser } from "./utils/fakeUserList"
-
 // eslint-disable-next-line react-refresh/only-export-components
 export interface User {
 	name: string
@@ -29,8 +27,6 @@ export const userContext = createContext<User>({
 })
 
 function App() {
-	const [fakeUserListState, setFakeUserListState] =
-		useState<FakeUser[]>(fakeUserList)
 	const [userInfo, setUserInfo] = useState<User>({
 		name: "",
 		username: "",
@@ -59,21 +55,10 @@ function App() {
 				<Route
 					path="/signin"
 					element={
-						<SignIn
-							setUserInfo={setUserInfo}
-							setUserLoaded={setUserLoaded}
-						/>
+						<SignIn setUserInfo={setUserInfo} setUserLoaded={setUserLoaded} />
 					}
 				/>
-				<Route
-					path="/signup"
-					element={
-						<SignUp
-							fakeUserListState={fakeUserListState}
-							setFakeUserListState={setFakeUserListState}
-						/>
-					}
-				/>
+				<Route path="/signup" element={<SignUp />} />
 			</Routes>
 		</userContext.Provider>
 	)

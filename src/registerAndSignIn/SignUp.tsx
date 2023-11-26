@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-import { fakeUserList } from "../utils/fakeUserList"
 
 interface FormPayload {
 	name: string
@@ -9,17 +8,8 @@ interface FormPayload {
 	password: string
 }
 
-interface Props {
-	fakeUserListState: typeof fakeUserList
-	setFakeUserListState: React.Dispatch<
-		React.SetStateAction<typeof fakeUserList>
-	>
-}
 
-const SignUp: React.FC<Props> = ({
-	fakeUserListState,
-	setFakeUserListState,
-}) => {
+const SignUp: React.FC = () => {
 	const [successfulSignup, setSuccessfulSignup] = useState(false)
 	const [formPayload, setFormPayload] = useState({
 		name: "",
@@ -46,11 +36,12 @@ const SignUp: React.FC<Props> = ({
 			id: payload.username,
 			isPresent: true,
 		}
-		if (fakeUserListState.find((user) => user.username === payload.username)) {
-			setErrorMessage("Username already exists")
-			return false
-		}
-		setFakeUserListState(() => [...fakeUserListState, newUser])
+		console.log(newUser)
+		// if (fakeUserListState.find((user) => user.username === payload.username)) {
+		// 	setErrorMessage("Username already exists")
+		// 	return false
+		// }
+		// setFakeUserListState(() => [...fakeUserListState, newUser])
 		return true
 	}
 
