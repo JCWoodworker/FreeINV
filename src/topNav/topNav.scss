@@ -17,7 +17,8 @@
 		display: flex;
 		flex-direction: row;
 		padding-right: 1rem;
-		.nav-icon {
+		.nav-icon-gear,
+		.nav-icon-house {
 			margin-left: 1rem;
 			font-size: 2rem;
 			&:hover {
@@ -27,9 +28,15 @@
 	}
 }
 
-.nav-icon {
+.nav-icon-gear {
 	transition: transform 0.5s ease-in-out;
 	&.rotated {
 		transform: rotate(-135deg);
+	}
+}
+
+.nav-link {
+	&:visited {
+		color: $color-5;
 	}
 }

@@ -1,20 +1,14 @@
 import React, { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-import { fakeUserList } from "../utils/fakeUserList"
 import { User } from "../App"
-
-interface FormPayload {
-	username: string
-	password: string
-}
+import axios from "axios"
 
 interface Props {
 	setUserInfo: React.Dispatch<React.SetStateAction<User>>
 	setUserLoaded: React.Dispatch<React.SetStateAction<boolean>>
-	fakeUserListState: typeof fakeUserList
 }
-const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded, fakeUserListState }) => {
+const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 	const [formPayload, setFormPayload] = useState({
 		username: "",
 		password: "",
@@ -22,39 +16,39 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded, fakeUserListState
 	const [errorMessage, setErrorMessage] = useState<string>("")
 	const navigate = useNavigate()
 
-	const handleSignIn = (
-		payload: FormPayload & {
-			username: string
-			password: string
-		}
-	) => {
+	const handleSignIn = async (username: string, password: string) => {
 		try {
-			const response = fakeUserListState.find((user) => {
-				if (
-					user.username === payload.username &&
-					user.password === payload.password
-				) {
-					return user
+			const response = await axios.post(
+				"http://localhost:3000/auth/login",
+				{
+					username: username,
+					password: password,
+				},
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
 				}
-				return false
-			})
-			if (!response) {
-				setErrorMessage("Incorrect username or password")
-				return
-			}
-			if (response) {
+			)
+			if (response.status === 200) {
 				setUserInfo({
-					name: response.name,
-					username: response.username,
-					avatar: response.avatar,
-					id: response.id,
+					name: "No Names Yet",
+					username: response.data.username,
+					avatar: "https://i.pravatar.cc/300",
+					id: response.data.id,
 					isPresent: true,
 				})
 				setUserLoaded(true)
 				navigate("/users")
+				return true
 			}
+			if (response.status === 401) {
+				return setErrorMessage("Incorrect username or password")
+			}
+			return setErrorMessage("Something went wrong")
 		} catch (error) {
-			console.log(`Sign in error: ${error}`)
+			console.log(`Sign in error caught: ${error}`)
 		}
 	}
 
@@ -65,9 +59,9 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded, fakeUserListState
 		})
 	}
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		handleSignIn(formPayload)
+		await handleSignIn(formPayload.username, formPayload.password)
 	}
 	return (
 		<div>

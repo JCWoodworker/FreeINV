@@ -36,11 +36,11 @@ const TopNav: React.FC<Props> = ({ userLoaded }) => {
 							</>
 						) : (
 							<>
-								<Link to="/">
-									<i className="bi bi-house nav-icon"></i>
+								<Link to="/" className="nav-link">
+									<i className="bi bi-house nav-icon-house"></i>
 								</Link>
 								<i
-									className="bi bi-gear nav-icon rotated"
+									className="bi bi-gear nav-icon-gear rotated"
 									onClick={toggleSettings}
 								></i>
 							</>

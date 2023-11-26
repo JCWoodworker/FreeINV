@@ -1,5 +1,5 @@
 import "./main.scss"
-import { useState, createContext, useEffect } from "react"
+import { useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
@@ -40,10 +40,6 @@ function App() {
 	})
 	const [userLoaded, setUserLoaded] = useState<boolean>(userInfo?.isPresent)
 
-	useEffect(() => {
-		console.log(fakeUserListState)
-	}, [fakeUserListState])
-
 	return (
 		<userContext.Provider value={userInfo}>
 			<TopNav userLoaded={userLoaded} />
@@ -66,7 +62,6 @@ function App() {
 						<SignIn
 							setUserInfo={setUserInfo}
 							setUserLoaded={setUserLoaded}
-							fakeUserListState={fakeUserListState}
 						/>
 					}
 				/>
