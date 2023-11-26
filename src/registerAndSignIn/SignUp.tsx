@@ -120,12 +120,12 @@ const SignUp: React.FC<Props> = ({
 		showForm = (
 			<>
 				<h1>Sign Up Successful</h1>
-				<p>Redirecting you to the login page in 5 seconds</p>
+				<p>Redirecting you to the login page in 3 seconds</p>
 			</>
 		)
 		setTimeout(() => {
 			navigate("/signin")
-		}, 5000)
+		}, 3000)
 	}
 
 	return <div>{showForm}</div>
