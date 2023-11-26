@@ -1,5 +1,5 @@
 import "./main.scss"
-import { useState, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
@@ -7,6 +7,8 @@ import UsersIndex from "./users/UsersIndex"
 import HomePage from "./homePage/HomePage"
 import SignIn from "./registerAndSignIn/SignIn"
 import SignUp from "./registerAndSignIn/SignUp"
+
+import { fakeUserList, FakeUser } from "./utils/fakeUserList"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export interface User {
@@ -27,6 +29,8 @@ export const userContext = createContext<User>({
 })
 
 function App() {
+	const [fakeUserListState, setFakeUserListState] =
+		useState<FakeUser[]>(fakeUserList)
 	const [userInfo, setUserInfo] = useState<User>({
 		name: "",
 		username: "",
@@ -35,6 +39,10 @@ function App() {
 		isPresent: false,
 	})
 	const [userLoaded, setUserLoaded] = useState<boolean>(userInfo?.isPresent)
+
+	useEffect(() => {
+		console.log(fakeUserListState)
+	}, [fakeUserListState])
 
 	return (
 		<userContext.Provider value={userInfo}>
@@ -55,10 +63,22 @@ function App() {
 				<Route
 					path="/signin"
 					element={
-						<SignIn setUserInfo={setUserInfo} setUserLoaded={setUserLoaded} />
+						<SignIn
+							setUserInfo={setUserInfo}
+							setUserLoaded={setUserLoaded}
+							fakeUserListState={fakeUserListState}
+						/>
 					}
 				/>
-				<Route path="/signup" element={<SignUp />} />
+				<Route
+					path="/signup"
+					element={
+						<SignUp
+							fakeUserListState={fakeUserListState}
+							setFakeUserListState={setFakeUserListState}
+						/>
+					}
+				/>
 			</Routes>
 		</userContext.Provider>
 	)

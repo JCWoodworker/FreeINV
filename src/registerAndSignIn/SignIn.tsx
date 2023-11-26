@@ -12,8 +12,9 @@ interface FormPayload {
 interface Props {
 	setUserInfo: React.Dispatch<React.SetStateAction<User>>
 	setUserLoaded: React.Dispatch<React.SetStateAction<boolean>>
+	fakeUserListState: typeof fakeUserList
 }
-const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
+const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded, fakeUserListState }) => {
 	const [formPayload, setFormPayload] = useState({
 		username: "",
 		password: "",
@@ -28,7 +29,7 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 		}
 	) => {
 		try {
-			const response = fakeUserList.find((user) => {
+			const response = fakeUserListState.find((user) => {
 				if (
 					user.username === payload.username &&
 					user.password === payload.password
@@ -72,24 +73,28 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 		<div>
 			<h1>Sign In</h1>
 			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
-				<Form.Group className="text-input-group" controlId="signInForm">
+				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Username</Form.Label>
 					<Form.Control
 						className="input-text-class"
-						name="username"
+						type="text"
 						placeholder="Username"
-						required={true}
+						name="username"
 						onChange={handleInputChange}
+						required={true}
+						value={formPayload.username}
 					/>
 				</Form.Group>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Password</Form.Label>
 					<Form.Control
 						className="input-text-class"
-						name="password"
+						type="text"
 						placeholder="Password"
-						required={true}
+						name="password"
 						onChange={handleInputChange}
+						required={true}
+						value={formPayload.password}
 					/>
 				</Form.Group>
 				{errorMessage}

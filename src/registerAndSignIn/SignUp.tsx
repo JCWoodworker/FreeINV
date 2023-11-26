@@ -9,7 +9,17 @@ interface FormPayload {
 	password: string
 }
 
-const SignUp = () => {
+interface Props {
+	fakeUserListState: typeof fakeUserList
+	setFakeUserListState: React.Dispatch<
+		React.SetStateAction<typeof fakeUserList>
+	>
+}
+
+const SignUp: React.FC<Props> = ({
+	fakeUserListState,
+	setFakeUserListState,
+}) => {
 	const [successfulSignup, setSuccessfulSignup] = useState(false)
 	const [formPayload, setFormPayload] = useState({
 		name: "",
@@ -21,11 +31,9 @@ const SignUp = () => {
 	const navigate = useNavigate()
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		event.preventDefault()
-		const { name, value } = event.target
-		setFormPayload((prevPayload) => ({
-			...prevPayload,
-			[name]: value,
+		setFormPayload(({
+			...formPayload,
+			[event.target.name]: event.target.value,
 		}))
 	}
 
@@ -38,25 +46,28 @@ const SignUp = () => {
 			id: payload.username,
 			isPresent: true,
 		}
-		if (fakeUserList.find((user) => user.username === payload.username)) {
+		if (fakeUserListState.find((user) => user.username === payload.username)) {
 			setErrorMessage("Username already exists")
+			return false
+		}
+		setFakeUserListState(() => [...fakeUserListState, newUser])
+		return true
+	}
+
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+		if (!addNewUser(formPayload)) {
 			return
 		}
-		fakeUserList.push(newUser)
 		setErrorMessage("")
 		setSuccessMessage("User created successfully")
 		setSuccessfulSignup(true)
 	}
 
-	const handleSubmit = () => {
-		addNewUser(formPayload)
-		alert("Clicked Submit - nothing happened")
-	}
-
 	let showForm = (
 		<>
 			<h1>Sign Up</h1>
-			<Form className="sign-in-up-form">
+			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Name</Form.Label>
 					<Form.Control
@@ -64,10 +75,9 @@ const SignUp = () => {
 						type="text"
 						placeholder="Enter Name"
 						name="name"
+						onChange={handleInputChange}
+						required={true}
 						value={formPayload.name}
-						onChange={() => {
-							handleInputChange
-						}}
 					/>
 				</Form.Group>
 				<Form.Group className="text-input-group">
@@ -77,10 +87,9 @@ const SignUp = () => {
 						type="text"
 						placeholder="Enter Username"
 						name="username"
+						onChange={handleInputChange}
+						required={true}
 						value={formPayload.username}
-						onChange={() => {
-							handleInputChange
-						}}
 					/>
 				</Form.Group>
 				<Form.Group className="text-input-group">
@@ -90,10 +99,9 @@ const SignUp = () => {
 						type="password"
 						placeholder="Enter Password"
 						name="password"
+						onChange={handleInputChange}
+						required={true}
 						value={formPayload.password}
-						onChange={() => {
-							handleInputChange
-						}}
 					/>
 				</Form.Group>
 				{errorMessage}
@@ -101,15 +109,24 @@ const SignUp = () => {
 				<Button
 					className="button"
 					type="submit"
-					onClick={() => {
-						handleSubmit()
-					}}
 				>
 					Submit
 				</Button>
 			</Form>
 		</>
 	)
+
+	if (successfulSignup) {
+		showForm = (
+			<>
+				<h1>Sign Up Successful</h1>
+				<p>Redirecting you to the login page in 5 seconds</p>
+			</>
+		)
+		setTimeout(() => {
+			navigate("/signin")
+		}, 5000)
+	}
 
 	return <div>{showForm}</div>
 }
