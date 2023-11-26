@@ -18,11 +18,7 @@ body {
 
 .sign-in-up-container {
 	@include flex-row-center;
-	position: fixed;
-	bottom: 0;
-	left: 50%;
-	transform: translate(-50%, 0);
-	margin-bottom: 1rem;
+	@include fixed-bottom-buttons;
 }
 
 .button {

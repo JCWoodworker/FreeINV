@@ -11,3 +11,11 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin fixed-bottom-buttons {
+  position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+	margin-bottom: 1rem;
+}

@@ -1,5 +1,5 @@
 import "./main.scss"
-import { useState, createContext, useEffect } from "react"
+import { useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
@@ -25,13 +25,13 @@ export const userContext = createContext<User>({
 })
 
 function App() {
-	const [userLoaded, setUserLoaded] = useState(false)
 	const [userInfo, setUserInfo] = useState<User>({
 		name: "",
 		avatar: "",
 		id: "",
 		isPresent: false,
 	})
+	const [userLoaded, setUserLoaded] = useState<boolean>(userInfo?.isPresent)
 
 	const handleSignIn = async () => {
 		try {
@@ -42,13 +42,10 @@ function App() {
 				id: "fake-user",
 				isPresent: true,
 			})
-		} catch(error) {
+		} catch (error) {
 			console.log(`Sign in error: ${error}`)
 		}
 	}
-
-	useEffect(() => {
-	}, [])
 
 	return (
 		<userContext.Provider value={userInfo}>
@@ -57,7 +54,14 @@ function App() {
 				<Route path="/" element={<HomePage />} />
 				<Route
 					path="/users"
-					element={<UsersIndex userInfo={userInfo} userLoaded={userLoaded} />}
+					element={
+						<UsersIndex
+							userInfo={userInfo}
+							setUserInfo={setUserInfo}
+							userLoaded={userLoaded}
+							setUserLoaded={setUserLoaded}
+						/>
+					}
 				/>
 				<Route
 					path="/signin"
