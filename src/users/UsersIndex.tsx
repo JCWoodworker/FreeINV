@@ -26,6 +26,7 @@ const UsersIndex: React.FC<Props> = ({
 		setUserLoaded(() => false)
 		setUserInfo({
 			name: "",
+			username: "",
 			avatar: "",
 			id: "",
 			isPresent: false,

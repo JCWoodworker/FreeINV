@@ -11,6 +11,7 @@ import SignUp from "./registerAndSignIn/SignUp"
 // eslint-disable-next-line react-refresh/only-export-components
 export interface User {
 	name: string
+	username: string
 	avatar: string
 	id: string
 	isPresent: boolean
@@ -19,6 +20,7 @@ export interface User {
 // eslint-disable-next-line react-refresh/only-export-components
 export const userContext = createContext<User>({
 	name: "",
+	username: "",
 	avatar: "",
 	id: "",
 	isPresent: false,
@@ -27,25 +29,12 @@ export const userContext = createContext<User>({
 function App() {
 	const [userInfo, setUserInfo] = useState<User>({
 		name: "",
+		username: "",
 		avatar: "",
 		id: "",
 		isPresent: false,
 	})
 	const [userLoaded, setUserLoaded] = useState<boolean>(userInfo?.isPresent)
-
-	const handleSignIn = async () => {
-		try {
-			setUserLoaded(true)
-			setUserInfo({
-				name: "Fake User",
-				avatar: "https://i.pravatar.cc/300",
-				id: "fake-user",
-				isPresent: true,
-			})
-		} catch (error) {
-			console.log(`Sign in error: ${error}`)
-		}
-	}
 
 	return (
 		<userContext.Provider value={userInfo}>
@@ -65,7 +54,9 @@ function App() {
 				/>
 				<Route
 					path="/signin"
-					element={<SignIn handleSignIn={handleSignIn} />}
+					element={
+						<SignIn setUserInfo={setUserInfo} setUserLoaded={setUserLoaded} />
+					}
 				/>
 				<Route path="/signup" element={<SignUp />} />
 			</Routes>
