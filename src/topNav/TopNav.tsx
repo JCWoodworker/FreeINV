@@ -3,11 +3,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import TopNavSettingsColumn from "./TopNavSettingsColumn"
 import { Link } from "react-router-dom"
 
-interface Props {
-	userLoaded: boolean
-}
-
-const TopNav: React.FC<Props> = ({ userLoaded }) => {
+const TopNav: React.FC = () => {
 	const [showSettings, setShowSettings] = useState(false)
 
 	let title = "Inventory Pro"
@@ -51,7 +47,6 @@ const TopNav: React.FC<Props> = ({ userLoaded }) => {
 			<TopNavSettingsColumn
 				showSettings={showSettings}
 				toggleSettings={toggleSettings}
-				userLoaded={userLoaded}
 			/>
 		</>
 	)

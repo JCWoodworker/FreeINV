@@ -1,12 +1,10 @@
-import React, { useContext } from "react"
+import { useAppContext } from "../AppContext"
 import { Modal, Button } from "react-bootstrap"
-import { userContext, User } from "../App"
 import { userSettingsOptions } from "./settingsOptions"
 
 interface Props {
 	showSettings: boolean
 	toggleSettings: () => void
-	userLoaded: boolean
 }
 
 const sendAlert = (event: React.MouseEvent<HTMLParagraphElement>) => {
@@ -17,13 +15,13 @@ const sendAlert = (event: React.MouseEvent<HTMLParagraphElement>) => {
 export const TopNavSettingsColumn: React.FC<Props> = ({
 	showSettings,
 	toggleSettings,
-	userLoaded,
 }) => {
-	const user = useContext<User>(userContext)
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const { appState, setAppState } = useAppContext()
 
 	let modalBody = null
 
-	user?.isPresent && userLoaded
+	appState.userIsLoaded
 		? (modalBody = (
 				<>
 					{userSettingsOptions.map((alert) => (

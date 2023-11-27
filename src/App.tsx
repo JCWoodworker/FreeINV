@@ -1,6 +1,6 @@
 import "./main.scss"
-import { useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
+import { AppContextProvider } from "./AppContext"
 
 import TopNav from "./topNav/TopNav"
 import UsersIndex from "./users/UsersIndex"
@@ -8,59 +8,30 @@ import HomePage from "./homePage/HomePage"
 import SignIn from "./registerAndSignIn/SignIn"
 import SignUp from "./registerAndSignIn/SignUp"
 
-// eslint-disable-next-line react-refresh/only-export-components
-export interface User {
-	name: string
-	username: string
-	avatar: string
-	id: string
-	isPresent: boolean
-}
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const userContext = createContext<User>({
-	name: "",
-	username: "",
-	avatar: "",
-	id: "",
-	isPresent: false,
-})
 
 function App() {
-	const [userInfo, setUserInfo] = useState<User>({
-		name: "",
-		username: "",
-		avatar: "",
-		id: "",
-		isPresent: false,
-	})
-	const [userLoaded, setUserLoaded] = useState<boolean>(userInfo?.isPresent)
 
 	return (
-		<userContext.Provider value={userInfo}>
-			<TopNav userLoaded={userLoaded} />
+		<AppContextProvider>
+			<TopNav/>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route
 					path="/users"
 					element={
 						<UsersIndex
-							userInfo={userInfo}
-							setUserInfo={setUserInfo}
-							userLoaded={userLoaded}
-							setUserLoaded={setUserLoaded}
 						/>
 					}
 				/>
 				<Route
 					path="/signin"
 					element={
-						<SignIn setUserInfo={setUserInfo} setUserLoaded={setUserLoaded} />
+						<SignIn />
 					}
 				/>
 				<Route path="/signup" element={<SignUp />} />
 			</Routes>
-		</userContext.Provider>
+		</AppContextProvider>
 	)
 }
 

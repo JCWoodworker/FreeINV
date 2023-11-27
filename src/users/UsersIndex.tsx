@@ -1,56 +1,44 @@
 import React, { useEffect } from "react"
+import { useAppContext } from "../AppContext"
 import { useNavigate } from "react-router-dom"
 import { Button } from "react-bootstrap"
-import { User } from "../App"
-interface Props {
-	userInfo: {
-		name: string
-		avatar: string
-		id: string
-		isPresent: boolean
-	},
-	setUserInfo: React.Dispatch<React.SetStateAction<User>>,
-	userLoaded: boolean
-	setUserLoaded: React.Dispatch<React.SetStateAction<boolean>>
-}
 
-const UsersIndex: React.FC<Props> = ({
-	userInfo,
-	setUserInfo,
-	userLoaded,
-	setUserLoaded,
-}) => {
+const UsersIndex: React.FC = () => {
+	const { appState, setAppState } = useAppContext()
 	const navigate = useNavigate()
 
 	const handleLogout = () => {
-		setUserLoaded(() => false)
-		setUserInfo({
-			name: "",
-			username: "",
-			avatar: "",
-			id: "",
-			isPresent: false,
+		setAppState({
+			userIsLoaded: false,
+			userInfo: {
+				name: "",
+				username: "",
+				avatar: "",
+				id: "",
+			},
 		})
 		navigate("/")
 	}
 
 	useEffect (() => {
-		if (!userLoaded) {
+		if (!appState.userIsLoaded) {
 			navigate("/")
 		}
-	}, [navigate, userLoaded])
+	}, [navigate, appState.userIsLoaded])
 
 	const showUserInformation = (
 		<div className="users-index-container">
 			<div className="users-index-header">
-				<img id="avatar" src={userInfo.avatar} alt="avatar" />
-				<h2>{userInfo.name}</h2>
+				<img id="avatar" src={appState.userInfo.avatar} alt="avatar" />
+				<h2>{appState.userInfo.name}</h2>
 			</div>
 			<Button className="button sign-out" onClick={handleLogout}>
 				Sign Out
 			</Button>
 		</div>
 	)
+
+	console.log(`App State From UsersIndex: ${JSON.stringify(appState)}`)
 
 	return <>{showUserInformation}</>
 }

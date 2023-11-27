@@ -1,14 +1,11 @@
 import React, { useState } from "react"
+import { useAppContext } from "../AppContext"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-import { User } from "../App"
 import axios from "axios"
 
-interface Props {
-	setUserInfo: React.Dispatch<React.SetStateAction<User>>
-	setUserLoaded: React.Dispatch<React.SetStateAction<boolean>>
-}
-const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
+const SignIn: React.FC = () => {
+	const { appState, setAppState } = useAppContext()
 	const [formPayload, setFormPayload] = useState({
 		username: "",
 		password: "",
@@ -32,14 +29,19 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 				}
 			)
 			if (response.status === 200) {
-				setUserInfo({
-					name: "No Names Yet",
-					username: response.data.username,
-					avatar: "https://i.pravatar.cc/300",
-					id: response.data.id,
-					isPresent: true,
+				setAppState({
+					userIsLoaded: true,
+					userInfo: {
+						// name: response.data.name,
+						name: "No Names Yet",
+						username: response.data.username,
+						avatar: 'https://i.pravatar.cc/300',
+						id: response.data.id,
+					},
 				})
-				setUserLoaded(true)
+
+				console.log(`Status Message: ${response.data.statusMessage}`)
+				
 				navigate("/users")
 				return true
 			}
@@ -53,6 +55,7 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 	}
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		event.preventDefault()
 		setFormPayload({
 			...formPayload,
 			[event.target.name]: event.target.value,
@@ -63,6 +66,10 @@ const SignIn: React.FC<Props> = ({ setUserInfo, setUserLoaded }) => {
 		event.preventDefault()
 		await handleSignIn(formPayload.username, formPayload.password)
 	}
+
+	console.log(`App State From SignIn: ${JSON.stringify(appState)}`)
+	console.log(`Form Payload From SignIn: ${JSON.stringify(formPayload)}`)
+
 	return (
 		<div>
 			<h1>Sign In</h1>
