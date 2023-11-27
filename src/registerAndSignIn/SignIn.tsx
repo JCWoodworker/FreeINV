@@ -62,9 +62,6 @@ const SignIn: React.FC = () => {
 		await handleSignIn(formPayload.username, formPayload.password)
 	}
 
-	console.log(`App State From SignIn: ${JSON.stringify(appState)}`)
-	console.log(`Form Payload From SignIn: ${JSON.stringify(formPayload)}`)
-
 	return (
 		<div>
 			<h1>Sign In</h1>
