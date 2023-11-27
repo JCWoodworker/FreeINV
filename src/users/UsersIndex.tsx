@@ -35,8 +35,6 @@ const UsersIndex: React.FC = () => {
 		</div>
 	)
 
-	console.log(`App State From UsersIndex: ${JSON.stringify(appState)}`)
-
 	return <>{showUserInformation}</>
 }
 

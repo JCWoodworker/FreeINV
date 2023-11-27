@@ -1,7 +1,6 @@
 import { useAppContext } from "../AppContext"
 import { Modal, Button } from "react-bootstrap"
 import { userSettingsOptions } from "./settingsOptions"
-import { useEffect } from "react"
 
 interface Props {
 	showSettings: boolean
@@ -18,13 +17,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 	toggleSettings,
 }) => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { appState, setAppState } = useAppContext()
-
-	// This is just here until I can figure out how to fix the build issue due to 
-	// "setAppState" is declared but its value is never read.
-	useEffect(() => {
-		console.log(setAppState)
-	}, [setAppState])
+	const { appState } = useAppContext()
 
 	let modalBody = null
 
@@ -32,13 +25,13 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 		? (modalBody = (
 				<>
 					{userSettingsOptions.map((alert) => (
-						<p id={alert.title} onClick={(event) => sendAlert(event)}>
+						<p key={alert.title} id={alert.title} onClick={(event) => sendAlert(event)}>
 							{alert.title}
 						</p>
 					))}
 				</>
 			))
-		: (modalBody = "Please Sign In")
+		: (modalBody = "Please close this menu and sign in from the home page")
 
 	return (
 		<Modal
