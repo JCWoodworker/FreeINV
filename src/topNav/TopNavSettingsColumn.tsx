@@ -25,13 +25,13 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 		? (modalBody = (
 				<>
 					{userSettingsOptions.map((alert) => (
-						<p id={alert.title} onClick={(event) => sendAlert(event)}>
+						<p key={alert.title} id={alert.title} onClick={(event) => sendAlert(event)}>
 							{alert.title}
 						</p>
 					))}
 				</>
 			))
-		: (modalBody = "Please Sign In")
+		: (modalBody = "Please close this menu and sign in from the home page")
 
 	return (
 		<Modal

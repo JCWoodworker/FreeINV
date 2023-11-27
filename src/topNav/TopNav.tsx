@@ -6,11 +6,12 @@ import { Link } from "react-router-dom"
 
 const TopNav: React.FC = () => {
 	const [showSettings, setShowSettings] = useState(false)
-
-	const title = showSettings ? "Settings" : "Inventory Pro"
-
 	const { appState } = useAppContext()
 	const homeLinkUrl = appState.userIsLoaded ? "/users" : "/"
+	const greeting = appState.userIsLoaded
+		? `Welcome, ${appState.userInfo.name}`
+		: "Inventory Pro"
+	const title = showSettings ? "Settings" : greeting
 
 	const toggleSettings = () => {
 		setShowSettings(!showSettings)
