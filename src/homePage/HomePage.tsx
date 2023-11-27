@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import SignUpInButtons from "../registerAndSignIn/SignUpInButtons"
 
 const HomeIndex = () => {
+	
 	return (
 		<Container>
 			<Row>
