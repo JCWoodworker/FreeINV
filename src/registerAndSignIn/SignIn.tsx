@@ -40,18 +40,12 @@ const SignIn: React.FC = () => {
 						id: response.data.id,
 					},
 				})
-
-				console.log(`Status Message: ${response.data.statusMessage}`)
-
 				navigate("/users")
 				return true
 			}
-			if (response.status === 401) {
-				return setErrorMessage("Incorrect username or password")
-			}
-			return setErrorMessage("Something went wrong")
 		} catch (error) {
-			console.log(`Sign in error caught: ${error}`)
+			setErrorMessage("Incorrect credentials")
+			return false
 		}
 	}
 
