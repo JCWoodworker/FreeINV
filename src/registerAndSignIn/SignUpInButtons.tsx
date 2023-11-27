@@ -9,7 +9,11 @@ const SignUpInButtons: React.FC = () => {
 	const navigate = useNavigate()
 	const checkForRefreshToken = async () => {
 		try {
-			const response = await axios.post(`${appState.backendUrl}/auth/refresh`)
+			const response = await axios.post(`${appState.backendUrl}/auth/refresh`, {
+				headers: {
+					withCredentials: true,
+				},
+			})
 			debugger
 			if (response.status === 200) {
 				debugger
