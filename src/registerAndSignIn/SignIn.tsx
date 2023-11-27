@@ -16,7 +16,7 @@ const SignIn: React.FC = () => {
 	const handleSignIn = async (username: string, password: string) => {
 		try {
 			const response = await axios.post(
-				appState.backendUrl,
+				`${appState.backendUrl}/auth/login`,
 				{
 					username: username,
 					password: password,
