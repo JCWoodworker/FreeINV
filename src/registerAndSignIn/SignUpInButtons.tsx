@@ -28,7 +28,9 @@ const SignUpInButtons: React.FC = () => {
 				navigate("/users")
 				return true
 			}
-			console.log(`Refresh Status: ${response.status}`)
+			response.status === 201
+				? console.log(`Refresh function finished, no refresh token: ${JSON.stringify(response)}`)
+				: console.log(`Refresh Status: ${response.status}`)
 			return false
 		} catch (error) {
 			console.log(error)
