@@ -14,9 +14,7 @@ const SignUpInButtons: React.FC = () => {
 					withCredentials: true,
 				},
 			})
-			debugger
 			if (response.status === 200) {
-				debugger
 				setAppState({
 					...appState,
 					userIsLoaded: true,
@@ -27,14 +25,11 @@ const SignUpInButtons: React.FC = () => {
 						id: response.data.id,
 					},
 				})
-				debugger
 				navigate("/users")
 				return true
 			}
-			debugger
 			return false
 		} catch (error) {
-			debugger
 			console.log(error)
 		}
 	}
