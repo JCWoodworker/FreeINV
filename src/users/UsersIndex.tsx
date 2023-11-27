@@ -8,15 +8,12 @@ const UsersIndex: React.FC = () => {
 	const navigate = useNavigate()
 
 	const handleLogout = () => {
-		setAppState({
-			userIsLoaded: false,
-			userInfo: {
-				name: "",
-				username: "",
-				avatar: "",
-				id: "",
-			},
-		})
+		setAppState({ ...appState, userIsLoaded: false, userInfo: {
+			name: "",
+			username: "",
+			avatar: "",
+			id: "",
+		} })
 		navigate("/")
 	}
 

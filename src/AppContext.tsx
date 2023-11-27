@@ -17,6 +17,7 @@ interface UserInfo {
 interface AppContextType {
 	userIsLoaded: boolean
 	userInfo: UserInfo
+	backendUrl: string
 }
 
 const AppContext = createContext<
@@ -34,6 +35,14 @@ interface AppContextProviderProps {
 const AppContextProvider: React.FC<AppContextProviderProps> = ({
 	children,
 }) => {
+	const backendUrl = import.meta.env.VITE_ENVIRONMENT === "development"
+	? import.meta.env.VITE_BACKEND_URL_DEV
+	: import.meta.env.VITE_ENVIRONMENT === "preprod"
+	? import.meta.env.VITE_BACKEND_URL_PREPROD
+	: import.meta.env.VITE_ENVIRONMENT === "prod"
+	? import.meta.env.VITE_BACKEND_URL_PROD
+	: 'mistakes were made'
+	
 	const [appState, setAppState] = useState<AppContextType>({
 		userIsLoaded: false,
 		userInfo: {
@@ -42,6 +51,7 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({
 			avatar: "",
 			id: "",
 		},
+		backendUrl: backendUrl,
 	})
 
 	return (

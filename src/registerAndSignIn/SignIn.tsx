@@ -16,7 +16,7 @@ const SignIn: React.FC = () => {
 	const handleSignIn = async (username: string, password: string) => {
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/auth/login",
+				appState.backendUrl,
 				{
 					username: username,
 					password: password,
@@ -30,18 +30,19 @@ const SignIn: React.FC = () => {
 			)
 			if (response.status === 200) {
 				setAppState({
+					...appState,
 					userIsLoaded: true,
 					userInfo: {
 						// name: response.data.name,
 						name: "No Names Yet",
 						username: response.data.username,
-						avatar: 'https://i.pravatar.cc/300',
+						avatar: "https://i.pravatar.cc/300",
 						id: response.data.id,
 					},
 				})
 
 				console.log(`Status Message: ${response.data.statusMessage}`)
-				
+
 				navigate("/users")
 				return true
 			}
