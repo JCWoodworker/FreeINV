@@ -26,7 +26,7 @@ const TopNav: React.FC<Props> = ({ userLoaded }) => {
 					<Col className="top-nav-right-col">
 						{showSettings ? (
 							<>
-								<Link to="/" className="nav-icon-link">
+								<Link to="/" className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
 								<i
@@ -36,11 +36,11 @@ const TopNav: React.FC<Props> = ({ userLoaded }) => {
 							</>
 						) : (
 							<>
-								<Link to="/" className="nav-link">
-									<i className="bi bi-house nav-icon-house"></i>
+								<Link to="/" className="react-router-Link">
+									<i className="bi bi-house nav-icon"></i>
 								</Link>
 								<i
-									className="bi bi-gear nav-icon-gear rotated"
+									className="bi bi-gear nav-icon rotated"
 									onClick={toggleSettings}
 								></i>
 							</>

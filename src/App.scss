@@ -1,17 +1,5 @@
 @use "./assets/index.scss" as *;
 
-#root {
-	font-family: $font-1;
-	font-family: $font-2;
-}
-
-body {
-	margin: 0 auto;
-	text-align: center;
-	background-color: $color-1;
-	color: $color-5;
-}
-
 .app-body {
 	@include flex-col-center
 }
@@ -19,21 +7,4 @@ body {
 .sign-in-up-container {
 	@include flex-row-center;
 	@include fixed-bottom-buttons;
-}
-
-.button {
-	margin: 0.5rem;
-	padding: 0.25rem;
-	height: 50px;
-	width: 8rem;
-	border: none;
-	border-radius: 5px;
-	background-color: $color-3;
-	color: $color-5;
-	font-weight: bolder;
-	cursor: pointer;
-	&:hover {
-		background-color: $color-5;
-		color: $color-1;
-	}
 }
