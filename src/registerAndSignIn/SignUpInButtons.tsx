@@ -28,6 +28,7 @@ const SignUpInButtons: React.FC = () => {
 				navigate("/users")
 				return true
 			}
+			console.log(`Refresh Status: ${response.status}`)
 			return false
 		} catch (error) {
 			console.log(error)
