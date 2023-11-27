@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useAppContext } from "../AppContext"
 import { Container, Row, Col } from "react-bootstrap"
 import TopNavSettingsColumn from "./TopNavSettingsColumn"
 import { Link } from "react-router-dom"
@@ -6,8 +7,10 @@ import { Link } from "react-router-dom"
 const TopNav: React.FC = () => {
 	const [showSettings, setShowSettings] = useState(false)
 
-	let title = "Inventory Pro"
-	showSettings ? (title = "Settings") : "Inventory Pro"
+	const title = showSettings ? "Settings" : "Inventory Pro"
+
+	const { appState } = useAppContext()
+	const homeLinkUrl = appState.userIsLoaded ? "/users" : "/"
 
 	const toggleSettings = () => {
 		setShowSettings(!showSettings)
@@ -22,7 +25,7 @@ const TopNav: React.FC = () => {
 					<Col className="top-nav-right-col">
 						{showSettings ? (
 							<>
-								<Link to="/" className="react-router-Link">
+								<Link to={homeLinkUrl} className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
 								<i
@@ -32,7 +35,7 @@ const TopNav: React.FC = () => {
 							</>
 						) : (
 							<>
-								<Link to="/" className="react-router-Link">
+								<Link to={homeLinkUrl} className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
 								<i
