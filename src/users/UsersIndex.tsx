@@ -1,32 +1,17 @@
 import React, { useEffect } from "react"
 import { useAppContext } from "../AppContext"
-import { useLocalStorageState } from "../customHooks/useLocalStorageState"
 import { useNavigate } from "react-router-dom"
 import { Button } from "react-bootstrap"
 
 const UsersIndex: React.FC = () => {
 	const { appState, setAppState } = useAppContext()
 	const navigate = useNavigate()
-	const [localStorageState, setLocalStorageState] = useLocalStorageState(
-		"appState",
-		appState
-	)
 
-	console.log(`Local Storage State: ${JSON.stringify(localStorageState)}`)
+	console.log(`${JSON.stringify(appState)} ${setAppState}`)
+
 
 	const handleLogout = () => {
-		const clearedAppState = {
-			...appState,
-			userIsLoaded: false,
-			userInfo: {
-				name: "",
-				username: "",
-				avatar: "",
-				id: "",
-			},
-		}
-		setAppState(clearedAppState)
-		setLocalStorageState(clearedAppState)
+		alert("This shit does not work yet!!")
 	}
 
 	useEffect(() => {
