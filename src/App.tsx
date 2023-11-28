@@ -37,7 +37,10 @@ function App() {
 		<>
 			<TopNav />
 			<Routes>
-				<Route path="/" element={<HomePage />} />
+				<Route
+					path="/"
+					element={appState.userIsLoaded ? <UsersIndex /> : <HomePage />}
+				/>
 				<Route path="/users" element={<UsersIndex />} />
 				<Route path="/signin" element={<SignIn />} />
 				<Route path="/signup" element={<SignUp />} />
