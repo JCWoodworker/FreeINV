@@ -14,13 +14,12 @@ import SignUp from "./registerAndSignIn/SignUp"
 function App() {
 	const { appState, setAppState } = useAppContext()
 	const [localStorageState, setLocalStorageState] = useLocalStorageState(
-		"invUserInfo",
-		appState.userInfo
+		"appState",
+		null
 	)
-	console.log(localStorageState)
 
 	useEffect(() => {
-		if (localStorageState) {
+		if (localStorageState.userIsLoaded) {
 			setAppState(localStorageState.appState)
 		}
 	}, [])

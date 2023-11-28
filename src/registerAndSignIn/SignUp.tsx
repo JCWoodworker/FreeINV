@@ -37,11 +37,6 @@ const SignUp: React.FC = () => {
 			isPresent: true,
 		}
 		console.log(newUser)
-		// if (fakeUserListState.find((user) => user.username === payload.username)) {
-		// 	setErrorMessage("Username already exists")
-		// 	return false
-		// }
-		// setFakeUserListState(() => [...fakeUserListState, newUser])
 		return true
 	}
 
