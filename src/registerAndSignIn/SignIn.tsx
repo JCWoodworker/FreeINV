@@ -1,11 +1,14 @@
 import React, { useState } from "react"
-import { useAppContext } from "../AppContext"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
-const SignIn: React.FC = () => {
-	const { appState, setAppState } = useAppContext()
+interface Props {
+	setActiveUser: unknown
+	setUserIsLoaded: unknown
+}
+
+const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 	const [formPayload, setFormPayload] = useState({
 		username: "",
 		password: "",
@@ -13,10 +16,11 @@ const SignIn: React.FC = () => {
 	const [errorMessage, setErrorMessage] = useState<string>("")
 	const navigate = useNavigate()
 
-	const handleSignIn = async (username: string, password: string) => {
+	const handleSignIn = async () => {
+		const { username, password } = formPayload
 		try {
 			const response = await axios.post(
-				`${appState.backendUrl}/auth/login`,
+				`http://localhost:3000/auth/login`,
 				{
 					username: username,
 					password: password,
@@ -29,18 +33,9 @@ const SignIn: React.FC = () => {
 				}
 			)
 			if (response.status === 200) {
-				setAppState({
-					...appState,
-					userIsLoaded: true,
-					userInfo: {
-						// name: response.data.name,
-						name: "No Names Yet",
-						username: response.data.username,
-						avatar: "https://i.pravatar.cc/300",
-						id: response.data.id,
-					},
-				})
-				navigate("/users")
+				setUserIsLoaded(() => true)
+				setActiveUser({ username: username, avatar: "myavatarurl" })
+				navigate("/")
 				return true
 			}
 		} catch (error) {
@@ -59,7 +54,7 @@ const SignIn: React.FC = () => {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		await handleSignIn(formPayload.username, formPayload.password)
+		await handleSignIn()
 	}
 
 	return (

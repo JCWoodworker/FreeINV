@@ -1,41 +1,7 @@
-import axios from "axios"
-import { useAppContext } from "../AppContext"
-import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 
 const SignUpInButtons: React.FC = () => {
-	const { appState, setAppState } = useAppContext()
-	const navigate = useNavigate()
-	const checkForRefreshToken = async () => {
-		try {
-			const response = await axios.post(`${appState.backendUrl}/auth/refresh`, {
-				headers: {
-					withCredentials: true,
-				},
-			})
-			if (response.status === 200) {
-				setAppState({
-					...appState,
-					userIsLoaded: true,
-					userInfo: {
-						name: response.data.name,
-						username: response.data.username,
-						avatar: "https://i.pravatar.cc/300",
-						id: response.data.id,
-					},
-				})
-				navigate("/users")
-				return true
-			}
-			response.status === 201
-				? console.log(`Refresh function finished, no refresh token: ${JSON.stringify(response)}`)
-				: console.log(`Refresh Status: ${response.status}`)
-			return false
-		} catch (error) {
-			console.log(error)
-		}
-	}
 
 	return (
 		<div className="app-body">
@@ -44,7 +10,7 @@ const SignUpInButtons: React.FC = () => {
 					<Button className="button">Sign Up</Button>
 				</Link>
 				<Link to="/signin" className="react-router-Link">
-					<Button className="button" onClick={checkForRefreshToken}>
+					<Button className="button">
 						Sign In
 					</Button>
 				</Link>

@@ -15,3 +15,12 @@ export const userSettingsOptions = [
 		title: "Settings",
 	},
 ]
+
+export const basicAppSettings = [
+	{
+		title: "Register",
+	},
+	{
+		title: "Sign In",
+	},
+]

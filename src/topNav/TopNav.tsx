@@ -1,16 +1,16 @@
 import React, { useState } from "react"
-import { useAppContext } from "../AppContext"
 import { Container, Row, Col } from "react-bootstrap"
 import TopNavSettingsColumn from "./TopNavSettingsColumn"
 import { Link } from "react-router-dom"
 
-const TopNav: React.FC = () => {
+interface Props {
+	userIsLoaded: boolean
+}
+
+const TopNav: React.FC<Props> = ({ userIsLoaded }) => {
 	const [showSettings, setShowSettings] = useState(false)
-	const { appState } = useAppContext()
-	const homeLinkUrl = appState.userIsLoaded ? "/users" : "/"
-	const greeting = appState.userIsLoaded
-		? `Welcome, ${appState.userInfo.name}`
-		: "Inventory Pro"
+	const homeLinkUrl = userIsLoaded ? "/users" : "/"
+	const greeting = userIsLoaded ? `Welcome!` : "Inventory Pro"
 	const title = showSettings ? "Settings" : greeting
 
 	const toggleSettings = () => {
@@ -49,6 +49,7 @@ const TopNav: React.FC = () => {
 				</Row>
 			</Container>
 			<TopNavSettingsColumn
+				userIsLoaded={userIsLoaded}
 				showSettings={showSettings}
 				toggleSettings={toggleSettings}
 			/>
