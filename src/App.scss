@@ -1,7 +1,8 @@
 @use "./assets/index.scss" as *;
 
 .app-body {
-	@include flex-col-center
+	@include flex-col-center;
+	color: $color-5;
 }
 
 .sign-in-up-container {

@@ -9,7 +9,6 @@ interface Props {
 
 const TopNav: React.FC<Props> = ({ userIsLoaded }) => {
 	const [showSettings, setShowSettings] = useState(false)
-	const homeLinkUrl = userIsLoaded ? "/users" : "/"
 	const greeting = userIsLoaded ? `Welcome!` : "Inventory Pro"
 	const title = showSettings ? "Settings" : greeting
 
@@ -26,7 +25,7 @@ const TopNav: React.FC<Props> = ({ userIsLoaded }) => {
 					<Col className="top-nav-right-col">
 						{showSettings ? (
 							<>
-								<Link to={homeLinkUrl} className="react-router-Link">
+								<Link to="/" className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
 								<i
@@ -36,7 +35,7 @@ const TopNav: React.FC<Props> = ({ userIsLoaded }) => {
 							</>
 						) : (
 							<>
-								<Link to={homeLinkUrl} className="react-router-Link">
+								<Link to="/" className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
 								<i

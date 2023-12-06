@@ -1,5 +1,9 @@
 @use "../assets/index.scss" as *;
 
+.home-page-container {
+	background: $Background-gradient
+}
+
 .home-page-list {
 	@include flex-col-center;
 	margin-top: 2rem;

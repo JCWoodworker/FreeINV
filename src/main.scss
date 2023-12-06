@@ -7,6 +7,13 @@
 
 @use "./assets/index.scss" as *;
 
+html, body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	height: 100vh;
+}
+
 #root {
 	font-family: $font-1;
 	font-family: $font-2;
@@ -15,7 +22,7 @@
 body {
 	margin: 0 auto;
 	text-align: center;
-	background-color: $color-1;
+	background: $Background-gradient;
 	color: $color-5;
 }
 
