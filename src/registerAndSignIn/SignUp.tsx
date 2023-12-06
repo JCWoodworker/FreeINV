@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 interface FormPayload {
 	name: string
 	username: string
 	password: string
 }
-
 
 const SignUp: React.FC = () => {
 	const [successfulSignup, setSuccessfulSignup] = useState(false)
@@ -21,10 +20,10 @@ const SignUp: React.FC = () => {
 	const navigate = useNavigate()
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setFormPayload(({
+		setFormPayload({
 			...formPayload,
 			[event.target.name]: event.target.value,
-		}))
+		})
 	}
 
 	const addNewUser = (payload: FormPayload) => {
@@ -41,7 +40,7 @@ const SignUp: React.FC = () => {
 	}
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+		event.preventDefault()
 		if (!addNewUser(formPayload)) {
 			return
 		}
@@ -92,10 +91,7 @@ const SignUp: React.FC = () => {
 				</Form.Group>
 				{errorMessage}
 				{successMessage}
-				<Button
-					className="button"
-					type="submit"
-				>
+				<Button className="button" type="submit">
 					Submit
 				</Button>
 			</Form>
@@ -106,7 +102,8 @@ const SignUp: React.FC = () => {
 		showForm = (
 			<>
 				<h1>Sign Up Successful</h1>
-				<p>Redirecting you to the login page in 3 seconds</p>
+				<Link to="/signin">Click here if you are not automatically redirected to the sign in page in a few seconds</Link>
+				
 			</>
 		)
 		setTimeout(() => {

@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { ActiveUser } from "../App"
+import { BackendUrlContext } from "../App"
 
 interface Props {
 	setActiveUser: React.Dispatch<React.SetStateAction<ActiveUser>>
@@ -15,13 +16,14 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 		password: "",
 	})
 	const [errorMessage, setErrorMessage] = useState<string>("")
+	const backendUrl = useContext(BackendUrlContext)
 	const navigate = useNavigate()
 
 	const handleSignIn = async () => {
 		const { username, password } = formPayload
 		try {
 			const response = await axios.post(
-				`http://localhost:3000/auth/login`,
+				`${backendUrl}/auth/login`,
 				{
 					username: username,
 					password: password,
