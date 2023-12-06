@@ -1,7 +1,27 @@
-$color-1: #0B132B;
-$color-2: #1C2541;
-$color-3: #3A506B;
+$color-1: #0b132b;
+$color-2: #1c2541;
+$color-3: #3a506b;
 $color-4: #dcfbfb;
-$color-5: #FFF;
+$color-5: #fff;
 
-$Background-gradient: linear-gradient(to bottom right, #0B132B, #dcfbfb);
+$Background-gradient: linear-gradient(
+	to bottom right,
+	#040a13,
+	#111d2b,
+	#1f2c3e,
+	#2c3b51,
+	#394a63,
+	#465975,
+	#536887,
+	#607999,
+	#6d88ab,
+	#7a97bd,
+);
+$nav-gradient: linear-gradient(
+	to top,
+	#040a13,
+	#111d2b,
+	#1f2c3e,
+	#2c3b51,
+  #394a63,
+);

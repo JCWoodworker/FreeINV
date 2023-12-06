@@ -2,16 +2,17 @@ import { Link } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 
 const SignUpInButtons: React.FC = () => {
-
 	return (
 		<div className="app-body">
 			<Form className="sign-in-up-container">
 				<Link to="/signup" className="react-router-Link">
-					<Button className="button">Sign Up</Button>
+					<Button className="button">
+						<span>Sign Up</span>
+					</Button>
 				</Link>
 				<Link to="/signin" className="react-router-Link">
 					<Button className="button">
-						Sign In
+						<span>Sign In</span>
 					</Button>
 				</Link>
 			</Form>

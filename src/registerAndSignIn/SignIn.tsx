@@ -67,7 +67,7 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 
 	return (
 		<div>
-			<h1>Sign In</h1>
+			<h2>Sign In</h2>
 			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Username</Form.Label>
@@ -101,7 +101,7 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 				</Form.Group>
 				{errorMessage}
 				<Button className="button" type="submit">
-					Submit
+					<span>Submit</span>
 				</Button>
 			</Form>
 		</div>

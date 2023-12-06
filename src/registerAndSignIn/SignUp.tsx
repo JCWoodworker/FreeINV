@@ -51,7 +51,7 @@ const SignUp: React.FC = () => {
 
 	let showForm = (
 		<>
-			<h1>Sign Up</h1>
+			<h2>Sign Up</h2>
 			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Name</Form.Label>
@@ -92,7 +92,7 @@ const SignUp: React.FC = () => {
 				{errorMessage}
 				{successMessage}
 				<Button className="button" type="submit">
-					Submit
+					<span>Submit</span>
 				</Button>
 			</Form>
 		</>
@@ -101,7 +101,7 @@ const SignUp: React.FC = () => {
 	if (successfulSignup) {
 		showForm = (
 			<>
-				<h1>Sign Up Successful</h1>
+				<h2>Sign Up Successful</h2>
 				<Link to="/signin">Click here if you are not automatically redirected to the sign in page in a few seconds</Link>
 				
 			</>

@@ -19,7 +19,7 @@ const UsersIndex: React.FC<Props> = ({ activeUser, setUserIsLoaded }) => {
 				<h2>{activeUser.username}</h2>
 			</div>
 			<Button className="button sign-out" onClick={handleLogout}>
-				Sign Out
+				<span>Sign Out</span>
 			</Button>
 		</div>
 	)

@@ -45,7 +45,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 			<Modal.Body>{modalBody}</Modal.Body>
 			<Modal.Footer>
 				<Button className="button nav-button" onClick={() => toggleSettings()}>
-					Close
+					<span>Close</span>
 				</Button>
 			</Modal.Footer>
 		</Modal>

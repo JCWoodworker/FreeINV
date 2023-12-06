@@ -7,7 +7,8 @@
 
 @use "./assets/index.scss" as *;
 
-html, body {
+html,
+body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -38,15 +39,25 @@ body {
 	padding: 0.25rem;
 	height: 50px;
 	width: 8rem;
-	border: none;
+	border: 3px solid transparent;
 	border-radius: 5px;
-	background-color: $color-3;
+	background-color: $color-1;
 	color: $color-5;
 	font-weight: bolder;
 	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
+	position: relative;
+
 	&:hover {
-		background-color: $color-5;
-		color: $color-1;
+		border-color: $color-5;
+	}
+
+	&:hover span {
+		transform: scale(1.2);
 	}
 }
 
+.button span {
+	display: inline-block;
+	transition: transform 0.3s;
+}
