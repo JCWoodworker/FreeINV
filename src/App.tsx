@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./main.scss"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
@@ -21,12 +21,6 @@ function App() {
 		avatar: "",
 	})
 	const [userIsLoaded, setUserIsLoaded] = useState<boolean>(false)
-
-	useEffect(() => {
-		console.log(
-			`activeUser: ${JSON.stringify(activeUser)}\nuserIsLoaded: ${userIsLoaded}`
-		)
-	}, [activeUser])
 
 	return (
 		<>

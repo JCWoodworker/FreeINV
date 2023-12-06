@@ -2,10 +2,11 @@ import React, { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { ActiveUser } from "../App"
 
 interface Props {
-	setActiveUser: unknown
-	setUserIsLoaded: unknown
+	setActiveUser: React.Dispatch<React.SetStateAction<ActiveUser>>
+	setUserIsLoaded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {

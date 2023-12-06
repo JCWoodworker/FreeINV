@@ -3,7 +3,7 @@ import { ActiveUser } from "../App"
 
 interface Props {
 	activeUser: ActiveUser
-	setUserIsLoaded: unknown
+	setUserIsLoaded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const UsersIndex: React.FC<Props> = ({ activeUser, setUserIsLoaded }) => {
