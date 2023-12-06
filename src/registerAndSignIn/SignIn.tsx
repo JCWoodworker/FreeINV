@@ -17,7 +17,12 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 	})
 	const [errorMessage, setErrorMessage] = useState<string>("")
 	const backendUrl = useContext(BackendUrlContext)
+	const [showPassword, setShowPassword] = useState(false)
 	const navigate = useNavigate()
+
+	const togglePasswordVisibility = () => {
+		setShowPassword(() => !showPassword)
+	}
 
 	const handleSignIn = async () => {
 		const { username, password } = formPayload
@@ -78,15 +83,21 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 				</Form.Group>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Password</Form.Label>
-					<Form.Control
-						className="input-text-class"
-						type="text"
-						placeholder="Password"
-						name="password"
-						onChange={handleInputChange}
-						required={true}
-						value={formPayload.password}
-					/>
+						<Button
+							variant="outline-secondary"
+							onClick={togglePasswordVisibility}
+						>
+							{showPassword ? "Hide" : "Show"}
+						</Button>
+						<Form.Control
+							className="input-text-class"
+							type={showPassword ? "text" : "password"}
+							placeholder="Password"
+							name="password"
+							onChange={handleInputChange}
+							required={true}
+							value={formPayload.password}
+						/>
 				</Form.Group>
 				{errorMessage}
 				<Button className="button" type="submit">
