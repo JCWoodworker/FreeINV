@@ -33,7 +33,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 					))}
 				</>
 			))
-		: (modalBody = "Please close this menu and sign in from the home page")
+		: (modalBody = "Close this and sign in")
 
 	return (
 		<Modal
