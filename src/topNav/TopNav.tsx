@@ -25,6 +25,9 @@ const TopNav: React.FC<Props> = ({ userIsLoaded }) => {
 					<Col className="top-nav-right-col">
 						{showSettings ? (
 							<>
+								<Link to="/signin" className="react-router-Link">
+									<i className="bi bi-box-arrow-in-right nav-icon"></i>
+								</Link>
 								<Link to="/" className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
@@ -35,6 +38,9 @@ const TopNav: React.FC<Props> = ({ userIsLoaded }) => {
 							</>
 						) : (
 							<>
+								<Link to="/signin" className="react-router-Link">
+									<i className="bi bi-box-arrow-in-right nav-icon"></i>
+								</Link>
 								<Link to="/" className="react-router-Link">
 									<i className="bi bi-house nav-icon"></i>
 								</Link>
