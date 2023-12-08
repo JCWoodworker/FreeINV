@@ -1,5 +1,4 @@
 import { Container, Row, Col } from "react-bootstrap"
-import SignUpInButtons from "../registerAndSignIn/SignUpInButtons"
 
 const HomeIndex = () => {
 	
@@ -20,9 +19,6 @@ const HomeIndex = () => {
 						or sign the fuck in ...
 					</p>
 				</Col>
-			</Row>
-			<Row>
-				<SignUpInButtons />
 			</Row>
 		</Container>
 	)
