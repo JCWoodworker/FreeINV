@@ -1,7 +1,10 @@
 @use "../assets/index.scss" as *;
 
 .sign-in-up-form {
-  margin-top: 4rem;
+  position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	@include flex-col-center;
 	gap: 1rem;
 	margin-bottom: 1rem;

@@ -7,30 +7,23 @@
 
 @use "./assets/index.scss" as *;
 
-html,
-body {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	height: 100vh;
-}
-
 #root {
 	font-family: $font-1;
 	font-family: $font-2;
 }
 
 body {
-	margin: 0 auto;
+	margin: 5rem auto;
 	text-align: center;
 	background: $Background-gradient;
 	color: $color-5;
+	height: 100vh;
 }
 
 .react-router-Link {
+	text-decoration: none;
 	&:visited {
 		color: $color-5;
-		text-decoration: none;
 	}
 }
 

@@ -51,8 +51,8 @@ const SignUp: React.FC = () => {
 
 	let showForm = (
 		<>
-			<h2>Sign Up</h2>
 			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
+				<h2>Sign Up</h2>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Name</Form.Label>
 					<Form.Control
@@ -102,8 +102,10 @@ const SignUp: React.FC = () => {
 		showForm = (
 			<>
 				<h2>Sign Up Successful</h2>
-				<Link to="/signin">Click here if you are not automatically redirected to the sign in page in a few seconds</Link>
-				
+				<Link to="/signin">
+					Click here if you are not automatically redirected to the sign in page
+					in a few seconds
+				</Link>
 			</>
 		)
 		setTimeout(() => {

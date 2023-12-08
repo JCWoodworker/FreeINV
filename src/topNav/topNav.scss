@@ -1,6 +1,10 @@
 @use "../assets/index.scss" as *;
 
 .top-nav-row {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 	background: $nav-gradient;
 	color: $color-5;
 	display: flex;

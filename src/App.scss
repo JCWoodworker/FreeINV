@@ -4,8 +4,3 @@
 	@include flex-col-center;
 	color: $color-5;
 }
-
-.sign-in-up-container {
-	@include flex-row-center;
-	@include fixed-bottom-buttons;
-}

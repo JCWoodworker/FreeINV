@@ -40,7 +40,6 @@ function App() {
 						userIsLoaded ? (
 							<UsersIndex
 								activeUser={activeUser}
-								setUserIsLoaded={setUserIsLoaded}
 							/>
 						) : (
 							<HomePage />

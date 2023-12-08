@@ -1,5 +1,7 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { Modal, Button } from "react-bootstrap"
 import { userSettingsOptions } from "./settingsOptions"
+import { Link } from "react-router-dom"
 
 interface Props {
 	userIsLoaded: boolean
@@ -32,8 +34,25 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 						</p>
 					))}
 				</>
-			))
-		: (modalBody = "Close this and sign in")
+		  ))
+		: (modalBody = (
+				<>
+					<Link
+						to="/signin"
+						className="react-router-Link"
+						onClick={() => toggleSettings()}
+					>
+						<p>Sign In</p>
+					</Link>
+					<Link
+						to="/signup"
+						className="react-router-Link"
+						onClick={() => toggleSettings()}
+					>
+						<p>Sign Up</p>
+					</Link>
+				</>
+		  ))
 
 	return (
 		<Modal

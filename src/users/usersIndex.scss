@@ -2,8 +2,8 @@
 
 .users-index-container {
   @include flex-col-center;
-  background-color: $color-1;
   color: $color-5;
+  height: 100vh;
   .users-index-header {
     @include flex-row-center;
     margin: 1rem;
