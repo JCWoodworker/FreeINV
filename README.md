@@ -20,3 +20,7 @@ Features in the works:
   - Create it's own user table
   - REFACTOR - set up auth to work with whatever subapp is accessing it's features
     - Instead of always pulling from the main users table, run CRUD operations specific to the app the user is accessing and make this universally repeatable.
+
+### Notes on features to add and refactors
+
+- Move sign up and sign in buttons over to the nav modal
