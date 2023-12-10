@@ -4,9 +4,14 @@ $color-3: #3a506b;
 $color-4: #dcfbfb;
 $color-5: #fff;
 
-$complementary-color-1: #d27416;
-$complementary-color-2: #004338;
-$complementary-color-3: #3e024b;
+$complementary-color-1: rgba(208, 115, 22, 1);
+$complementary-color-2: rgba(0, 67, 56, 1);
+$complementary-color-3: rgba(62, 2, 75, 1);
+
+$complementary-color-1t: rgba(208, 115, 22, 0.2);
+$complementary-color-2t: rgba(0, 67, 56, 0.7);
+$complementary-color-3t: rgba(62, 2, 75, 0.2);
+
 
 $Background-gradient: linear-gradient(
 	to bottom right,

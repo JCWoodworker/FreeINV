@@ -10,7 +10,7 @@ const HomeIndex = () => {
 					<h2>Can't remember what's in all those boxes in the basement?</h2>
 					<h2>Can't even remember which room those boxes were stored in?</h2>
 					<Link to="signup" className="sign-up-bottom-link">
-						<h2>Welcome to HI Man --- Sign up to get started managing your stuff</h2>
+						<h2>Click Here to get started with HI-Man, your Home Inventory Manager!</h2>
 					</Link>
 				</Col>
 			</Row>
