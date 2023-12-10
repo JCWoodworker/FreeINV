@@ -42,7 +42,8 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 			)
 			if (response.status === 200) {
 				setUserIsLoaded(() => true)
-				setActiveUser({ username: username, avatar: "myavatarurl" })
+				// Remember to update this when the backend is ready to send actual user metadata
+				setActiveUser({ username: username, avatar: "https://i.pravatar.cc/300" })
 				navigate("/")
 				return true
 			}

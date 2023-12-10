@@ -1,9 +1,11 @@
 @use "../assets/index.scss" as *;
 
 .users-index-container {
-  @include flex-col-center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   color: $color-5;
-  height: 100vh;
   .users-index-header {
     @include flex-row-center;
     margin: 1rem;
