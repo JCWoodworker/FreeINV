@@ -2,13 +2,13 @@
 import "./main.scss"
 import { useState, useEffect, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
+import { getBackendUrl } from "./config/getEnvVars"
 
 import TopNav from "./topNav/TopNav"
 import HomePage from "./homePage/HomePage"
 import SignIn from "./registerAndSignIn/SignIn"
 import SignUp from "./registerAndSignIn/SignUp"
 import UsersIndex from "./users/UsersIndex"
-import { getBackendUrl } from "./config/getEnvVars"
 
 export interface ActiveUser {
 	username: string
