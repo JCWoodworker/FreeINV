@@ -1,11 +1,14 @@
 import { Container, Row } from "react-bootstrap"
 import { ActiveUser } from "../App"
 
+import LoactionsIndex from "../Inventory/Locations/LocationsIndex"
+
 interface Props {
 	activeUser: ActiveUser
 }
 
 const UsersIndex: React.FC<Props> = ({ activeUser }) => {
+
 	const showUserInformation = (
 		<>
 			<Container className="users-index-container">
@@ -14,17 +17,12 @@ const UsersIndex: React.FC<Props> = ({ activeUser }) => {
 					<h2>{activeUser.username}</h2>
 				</Row>
 				<Row>
-					All Locations:
-				</Row>
-				<Row>
-					All Rooms:
-				</Row>
-				<Row>
-					All Items:
+					<LoactionsIndex />
 				</Row>
 			</Container>
 		</>
 	)
+
 	return <>{showUserInformation}</>
 }
 
