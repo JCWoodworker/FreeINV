@@ -42,8 +42,15 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 			)
 			if (response.status === 200) {
 				setUserIsLoaded(() => true)
-				window.localStorage.setItem("userSession", JSON.stringify(response.data))
-				setActiveUser({ username: username, avatar: "https://i.pravatar.cc/300" })
+				// Need response data to include user data, then set that to localStorage OR just set JWT and retreive data whenever necessary
+				window.localStorage.setItem(
+					"userSession",
+					JSON.stringify(response.data)
+				)
+				setActiveUser({
+					username: username,
+					avatar: "https://i.pravatar.cc/300",
+				})
 				navigate("/")
 				return true
 			}
@@ -69,7 +76,7 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 	return (
 		<div>
 			<Form className="sign-in-up-form" onSubmit={handleSubmit}>
-			<h2>Sign In</h2>
+				<h2>Sign In</h2>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Username</Form.Label>
 					<Form.Control
@@ -84,21 +91,21 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 				</Form.Group>
 				<Form.Group className="text-input-group">
 					<Form.Label className="input-label-class">Password</Form.Label>
-						<Button
-							variant="outline-secondary"
-							onClick={togglePasswordVisibility}
-						>
-							{showPassword ? "Hide" : "Show"}
-						</Button>
-						<Form.Control
-							className="input-text-class"
-							type={showPassword ? "text" : "password"}
-							placeholder="Password"
-							name="password"
-							onChange={handleInputChange}
-							required={true}
-							value={formPayload.password}
-						/>
+					<Button
+						variant="outline-secondary"
+						onClick={togglePasswordVisibility}
+					>
+						{showPassword ? "Hide" : "Show"}
+					</Button>
+					<Form.Control
+						className="input-text-class"
+						type={showPassword ? "text" : "password"}
+						placeholder="Password"
+						name="password"
+						onChange={handleInputChange}
+						required={true}
+						value={formPayload.password}
+					/>
 				</Form.Group>
 				{errorMessage}
 				<Button className="button" type="submit">
