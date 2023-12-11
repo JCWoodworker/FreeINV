@@ -12,9 +12,9 @@ interface Location {
 const LoactionsIndex: React.FC = () => {
 	const [locations, setLocations] = useState<Location[]>([])
   const [showNewLocationForm, setShowNewLocationForm] = useState(false)
+	console.log(setLocations)
 
-  const addLocation = (event: React.MouseEvent) => {
-    event.preventDefault()
+  const addLocation = () => {
 		return true
 	}
 

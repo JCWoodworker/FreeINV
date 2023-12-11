@@ -7,6 +7,7 @@ interface Props {
 
 const NewLocationForm: React.FC<Props> = ({ addLocation }) => {
 	const [formData, setFormData] = useState("")
+	console.log(formData + setFormData)
 
 	return (
 		<>

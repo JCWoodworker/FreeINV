@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { Modal, Button } from "react-bootstrap"
+import { Modal } from "react-bootstrap"
 import { userSettingsOptions } from "./settingsOptions"
 import { Link } from "react-router-dom"
 import SignOut from "../SignOut/SignOut"
