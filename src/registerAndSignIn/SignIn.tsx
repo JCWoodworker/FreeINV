@@ -42,7 +42,7 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 			)
 			if (response.status === 200) {
 				setUserIsLoaded(() => true)
-				// Remember to update this when the backend is ready to send actual user metadata
+				window.sessionStorage.setItem("userSession", JSON.stringify(response.data))
 				setActiveUser({ username: username, avatar: "https://i.pravatar.cc/300" })
 				navigate("/")
 				return true

@@ -26,6 +26,13 @@ function App() {
 	const [backendUrl, setBackendUrl] = useState<string>("")
 
 	useEffect(() => {
+		if (window.sessionStorage.getItem("userSession")) {
+			setUserIsLoaded(true)
+			// setActiveUser(JSON.parse(window.sessionStorage.getItem("userSession")!))
+		}
+	}, [])
+
+	useEffect(() => {
 		const backendUrl = getBackendUrl()
 		setBackendUrl(backendUrl)
 	}, [])
@@ -37,13 +44,7 @@ function App() {
 				<Route
 					path="/"
 					element={
-						userIsLoaded ? (
-							<UsersIndex
-								activeUser={activeUser}
-							/>
-						) : (
-							<HomePage />
-						)
+						userIsLoaded ? <UsersIndex activeUser={activeUser} /> : <HomePage />
 					}
 				/>
 				<Route
