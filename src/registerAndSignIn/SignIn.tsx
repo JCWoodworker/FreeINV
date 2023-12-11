@@ -42,9 +42,8 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 			)
 			if (response.status === 200) {
 				setUserIsLoaded(() => true)
-				// Need response data to include user data, then set that to localStorage OR just set JWT and retreive data whenever necessary
 				window.localStorage.setItem(
-					"userSession",
+					"HiManUserSession",
 					JSON.stringify(response.data)
 				)
 				setActiveUser({

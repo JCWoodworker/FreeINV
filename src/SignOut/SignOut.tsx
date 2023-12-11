@@ -2,7 +2,7 @@ import { Container, Button } from "react-bootstrap"
 
 const SignOut: React.FC = () => {
 	const signUserOut = () => {
-		window.localStorage.removeItem("userSession")
+		window.localStorage.removeItem("HiManUserSession")
 		window.location.reload()
 	}
 	return (

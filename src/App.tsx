@@ -26,9 +26,9 @@ function App() {
 	const [backendUrl, setBackendUrl] = useState<string>("")
 
 	useEffect(() => {
-		if (window.localStorage.getItem("userSession")) {
+		if (window.localStorage.getItem("HiManUserSession")) {
 			setUserIsLoaded(true)
-			// setActiveUser(JSON.parse(window.localStorage.getItem("userSession")!))
+			// setActiveUser(JSON.parse(window.localStorage.getItem("HiManUserSession")!))
 		}
 	}, [])
 
