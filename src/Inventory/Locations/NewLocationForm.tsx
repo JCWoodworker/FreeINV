@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 
 interface Props {
-  addLocation: () => void
+	addLocation: () => void
 }
 
 const NewLocationForm: React.FC<Props> = ({ addLocation }) => {
@@ -14,12 +14,20 @@ const NewLocationForm: React.FC<Props> = ({ addLocation }) => {
 			<Form className="locations-form" onSubmit={() => addLocation()}>
 				<Form.Group className="form-group" controlId="location-name">
 					<Form.Label>Location Name</Form.Label>
-					<Form.Control className="form-control" type="text" placeholder="Enter Name" />
+					<Form.Control
+						className="form-control"
+						type="text"
+						placeholder="Enter Name"
+					/>
 				</Form.Group>
 
 				<Form.Group className="form-group" controlId="location-description">
 					<Form.Label>Location Description</Form.Label>
-					<Form.Control className="form-control-text-area" type="text-area" placeholder="Enter Description" />
+					<Form.Control
+						className="form-control-text-area"
+						type="text-area"
+						placeholder="Enter Description"
+					/>
 				</Form.Group>
 
 				<Button type="submit">Submit</Button>
