@@ -2,7 +2,6 @@ import { Container, Row } from "react-bootstrap"
 import { ActiveUser } from "../App"
 
 import LoactionsIndex from "../Inventory/Locations/LocationsIndex"
-import SignOut from "../SignOut/SignOut"
 
 interface Props {
 	activeUser: ActiveUser
@@ -19,9 +18,6 @@ const UsersIndex: React.FC<Props> = ({ activeUser }) => {
 				</Row>
 				<Row>
 					<LoactionsIndex />
-				</Row>
-				<Row>
-					<SignOut />
 				</Row>
 			</Container>
 		</>

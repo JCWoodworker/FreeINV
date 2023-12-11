@@ -2,6 +2,7 @@
 import { Modal, Button } from "react-bootstrap"
 import { userSettingsOptions } from "./settingsOptions"
 import { Link } from "react-router-dom"
+import SignOut from "../SignOut/SignOut"
 
 interface Props {
 	userIsLoaded: boolean
@@ -33,6 +34,7 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 							{alert.title}
 						</p>
 					))}
+					<SignOut />
 				</>
 		  ))
 		: (modalBody = (
@@ -62,11 +64,6 @@ export const TopNavSettingsColumn: React.FC<Props> = ({
 			}`}
 		>
 			<Modal.Body>{modalBody}</Modal.Body>
-			<Modal.Footer>
-				<Button className="button nav-button" onClick={() => toggleSettings()}>
-					<span>Close</span>
-				</Button>
-			</Modal.Footer>
 		</Modal>
 	)
 }
