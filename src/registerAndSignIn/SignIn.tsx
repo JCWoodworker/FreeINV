@@ -42,16 +42,19 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 			)
 			if (response.status === 200) {
 				setUserIsLoaded(() => true)
-				window.localStorage.setItem(
-					"HiManUserSession",
-					JSON.stringify(response.data)
-				)
-				setActiveUser({
-					username: username,
-					avatar: "https://i.pravatar.cc/300",
-				})
-				navigate("/")
-				return true
+				if (response.data.userIngestion) {
+					window.localStorage.setItem(
+						"HiManUserSession",
+						JSON.stringify(response?.data?.userIngestion)
+					)
+					setActiveUser({
+						username: response.data.userIngestion.username,
+						avatar: "https://i.pravatar.cc/300",
+					})
+					navigate("/")
+					return true
+				}
+				return false
 			}
 		} catch (error) {
 			setErrorMessage("Incorrect credentials")
