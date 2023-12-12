@@ -57,7 +57,8 @@ function App() {
 				withCredentials: true,
 			}
 		)
-		debugger
+		// Remove this!!
+		console.log(`refresh response: ${JSON.stringify(response)}`)
 	}
 
 
