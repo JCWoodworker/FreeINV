@@ -3,6 +3,7 @@ import "./main.scss"
 import { useState, useEffect, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
 import { getBackendUrl } from "./config/getEnvVars"
+import axios from "axios"
 
 import TopNav from "./topNav/TopNav"
 import HomePage from "./homePage/HomePage"
@@ -26,18 +27,40 @@ function App() {
 	const [backendUrl, setBackendUrl] = useState<string>("")
 
 
+
+	useEffect(() => {
+		const serverUrl = getBackendUrl()
+		setBackendUrl(() => serverUrl)
+	})
+
 	useEffect(() => {
 		const userSession = window.localStorage.getItem("HiManUserSession")
 		if (userSession) {
+			const userIngestion = JSON.parse(userSession)
+			refresh()
 			setUserIsLoaded(true)
-			// setActiveUser(JSON.parse(window.localStorage.getItem("HiManUserSession")!))
+			setActiveUser({
+				username: userIngestion.username,
+				avatar: "https://i.pravatar.cc/300",
+			})
 		}
 	}, [])
 
-	useEffect(() => {
-		const backendUrl = getBackendUrl()
-		setBackendUrl(backendUrl)
-	}, [])
+	const refresh = async() => {
+		const response = await axios.post(
+			`${backendUrl}/auth/refresh`,
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				withCredentials: true,
+			}
+		)
+		debugger
+	}
+
+
 
 	return (
 		<BackendUrlContext.Provider value={backendUrl}>
