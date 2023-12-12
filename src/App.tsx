@@ -31,7 +31,7 @@ function App() {
 	useEffect(() => {
 		const serverUrl = getBackendUrl()
 		setBackendUrl(() => serverUrl)
-	})
+	}, [])
 
 	useEffect(() => {
 		const userSession = window.localStorage.getItem("HiManUserSession")
@@ -53,6 +53,7 @@ function App() {
 				headers: {
 					"Content-Type": "application/json",
 					Accept: "application/json",
+					"Access-Control-Allow-Credtials": true,
 				},
 				withCredentials: true,
 			}
