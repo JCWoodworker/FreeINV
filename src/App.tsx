@@ -54,6 +54,8 @@ function App() {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 					"Access-Control-Allow-Credtials": true,
+					"Access-Control-Allow-Origin": "*",
+					"Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Set-Cookie",
 				},
 				withCredentials: true,
 			}
