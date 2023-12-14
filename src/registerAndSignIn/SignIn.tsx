@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
@@ -21,6 +21,27 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 	const togglePasswordVisibility = () => {
 		setShowPassword(() => !showPassword)
 	}
+
+	const refresh = async () => {
+		const serverUrl = await getBackendUrl()
+		const response = await axios.post(`${serverUrl}/auth/refresh`, {
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			withCredentials: true,
+		})
+		// Remove this!!
+		console.log(`refresh response: ${JSON.stringify(response)}`)
+	}
+
+	useEffect(() => {
+		const validRefreshSession = refresh()
+		if (!validRefreshSession) {
+			return
+		}
+		// const userSession = window.localStorage.getItem("HiManUserSession")
+	}, [])
 
 	const handleSignIn = async () => {
 		const backendUrl = await getBackendUrl()
