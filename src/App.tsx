@@ -26,12 +26,15 @@ function App() {
 	const [userIsLoaded, setUserIsLoaded] = useState<boolean>(false)
 	const [backendUrl, setBackendUrl] = useState<string>("")
 
-
-
 	useEffect(() => {
-		const serverUrl = getBackendUrl()
-		setBackendUrl(() => serverUrl)
+		const fetchBackendUrl = async () => {
+			const serverUrl = await getBackendUrl()
+			setBackendUrl(serverUrl)
+		}
+
+		fetchBackendUrl()
 	}, [])
+
 
 	useEffect(() => {
 		const userSession = window.localStorage.getItem("HiManUserSession")
@@ -46,22 +49,18 @@ function App() {
 		}
 	}, [])
 
-	const refresh = async() => {
-		const response = await axios.post(
-			`${backendUrl}/auth/refresh`,
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-				withCredentials: true,
-			}
-		)
+
+	const refresh = async () => {
+		const response = await axios.post(`${backendUrl}/auth/refresh`, {
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			withCredentials: true,
+		})
 		// Remove this!!
 		console.log(`refresh response: ${JSON.stringify(response)}`)
 	}
-
-
 
 	return (
 		<BackendUrlContext.Provider value={backendUrl}>

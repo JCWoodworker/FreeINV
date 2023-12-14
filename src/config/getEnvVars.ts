@@ -1,4 +1,4 @@
-export const getBackendUrl = () => {
+export const getBackendUrl = async () => {
 	const environment: string = import.meta.env.VITE_ENVIRONMENT
 	switch (environment) {
 		case "dev":
