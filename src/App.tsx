@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./main.scss"
-import { useState, useEffect, createContext } from "react"
+import { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import { getBackendUrl } from "./config/getEnvVars"
 import axios from "axios"
@@ -11,12 +11,10 @@ import SignIn from "./registerAndSignIn/SignIn"
 import SignUp from "./registerAndSignIn/SignUp"
 import UsersIndex from "./users/UsersIndex"
 
-export interface ActiveUser {
+export type ActiveUser = {
 	username: string
 	avatar: string
 }
-
-export const BackendUrlContext = createContext<string>("")
 
 function App() {
 	const [activeUser, setActiveUser] = useState<ActiveUser>({
@@ -24,17 +22,6 @@ function App() {
 		avatar: "",
 	})
 	const [userIsLoaded, setUserIsLoaded] = useState<boolean>(false)
-	const [backendUrl, setBackendUrl] = useState<string>("")
-
-	useEffect(() => {
-		const fetchBackendUrl = async () => {
-			const serverUrl = await getBackendUrl()
-			setBackendUrl(serverUrl)
-		}
-
-		fetchBackendUrl()
-	}, [])
-
 
 	useEffect(() => {
 		const userSession = window.localStorage.getItem("HiManUserSession")
@@ -51,7 +38,8 @@ function App() {
 
 
 	const refresh = async () => {
-		const response = await axios.post(`${backendUrl}/auth/refresh`, {
+		const serverUrl = await getBackendUrl()
+		const response = await axios.post(`${serverUrl}/auth/refresh`, {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -63,7 +51,7 @@ function App() {
 	}
 
 	return (
-		<BackendUrlContext.Provider value={backendUrl}>
+		<div>
 			<TopNav userIsLoaded={userIsLoaded} />
 			<Routes>
 				<Route
@@ -83,7 +71,7 @@ function App() {
 				/>
 				<Route path="/signup" element={<SignUp />} />
 			</Routes>
-		</BackendUrlContext.Provider>
+		</div>
 	)
 }
 

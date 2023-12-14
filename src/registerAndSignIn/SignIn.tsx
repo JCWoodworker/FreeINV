@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { ActiveUser } from "../App"
-import { BackendUrlContext } from "../App"
-
+import { getBackendUrl } from "../config/getEnvVars"
 interface Props {
 	setActiveUser: React.Dispatch<React.SetStateAction<ActiveUser>>
 	setUserIsLoaded: React.Dispatch<React.SetStateAction<boolean>>
@@ -16,7 +15,6 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 		password: "",
 	})
 	const [errorMessage, setErrorMessage] = useState<string>("")
-	const backendUrl = useContext(BackendUrlContext)
 	const [showPassword, setShowPassword] = useState(false)
 	const navigate = useNavigate()
 
@@ -25,6 +23,7 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 	}
 
 	const handleSignIn = async () => {
+		const backendUrl = await getBackendUrl()
 		const { username, password } = formPayload
 		try {
 			const response = await axios.post(
