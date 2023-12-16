@@ -31,15 +31,16 @@ const SignIn: React.FC<Props> = ({ setActiveUser, setUserIsLoaded }) => {
 			},
 			withCredentials: true,
 		})
-		// Remove this!!
-		console.log(`refresh response: ${JSON.stringify(response)}`)
+		if (response.status === 201) {
+			console.log(`No refresh token available, user must sign in`)
+			return false
+		}
+		return true
 	}
 
 	useEffect(() => {
-		const validRefreshSession = refresh()
-		if (!validRefreshSession) {
-			return
-		}
+		console.log("Attempting token refresh ...")
+		refresh()
 		// const userSession = window.localStorage.getItem("HiManUserSession")
 	}, [])
 

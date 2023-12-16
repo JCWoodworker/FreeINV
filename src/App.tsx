@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./main.scss"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import TopNav from "./topNav/TopNav"
@@ -21,6 +21,17 @@ function App() {
 	})
 	const [userIsLoaded, setUserIsLoaded] = useState<boolean>(false)
 
+	useEffect(() => {
+		const userSession = window.localStorage.getItem("HiManUserSession")
+		if (userSession) {
+			const user = JSON.parse(userSession)
+			setUserIsLoaded(true)
+			setActiveUser({
+				username: user.username,
+				avatar: user.avatar,
+			})
+		}
+	}, [])
 
 	return (
 		<div>
