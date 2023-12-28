@@ -1,9 +1,5 @@
-const Locations = () => {
-  return (
-    <div>
-      <h1>Location List</h1>
-    </div>
-  )
+const LocationIndex = () => {
+	return <h1>Location List</h1>
 }
 
-export default Locations
+export default LocationIndex

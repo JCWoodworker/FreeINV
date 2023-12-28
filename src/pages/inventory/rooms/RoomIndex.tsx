@@ -1,9 +1,5 @@
-const Rooms = () => {
-  return (
-    <div>
-      <h1>Room List</h1>
-    </div>
-  )
+const RoomIndex = () => {
+	return <h1>Room List</h1>
 }
 
-export default Rooms
+export default RoomIndex

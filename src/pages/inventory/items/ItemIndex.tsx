@@ -1,9 +1,5 @@
-const Items = () => {
-  return (
-    <div>
-      <h1>Item List</h1>
-    </div>
-  )
+const ItemIndex = () => {
+	return <h1>Item List</h1>
 }
 
-export default Items
+export default ItemIndex
