@@ -1,57 +1,10 @@
-@forward "./App.scss";
-@forward "./topNav/topNav.scss";
-@forward "./topNav/topNavSettingsColumn.scss";
-@forward "./users/usersIndex.scss";
-@forward "./homePage/homePage.scss";
-@forward "./registerAndSignIn/signInUp.scss";
-@forward "./Inventory/inventory.scss";
-
-@use "./assets/index.scss" as *;
-
 #root {
-	font-family: $font-1;
-	font-family: $font-2;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-body {
-	margin: 5rem auto;
-	text-align: center;
-	background: $Background-gradient;
-	color: $color-5;
-	height: 100vh;
+html {
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	scroll-behavior: smooth;
 }
 
-.react-router-Link {
-	text-decoration: none;
-	&:visited {
-		color: $color-5;
-	}
-}
-
-.button {
-	margin: 0.5rem;
-	padding: 0.25rem;
-	height: 50px;
-	width: 8rem;
-	border: 3px solid transparent;
-	border-radius: 5px;
-	background-color: $color-1;
-	color: $color-5;
-	font-weight: bolder;
-	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
-	position: relative;
-
-	&:hover {
-		border-color: $color-5;
-	}
-
-	&:hover span {
-		transform: scale(1.2);
-	}
-}
-
-.button span {
-	display: inline-block;
-	transition: transform 0.3s;
-}

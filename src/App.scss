@@ -1,6 +1,0 @@
-@use "./assets/index.scss" as *;
-
-.app-body {
-	@include flex-col-center;
-	color: $color-5;
-}

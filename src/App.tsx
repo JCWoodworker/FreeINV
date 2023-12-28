@@ -1,60 +1,41 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "./main.scss"
-import { useState, useEffect } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Link } from "react-router-dom"
 
-import TopNav from "./topNav/TopNav"
-import HomePage from "./homePage/HomePage"
-import SignIn from "./registerAndSignIn/SignIn"
-import SignUp from "./registerAndSignIn/SignUp"
-import UsersIndex from "./users/UsersIndex"
+import Locations from "./inventory/locations/LocationIndex"
+import Rooms from "./inventory/rooms/RoomIndex"
+import Items from "./inventory/items/ItemIndex"
 
-export type ActiveUser = {
-	username: string
-	avatar: string
-}
+import LocationShow from "./inventory/locations/LocationShow"
+import RoomShow from "./inventory/rooms/RoomShow"
+import ItemShow from "./inventory/items/ItemShow"
+
 
 function App() {
-	const [activeUser, setActiveUser] = useState<ActiveUser>({
-		username: "",
-		avatar: "",
-	})
-	const [userIsLoaded, setUserIsLoaded] = useState<boolean>(false)
-
-	useEffect(() => {
-		const userSession = window.localStorage.getItem("HiManUserSession")
-		if (userSession) {
-			const user = JSON.parse(userSession)
-			setUserIsLoaded(true)
-			setActiveUser({
-				username: user.username,
-				avatar: user.avatar,
-			})
-		}
-	}, [])
-
 	return (
-		<div>
-			<TopNav userIsLoaded={userIsLoaded} />
-			<Routes>
-				<Route
-					path="/"
-					element={
-						userIsLoaded ? <UsersIndex activeUser={activeUser} /> : <HomePage />
-					}
-				/>
-				<Route
-					path="/signin"
-					element={
-						<SignIn
-							setActiveUser={setActiveUser}
-							setUserIsLoaded={setUserIsLoaded}
-						/>
-					}
-				/>
-				<Route path="/signup" element={<SignUp />} />
-			</Routes>
-		</div>
+		<>
+		<nav>
+			<ul>
+				<li><Link to="/">Home</Link></li>
+				<li><Link to="/signin">Sign In</Link></li>
+				<li><Link to="/signup">Sign Up</Link></li>
+				<li><Link to="/locations">Locations</Link></li>
+				<li><Link to="/rooms">Rooms</Link></li>
+				<li><Link to="/items">Items</Link></li>
+			</ul>
+		</nav>
+		<Routes>
+			<Route path="/" element={<h1>Home Page</h1>} />
+			<Route path="/signin" element={<h1>Sign In Page</h1>} />
+			<Route path="/signup" element={<h1>Sign Up Page</h1>} />
+			<Route path="/locations" element={<Locations />} />
+			<Route path="/locations/:id" element={<LocationShow />} />
+			<Route path="/rooms" element={<Rooms />} />
+			<Route path="/rooms/:id" element={<RoomShow />} />
+			<Route path="/items" element={<Items />} />
+			<Route path="/items/:id" element={<ItemShow />} />
+			<Route path="*" element={<h1>Not Found</h1>} />
+		</Routes>
+		</>
 	)
 }
 
