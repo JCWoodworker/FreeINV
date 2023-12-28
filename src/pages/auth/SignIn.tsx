@@ -1,9 +1,11 @@
+import GoogleOAuth from "./GoogleOAuth"
+
 const SignIn = () => {
-  return (
-    <div>
-      <h1>Sign In</h1>
-    </div>
-  )
+	return (
+		<>
+			<GoogleOAuth />
+		</>
+	)
 }
 
 export default SignIn
