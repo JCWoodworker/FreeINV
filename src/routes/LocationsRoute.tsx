@@ -1,22 +1,22 @@
 import { Route, Routes } from "react-router-dom"
 
-import LocationIndex from "../pages/inventory/locations/LocationIndex"
-import LocationShow from "../pages/inventory/locations/LocationShow"
-import NewLocation from "../pages/inventory/locations/NewLocation"
+import InventoryIndex from "../pages/inventory/InventoryIndex"
+import InventoryShow from "../pages/inventory/InventoryShow"
+import NewInventory from "../pages/inventory/NewInventory"
 
 import ElementNavLayout from "../layouts/ElementNavLayout"
 
-const ItemRoutes = () => {
+const LocationRoutes = () => {
 	return (
 		<>
 			<ElementNavLayout elementName="Location" elementPath="locations" />
 			<Routes>
-				<Route index element={<LocationIndex />} />
-				<Route path=":id" element={<LocationShow />} />
-				<Route path="new" element={<NewLocation />} />
+				<Route index element={<InventoryIndex elementName="Location" />} />
+				<Route path=":id" element={<InventoryShow elementName="Location" />} />
+				<Route path="new" element={<NewInventory elementName="Location" />} />
 			</Routes>
 		</>
 	)
 }
 
-export default ItemRoutes
+export default LocationRoutes
