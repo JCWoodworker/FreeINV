@@ -1,11 +1,7 @@
 # Home Inventory Application
 
-Features in the works:
+* Just finished re-writing the basics of the app
+* How FUN is it to delete and start over??
 
-* Sign Up
-* CRUD:
-  * Location
-  * Room
-  * Item
-    * Item Tags
+* Using the new version of React Router and taking full advantage of it's features!
   
