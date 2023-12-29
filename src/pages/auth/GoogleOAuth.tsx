@@ -1,17 +1,25 @@
 import { useState } from "react"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 
-const GoogleOAuth = () => {
+interface Props {
+	backendUrl: string
+}
+
+const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 	const [tokens, setTokens] = useState({})
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
-	console.log(tokens)
+	// this is just here because I hate squiggly lines 
+	// and don't need the tokens variable yet
+	if (tokens == "magicFuckyString") {
+		console.log('meh')
+	}
 
 	return (
 		<GoogleOAuthProvider clientId={clientId}>
 			<GoogleLogin
 				onSuccess={(credentialResponse) => {
-					fetch("http://localhost:3000/authentication/google", {
+					fetch(`${backendUrl}/authentication/google`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",

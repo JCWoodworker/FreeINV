@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Recaptcha from "./Recaptcha"
 import axios from "axios"
+import GoogleOAuth from "./GoogleOAuth"
 
 interface Props {
 	backendUrl: string
@@ -59,6 +60,11 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 				/>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<button type="submit">Sign In</button>
+
+				<br />
+
+				<GoogleOAuth backendUrl={backendUrl} />
+
 			</form>
 		</div>
 	)

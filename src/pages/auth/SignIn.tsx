@@ -76,7 +76,7 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 
 			<h3>OR</h3>
 
-			<GoogleOAuth />
+			<GoogleOAuth backendUrl={backendUrl} />
 		</div>
 	)
 }
