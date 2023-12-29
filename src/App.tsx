@@ -67,7 +67,7 @@ function App() {
 						<li className = "nav-link" key={link.path}>
 							<NavLink to={link.path}>
 								{({ isActive }) => {
-									return isActive ? `${link.name} - ${link.icon}` : link.name
+									return isActive ? `${link.name} ${link.icon}` : link.name
 								}}
 							</NavLink>
 						</li>
@@ -82,7 +82,7 @@ function App() {
 								to={link.path}
 							>
 								{({isActive}) => {
-									return isActive ? `${link.name} - ${link.icon}` : link.name
+									return isActive ? `${link.name} ${link.icon}` : link.name
 								}}
 							</NavLink>
 						</li>
