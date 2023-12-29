@@ -9,10 +9,10 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 	const [tokens, setTokens] = useState({})
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
-	// this is just here because I hate squiggly lines 
+	// this is just here because I hate squiggly lines
 	// and don't need the tokens variable yet
 	if (tokens == "magicFuckyString") {
-		console.log('meh')
+		console.log("meh")
 	}
 
 	return (
@@ -29,7 +29,12 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 						}),
 					})
 						.then((response) => response.json())
-						.then((data) => setTokens(data))
+						.then((data) => {
+							console.log(
+								`Successfull sign in token data = access_token: ${data.accessToken}, refresh_token: ${data.refreshToken}`
+							)
+							setTokens(data)
+						})
 				}}
 			/>
 		</GoogleOAuthProvider>
