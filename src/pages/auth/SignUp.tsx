@@ -59,12 +59,15 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					onChange={handleOnChange}
 				/>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
-				<button type="submit">Sign In</button>
+				<button type="submit">Sign Up</button>
+				<p>
+					{`Password Rules: 👉 At Least: 👉 8 characters - 1 number - 1 special character - 1
+					uppercase letter - 1 lowercase letter`}
+				</p>
 
 				<br />
 
 				<GoogleOAuth backendUrl={backendUrl} />
-
 			</form>
 		</div>
 	)
