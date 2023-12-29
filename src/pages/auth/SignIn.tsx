@@ -71,7 +71,9 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<button type="submit">Sign In</button>
 			</form>
+
 			<br />
+
 			<h3>OR</h3>
 
 			<GoogleOAuth />
