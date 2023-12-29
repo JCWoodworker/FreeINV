@@ -1,62 +1,64 @@
 body {
-  margin: 2rem auto;
-  padding: 0;
-  text-align: center;
+	margin: 2rem auto;
+	padding: 0;
+	text-align: center;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem;
-  text-align: center;
+	list-style: none;
+	padding: 0;
+	margin: 1rem;
+	text-align: center;
 }
 
 .active {
-  color: orange;
-  font-weight: bold;
-  font-size: large;
+	color: orange;
+	font-weight: bold;
+	font-size: large;
 }
 
 .sign-in-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 }
 
 .GoogleOAuth {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 input {
-  width: 200px;
-  height: 40px;
-  border: 1px solid orange;
-  border-radius: 0.5rem;
-  background-color: black;
-  color: white;
-  padding: 0 0.5rem;
-  font-size: 1rem;
-  text-align: center;
-  
+	width: 200px;
+	height: 40px;
+	border: 1px solid orange;
+	border-radius: 0.5rem;
+	background-color: black;
+	color: white;
+	padding: 0 0.5rem;
+	font-size: 1rem;
+	text-align: center;
 }
 
 button {
-  width: 100px;
-  height: 40px;
-  background-color: orange;
-  border-radius: 0.5rem;
-  
-  
-  
-  
+	width: 100px;
+	height: 40px;
+	background-color: orange;
+	border-radius: 0.5rem;
+}
+
+.nav-link-lists {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }

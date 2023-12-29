@@ -62,7 +62,7 @@ function App() {
 	return (
 		<>
 			<nav>
-				<ul>
+				<ul className="nav-link-lists">
 					{signedOutNavLinks.map((link) => (
 						<li key={link.path}>
 							<NavLink to={link.path}>
