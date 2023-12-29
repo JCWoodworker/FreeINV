@@ -61,4 +61,9 @@ button {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  .nav-link {
+    padding: 0.25rem;
+    border-bottom: 1px solid orange;
+    border-radius: 0.5rem;
+  }
 }

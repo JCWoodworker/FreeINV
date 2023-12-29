@@ -64,7 +64,7 @@ function App() {
 			<nav>
 				<ul className="nav-link-lists">
 					{signedOutNavLinks.map((link) => (
-						<li key={link.path}>
+						<li className = "nav-link" key={link.path}>
 							<NavLink to={link.path}>
 								{({ isActive }) => {
 									return isActive ? `${link.name} - ${link.icon}` : link.name
