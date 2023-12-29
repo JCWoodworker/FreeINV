@@ -58,12 +58,12 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					value={signupPayload.password}
 					onChange={handleOnChange}
 				/>
+				{/* Show password rules with green and red markers if they are met or not in real time
+					Password Rules: 👉 At Least: 👉 8 characters - 1 number - 1 special character 
+					- 1	uppercase letter - 1 lowercase letter
+				 */}
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<button type="submit">Sign Up</button>
-				<p>
-					{`Password Rules: 👉 At Least: 👉 8 characters - 1 number - 1 special character - 1
-					uppercase letter - 1 lowercase letter`}
-				</p>
 
 				<br />
 
