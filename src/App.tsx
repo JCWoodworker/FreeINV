@@ -2,12 +2,12 @@ import "./App.scss"
 import { Routes, Route, NavLink } from "react-router-dom"
 
 import { pageRoutingData } from "./pages/pageRoutingData"
-
 import ElementRoutes from "./routes/ElementRoutes"
-import NotFoundPage from "./pages/NotFoundPage"
+
 import Home from "./pages/home/Home"
 import SignIn from "./pages/auth/SignIn"
 import SignUp from "./pages/auth/SignUp"
+import NotFoundPage from "./pages/NotFoundPage"
 
 const signedOutNavLinks = [
 	{
@@ -27,23 +27,23 @@ const signedOutNavLinks = [
 	},
 ]
 
-const signedInNavLinks = [
-	{
-		name: "Locations",
-		path: "/locations",
-		icon: "📍",
-	},
-	{
-		name: "Rooms",
-		path: "/rooms",
-		icon: "🛏",
-	},
-	{
-		name: "Items",
-		path: "/items",
-		icon: "📦",
-	},
-]
+// const signedInNavLinks = [
+// 	{
+// 		name: "Locations",
+// 		path: "/locations",
+// 		icon: "📍",
+// 	},
+// 	{
+// 		name: "Rooms",
+// 		path: "/rooms",
+// 		icon: "🛏",
+// 	},
+// 	{
+// 		name: "Items",
+// 		path: "/items",
+// 		icon: "📦",
+// 	},
+// ]
 
 function App() {
 	return (
@@ -63,7 +63,7 @@ function App() {
 					))}
 				</ul>
 			</nav>
-			<nav>
+			{/* <nav>
 				<ul>
 					{signedInNavLinks.map((link) => (
 						<li key={link.path}>
@@ -77,7 +77,7 @@ function App() {
 						</li>
 					))}
 				</ul>
-			</nav>
+			</nav> */}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/signin" element={<SignIn />} />

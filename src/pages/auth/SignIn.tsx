@@ -1,7 +1,7 @@
 import { useState } from "react"
 import GoogleOAuth from "./GoogleOAuth"
 import axios from "axios"
-
+import Recaptcha from "./Recaptcha"
 const SignIn = () => {
 	const [credentials, setCredentials] = useState({
 		email: "",
@@ -11,20 +11,25 @@ const SignIn = () => {
 		accessToken: "",
 		refreshToken: "",
 	})
+	const [recaptchaVerified, setRecaptchaVerified] = useState(false)
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
-		const payload = credentials
-		try {
-			const response = await axios.post(
-				"http://localhost:3000/authentication/sign-in",
-				payload
-			)
-			if (response) {
-				setLoginTokens(response.data)
+		if (recaptchaVerified) {
+			const payload = credentials
+			try {
+				const response = await axios.post(
+					"http://localhost:3000/authentication/sign-in",
+					payload
+				)
+				if (response) {
+					setLoginTokens(response.data)
+				}
+			} catch (error) {
+				console.log(error)
 			}
-		} catch (error) {
-			console.log(error)
+		} else {
+			alert("Please verify that you are not a robot")
 		}
 	}
 
@@ -37,7 +42,7 @@ const SignIn = () => {
 	}
 
 	console.log(
-		`loginTokens: ${loginTokens.accessToken}, ${loginTokens.refreshToken}`
+		`accessToken: ${loginTokens.accessToken}, \nrefreshToken: ${loginTokens.refreshToken}`
 	)
 
 	return (
@@ -59,6 +64,7 @@ const SignIn = () => {
 					onChange={handleOnChange}
 				/>
 				<button type="submit">Sign In</button>
+				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 			</form>
 			<br />
 			<h3>OR</h3>
