@@ -1,4 +1,4 @@
-export const getBackendUrl = async () => {
+const getBackendUrl = async () => {
 	const environment: string = import.meta.env.VITE_ENVIRONMENT
 	switch (environment) {
 		case "dev":
@@ -11,3 +11,5 @@ export const getBackendUrl = async () => {
 			return "http://localhost:3000"
 	}
 }
+
+export default getBackendUrl

@@ -7,6 +7,7 @@ interface Props {
 
 const ElementNavLayout: React.FC<Props> = ({ elementName, elementPath }) => {
 	return (
+		// These are just sample links for now ... will be replaced with actual links in the future
 		<div>
 			<ul>
 				<li>

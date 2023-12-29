@@ -2,7 +2,12 @@ import { useState } from "react"
 import GoogleOAuth from "./GoogleOAuth"
 import axios from "axios"
 import Recaptcha from "./Recaptcha"
-const SignIn = () => {
+
+interface Props {
+	backendUrl: string
+}
+
+const SignIn: React.FC<Props> = ({ backendUrl }) => {
 	const [credentials, setCredentials] = useState({
 		email: "",
 		password: "",
@@ -19,7 +24,7 @@ const SignIn = () => {
 			const payload = credentials
 			try {
 				const response = await axios.post(
-					"http://localhost:3000/authentication/sign-in",
+					`${backendUrl}/authentication/sign-in`,
 					payload
 				)
 				if (response) {
@@ -63,8 +68,8 @@ const SignIn = () => {
 					value={credentials.password}
 					onChange={handleOnChange}
 				/>
-				<button type="submit">Sign In</button>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
+				<button type="submit">Sign In</button>
 			</form>
 			<br />
 			<h3>OR</h3>

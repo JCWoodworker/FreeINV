@@ -1,5 +1,7 @@
 import "./App.scss"
+import { useEffect, useState } from "react"
 import { Routes, Route, NavLink } from "react-router-dom"
+import getBackendUrl from "./config/getBackendUrl.ts"
 
 import { pageRoutingData } from "./pages/pageRoutingData"
 import ElementRoutes from "./routes/ElementRoutes"
@@ -7,23 +9,23 @@ import ElementRoutes from "./routes/ElementRoutes"
 import Home from "./pages/home/Home"
 import SignIn from "./pages/auth/SignIn"
 import SignUp from "./pages/auth/SignUp"
-import NotFoundPage from "./pages/NotFoundPage"
+import NotFoundPage from "./pages/not-found/NotFound"
 
 const signedOutNavLinks = [
 	{
 		name: "Home",
 		path: "/",
-		icon: "🏠"
+		icon: "🏠",
 	},
 	{
 		name: "Sign In",
 		path: "/signin",
-		icon: "👤"
+		icon: "👤",
 	},
 	{
 		name: "Sign Up",
 		path: "/signup",
-		icon: "👤"
+		icon: "👤",
 	},
 ]
 
@@ -46,16 +48,25 @@ const signedOutNavLinks = [
 // ]
 
 function App() {
+	const [backendUrl, setBackendUrl] = useState("")
+
+	const getBaseBackendUrl = async () => {
+		const url = await getBackendUrl()
+		setBackendUrl(url)
+	}
+
+	useEffect(() => {
+		getBaseBackendUrl()
+	}, [])
+
 	return (
 		<>
 			<nav>
 				<ul>
 					{signedOutNavLinks.map((link) => (
 						<li key={link.path}>
-							<NavLink
-								to={link.path}
-							>
-								{({isActive}) => {
+							<NavLink to={link.path}>
+								{({ isActive }) => {
 									return isActive ? `${link.name} - ${link.icon}` : link.name
 								}}
 							</NavLink>
@@ -80,8 +91,8 @@ function App() {
 			</nav> */}
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/signin" element={<SignIn />} />
-				<Route path="/signup" element={<SignUp />} />
+				<Route path="/signin" element={<SignIn backendUrl={backendUrl} />} />
+				<Route path="/signup" element={<SignUp backendUrl={backendUrl} />} />
 
 				{pageRoutingData.map((page) => (
 					<Route

@@ -2,7 +2,11 @@ import { useState } from "react"
 import Recaptcha from "./Recaptcha"
 import axios from "axios"
 
-const SignUp = () => {
+interface Props {
+	backendUrl: string
+}
+
+const SignUp: React.FC<Props> = ({ backendUrl }) => {
 	const [signupPayload, setSignupPayload] = useState({
 		email: "",
 		password: "",
@@ -15,7 +19,7 @@ const SignUp = () => {
 			const payload = signupPayload
 			try {
 				const response = await axios.post(
-					"http://localhost:3000/authentication/sign-up",
+					`${backendUrl}/authentication/sign-up`,
 					payload
 				)
 				console.log(response)
@@ -53,8 +57,8 @@ const SignUp = () => {
 					value={signupPayload.password}
 					onChange={handleOnChange}
 				/>
-				<button type="submit">Sign In</button>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
+				<button type="submit">Sign In</button>
 			</form>
 		</div>
 	)
