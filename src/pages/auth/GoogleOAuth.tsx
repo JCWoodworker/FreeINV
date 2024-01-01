@@ -30,9 +30,6 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 					})
 						.then((response) => response.json())
 						.then((data) => {
-							console.log(
-								`Successfull sign in token data = access_token: ${data.accessToken}, refresh_token: ${data.refreshToken}`
-							)
 							setTokens(data)
 						})
 				}}

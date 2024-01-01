@@ -28,7 +28,10 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 					payload
 				)
 				if (response) {
-					setLoginTokens(response.data)
+					setLoginTokens(() => response.data)
+					console.log(
+						`\nSign In response:\n\naccess token: ${loginTokens.accessToken}\n\nrefresh token: ${loginTokens.refreshToken}`
+					)
 				}
 			} catch (error) {
 				console.log(error)
@@ -45,10 +48,6 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 			[event.target.name]: event.target.value,
 		})
 	}
-
-	console.log(
-		`accessToken: ${loginTokens.accessToken}, \nrefreshToken: ${loginTokens.refreshToken}`
-	)
 
 	return (
 		<div className="GoogleOAuth">

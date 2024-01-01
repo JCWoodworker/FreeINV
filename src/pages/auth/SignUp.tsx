@@ -23,7 +23,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					`${backendUrl}/authentication/sign-up`,
 					payload
 				)
-				console.log(response)
+				console.log(`Sign Up response: ${response.data}`)
 			} catch (error) {
 				console.log(error)
 			}
