@@ -57,13 +57,14 @@ button {
 }
 
 .nav-link-lists {
+  padding-bottom: 0.8rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 1px solid orange;
+  border-radius: 0.5rem;
   .nav-link {
     padding: 0.25rem;
-    border-bottom: 1px solid orange;
-    border-radius: 0.5rem;
   }
 }
