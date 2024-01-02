@@ -67,6 +67,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 
 				<br />
 
+				<h3>Or use Google to sign up/in</h3>
 				<GoogleOAuth backendUrl={backendUrl} />
 			</form>
 		</div>
