@@ -23,20 +23,24 @@ const InventoryShow: React.FC = () => {
 		)
 	}
 
-	console.log(state.element)
-	console.log(elementList)
-
+	// console.log(state.element.elementType)
+	
 	return (
 		<div>
 			<h1>{state.element.name}</h1>
-			{elementList?.map((element) => (
-				<Link to={`/${state.element.elementType}/${element.id}`} state={{ element }}>
-					<div key={element.id} className={"show-list-item"}>
-						<h3>{element.name} -</h3>
-						<p>{element.description}</p>
-					</div>
-				</Link>
-			))}
+			<ul>
+				{elementList?.map((element) => (
+					<Link
+						to={`/${element.elementType}/${element.id}`}
+						state={{ element }}
+						key={element.id}
+					>
+						<li className="show-list-item">
+							<strong>{element.name} -</strong> {element.description}
+						</li>
+					</Link>
+				))}
+			</ul>
 		</div>
 	)
 }

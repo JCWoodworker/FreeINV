@@ -10,17 +10,19 @@ const ElementListLayout: React.FC<Props> = ({ elementPath }) => {
 	// This is using test data for now
 	// TODO: fetch from backend and save to state
 
+	// ALSO: this logic should be in some sort of a custom hook.
+	// We shouldn't be using similar logic again in the Show componenet
 	let elementList: InventoryRecord[] = []
 	switch (elementPath) {
 		case "locations":
 			elementList = userData.allLocations
-			break;
+			break
 		case "rooms":
 			elementList = userData.allRooms
-			break;
+			break
 		case "items":
 			elementList = userData.allItems
-			break;
+			break
 		default:
 			elementList = []
 	}
@@ -28,13 +30,19 @@ const ElementListLayout: React.FC<Props> = ({ elementPath }) => {
 	return (
 		<div>
 			<ul>
-				{elementList?.map((element) => (
-					<li key={element.id}>
-						<Link to={`/${elementPath}/${element.id}`} state={{element}}>
-							{element.name}
+				{elementList?.map((element) => {
+					return (
+						<Link
+							to={`/${element.elementType}/${element.id}`}
+							state={{ element }}
+							key={element.id}
+						>
+							<li className="show-list-item">
+								<strong>{element.name} -</strong> {element.description}
+							</li>
 						</Link>
-					</li>
-				))}
+					)
+				})}
 				<li>
 					<Link to={`/${elementPath}/new`}>+</Link>
 				</li>
