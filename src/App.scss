@@ -84,16 +84,16 @@ input {
 		padding: 1rem;
 		width: 350px;
 		max-width: 95vw;
-		height: 350px;
+		height: 300px;
 		border: 2px solid orange;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: space-around;
 	}
 }
 
-.strong-no {
+.strong-highlight {
 	color: orange;
 	font-weight: bolder;
 }
