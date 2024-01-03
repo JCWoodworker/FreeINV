@@ -68,7 +68,9 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					- 1	uppercase letter - 1 lowercase letter
 				 */}
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
-				<button type="submit">Sign Up</button>
+				<button className="regular-button" type="submit">
+					Sign Up
+				</button>
 
 				<br />
 

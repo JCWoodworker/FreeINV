@@ -49,7 +49,8 @@ input {
 	text-align: center;
 }
 
-button {
+.regular-button {
+	margin: 1rem;
 	width: 100px;
 	height: 40px;
 	background-color: rgb(255, 165, 0);
@@ -62,11 +63,37 @@ button {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   margin: 0 auto;
-  width: 90vw;
+  width: 80vw;
   border-bottom: 1px solid orange;
   .nav-link {
     padding: 0.25rem;
   }
+}
+
+.home-description-container {
+	margin: 0 auto;
+	max-width: 90vw;;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	.item-description-container {
+		padding: 1rem;
+		width: 350px;
+		max-width: 95vw;
+		height: auto;
+		border: 2px solid orange;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: space-around;
+	}
+}
+
+.strong-no {
+	color: orange;
+	font-weight: bolder;
 }

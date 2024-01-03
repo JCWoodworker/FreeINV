@@ -69,7 +69,7 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 					onChange={handleOnChange}
 				/>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
-				<button type="submit">Sign In</button>
+				<button className="regular-button" type="submit">Sign In</button>
 			</form>
 
 			<br />
