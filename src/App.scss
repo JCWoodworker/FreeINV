@@ -97,3 +97,11 @@ input {
 	color: orange;
 	font-weight: bolder;
 }
+
+.show-list-item {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}

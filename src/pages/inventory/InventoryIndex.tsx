@@ -1,9 +1,14 @@
+import ElementListLayout from "../../layouts/ElementListLayout"
+
 interface Props {
-  elementName: string
+	elementPath: string
 }
 
-const inventoryIndex: React.FC<Props> = ({ elementName }) => {
-	return <h1>{elementName} List</h1>
+const inventoryIndex: React.FC<Props> = ({ elementPath }) => {
+
+	return (
+		<ElementListLayout elementPath={elementPath} />
+	)
 }
 
 export default inventoryIndex

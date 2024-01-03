@@ -28,16 +28,16 @@ export const signedInTopNavLinks = [
 		path: "/locations",
 		icon: "📍",
 	},
-	{
-		name: "Rooms",
-		path: "/rooms",
-		icon: "🛏",
-	},
-	{
-		name: "Items",
-		path: "/items",
-		icon: "📦",
-	},
+	// {
+	// 	name: "Rooms",
+	// 	path: "/rooms",
+	// 	icon: "🛏",
+	// },
+	// {
+	// 	name: "Items",
+	// 	path: "/items",
+	// 	icon: "📦",
+	// },
 	{
 		name: "Sign Out",
 		path: "/signout",
