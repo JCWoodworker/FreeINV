@@ -1,15 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
-interface Props {
-	elementName: string
-}
-const InventoryShow: React.FC<Props> = ({ elementName }) => {
-	const { id } = useParams()
+const InventoryShow: React.FC = () => {
+	const { state } = useLocation()
 	return (
 		<div>
-			<h1>
-				{elementName} {id}
-			</h1>
+			<h1>{state.name}</h1>
 		</div>
 	)
 }

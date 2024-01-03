@@ -13,12 +13,12 @@ interface Props {
 const ElementRoutes: React.FC<Props> = ({ elementName, elementPath }) => {
 	return (
 		<>
-			<ElementNavLayout elementName={elementName} elementPath={elementPath} />
 			<Routes>
 				<Route index element={<InventoryIndex elementName={elementName} />} />
-				<Route path=":id" element={<InventoryShow elementName={elementName} />} />
+				<Route path=":id" element={<InventoryShow />} />
 				<Route path="new" element={<NewInventory elementName={elementName} />} />
 			</Routes>
+			<ElementNavLayout elementPath={elementPath} />
 		</>
 	)
 }
