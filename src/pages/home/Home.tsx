@@ -26,9 +26,11 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 				<li>
 					<strong className="strong-highlight">NO</strong> In-App Purchases
 				</li>
+				<br />
+				<li>Select a subscription level:</li>
 			</ul>
 			<div className="home-description-container">
-				<Link to="/signin" state={"level 1"}>
+				<Link to="/signup" state={"level1"}>
 					<div className="item-description-container">
 						<h2>Level 1</h2>
 						<ul>
@@ -43,7 +45,7 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 						</ul>
 					</div>
 				</Link>
-				<Link to="/signin" state={"level 2"}>
+				<Link to="/signup" state={"level2"}>
 					<div className="item-description-container">
 						<h2>Level 2</h2>
 						<ul>
@@ -57,7 +59,7 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 						</ul>
 					</div>
 				</Link>
-				<Link to="/signin" state={"level 3"}>
+				<Link to="/signup" state={"level3"}>
 					<div className="item-description-container">
 						<h2>Level 3</h2>
 						<ul>

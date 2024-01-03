@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link, useLocation } from "react-router-dom"
 import Recaptcha from "./Recaptcha"
 import axios from "axios"
 import GoogleOAuth from "./GoogleOAuth"
@@ -13,7 +13,9 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 		email: "",
 		password: "",
 	})
-	const [recaptchaVerified, setRecaptchaVerified] = useState(false)
+	const [recaptchaVerified, setRecaptchaVerified] = useState<boolean>(false)
+	const { state } = useLocation()
+	const [selectedCheckbox, setSelectedCheckbox] = useState<string>(state)
 	const navigate = useNavigate()
 
 	const handleSubmit = async (event: React.FormEvent) => {
@@ -45,6 +47,10 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 		})
 	}
 
+	const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSelectedCheckbox(e.target.value)
+	}
+
 	return (
 		<div>
 			<h1>Sign Up</h1>
@@ -67,6 +73,46 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					Password Rules: 👉 At Least: 👉 8 characters - 1 number - 1 special character 
 					- 1	uppercase letter - 1 lowercase letter
 				 */}
+				<div className="subscription-container">
+					<p>
+						Subscription -{" "}
+						<Link to="/">
+							<strong className="strong-highlight">See Options</strong>
+						</Link>
+					</p>
+					<div className="checkbox-container">
+						<div className="checkbox-and-label">
+							<input
+								type="checkbox"
+								className="checkbox"
+								value="level1"
+								checked={selectedCheckbox === "level1"}
+								onChange={handleCheckboxChange}
+							/>
+							<label>Level 1</label>
+						</div>
+						<div className="checkbox-and-label">
+							<input
+								type="checkbox"
+								className="checkbox"
+								value="level2"
+								checked={selectedCheckbox === "level2"}
+								onChange={handleCheckboxChange}
+							/>
+							<label>Level 2</label>
+						</div>
+						<div className="checkbox-and-label">
+							<input
+								type="checkbox"
+								className="checkbox"
+								value="level3"
+								checked={selectedCheckbox === "level3"}
+								onChange={handleCheckboxChange}
+							/>
+							<label>Level 3</label>
+						</div>
+					</div>
+				</div>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<button className="regular-button" type="submit">
 					Sign Up
