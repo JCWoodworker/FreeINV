@@ -29,7 +29,10 @@ const ElementListLayout: React.FC<Props> = ({ elementPath }) => {
 
 	return (
 		<div>
-			<ul>
+			<p>
+				<Link to={`/${elementPath}/new`}>+</Link>
+			</p>
+			<ul className="show-list">
 				{elementList?.map((element) => {
 					return (
 						<Link
@@ -37,15 +40,13 @@ const ElementListLayout: React.FC<Props> = ({ elementPath }) => {
 							state={{ element }}
 							key={element.id}
 						>
-							<li className="show-list-item">
-								<strong>{element.name} -</strong> {element.description}
+							<li className="show-list-item element-link">
+								<strong className="strong-highlight">{element.name}</strong>
+								{element.description}
 							</li>
 						</Link>
 					)
 				})}
-				<li>
-					<Link to={`/${elementPath}/new`}>+</Link>
-				</li>
 			</ul>
 			<Outlet />
 		</div>
