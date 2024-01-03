@@ -1,57 +1,22 @@
 import "./App.scss"
 import { useEffect, useState } from "react"
-import { Routes, Route, NavLink } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
 
 import { pageRoutingData } from "./pages/pageRoutingData"
 import ElementRoutes from "./routes/ElementRoutes"
 
+import TopNavLinks from "./pages/navigation/TopNavLinks.tsx"
 import Home from "./pages/home/Home"
 import SignIn from "./pages/auth/SignIn"
 import SignUp from "./pages/auth/SignUp"
 import SignOut from "./pages/auth/SignOut.tsx"
 import NotFoundPage from "./pages/not-found/NotFound"
 
-const signedOutNavLinks = [
-	{
-		name: "Home",
-		path: "/",
-		icon: "🏠",
-	},
-	{
-		name: "Sign In",
-		path: "/signin",
-		icon: "👤",
-	},
-	{
-		name: "Sign Up",
-		path: "/signup",
-		icon: "👤",
-	},
-]
-
-const signedInNavLinks = [
-	{
-		name: "Locations",
-		path: "/locations",
-		icon: "📍",
-	},
-	{
-		name: "Rooms",
-		path: "/rooms",
-		icon: "🛏",
-	},
-	{
-		name: "Items",
-		path: "/items",
-		icon: "📦",
-	},
-	{
-		name: "Sign Out",
-		path: "/signout",
-		icon: "👤",
-	},
-]
+import {
+	signedOutTopNavLinks,
+	signedInTopNavLinks,
+} from "./pages/navigation/links.ts"
 
 export interface LoggedInUser {
 	id: number | undefined
@@ -62,7 +27,7 @@ function App() {
 	const [backendUrl, setBackendUrl] = useState("")
 	const [user, setUser] = useState<LoggedInUser>({
 		id: undefined,
-		email: undefined
+		email: undefined,
 	})
 	const [showUserNavLinks, setShowUserNavLinks] = useState(false)
 
@@ -72,7 +37,7 @@ function App() {
 			setShowUserNavLinks(false)
 			setUser({
 				id: undefined,
-				email: undefined
+				email: undefined,
 			})
 		} else {
 			const parsedUser = JSON.parse(loggedInUser)
@@ -97,33 +62,9 @@ function App() {
 	return (
 		<>
 			{showUserNavLinks ? (
-				<nav>
-					<ul>
-						{signedInNavLinks.map((link) => (
-							<li key={link.path}>
-								<NavLink to={link.path}>
-									{({ isActive }) => {
-										return isActive ? `${link.name} ${link.icon}` : link.name
-									}}
-								</NavLink>
-							</li>
-						))}
-					</ul>
-				</nav>
+				<TopNavLinks navLinkList={signedInTopNavLinks} />
 			) : (
-				<nav>
-					<ul className="nav-link-lists">
-						{signedOutNavLinks.map((link) => (
-							<li className="nav-link" key={link.path}>
-								<NavLink to={link.path}>
-									{({ isActive }) => {
-										return isActive ? `${link.name} ${link.icon}` : link.name
-									}}
-								</NavLink>
-							</li>
-						))}
-					</ul>
-				</nav>
+				<TopNavLinks navLinkList={signedOutTopNavLinks} />
 			)}
 			<Routes>
 				<Route path="/" element={<Home loggedInUser={user} />} />
