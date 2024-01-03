@@ -1,7 +1,25 @@
-const SignOut = () => {
+import { useNavigate } from "react-router-dom"
+
+interface Props {
+	setUser: (value: unknown) => void
+	setShowUserNavLinks: (value: boolean) => void
+}
+
+const SignOut: React.FC<Props> = ({ setUser, setShowUserNavLinks }) => {
+	const navigate = useNavigate()
+	const submitSignOut = async (event: React.FormEvent) => {
+		event.preventDefault()
+		localStorage.removeItem("user")
+		setUser(null)
+		setShowUserNavLinks(false)
+		navigate("/")
+	}
+
 	return (
 		<div>
-			<h1>Sign Out</h1>
+			<form onSubmit={submitSignOut}>
+				<button type="submit">Sign Out</button>
+			</form>
 		</div>
 	)
 }

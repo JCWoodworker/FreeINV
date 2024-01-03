@@ -1,9 +1,23 @@
-const Home = () => {
-  return (
-    <div>
-      <h1>Home</h1>
-    </div>
-  )
+interface Props {
+	loggedInUser: unknown
+}
+
+const Home: React.FC<Props> = ({ loggedInUser}) => {
+  console.log(`Logged in user: ${loggedInUser}`)
+  
+  if (!loggedInUser) {
+    return (
+      <div>
+        <h1>Please login</h1>
+      </div>
+    )
+  }
+
+	return (
+		<div>
+			<h1></h1>
+		</div>
+	)
 }
 
 export default Home

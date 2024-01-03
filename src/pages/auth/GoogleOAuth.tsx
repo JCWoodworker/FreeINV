@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 
 interface Props {
@@ -6,14 +6,8 @@ interface Props {
 }
 
 const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
-	const [tokens, setTokens] = useState({})
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
-
-	// this is just here because I hate squiggly lines
-	// and don't need the tokens variable yet
-	if (tokens == "magicFuckyString") {
-		console.log("meh")
-	}
+	const navigate= useNavigate()
 
 	return (
 		<GoogleOAuthProvider clientId={clientId}>
@@ -30,7 +24,10 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 					})
 						.then((response) => response.json())
 						.then((data) => {
-							setTokens(data)
+							localStorage.setItem("user", data.user)
+							localStorage.setItem("loginTokens", JSON.stringify(data.tokens))
+							navigate("/")
+							window.location.reload()
 						})
 				}}
 			/>

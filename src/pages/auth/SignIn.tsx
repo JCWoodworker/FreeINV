@@ -2,6 +2,7 @@ import { useState } from "react"
 import GoogleOAuth from "./GoogleOAuth"
 import axios from "axios"
 import Recaptcha from "./Recaptcha"
+import { useNavigate } from "react-router-dom"
 
 interface Props {
 	backendUrl: string
@@ -12,11 +13,8 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 		email: "",
 		password: "",
 	})
-	const [loginTokens, setLoginTokens] = useState({
-		accessToken: "",
-		refreshToken: "",
-	})
 	const [recaptchaVerified, setRecaptchaVerified] = useState(false)
+	const navigate = useNavigate()
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
@@ -28,10 +26,13 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 					payload
 				)
 				if (response) {
-					setLoginTokens(() => response.data)
-					console.log(
-						`\nSign In response:\n\naccess token: ${loginTokens.accessToken}\n\nrefresh token: ${loginTokens.refreshToken}`
+					localStorage.setItem("user", credentials.email)
+					localStorage.setItem(
+						"loginTokens",
+						JSON.stringify(response.data)
 					)
+					navigate("/")
+					window.location.reload()
 				}
 			} catch (error) {
 				console.log(error)
