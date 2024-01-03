@@ -1,11 +1,13 @@
 {
-  "name": "homeinventory",
-  "displayName": "Home Inventory",
-  "description": "Home Inventory Application with React and TypeScript",
+  "name": "free-inv",
+  "displayName": "Free INV",
+  "description": "An Inventory Application using React and TypeScript",
   "license": "MIT",
   "keywords": [
     "home",
     "inventory",
+    "organize",
+    "organization",
     "react",
     "typescript"
   ],
@@ -15,7 +17,7 @@
     "url": "https://github.com/bradleyw/homeinventory.git"
   },
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
