@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useLocation, Link } from "react-router-dom"
 import { InventoryRecord } from "../../routes/testUserData"
 import { userData } from "../../routes/testUserData"
