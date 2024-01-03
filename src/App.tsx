@@ -53,18 +53,30 @@ const signedInNavLinks = [
 	},
 ]
 
+export interface LoggedInUser {
+	id: number | undefined
+	email: string | undefined
+}
+
 function App() {
 	const [backendUrl, setBackendUrl] = useState("")
-	const [user, setUser] = useState<unknown>(null)
+	const [user, setUser] = useState<LoggedInUser>({
+		id: undefined,
+		email: undefined
+	})
 	const [showUserNavLinks, setShowUserNavLinks] = useState(false)
 
 	const checkForLoggedInUser = async () => {
 		const loggedInUser = await localStorage.getItem("user")
 		if (!loggedInUser) {
 			setShowUserNavLinks(false)
-			setUser(null)
+			setUser({
+				id: undefined,
+				email: undefined
+			})
 		} else {
-			setUser(loggedInUser)
+			const parsedUser = JSON.parse(loggedInUser)
+			setUser(parsedUser)
 			setShowUserNavLinks(true)
 		}
 	}
@@ -79,7 +91,6 @@ function App() {
 	}, [])
 
 	useEffect(() => {
-		console.log(`Checking for logged in user...`)
 		checkForLoggedInUser()
 	}, [])
 

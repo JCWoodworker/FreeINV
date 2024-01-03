@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Recaptcha from "./Recaptcha"
 import axios from "axios"
 import GoogleOAuth from "./GoogleOAuth"
@@ -13,6 +14,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 		password: "",
 	})
 	const [recaptchaVerified, setRecaptchaVerified] = useState(false)
+	const navigate = useNavigate()
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
@@ -23,7 +25,10 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					`${backendUrl}/authentication/sign-up`,
 					payload
 				)
-				console.log(`Sign Up response: ${response.data}`)
+				if (response) {
+					alert("Success! Click OK to continue to the login page")
+					navigate("/signin")
+				}
 			} catch (error) {
 				console.log(error)
 			}

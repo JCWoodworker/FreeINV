@@ -26,10 +26,10 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 					payload
 				)
 				if (response) {
-					localStorage.setItem("user", credentials.email)
+					localStorage.setItem("user", JSON.stringify(response.data.user))
 					localStorage.setItem(
 						"loginTokens",
-						JSON.stringify(response.data)
+						JSON.stringify(response.data.tokens)
 					)
 					navigate("/")
 					window.location.reload()

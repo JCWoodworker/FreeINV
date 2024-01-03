@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
+import { LoggedInUser } from "../../App"
 
 interface Props {
-	setUser: (value: unknown) => void
+	setUser: (value: LoggedInUser) => void
 	setShowUserNavLinks: (value: boolean) => void
 }
 
@@ -10,7 +11,10 @@ const SignOut: React.FC<Props> = ({ setUser, setShowUserNavLinks }) => {
 	const submitSignOut = async (event: React.FormEvent) => {
 		event.preventDefault()
 		localStorage.removeItem("user")
-		setUser(null)
+		setUser({
+			id: undefined,
+			email: undefined
+		})
 		setShowUserNavLinks(false)
 		navigate("/")
 	}
