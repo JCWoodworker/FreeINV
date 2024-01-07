@@ -1,7 +1,7 @@
 @use '../assets/assets-index.scss' as *;
 
 .icon {
-	color: orange;
+	color: $secondaryFontColor;
 	margin: 1rem auto;
 	font-size: 1.5rem;
 }
@@ -11,8 +11,8 @@
 	margin-top: 2rem;
 	width: 150px;
 	height: 60px;
-	background-color: rgb(255, 165, 0);
-	border: 2px solid black;
+	background-color: $secondaryFontColor;
+	border: 2px solid $backgroundColor;
 	border-radius: 0.5rem;
 	font-weight: bold;
 	font-size: 1rem;

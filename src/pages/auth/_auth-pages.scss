@@ -1,0 +1,25 @@
+@use '../../assets/assets-index.scss' as *;
+
+.sign-in-form {
+	@include flex-col-center;
+	gap: 0.5rem;
+}
+
+.subscription-container {
+	margin-bottom: 1rem;
+	.checkbox-container {
+		@include flex-row-center;
+		margin: 0 auto;
+		gap: 1.2rem;
+		.checkbox-and-label {
+			@include flex-col-center;
+		}
+		.checkbox {
+			width: 2rem;
+		}
+	}
+}
+
+.GoogleOAuth {
+	@include flex-col-center;
+}

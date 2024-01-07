@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { UserLocationData } from "../types"
 
+import NotFound from "../../not-found/NotFound"
 import BackButton from "../../../components/BackButton"
 
 interface Props {
@@ -12,6 +13,9 @@ const LocationShow: React.FC<Props> = ({ userInventoryData }) => {
 	const currentLocation = userInventoryData?.find(
 		(location) => location.id === Number(id)
 	)
+	if (!currentLocation) {
+		return <NotFound />
+	}
 
 	return (
 		<>

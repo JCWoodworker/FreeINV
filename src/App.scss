@@ -1,7 +1,6 @@
 @use './assets/assets-index.scss' as *;
 @use './components/components-index.scss';
-@use './pages/auth/auth-index.scss';
-
+@use './pages/pages-index.scss';
 body {
 	margin: 2rem auto;
 	padding: 0;
@@ -30,64 +29,22 @@ ul {
 input {
 	width: 200px;
 	height: 40px;
-	border: 1px solid orange;
+	border: 1px solid $secondaryFontColor;
 	border-radius: 0.5rem;
-	background-color: black;
-	color: white;
+	background-color: $backgroundColor;
+	color: $primaryFontColor;
 	padding: 0 0.5rem;
 	font-size: 1rem;
 	text-align: center;
 }
 
-.top-nav-link-list {
-	padding-bottom: 0.8rem;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
-	gap: 20px;
-	margin: 0 auto;
-	width: 80vw;
-	border-bottom: 1px solid orange;
-	.nav-link {
-		padding: 0.25rem;
-	}
-}
-
-.home-description-container {
-	margin: 0 auto;
-	max-width: 90vw;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	.item-description-container {
-		padding: 1rem;
-		width: 300px;
-		height: 300px;
-		border: 2px solid orange;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: space-around;
-		&:hover {
-			border: 2px solid white;
-			background-color: rgba(255, 165, 0, 0.2)
-		}
-	}
-}
-
 .strong-highlight {
-	color: orange;
+	color: $secondaryFontColor;
 	font-weight: bolder;
 }
 
 .show-list-item {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	align-items: center;
+	@include flex-row-center;
 	gap: 0.5rem;
 }
 
@@ -99,41 +56,3 @@ input {
 	align-items: center;
 }
 
-.element-link {
-	margin: 1rem auto;
-	padding: 0.5rem;
-	width: 30vw;
-	height: 100px;
-	border: 2px solid orange;
-}
-
-
-.page-header {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-}
-
-.new-location-form {
-	margin: 1rem auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	text-align: center;
-}
-
-.location-list-item {
-	margin: 0.5rem auto;
-	padding: 0.25rem 1rem;
-	border: 1px solid orange;
-	border-radius: 0.5rem;
-	width: max-content;
-	font-size: 1.5rem;
-	&:hover {
-		background-color: rgba(255, 165, 0, 0.2)
-	}
-}
