@@ -11,3 +11,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin flex-row-even {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
