@@ -6,7 +6,11 @@
 	margin: 0 auto;
 	padding-bottom: 0.8rem;
 	width: 80vw;
-	border-bottom: 1px solid $secondaryFontColor;
+	border: 1px solid $secondaryFontColor;
+	border-bottom-left-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
+	border-top: none;
+	// border-width: 0.25rem;
 	.nav-link {
 		padding: 0.25rem;
 	}

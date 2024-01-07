@@ -11,7 +11,7 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 			<div>
 						<div>
 			<h1>Welcome to Free INV!</h1>
-			<p>Your FREE inventory management application</p>
+			<h3>Your FREE inventory management application</h3>
 			<ul>
 				All subscription levels include:
 				<li>

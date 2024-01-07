@@ -53,8 +53,10 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<div>
+		<div className="GoogleOAuth">
 			<h1>Sign Up</h1>
+			<GoogleOAuth backendUrl={backendUrl} />
+			<h2>Or</h2>
 			<form className="sign-in-form" onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -116,11 +118,6 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 				</div>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<SubmitButton buttonText="Sign Up" />
-
-				<br />
-
-				<h3>Or use Google to sign up/in</h3>
-				<GoogleOAuth backendUrl={backendUrl} />
 			</form>
 		</div>
 	)
