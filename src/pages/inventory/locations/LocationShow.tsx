@@ -15,10 +15,9 @@ const LocationShow: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<>
-			<h2>Location Show</h2>
-			<BackButton />
-			<p>{currentLocation?.name}</p>
+			<h2>{currentLocation?.name}</h2>
 			<p>{currentLocation?.description}</p>
+			<BackButton />
 		</>
 	)
 }

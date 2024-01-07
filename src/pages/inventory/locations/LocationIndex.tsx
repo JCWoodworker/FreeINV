@@ -1,8 +1,8 @@
 import { UserLocationData } from "../types"
 import { Link } from "react-router-dom"
 
-import BackButton from "../../../components/BackButton"
 import NewElementButton from "../../../components/NewElementButton"
+import BackButton from "../../../components/BackButton"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
@@ -19,12 +19,10 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<>
-			<div className="page-header">
-				<BackButton />
-				<h1>My Inventory</h1>
-				<NewElementButton to="/my-inventory/new" />
-			</div>
+			<h1>My Inventory</h1>
+			<NewElementButton to="/my-inventory/new" />
 			<ul>{locationList}</ul>
+			<BackButton />
 		</>
 	)
 }
