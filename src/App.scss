@@ -149,3 +149,26 @@ input {
 	height: 100px;
 	border: 2px solid orange;
 }
+
+.icon {
+	color: orange;
+	margin: 1rem auto;
+
+}
+
+.page-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+.new-location-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	text-align: center;
+}

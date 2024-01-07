@@ -2,6 +2,8 @@ import { useState } from "react"
 import { UserLocationData } from "../../inventory/types.ts"
 import { useNavigate } from "react-router-dom"
 
+import BackButton from "../../../components/BackButton.tsx"
+
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
 	setUserInventoryData: (value: UserLocationData[] | undefined) => void
@@ -37,15 +39,23 @@ const NewLocation: React.FC<Props> = ({
 	}
 	return (
 		<>
-			<form onSubmit={formSubmit}>
-				<label>
-					Name
-					<input type="text" name="name" onChange={textInputChange} />
-				</label>
-				<label>
-					Description
-					<input type="text" name="description" onChange={textInputChange} />
-				</label>
+			<div className="page-header">
+				<BackButton />
+				<h1>Add A New Location</h1>
+			</div>
+			<form onSubmit={formSubmit} className="new-location-form">
+				<input
+					type="text"
+					name="name"
+					onChange={textInputChange}
+					placeholder="Name"
+				/>
+				<input
+					type="text"
+					name="description"
+					onChange={textInputChange}
+					placeholder="Description"
+				/>
 				<input type="submit" value="Submit" />
 			</form>
 		</>
