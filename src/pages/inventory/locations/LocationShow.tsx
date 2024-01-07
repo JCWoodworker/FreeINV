@@ -1,7 +1,21 @@
-const LocationShow: React.FC = () => {
-	// const { state } = useLocation()
+import { useParams } from "react-router-dom"
+import { UserLocationData } from "../types"
 
-	return <>Location Show</>
+interface Props {
+	userInventoryData: UserLocationData[] | undefined
+}
+
+const LocationShow: React.FC<Props> = ({ userInventoryData }) => {
+	const { id } = useParams()
+	const currentLocation = userInventoryData?.find((location) => location.id === Number(id))
+
+	return (
+		<>
+			<h2>Location Show</h2>
+			<p>{currentLocation?.name}</p>
+			<p>{currentLocation?.description}</p>
+		</>
+	)
 }
 
 export default LocationShow

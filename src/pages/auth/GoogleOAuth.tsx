@@ -7,7 +7,7 @@ interface Props {
 
 const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
-	const navigate= useNavigate()
+	const navigate = useNavigate()
 
 	return (
 		<GoogleOAuthProvider clientId={clientId}>

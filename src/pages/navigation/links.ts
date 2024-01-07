@@ -1,7 +1,7 @@
 export interface TopNavLink {
-  name: string
-  path: string
-  icon: string
+	name: string
+	path: string
+	icon: string
 }
 
 export const signedOutTopNavLinks = [
@@ -24,20 +24,15 @@ export const signedOutTopNavLinks = [
 
 export const signedInTopNavLinks = [
 	{
-		name: "Locations",
-		path: "/locations",
+		name: "Home",
+		path: "/",
+		icon: "🏠",
+	},
+	{
+		name: "My Inventory",
+		path: "/my-inventory",
 		icon: "📍",
 	},
-	// {
-	// 	name: "Rooms",
-	// 	path: "/rooms",
-	// 	icon: "🛏",
-	// },
-	// {
-	// 	name: "Items",
-	// 	path: "/items",
-	// 	icon: "📦",
-	// },
 	{
 		name: "Sign Out",
 		path: "/signout",

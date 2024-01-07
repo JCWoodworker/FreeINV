@@ -3,15 +3,19 @@ import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
 
-import { pageRoutingData } from "./pages/pageRoutingData"
-import ElementRoutes from "./routes/ElementRoutes"
-
 import TopNavLinks from "./pages/navigation/TopNavLinks.tsx"
 import Home from "./pages/home/Home"
 import SignIn from "./pages/auth/SignIn"
 import SignUp from "./pages/auth/SignUp"
 import SignOut from "./pages/auth/SignOut.tsx"
 import NotFoundPage from "./pages/not-found/NotFound"
+
+import LocationIndex from "./pages/inventory/locations/LocationIndex.tsx"
+import LocationShow from "./pages/inventory/locations/LocationShow.tsx"
+import NewLocation from "./pages/inventory/locations/NewLocation.tsx"
+
+import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
+import { UserLocationData } from "./pages/inventory/types.ts"
 
 import {
 	signedOutTopNavLinks,
@@ -31,6 +35,11 @@ function App() {
 	})
 	const [showUserNavLinks, setShowUserNavLinks] = useState(false)
 
+	// Testing this with fake data for now
+	const [userInventoryData, setUserInventoryData] = useState<
+		UserLocationData[] | undefined
+	>(undefined)
+
 	const checkForLoggedInUser = async () => {
 		const loggedInUser = await localStorage.getItem("user")
 		if (!loggedInUser) {
@@ -43,6 +52,7 @@ function App() {
 			const parsedUser = JSON.parse(loggedInUser)
 			setUser(parsedUser)
 			setShowUserNavLinks(true)
+			setUserInventoryData(fakeInventoryData)
 		}
 	}
 
@@ -66,7 +76,6 @@ function App() {
 			) : (
 				<TopNavLinks navLinkList={signedOutTopNavLinks} />
 			)}
-
 			<Routes>
 				<Route path="/" element={<Home loggedInUser={user} />} />
 				<Route path="/signin" element={<SignIn backendUrl={backendUrl} />} />
@@ -84,20 +93,27 @@ function App() {
 					}
 				/>
 
-				{pageRoutingData.map((page) => (
+				<Route path="*" element={<NotFoundPage />} />
+
+				<Route path="/my-inventory">
 					<Route
-						key={page.path}
-						path={`/${page.path}/*`}
+						index
+						element={<LocationIndex userInventoryData={userInventoryData} />}
+					/>
+					<Route
+						path=":id"
+						element={<LocationShow userInventoryData={userInventoryData} />}
+					/>
+					<Route
+						path="new"
 						element={
-							<ElementRoutes
-								elementName={page.name}
-								elementPath={page.path}
+							<NewLocation
+								setUserInventoryData={setUserInventoryData}
+								userInventoryData={userInventoryData}
 							/>
 						}
 					/>
-				))}
-
-				<Route path="*" element={<NotFoundPage />} />
+				</Route>
 			</Routes>
 		</>
 	)
