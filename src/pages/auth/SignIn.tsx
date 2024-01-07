@@ -4,6 +4,8 @@ import axios from "axios"
 import Recaptcha from "./Recaptcha"
 import { useNavigate } from "react-router-dom"
 
+import SubmitButton from "../../components/SubmitButton"
+
 interface Props {
 	backendUrl: string
 }
@@ -69,7 +71,7 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 					onChange={handleOnChange}
 				/>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
-				<button className="regular-button" type="submit">Sign In</button>
+				<SubmitButton buttonText="Sign In" />
 			</form>
 
 			<br />

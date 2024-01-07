@@ -3,6 +3,7 @@ import { useNavigate, Link, useLocation } from "react-router-dom"
 import Recaptcha from "./Recaptcha"
 import axios from "axios"
 import GoogleOAuth from "./GoogleOAuth"
+import SubmitButton from "../../components/SubmitButton"
 
 interface Props {
 	backendUrl: string
@@ -114,9 +115,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					</div>
 				</div>
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
-				<button className="regular-button" type="submit">
-					Sign Up
-				</button>
+				<SubmitButton buttonText="Sign Up" />
 
 				<br />
 

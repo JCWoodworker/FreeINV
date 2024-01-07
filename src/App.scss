@@ -1,3 +1,7 @@
+@use './assets/assets-index.scss' as *;
+@use './components/components-index.scss';
+@use './pages/auth/auth-index.scss';
+
 body {
 	margin: 2rem auto;
 	padding: 0;
@@ -22,41 +26,6 @@ ul {
 	font-size: large;
 }
 
-.sign-in-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.subscription-container {
-	margin-bottom: 1rem;
-	.checkbox-container {
-		margin: 0 auto;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		gap: 1.2rem;
-		.checkbox-and-label {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-		.checkbox {
-			width: 2rem;
-		}
-	}
-}
-
-.GoogleOAuth {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
 
 input {
 	width: 200px;
@@ -68,18 +37,6 @@ input {
 	padding: 0 0.5rem;
 	font-size: 1rem;
 	text-align: center;
-}
-
-.regular-button {
-	margin: 1rem;
-	margin-top: 2rem;
-	width: 150px;
-	height: 60px;
-	background-color: rgb(255, 165, 0);
-	border: 2px solid black;
-	border-radius: 0.5rem;
-	font-weight: bold;
-	font-size: 1rem;
 }
 
 .top-nav-link-list {
@@ -150,12 +107,6 @@ input {
 	border: 2px solid orange;
 }
 
-.icon {
-	color: orange;
-	margin: 1rem auto;
-	font-size: 1.5rem;
-
-}
 
 .page-header {
 	display: flex;

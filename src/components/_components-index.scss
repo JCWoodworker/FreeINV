@@ -1,0 +1,19 @@
+@use '../assets/assets-index.scss' as *;
+
+.icon {
+	color: orange;
+	margin: 1rem auto;
+	font-size: 1.5rem;
+}
+
+.regular-button {
+	margin: 1rem;
+	margin-top: 2rem;
+	width: 150px;
+	height: 60px;
+	background-color: rgb(255, 165, 0);
+	border: 2px solid black;
+	border-radius: 0.5rem;
+	font-weight: bold;
+	font-size: 1rem;
+}

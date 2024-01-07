@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { LoggedInUser } from "../../App"
 
+import SubmitButton from "../../components/SubmitButton"
+
 interface Props {
 	setUser: (value: LoggedInUser) => void
 	setShowUserNavLinks: (value: boolean) => void
@@ -22,7 +24,7 @@ const SignOut: React.FC<Props> = ({ setUser, setShowUserNavLinks }) => {
 	return (
 		<div>
 			<form onSubmit={submitSignOut}>
-				<button className="regular-button"type="submit">Sign Out</button>
+				<SubmitButton buttonText="Sign Out" />
 			</form>
 		</div>
 	)
