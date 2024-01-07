@@ -11,7 +11,7 @@ interface Props {
 const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	const locationList = userInventoryData
 		? userInventoryData.map((location) => (
-				<li key={location.id}>
+				<li key={location.id} className="location-list-item">
 					<Link to={`/my-inventory/${location.id}`}>{location.name}</Link>
 				</li>
 		))
