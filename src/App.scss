@@ -1,9 +1,11 @@
-@use './assets/assets-index.scss' as *;
-@use './components/components-index.scss';
-@use './pages/pages-index.scss';
+@use "./assets/assets-index.scss" as *;
+@use "./navigation/navigation-index.scss";
+@use "./components/components-index.scss";
+@use "./pages/pages-index.scss";
 
 #root {
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 html {
@@ -36,7 +38,6 @@ ul {
 	font-size: large;
 }
 
-
 input {
 	width: 200px;
 	height: 40px;
@@ -66,4 +67,3 @@ input {
 	justify-content: space-around;
 	align-items: center;
 }
-

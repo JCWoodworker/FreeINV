@@ -7,14 +7,17 @@ import BackButton from "../../../components/BackButton"
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }
-
 const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	const locationList = userInventoryData
-		? userInventoryData.map((location) => (
-				<li key={location.id} className="location-list-item">
-					<Link to={`/my-inventory/${location.id}`}>{location.name}</Link>
-				</li>
-		))
+		? userInventoryData.map((location) => {
+				return (
+					<Link to={`/my-inventory/${location.id}`}>
+						<li key={location.id} className="location-list-item">
+							{location.name}
+						</li>
+					</Link>
+				)
+		})
 		: "No Locations Yet"
 
 	return (

@@ -1,4 +1,4 @@
-@use '../../assets/assets-index.scss' as *;
+@use "../assets/assets-index.scss" as *;
 
 .top-nav-link-list {
 	@include flex-row-even;
@@ -6,10 +6,7 @@
 	margin: 0 auto;
 	padding-bottom: 0.8rem;
 	width: 80vw;
-	border: 1px solid $secondaryFontColor;
-	border-bottom-left-radius: 0.5rem;
-	border-bottom-right-radius: 0.5rem;
-	border-top: none;
+	border-bottom: 1px solid $secondaryFontColor;
 	// border-width: 0.25rem;
 	.nav-link {
 		padding: 0.25rem;

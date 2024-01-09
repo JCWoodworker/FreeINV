@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
 
-import TopNavLinks from "./pages/navigation/TopNavLinks.tsx"
+import TopNavLinks from "./navigation/TopNavLinks.tsx"
 import Home from "./pages/home/Home"
 import SignIn from "./pages/auth/SignIn"
 import SignUp from "./pages/auth/SignUp"
@@ -20,7 +20,7 @@ import { UserLocationData } from "./pages/inventory/types.ts"
 import {
 	signedOutTopNavLinks,
 	signedInTopNavLinks,
-} from "./pages/navigation/links.ts"
+} from "./navigation/links.ts"
 
 export interface LoggedInUser {
 	id: number | undefined
