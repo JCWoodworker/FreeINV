@@ -7,8 +7,13 @@
 	padding-bottom: 0.8rem;
 	width: 80vw;
 	border-bottom: 1px solid $secondaryFontColor;
-	// border-width: 0.25rem;
 	.nav-link {
 		padding: 0.25rem;
 	}
+}
+
+.active {
+	color: $navigationLinkColor;
+	font-weight: bold;
+	font-size: large;
 }

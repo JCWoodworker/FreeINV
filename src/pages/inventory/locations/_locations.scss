@@ -3,9 +3,9 @@
 .location-list-item {
 	margin: 0.5rem auto;
 	padding: 1rem;
-	border: 1px solid $secondaryFontColor;
+	border-bottom: 1px solid $secondaryFontColor;
 	border-radius: 0.5rem;
-	width: 90vw;
+	width: 40vw;
 	font-size: 1.5rem;
 	&:hover {
 		background-color: $hoverBackgroundColor;

@@ -11,10 +11,8 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	const locationList = userInventoryData
 		? userInventoryData.map((location) => {
 				return (
-					<Link to={`/my-inventory/${location.id}`}>
-						<li key={location.id} className="location-list-item">
-							{location.name}
-						</li>
+					<Link key={location.id} to={`/my-inventory/${location.id}`}>
+						<li className="location-list-item">{location.name}</li>
 					</Link>
 				)
 		})
@@ -22,7 +20,7 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<>
-			<h1>My Inventory</h1>
+			<h1>My Inventory Locations</h1>
 			<NewElementButton to="/my-inventory/new" />
 			<ul>{locationList}</ul>
 			<BackButton />
