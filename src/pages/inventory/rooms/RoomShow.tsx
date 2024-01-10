@@ -18,18 +18,17 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 	const currentRoom = currentLocation?.rooms?.find(
 		(room) => room.id === Number(id)
 	)
+	const itemsList = currentRoom?.items
 	
 	if (!currentRoom) {
 		return <NotFound />
 	}
 
-	const itemList = "Items will eventually go here"
-
 	return (
 		<>
 			<h1>{currentRoom?.name}</h1>
 			<NewElementButton to="/my-inventory/rooms/new" />
-			<ul>{itemList}</ul>
+			<ul>{itemsList?.map((item) => <li key={item.id}>{item.name}</li>)}</ul>
 			<BackButton />
 		</>
 	)
