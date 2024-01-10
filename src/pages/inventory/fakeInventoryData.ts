@@ -30,6 +30,29 @@ export const fakeInventoryData: UserLocationData[] = [
 					},
 				],
 			},
+			{
+				id: 3,
+				name: "Room CCC",
+				description: "This is room CCC",
+				type: "room",
+				locationId: 1,
+				items: [
+					{
+						id: 5,
+						name: "Item AAA",
+						description: "This is item AAA",
+						type: "item",
+						roomId: 3,
+					},
+					{
+						id: 6,
+						name: "Item BBB",
+						description: "This is item BBB",
+						type: "item",
+						roomId: 3,
+					},
+				],
+			},
 		],
 	},
 	{
@@ -46,14 +69,14 @@ export const fakeInventoryData: UserLocationData[] = [
 				locationId: 1,
 				items: [
 					{
-						id: 1,
+						id: 3,
 						name: "Item BBB",
 						description: "This is item BBB",
 						type: "item",
 						roomId: 1,
 					},
 					{
-						id: 2,
+						id: 4,
 						name: "Item CCC",
 						description: "This is item CCC",
 						type: "item",

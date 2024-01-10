@@ -3,6 +3,7 @@ import { UserLocationData } from "../types"
 import { Link } from "react-router-dom"
 
 import NewElementButton from "../../../components/NewElementButton"
+import DeleteElementButton from "../../../components/DeleteElementButton"
 import BackButton from "../../../components/BackButton"
 
 // <Link key={location.id} to={`/my-inventory/${location.id}`} />
@@ -32,16 +33,12 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				{expandedLocationId === location.id && (
 					<ul className="rooms-list">
 						{location.rooms?.map((room) => (
-							<>
-								<Link
-									key={room.id}
-									to={`/my-inventory/rooms/${room.id}`}
-									state={location.id}
-								>
+							<div key={room.id} className="room-list">
+								<Link to={`/my-inventory/rooms/${room.id}`} state={location.id}>
 									<li key={room.id}>{room.name}</li>
 								</Link>
-								<NewElementButton to="/rooms/new" state={location.id} />
-							</>
+								<DeleteElementButton />
+							</div>
 						))}
 					</ul>
 				)}

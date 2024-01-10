@@ -1,9 +1,22 @@
 @use '../assets/assets-index.scss' as *;
 
 .icon {
-	color: $navigationLinkColor;
+	color:$primaryFontColor;
 	margin: 1rem auto;
 	font-size: 1.5rem;
+	&:hover {
+		cursor: pointer;
+	}
+}
+.bi-plus-circle-fill {
+	&:hover {
+		color: $addButtonColor
+	}
+}
+.bi-dash-circle-fill {
+	&:hover {
+		color: $deleteButtonColor
+	}
 }
 
 .regular-button {
@@ -15,4 +28,9 @@
 	border-radius: 0.5rem;
 	font-weight: bold;
 	font-size: 1rem;
+}
+
+.delete-button {
+	background: none;
+	border: none;
 }
