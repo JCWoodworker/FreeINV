@@ -1,7 +1,8 @@
 import { UserLocationData } from "../types"
-import { useLocation, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 
-import NewElementButton from "../../../components/NewElementButton" 
+import NewElementButton from "../../../components/NewElementButton"
+import DeleteElementButton from "../../../components/DeleteElementButton"
 import NotFound from "../../not-found/NotFound"
 import BackButton from "../../../components/BackButton"
 
@@ -19,7 +20,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 		(room) => room.id === Number(id)
 	)
 	const itemsList = currentRoom?.items
-	
+
 	if (!currentRoom) {
 		return <NotFound />
 	}
@@ -28,7 +29,19 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 		<>
 			<h1>{currentRoom?.name}</h1>
 			<NewElementButton to="/my-inventory/rooms/new" />
-			<ul>{itemsList?.map((item) => <li key={item.id}>{item.name}</li>)}</ul>
+			<ul>
+				{itemsList?.map((item) => (
+					<div key={item.id} className="room-and-item-list">
+						<Link
+							to={`/my-inventory/items/${item.id}`}
+							state={{ llocationId: state, roomId: id, itemId: item.id }}
+						>
+							<li key={item.id}>{item.name}</li>
+						</Link>
+						<DeleteElementButton />
+					</div>
+				))}
+			</ul>
 			<BackButton />
 		</>
 	)
