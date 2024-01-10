@@ -34,7 +34,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 					<div key={item.id} className="room-and-item-list">
 						<Link
 							to={`/my-inventory/items/${item.id}`}
-							state={{ llocationId: state, roomId: id, itemId: item.id }}
+							state={{ locationId: state, roomId: id, itemId: item.id }}
 						>
 							<li key={item.id}>{item.name}</li>
 						</Link>

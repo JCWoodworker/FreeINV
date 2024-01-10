@@ -8,12 +8,26 @@
   gap: 2rem;
 };
 
+.new-element-button-in-list {
+  padding: 0.25rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $navigationLinkColor;
+  border-radius: 0.5rem;
+  width: max-content;
+}
+
 .room-and-item-list {
+  padding: 0.5rem;
 	margin: 0 auto;
-	width: 40vw;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	gap: 1rem;
+	gap: 5rem;
+  border-bottom: 1px solid $navigationLinkColor;
+  border-radius: 0.5rem;
 };
+
+.room-and-item-link {
+}

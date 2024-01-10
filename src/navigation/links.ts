@@ -31,7 +31,7 @@ export const signedInTopNavLinks = [
 	{
 		name: "My Inventory",
 		path: "/my-inventory",
-		icon: "📍",
+		icon: "📦",
 	},
 	{
 		name: "Sign Out",

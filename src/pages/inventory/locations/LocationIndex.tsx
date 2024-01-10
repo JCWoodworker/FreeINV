@@ -32,13 +32,19 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				</li>
 				{expandedLocationId === location.id && (
 					<ul>
-						<NewElementButton
-							to="/my-inventory/rooms/new"
-							state={location.id}
-						/>
+						<div className="new-element-button-in-list">
+							<NewElementButton
+								to="/my-inventory/rooms/new"
+								state={location.id}
+							/>
+						</div>
 						{location.rooms?.map((room) => (
 							<div key={room.id} className="room-and-item-list">
-								<Link to={`/my-inventory/rooms/${room.id}`} state={location.id}>
+								<Link
+									to={`/my-inventory/rooms/${room.id}`}
+									state={location.id}
+									className="room-and-item-link"
+								>
 									<li key={room.id}>{room.name}</li>
 								</Link>
 								<DeleteElementButton />
