@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 
 interface Props {
 	to: string
+	state?: unknown
 }
 
 const NewElementButton: React.FC<Props> = ({ to }) => {

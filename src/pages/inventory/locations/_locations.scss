@@ -3,7 +3,7 @@
 .location-list-item {
 	margin: 0.5rem auto;
 	padding: 1rem;
-	border-bottom: 1px solid $secondaryFontColor;
+	border: 1px solid $secondaryFontColor;
 	border-radius: 0.5rem;
 	width: 40vw;
 	font-size: 1.5rem;
@@ -20,4 +20,19 @@
 	align-items: center;
 	gap: 0.5rem;
 	text-align: center;
+}
+
+.room-list-item-show {
+	margin: 0.5rem auto;
+	padding: 1rem;
+	border-left: 1px solid $secondaryFontColor;
+	width: 100px;
+	&:hover {
+		background-color: $hoverBackgroundColor;
+	}
+
+}
+
+.room-list-item-hide {
+	display: none;
 }

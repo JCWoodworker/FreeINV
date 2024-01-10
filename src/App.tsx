@@ -21,6 +21,7 @@ import {
 	signedOutTopNavLinks,
 	signedInTopNavLinks,
 } from "./navigation/links.ts"
+import RoomShow from "./pages/inventory/rooms/RoomShow.tsx"
 
 export interface LoggedInUser {
 	id: number | undefined
@@ -113,6 +114,10 @@ function App() {
 							/>
 						}
 					/>
+					<Route
+						path="rooms/:id"
+						element={<RoomShow userInventoryData={userInventoryData} />}
+					></Route>
 				</Route>
 			</Routes>
 		</>
