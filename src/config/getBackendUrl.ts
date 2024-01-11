@@ -8,7 +8,7 @@ const getBackendUrl = async () => {
 		case "prod":
 			return import.meta.env.VITE_BACKEND_URL_PROD
 		default:
-			return "http://localhost:3000"
+			return "http://localhost:3000/api/v1"
 	}
 }
 
