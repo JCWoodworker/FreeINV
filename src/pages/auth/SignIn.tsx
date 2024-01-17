@@ -53,11 +53,11 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<div className="GoogleOAuth">
+		<div>
 			<h1>Sign In</h1>
 			<GoogleOAuth backendUrl={backendUrl} />
 			<h2>Or</h2>
-			<form className="sign-in-form" onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Email"

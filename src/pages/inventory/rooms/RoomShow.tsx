@@ -31,7 +31,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 			<NewElementButton to="/my-inventory/rooms/new" />
 			<ul>
 				{itemsList?.map((item) => (
-					<div key={item.id} className="room-and-item-list">
+					<div key={item.id}>
 						<Link
 							to={`/my-inventory/items/${item.id}`}
 							state={{ locationId: state, roomId: id, itemId: item.id }}

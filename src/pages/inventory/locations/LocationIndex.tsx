@@ -25,25 +25,23 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 			<>
 				<li
 					key={location.id}
-					className="location-list-item"
 					onClick={() => handleLocationClick(location.id)}
 				>
 					{location.name}
 				</li>
 				{expandedLocationId === location.id && (
 					<ul>
-						<div className="new-element-button-in-list">
+						<div>
 							<NewElementButton
 								to="/my-inventory/rooms/new"
 								state={location.id}
 							/>
 						</div>
 						{location.rooms?.map((room) => (
-							<div key={room.id} className="room-and-item-list">
+							<div key={room.id} >
 								<Link
 									to={`/my-inventory/rooms/${room.id}`}
 									state={location.id}
-									className="room-and-item-link"
 								>
 									<li key={room.id}>{room.name}</li>
 								</Link>
@@ -59,7 +57,7 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	return (
 		<>
 			<h1>My Inventory</h1>
-			<div className="element-index-name-and-new-button">
+			<div>
 				<h2>Locations:</h2>
 				<NewElementButton to="/my-inventory/new" />
 			</div>

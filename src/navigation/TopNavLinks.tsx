@@ -8,7 +8,7 @@ interface Props {
 const TopNavLinks: React.FC<Props> = ({ navLinkList }) => {
 	return (
 		<nav>
-			<ul className="top-nav-link-list">
+			<ul>
 				{navLinkList.map((link) => (
 					<li key={link.path}>
 						<NavLink to={link.path}>

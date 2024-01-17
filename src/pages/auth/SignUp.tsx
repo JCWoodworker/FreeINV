@@ -53,11 +53,11 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<div className="GoogleOAuth">
+		<div>
 			<h1>Sign Up</h1>
 			<GoogleOAuth backendUrl={backendUrl} />
 			<h2>Or</h2>
-			<form className="sign-in-form" onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Email"
@@ -76,38 +76,35 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 					Password Rules: 👉 At Least: 👉 8 characters - 1 number - 1 special character 
 					- 1	uppercase letter - 1 lowercase letter
 				 */}
-				<div className="subscription-container">
+				<div>
 					<p>
 						Subscription -{" "}
 						<Link to="/">
-							<strong className="strong-highlight">See Options</strong>
+							<strong>See Options</strong>
 						</Link>
 					</p>
-					<div className="checkbox-container">
-						<div className="checkbox-and-label">
+					<div>
+						<div>
 							<input
 								type="checkbox"
-								className="checkbox"
 								value="level1"
 								checked={selectedCheckbox === "level1"}
 								onChange={handleCheckboxChange}
 							/>
 							<label>Level 1</label>
 						</div>
-						<div className="checkbox-and-label">
+						<div>
 							<input
 								type="checkbox"
-								className="checkbox"
 								value="level2"
 								checked={selectedCheckbox === "level2"}
 								onChange={handleCheckboxChange}
 							/>
 							<label>Level 2</label>
 						</div>
-						<div className="checkbox-and-label">
+						<div>
 							<input
 								type="checkbox"
-								className="checkbox"
 								value="level3"
 								checked={selectedCheckbox === "level3"}
 								onChange={handleCheckboxChange}

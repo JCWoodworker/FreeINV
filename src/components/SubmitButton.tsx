@@ -1,11 +1,9 @@
 interface Props {
-  buttonText: string
+	buttonText: string
 }
 
 const SubmitButton: React.FC<Props> = ({ buttonText }) => {
-  return (
-    <button type="submit" className="regular-button">{buttonText}</button>
-  )
+	return <button type="submit">{buttonText}</button>
 }
 
 export default SubmitButton

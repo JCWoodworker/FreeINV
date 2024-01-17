@@ -39,7 +39,7 @@ const NewLocation: React.FC<Props> = ({
 	return (
 		<>
 			<h2>Add A New Location</h2>
-			<form onSubmit={formSubmit} className="new-location-form">
+			<form onSubmit={formSubmit}>
 				<input
 					type="text"
 					name="name"

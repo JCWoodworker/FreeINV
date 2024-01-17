@@ -15,28 +15,28 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 			<ul>
 				All subscription levels include:
 				<li>
-					<strong className="strong-highlight">$0</strong> Monthly Fees
+					<strong>$0</strong> Monthly Fees
 				</li>
 				<li>
-					<strong className="strong-highlight">NO</strong> In-App Ads
+					<strong>NO</strong> In-App Ads
 				</li>
 				<li>
-					<strong className="strong-highlight">NO</strong> Unnecessary Notifications
+					<strong>NO</strong> Unnecessary Notifications
 				</li>
 				<li>
-					<strong className="strong-highlight">NO</strong> In-App Purchases
+					<strong>NO</strong> In-App Purchases
 				</li>
 				<br />
 				<li>Select a subscription level:</li>
 			</ul>
-			<div className="home-description-container">
+			<div>
 				<Link to="/signup" state={"level1"}>
-					<div className="item-description-container">
+					<div>
 						<h2>Level 1</h2>
 						<ul>
-							<li><strong className="strong-highlight">1</strong> Location</li>
-							<li>Up to <strong className="strong-highlight">2</strong> Rooms</li>
-							<li>Up to <strong className="strong-highlight">10</strong> items per room</li>
+							<li><strong>1</strong> Location</li>
+							<li>Up to <strong>2</strong> Rooms</li>
+							<li>Up to <strong>10</strong> items per room</li>
 							<br />
 							<li>
 								You'll receive blog emails with affiliate links twice per month
@@ -49,9 +49,9 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 					<div className="item-description-container">
 						<h2>Level 2</h2>
 						<ul>
-							<li>Up to <strong className="strong-highlight">2</strong> locations</li>
-							<li>Up to <strong className="strong-highlight">4</strong> rooms per location</li>
-							<li>Up to <strong className="strong-highlight">40</strong> items per room</li>
+							<li>Up to <strong>2</strong> locations</li>
+							<li>Up to <strong>4</strong> rooms per location</li>
+							<li>Up to <strong>40</strong> items per room</li>
 							<br />
 							<li>
 								Must opt in to receive weekly blog emails with affiliate links
@@ -63,9 +63,9 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 					<div className="item-description-container">
 						<h2>Level 3</h2>
 						<ul>
-							<li>Up to <strong className="strong-highlight">8</strong> locations</li>
-							<li>Up to <strong className="strong-highlight">5</strong> rooms per location</li>
-							<li>Up to <strong className="strong-highlight">50</strong> items per room</li>
+							<li>Up to <strong>8</strong> locations</li>
+							<li>Up to <strong>5</strong> rooms per location</li>
+							<li>Up to <strong>50</strong> items per room</li>
 							<br />
 							<li>
 								Must opt in to receive daily blog emails with affiliate links
