@@ -1,4 +1,3 @@
-import "./App.scss"
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
