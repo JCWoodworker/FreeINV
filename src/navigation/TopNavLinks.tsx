@@ -1,5 +1,6 @@
 import { TopNavLink } from "./links"
 import { NavLink } from "react-router-dom"
+import { Nav } from "react-bootstrap"
 
 interface Props {
 	navLinkList: TopNavLink[]
@@ -7,19 +8,15 @@ interface Props {
 
 const TopNavLinks: React.FC<Props> = ({ navLinkList }) => {
 	return (
-		<nav>
-			<ul>
+		<Nav variant="tabs" className="justify-content-evenly">
 				{navLinkList.map((link) => (
-					<li key={link.path}>
-						<NavLink to={link.path}>
-							{({ isActive }) => {
-								return isActive ? `${link.name} ${link.icon}` : link.name
-							}}
-						</NavLink>
-					</li>
+					<Nav.Item key={link.path}>
+						<Nav.Link as={NavLink} to={link.path}>
+							{link.name} {link.icon}
+						</Nav.Link>
+					</Nav.Item>
 				))}
-			</ul>
-		</nav>
+		</Nav>
 	)
 }
 

@@ -1,5 +1,6 @@
 import { LoggedInUser } from "../../App"
 import { productList } from "./productSpecs"
+import { Stack } from "react-bootstrap"
 
 import ProductShowCard from "../../components/ProductShowCard"
 
@@ -15,14 +16,14 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 				<div>
 					<h1>Welcome to Free INV!</h1>
 					<h3>Your FREE inventory management application</h3>						
-					<div>
+					<Stack gap={1}>
 						{productList.map((product) => (
 							<ProductShowCard
 								key={product.title}
 								productSpec={product}
 							/>
 						))}
-					</div>
+					</Stack>
 				</div>
 			</div>
 		)
