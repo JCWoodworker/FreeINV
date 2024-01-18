@@ -76,49 +76,51 @@ function App() {
 			) : (
 				<TopNavLinks navLinkList={signedOutTopNavLinks} />
 			)}
-			<Routes>
-				<Route path="/" element={<Home loggedInUser={user} />} />
-				<Route path="/signin" element={<SignIn backendUrl={backendUrl} />} />
-				<Route path="/signup" element={<SignUp backendUrl={backendUrl} />} />
+			<div className="d-flex justify-content-center">
+				<Routes>
+					<Route path="/" element={<Home loggedInUser={user} />} />
+					<Route path="/signin" element={<SignIn backendUrl={backendUrl} />} />
+					<Route path="/signup" element={<SignUp backendUrl={backendUrl} />} />
 
-				{/* Need logic to make sure user can't go to /signout if not logged in */}
+					{/* Need logic to make sure user can't go to /signout if not logged in */}
 
-				<Route
-					path="/signout"
-					element={
-						<SignOut
-							setUser={setUser}
-							setShowUserNavLinks={setShowUserNavLinks}
-						/>
-					}
-				/>
-
-				<Route path="*" element={<NotFoundPage />} />
-
-				<Route path="/my-inventory">
 					<Route
-						index
-						element={<LocationIndex userInventoryData={userInventoryData} />}
-					/>
-					<Route
-						path=":id"
-						element={<LocationShow userInventoryData={userInventoryData} />}
-					/>
-					<Route
-						path="new"
+						path="/signout"
 						element={
-							<NewLocation
-								setUserInventoryData={setUserInventoryData}
-								userInventoryData={userInventoryData}
+							<SignOut
+								setUser={setUser}
+								setShowUserNavLinks={setShowUserNavLinks}
 							/>
 						}
 					/>
-					<Route
-						path="rooms/:id"
-						element={<RoomShow userInventoryData={userInventoryData} />}
-					></Route>
-				</Route>
-			</Routes>
+
+					<Route path="*" element={<NotFoundPage />} />
+
+					<Route path="/my-inventory">
+						<Route
+							index
+							element={<LocationIndex userInventoryData={userInventoryData} />}
+						/>
+						<Route
+							path=":id"
+							element={<LocationShow userInventoryData={userInventoryData} />}
+						/>
+						<Route
+							path="new"
+							element={
+								<NewLocation
+									setUserInventoryData={setUserInventoryData}
+									userInventoryData={userInventoryData}
+								/>
+							}
+						/>
+						<Route
+							path="rooms/:id"
+							element={<RoomShow userInventoryData={userInventoryData} />}
+						></Route>
+					</Route>
+				</Routes>
+			</div>
 		</>
 	)
 }

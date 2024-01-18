@@ -8,14 +8,17 @@ interface Props {
 
 const TopNavLinks: React.FC<Props> = ({ navLinkList }) => {
 	return (
-		<Nav variant="tabs" className="justify-content-evenly">
-				{navLinkList.map((link) => (
-					<Nav.Item key={link.path}>
-						<Nav.Link as={NavLink} to={link.path}>
-							{link.name} {link.icon}
-						</Nav.Link>
-					</Nav.Item>
-				))}
+		<Nav
+			variant="pills"
+			className="justify-content-center"
+		>
+			{navLinkList.map((link) => (
+				<Nav.Item key={link.path}>
+					<Nav.Link as={NavLink} to={link.path}>
+						{link.name} {link.icon}
+					</Nav.Link>
+				</Nav.Item>
+			))}
 		</Nav>
 	)
 }
