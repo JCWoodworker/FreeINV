@@ -78,38 +78,47 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 				 */}
 				<div>
 					<p>
-						Subscription -{" "}
+						Select Your Subscription -{" "}
 						<Link to="/">
-							<strong>See Options</strong>
+							<strong>See Option Level Details</strong>
 						</Link>
 					</p>
 					<div>
 						<div>
 							<input
 								type="checkbox"
-								value="level1"
-								checked={selectedCheckbox === "level1"}
+								value="basic"
+								checked={selectedCheckbox === "basic"}
 								onChange={handleCheckboxChange}
 							/>
-							<label>Level 1</label>
+							<label>Basic</label>
 						</div>
 						<div>
 							<input
 								type="checkbox"
-								value="level2"
-								checked={selectedCheckbox === "level2"}
+								value="mid"
+								checked={selectedCheckbox === "mid"}
 								onChange={handleCheckboxChange}
 							/>
-							<label>Level 2</label>
+							<label>Mid</label>
 						</div>
 						<div>
 							<input
 								type="checkbox"
-								value="level3"
-								checked={selectedCheckbox === "level3"}
+								value="high"
+								checked={selectedCheckbox === "high"}
 								onChange={handleCheckboxChange}
 							/>
-							<label>Level 3</label>
+							<label>High</label>
+						</div>
+						<div>
+							<input
+								type="checkbox"
+								value="unlimited"
+								checked={selectedCheckbox === "unlimited"}
+								onChange={handleCheckboxChange}
+							/>
+							<label>Unlimited</label>
 						</div>
 					</div>
 				</div>
