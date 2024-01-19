@@ -94,7 +94,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 							checked={selectedCheckbox === "basic"}
 							onChange={handleCheckboxChange}
 						/>
-						<label>Basic</label>
+						<Form.Label>Basic</Form.Label>
 					</Form.Group>
 					<Form.Group controlId="checkbox">
 						<input
@@ -103,7 +103,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 							checked={selectedCheckbox === "mid"}
 							onChange={handleCheckboxChange}
 						/>
-						<label>Mid</label>
+						<Form.Label>Mid</Form.Label>
 					</Form.Group>
 					<Form.Group controlId="checkbox">
 						<input
@@ -112,7 +112,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 							checked={selectedCheckbox === "high"}
 							onChange={handleCheckboxChange}
 						/>
-						<label>High</label>
+						<Form.Label>High</Form.Label>
 					</Form.Group>
 					<Form.Group controlId="checkbox">
 						<input
@@ -121,7 +121,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 							checked={selectedCheckbox === "unlimited"}
 							onChange={handleCheckboxChange}
 						/>
-						<label>Unlimited</label>
+						<Form.Label>Unlimited</Form.Label>
 					</Form.Group>
 				</div>
 

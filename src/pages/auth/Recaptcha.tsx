@@ -11,7 +11,7 @@ const Recaptcha: React.FC<Props> = ({ setRecaptchaVerified }) => {
 
 	return (
 		<ReCAPTCHA
-			size="compact"
+			size="normal"
 			theme="dark"
 			sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
 			onChange={onRecaptchaChange}
