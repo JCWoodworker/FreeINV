@@ -4,6 +4,7 @@ import Recaptcha from "./Recaptcha"
 import axios from "axios"
 import GoogleOAuth from "./GoogleOAuth"
 import SubmitButton from "../../components/SubmitButton"
+import { Stack, Form } from "react-bootstrap"
 
 interface Props {
 	backendUrl: string
@@ -53,79 +54,81 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<div>
+		<Stack className="m-5 d-flex justify-content-center align-items-center">
 			<h1>Sign Up</h1>
 			<GoogleOAuth backendUrl={backendUrl} />
 			<h2>Or</h2>
-			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					placeholder="Email"
-					name="email"
-					value={signupPayload.email}
-					onChange={handleOnChange}
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					name="password"
-					value={signupPayload.password}
-					onChange={handleOnChange}
-				/>
-				{/* Show password rules with green and red markers if they are met or not in real time
-					Password Rules: 👉 At Least: 👉 8 characters - 1 number - 1 special character 
-					- 1	uppercase letter - 1 lowercase letter
-				 */}
+
+			<Form
+				onSubmit={handleSubmit}
+				className="d-flex flex-column justify-content-center align-items-center gap-3"
+			>
 				<div>
-					<p>
-						Select Your Subscription -{" "}
-						<Link to="/">
-							<strong>See Option Level Details</strong>
-						</Link>
-					</p>
-					<div>
-						<div>
-							<input
-								type="checkbox"
-								value="basic"
-								checked={selectedCheckbox === "basic"}
-								onChange={handleCheckboxChange}
-							/>
-							<label>Basic</label>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								value="mid"
-								checked={selectedCheckbox === "mid"}
-								onChange={handleCheckboxChange}
-							/>
-							<label>Mid</label>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								value="high"
-								checked={selectedCheckbox === "high"}
-								onChange={handleCheckboxChange}
-							/>
-							<label>High</label>
-						</div>
-						<div>
-							<input
-								type="checkbox"
-								value="unlimited"
-								checked={selectedCheckbox === "unlimited"}
-								onChange={handleCheckboxChange}
-							/>
-							<label>Unlimited</label>
-						</div>
-					</div>
+					<Form.Group>
+						<input
+							type="text"
+							placeholder="Email"
+							name="email"
+							value={signupPayload.email}
+							onChange={handleOnChange}
+						/>
+					</Form.Group>
+					<Form.Group>
+						<input
+							type="password"
+							placeholder="Password"
+							name="password"
+							value={signupPayload.password}
+							onChange={handleOnChange}
+						/>
+					</Form.Group>
 				</div>
+
+				<Link to="/">View Subscription Levels</Link>
+
+				<div className="d-flex flex-row justify-content-center align-items-center gap-3">
+					<Form.Group controlId="checkbox">
+						<input
+							type="checkbox"
+							value="basic"
+							checked={selectedCheckbox === "basic"}
+							onChange={handleCheckboxChange}
+						/>
+						<label>Basic</label>
+					</Form.Group>
+					<Form.Group controlId="checkbox">
+						<input
+							type="checkbox"
+							value="mid"
+							checked={selectedCheckbox === "mid"}
+							onChange={handleCheckboxChange}
+						/>
+						<label>Mid</label>
+					</Form.Group>
+					<Form.Group controlId="checkbox">
+						<input
+							type="checkbox"
+							value="high"
+							checked={selectedCheckbox === "high"}
+							onChange={handleCheckboxChange}
+						/>
+						<label>High</label>
+					</Form.Group>
+					<Form.Group controlId="checkbox">
+						<input
+							type="checkbox"
+							value="unlimited"
+							checked={selectedCheckbox === "unlimited"}
+							onChange={handleCheckboxChange}
+						/>
+						<label>Unlimited</label>
+					</Form.Group>
+				</div>
+
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<SubmitButton buttonText="Sign Up" />
-			</form>
-		</div>
+			</Form>
+		</Stack>
 	)
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
+import './app.scss'
 
 import TopNavLinks from "./navigation/TopNavLinks.tsx"
 import Home from "./pages/home/Home"

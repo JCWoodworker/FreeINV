@@ -3,6 +3,7 @@ import GoogleOAuth from "./GoogleOAuth"
 import axios from "axios"
 import Recaptcha from "./Recaptcha"
 import { useNavigate } from "react-router-dom"
+import { Form, Stack } from "react-bootstrap"
 
 import SubmitButton from "../../components/SubmitButton"
 
@@ -53,29 +54,37 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<div>
+		<Stack className="m-5 d-flex justify-content-center align-items-center">
 			<h1>Sign In</h1>
 			<GoogleOAuth backendUrl={backendUrl} />
-			<h2>Or</h2>
-			<form onSubmit={handleSubmit}>
-				<input
-					type="text"
-					placeholder="Email"
-					name="email"
-					value={credentials.email}
-					onChange={handleOnChange}
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					name="password"
-					value={credentials.password}
-					onChange={handleOnChange}
-				/>
+			<h3>Or</h3>
+			<Form
+				onSubmit={handleSubmit}
+				className="d-flex flex-column justify-content-center align-items-center gap-3"
+			>
+				<Form.Group controlId="formBasicEmail">
+					<input
+						type="text"
+						placeholder="Email"
+						name="email"
+						value={credentials.email}
+						onChange={handleOnChange}
+					/>
+				</Form.Group>
+				<Form.Group controlId="formBasicPassword">
+					<input
+						type="password"
+						placeholder="Password"
+						name="password"
+						value={credentials.password}
+						onChange={handleOnChange}
+					/>
+				</Form.Group>
+
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<SubmitButton buttonText="Sign In" />
-			</form>
-		</div>
+			</Form>
+		</Stack>
 	)
 }
 
