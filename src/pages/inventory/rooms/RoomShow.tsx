@@ -2,7 +2,6 @@ import { UserLocationData } from "../types"
 import { Link, useLocation, useParams } from "react-router-dom"
 
 import NewElementButton from "../../../components/NewElementButton"
-import DeleteElementButton from "../../../components/DeleteElementButton"
 import NotFound from "../../not-found/NotFound"
 import BackButton from "../../../components/BackButton"
 
@@ -13,12 +12,11 @@ interface Props {
 const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 	const { id } = useParams()
 	const { state } = useLocation()
-	const currentLocation = userInventoryData?.find(
+
+	const currentRoom = userInventoryData?.find(
 		(location) => location.id === Number(state)
-	)
-	const currentRoom = currentLocation?.rooms?.find(
-		(room) => room.id === Number(id)
-	)
+	)?.rooms?.find((room) => room.id === Number(id))
+
 	const itemsList = currentRoom?.items
 
 	if (!currentRoom) {
@@ -26,7 +24,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 	}
 
 	return (
-		<>
+		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentRoom?.name}</h1>
 			<NewElementButton to="/my-inventory/rooms/new" />
 			<ul>
@@ -38,12 +36,11 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 						>
 							<li key={item.id}>{item.name}</li>
 						</Link>
-						<DeleteElementButton />
 					</div>
 				))}
 			</ul>
 			<BackButton />
-		</>
+		</div>
 	)
 }
 

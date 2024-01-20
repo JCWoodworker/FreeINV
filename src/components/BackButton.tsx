@@ -1,13 +1,12 @@
 import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const BackButton = () => {
+	const navigate = useNavigate()
 	return (
-		<Link to={".."}>
-			<Button variant="primary">
-				<i className="bi bi-arrow-left">Back</i>
-			</Button>
-		</Link>
+		<Button variant="primary" onClick={() => navigate(-1)}>
+			<i className="bi bi-arrow-left">Back</i>
+		</Button>
 	)
 }
 

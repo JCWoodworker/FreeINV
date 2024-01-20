@@ -37,9 +37,9 @@ const NewLocation: React.FC<Props> = ({
 		navigate("/my-inventory")
 	}
 	return (
-		<>
+		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h2>Add A New Location</h2>
-			<form onSubmit={formSubmit}>
+			<form onSubmit={formSubmit} className="d-flex m-2 flex-column justify-content-center align-items-center gap-2">
 				<input
 					type="text"
 					name="name"
@@ -55,7 +55,7 @@ const NewLocation: React.FC<Props> = ({
 				<input type="submit" value="Submit" />
 			</form>
 			<BackButton />
-		</>
+		</div>
 	)
 }
 

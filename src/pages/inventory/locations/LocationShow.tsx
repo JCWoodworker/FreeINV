@@ -18,11 +18,11 @@ const LocationShow: React.FC<Props> = ({ userInventoryData }) => {
 	}
 
 	return (
-		<>
+		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentLocation?.name}</h1>
 			<p>{currentLocation?.description}</p>
 			<BackButton />
-		</>
+		</div>
 	)
 }
 

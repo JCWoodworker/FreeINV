@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
-import './app.scss'
+import "./app.scss"
 
 import TopNavLinks from "./navigation/TopNavLinks.tsx"
 import Home from "./pages/home/Home"
@@ -22,6 +22,7 @@ import {
 	signedInTopNavLinks,
 } from "./navigation/links.ts"
 import RoomShow from "./pages/inventory/rooms/RoomShow.tsx"
+import ItemShow from "./pages/inventory/items/ItemShow.tsx"
 
 export interface LoggedInUser {
 	id: number | undefined
@@ -118,6 +119,10 @@ function App() {
 						<Route
 							path="rooms/:id"
 							element={<RoomShow userInventoryData={userInventoryData} />}
+						></Route>
+						<Route
+							path="items/:id"
+							element={<ItemShow userInventoryData={userInventoryData} />}
 						></Route>
 					</Route>
 				</Routes>
