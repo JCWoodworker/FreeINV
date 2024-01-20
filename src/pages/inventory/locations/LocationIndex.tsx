@@ -6,8 +6,6 @@ import NewElementButton from "../../../components/NewElementButton"
 import DeleteElementButton from "../../../components/DeleteElementButton"
 import BackButton from "../../../components/BackButton"
 
-// <Link key={location.id} to={`/my-inventory/${location.id}`} />
-
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }

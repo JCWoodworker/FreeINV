@@ -1,4 +1,4 @@
-export const fetchUserProfile = async () => {
+export const fetchUserProfile = async (backendUrl: string) => {
 	try {
 		const { accessToken, refreshToken } = JSON.parse(
 			localStorage.getItem("loginTokens") || ""
@@ -12,7 +12,7 @@ export const fetchUserProfile = async () => {
 		}
 
 		const response = await fetch(
-			`http://localhost:3000/api/v1/users/user-profile`,
+			`${backendUrl}/api/v1/users/user-profile`,
 			{
 				method: "GET",
 				headers: {
@@ -26,8 +26,7 @@ export const fetchUserProfile = async () => {
 			const data = await response.json()
 
 			localStorage.setItem("user", JSON.stringify(data))
-			// setUser(data)
-			return true
+			return data
 		}
 	} catch (error) {
 		console.log(error)

@@ -22,9 +22,9 @@ const SignOut: React.FC<Props> = ({ setUser, setShowUserNavLinks }) => {
 	}
 
 	return (
-		<div>
+		<div className="mt-5">
 			<form onSubmit={submitSignOut}>
-				<SubmitButton buttonText="Sign Out" />
+				<SubmitButton buttonText="Click Here to Sign Out" />
 			</form>
 		</div>
 	)

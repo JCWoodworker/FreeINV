@@ -54,7 +54,7 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<Stack className="m-5 d-flex justify-content-center align-items-center">
+		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign In</h1>
 			<GoogleOAuth backendUrl={backendUrl} />
 			<h3>Or</h3>
@@ -62,24 +62,24 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 				onSubmit={handleSubmit}
 				className="d-flex flex-column justify-content-center align-items-center gap-3"
 			>
-				<Form.Group controlId="formBasicEmail">
-					<input
-						type="text"
-						placeholder="Email"
-						name="email"
-						value={credentials.email}
-						onChange={handleOnChange}
-					/>
-				</Form.Group>
-				<Form.Group controlId="formBasicPassword">
-					<input
-						type="password"
-						placeholder="Password"
-						name="password"
-						value={credentials.password}
-						onChange={handleOnChange}
-					/>
-				</Form.Group>
+					<Form.Group controlId="formBasicEmail">
+						<input
+							type="text"
+							placeholder="Email"
+							name="email"
+							value={credentials.email}
+							onChange={handleOnChange}
+						/>
+					</Form.Group>
+					<Form.Group controlId="formBasicPassword">
+						<input
+							type="password"
+							placeholder="Password"
+							name="password"
+							value={credentials.password}
+							onChange={handleOnChange}
+						/>
+					</Form.Group>
 
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<SubmitButton buttonText="Sign In" />

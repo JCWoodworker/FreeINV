@@ -54,7 +54,7 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 	}
 
 	return (
-		<Stack className="m-5 d-flex justify-content-center align-items-center">
+		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign Up</h1>
 			<GoogleOAuth backendUrl={backendUrl} />
 			<h2>Or</h2>
@@ -63,7 +63,6 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 				onSubmit={handleSubmit}
 				className="d-flex flex-column justify-content-center align-items-center gap-3"
 			>
-				<div>
 					<Form.Group>
 						<input
 							type="text"
@@ -82,9 +81,9 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 							onChange={handleOnChange}
 						/>
 					</Form.Group>
-				</div>
 
 				<Link to="/">View Subscription Levels</Link>
+				<p>Select a subscription:</p>
 
 				<div className="d-flex flex-row justify-content-center align-items-center gap-3">
 					<Form.Group controlId="checkbox">

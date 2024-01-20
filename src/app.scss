@@ -1,8 +1,16 @@
 body {
-  margin: 0 auto;
-  background-color: rgb(201, 201, 201);
+	margin: 0 auto;
+
+	background: linear-gradient(
+		90deg,
+		rgb(143, 218, 255) 0%,
+		rgba(255, 255, 255, 1) 50%,
+    rgb(143, 218, 255) 100%,
+	);
 }
 
-h1, h2, h3 {
-  margin: 1rem
+h1,
+h2,
+h3 {
+	margin: 1rem;
 }

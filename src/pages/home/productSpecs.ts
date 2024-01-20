@@ -26,7 +26,7 @@ export interface ProductSpec {
 
 export const productList: ProductSpec[] = [
 	{
-		title: "Basic Free",
+		title: "Basic (Free)",
 		tier: Tier.BASIC,
 		allowedLocations: 1,
 		allowedRoomsPerLocation: 2,
@@ -36,7 +36,7 @@ export const productList: ProductSpec[] = [
 		emailFrequency: EmailFrequency.WEEKLY,
 	},
 	{
-		title: "Mid Free",
+		title: "Mid (Free)",
 		tier: Tier.MID,
 		allowedLocations: 3,
 		allowedRoomsPerLocation: 2,
@@ -46,7 +46,7 @@ export const productList: ProductSpec[] = [
 		emailFrequency: EmailFrequency.TWICEWEEKLY,
 	},
 	{
-		title: "High Free",
+		title: "High (Free)",
 		tier: Tier.HIGH,
 		allowedLocations: 8,
 		allowedRoomsPerLocation: 10,
@@ -56,7 +56,7 @@ export const productList: ProductSpec[] = [
 		emailFrequency: EmailFrequency.DAILY,
 	},
 	{
-		title: "Unlimited",
+		title: "Unlimited (Not Free)",
 		tier: Tier.UNLIMITED,
 		allowedLocations: "unlimited",
 		allowedRoomsPerLocation: "unlimited",
