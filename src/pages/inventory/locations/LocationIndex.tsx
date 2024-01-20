@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
 
 import NewElementButton from "../../../components/NewElementButton"
-import DeleteElementButton from "../../../components/DeleteElementButton"
 import BackButton from "../../../components/BackButton"
 
 interface Props {
