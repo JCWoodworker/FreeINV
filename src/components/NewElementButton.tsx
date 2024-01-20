@@ -8,7 +8,7 @@ interface Props {
 const NewElementButton: React.FC<Props> = ({ to }) => {
 	return (
 		<Link to={to} >
-			<i className="bi bi-plus-circle-fill"></i>
+			<i className="bi bi-plus-circle-fill fs-2"></i>
 		</Link>
 	)
 }
