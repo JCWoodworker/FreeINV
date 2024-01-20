@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { UserLocationData } from "../types"
 import { Link } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
@@ -19,7 +18,6 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				<h2>Locations:</h2>
 				<NewElementButton to="/my-inventory/new" />
 			</div>
-			<BackButton />
 			<Accordion flush>
 				{userInventoryData?.map((location) => (
 					<Accordion.Item
@@ -37,7 +35,6 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 									>
 										{room.name}
 									</Link>
-									<DeleteElementButton />
 								</div>
 							))}
 						</Accordion.Body>
@@ -45,6 +42,8 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				))}
 
 			</Accordion>
+			<BackButton />
+
 		</div>
 	)
 }
