@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { UserLocationData } from "../types"
 import { Link } from "react-router-dom"
+import { Accordion } from "react-bootstrap"
 
 import NewElementButton from "../../../components/NewElementButton"
 import DeleteElementButton from "../../../components/DeleteElementButton"
@@ -10,58 +11,41 @@ interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }
 const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
-	const [expandedLocationId, setExpandedLocationId] = useState<number | null>(
-		null
-	)
-
-	const handleLocationClick = (locationId: number) => {
-		setExpandedLocationId(expandedLocationId === locationId ? null : locationId)
-	}
-
-	const locationList = userInventoryData?.map((location) => {
-		return (
-			<>
-				<li
-					key={location.id}
-					onClick={() => handleLocationClick(location.id)}
-				>
-					{location.name}
-				</li>
-				{expandedLocationId === location.id && (
-					<ul>
-						<div>
-							<NewElementButton
-								to="/my-inventory/rooms/new"
-								state={location.id}
-							/>
-						</div>
-						{location.rooms?.map((room) => (
-							<div key={room.id} >
-								<Link
-									to={`/my-inventory/rooms/${room.id}`}
-									state={location.id}
-								>
-									<li key={room.id}>{room.name}</li>
-								</Link>
-								<DeleteElementButton />
-							</div>
-						))}
-					</ul>
-				)}
-			</>
-		)
-	})
 
 	return (
-		<>
+		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
 			<div>
 				<h2>Locations:</h2>
 				<NewElementButton to="/my-inventory/new" />
 			</div>
-			<ul>{locationList}</ul>
 			<BackButton />
-		</>
+			<Accordion flush>
+				{userInventoryData?.map((location) => (
+					<Accordion.Item
+						key={location.id}
+						eventKey={location.id.toString()}
+					>
+						<Accordion.Header>{location.name}</Accordion.Header>
+						<Accordion.Body>
+							{location.description}
+							{location.rooms.map((room) => (
+								<div key={room.id}>
+									<Link
+										to={`/my-inventory/rooms/${room.id}`}
+										state={location.id}
+									>
+										{room.name}
+									</Link>
+									<DeleteElementButton />
+								</div>
+							))}
+						</Accordion.Body>
+					</Accordion.Item>
+				))}
+
+			</Accordion>
+		</div>
 	)
 }
 
