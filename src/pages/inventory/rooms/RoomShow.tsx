@@ -35,7 +35,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 							to={`/my-inventory/items/${item.id}`}
 							state={{ locationId: state, roomId: id, itemId: item.id }}
 						>
-							<ListGroup.Item key={item.id} className="m-1">{item.name}</ListGroup.Item>
+							<ListGroup.Item key={item.id} className="m-1 rounded">{item.name}</ListGroup.Item>
 						</Link>
 					</div>
 				))}

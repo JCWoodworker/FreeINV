@@ -15,20 +15,26 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 			<NewElementButton to="/my-inventory/new" />
 			<Accordion flush>
 				{userInventoryData?.map((location) => (
-					<Accordion.Item key={location.id} eventKey={location.id.toString()}>
+					<Accordion.Item
+						key={location.id}
+						eventKey={location.id.toString()}
+						className="m-1 rounded"
+					>
 						<Accordion.Header>{location.name}</Accordion.Header>
-						<Accordion.Body>
-							{location.description}
-							{location.rooms.map((room) => (
-								<div key={room.id}>
-									<Link
-										to={`/my-inventory/rooms/${room.id}`}
-										state={location.id}
-									>
-										{room.name}
-									</Link>
-								</div>
-							))}
+						<Accordion.Body className="d-flex flex-column justify-content-center align-items-center">
+							<div className="d-flex flex-column justify-content-center align-items-center">
+								{location.description}
+								{location.rooms.map((room) => (
+									<div key={room.id}>
+										<Link
+											to={`/my-inventory/rooms/${room.id}`}
+											state={location.id}
+										>
+											{room.name}
+										</Link>
+									</div>
+								))}
+							</div>
 							<NewElementButton
 								to="/my-inventory/rooms/new"
 								state={location.id}
