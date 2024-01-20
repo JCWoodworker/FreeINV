@@ -3,28 +3,28 @@ import { UserLocationData } from "./types"
 export const fakeInventoryData: UserLocationData[] = [
 	{
 		id: 1,
-		name: "Location A",
-		description: "This is location A",
+		name: "House",
+		description: "Home on Black Plain Rd",
 		type: "location",
 		rooms: [
 			{
 				id: 1,
-				name: "Room AA",
-				description: "This is room AA",
+				name: "Garage",
+				description: "The garage",
 				type: "room",
 				locationId: 1,
 				items: [
 					{
 						id: 1,
-						name: "Item AAA",
-						description: "This is item AAA",
+						name: "Table Saw",
+						description: "Grizzley cabinet saw",
 						type: "item",
 						roomId: 1,
 					},
 					{
 						id: 2,
-						name: "Item BBB",
-						description: "This is item BBB",
+						name: "Hammer",
+						description: "Cheap Home Depot Hammer",
 						type: "item",
 						roomId: 1,
 					},
@@ -32,22 +32,22 @@ export const fakeInventoryData: UserLocationData[] = [
 			},
 			{
 				id: 3,
-				name: "Room CCC",
-				description: "This is room CCC",
+				name: "Basement",
+				description: "The unfinished side of the basement",
 				type: "room",
 				locationId: 1,
 				items: [
 					{
 						id: 5,
-						name: "Item AAA",
-						description: "This is item AAA",
+						name: "Treadmill",
+						description: "Nordictrack treadmill",
 						type: "item",
 						roomId: 3,
 					},
 					{
 						id: 6,
-						name: "Item BBB",
-						description: "This is item BBB",
+						name: "Photo Albums",
+						description: "Box of old pictures",
 						type: "item",
 						roomId: 3,
 					},
@@ -57,28 +57,28 @@ export const fakeInventoryData: UserLocationData[] = [
 	},
 	{
 		id: 2,
-		name: "Location B",
-		description: "This is location B",
+		name: "Storage Unit",
+		description: "Storage Unit in Exeter",
 		type: "location",
 		rooms: [
 			{
 				id: 2,
-				name: "Room BB",
-				description: "This is room BB",
+				name: "The Only Room",
+				description: "There is only one room in the storage unit",
 				type: "room",
 				locationId: 1,
 				items: [
 					{
 						id: 3,
-						name: "Item BBB",
-						description: "This is item BBB",
+						name: "Exercise Bike",
+						description: "Cheap Gold's Gym Bike from Walmart",
 						type: "item",
 						roomId: 1,
 					},
 					{
 						id: 4,
-						name: "Item CCC",
-						description: "This is item CCC",
+						name: "Yoga Ball",
+						description: "Orange yoga ball from Target",
 						type: "item",
 						roomId: 1,
 					},

@@ -29,6 +29,10 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 									</Link>
 								</div>
 							))}
+							<NewElementButton
+								to="/my-inventory/rooms/new"
+								state={location.id}
+							/>
 						</Accordion.Body>
 					</Accordion.Item>
 				))}

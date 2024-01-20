@@ -13,6 +13,10 @@ import NotFoundPage from "./pages/not-found/NotFound"
 import LocationIndex from "./pages/inventory/locations/LocationIndex.tsx"
 import LocationShow from "./pages/inventory/locations/LocationShow.tsx"
 import NewLocation from "./pages/inventory/locations/NewLocation.tsx"
+import RoomShow from "./pages/inventory/rooms/RoomShow.tsx"
+import NewRoom from "./pages/inventory/rooms/NewRoom.tsx"
+import ItemShow from "./pages/inventory/items/ItemShow.tsx"
+import NewItem from "./pages/inventory/items/NewItem.tsx"
 
 import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
 import { UserLocationData } from "./pages/inventory/types.ts"
@@ -21,8 +25,6 @@ import {
 	signedOutTopNavLinks,
 	signedInTopNavLinks,
 } from "./navigation/links.ts"
-import RoomShow from "./pages/inventory/rooms/RoomShow.tsx"
-import ItemShow from "./pages/inventory/items/ItemShow.tsx"
 
 export interface LoggedInUser {
 	id: number | undefined
@@ -116,14 +118,20 @@ function App() {
 								/>
 							}
 						/>
-						<Route
-							path="rooms/:id"
-							element={<RoomShow userInventoryData={userInventoryData} />}
-						></Route>
-						<Route
-							path="items/:id"
-							element={<ItemShow userInventoryData={userInventoryData} />}
-						></Route>
+						<Route path="rooms">
+							<Route
+								path=":id"
+								element={<RoomShow userInventoryData={userInventoryData} />}
+							/>
+							<Route path="new" element={<NewRoom />} />
+						</Route>
+						<Route path="items">
+							<Route
+								path=":id"
+								element={<ItemShow userInventoryData={userInventoryData} />}
+							/>
+							<Route path="new" element={<NewItem />} />
+						</Route>
 					</Route>
 				</Routes>
 			</div>

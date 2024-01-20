@@ -26,7 +26,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentRoom?.name}</h1>
-			<NewElementButton to="/my-inventory/rooms/new" />
+			<NewElementButton to="/my-inventory/items/new" />
 			<ul>
 				{itemsList?.map((item) => (
 					<div key={item.id}>
