@@ -1,9 +1,12 @@
+import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const BackButton = () => {
 	return (
 		<Link to={".."}>
-			<i className="bi bi-arrow-left">Back</i>
+			<Button variant="primary">
+				<i className="bi bi-arrow-left">Back</i>
+			</Button>
 		</Link>
 	)
 }

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
 
 import NewElementButton from "../../../components/NewElementButton"
-import BackButton from "../../../components/BackButton"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
@@ -35,7 +34,6 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				))}
 			</Accordion>
 			<br />
-			<BackButton />
 		</div>
 	)
 }
