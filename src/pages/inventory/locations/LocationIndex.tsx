@@ -9,20 +9,14 @@ interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }
 const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
-
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
-			<div>
-				<h2>Locations:</h2>
-				<NewElementButton to="/my-inventory/new" />
-			</div>
+			<h2>Locations:</h2>
+			<NewElementButton to="/my-inventory/new" />
 			<Accordion flush>
 				{userInventoryData?.map((location) => (
-					<Accordion.Item
-						key={location.id}
-						eventKey={location.id.toString()}
-					>
+					<Accordion.Item key={location.id} eventKey={location.id.toString()}>
 						<Accordion.Header>{location.name}</Accordion.Header>
 						<Accordion.Body>
 							{location.description}
@@ -39,10 +33,9 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 						</Accordion.Body>
 					</Accordion.Item>
 				))}
-
 			</Accordion>
+			<br />
 			<BackButton />
-
 		</div>
 	)
 }
