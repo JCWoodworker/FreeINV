@@ -10,7 +10,7 @@ const TopNavLinks: React.FC<Props> = ({ navLinkList }) => {
 	return (
 		<Nav
 			variant="pills"
-			className="justify-content-center"
+			className="mt-1 justify-content-center"
 		>
 			{navLinkList.map((link) => (
 				<Nav.Item key={link.path}>

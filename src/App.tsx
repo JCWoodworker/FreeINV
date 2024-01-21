@@ -80,7 +80,7 @@ function App() {
 			) : (
 				<TopNavLinks navLinkList={signedOutTopNavLinks} />
 			)}
-			<div className="d-flex justify-content-center">
+			<div className="d-flex justify-content-center vw-100">
 				<Routes>
 					<Route path="/" element={<Home loggedInUser={user} />} />
 					<Route path="/signin" element={<SignIn backendUrl={backendUrl} />} />

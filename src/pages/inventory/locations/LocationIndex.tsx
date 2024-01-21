@@ -2,27 +2,28 @@ import { UserLocationData } from "../types"
 import { Link } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
 
-import NewElementButton from "../../../components/NewElementButton"
+import AddDeleteButton from "../../../components/AddDeleteButton"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }
 const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+		<div className="location-indexm-2 vw-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
 			<h2>Locations:</h2>
-			<NewElementButton to="/my-inventory/new" />
 			<Accordion flush>
 				{userInventoryData?.map((location) => (
 					<Accordion.Item
 						key={location.id}
 						eventKey={location.id.toString()}
-						className="m-1 rounded"
+						className="m-1 rounded w-100"
 					>
-						<Accordion.Header>{location.name}</Accordion.Header>
-						<Accordion.Body className="d-flex flex-column justify-content-center align-items-center">
-							<div className="d-flex flex-column justify-content-center align-items-center">
+						<Accordion.Header>
+							<strong>{location.name}</strong>
+						</Accordion.Header>
+						<Accordion.Body className="accordion-item-body d-flex flex-column justify-content-center align-items-center">
+							<div className="accordion-item-description-and-list d-flex flex-column justify-content-center align-items-center gap-2">
 								{location.description}
 								{location.rooms.map((room) => (
 									<div key={room.id}>
@@ -35,15 +36,17 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 									</div>
 								))}
 							</div>
-							<NewElementButton
-								to="/my-inventory/rooms/new"
-								state={location.id}
-							/>
+							<AddDeleteButton buttonText="Add a Room" buttonAction="add" linkTo="/my-inventory/rooms/new" />
 						</Accordion.Body>
 					</Accordion.Item>
 				))}
 			</Accordion>
 			<br />
+			<AddDeleteButton
+				buttonText="New Location"
+				buttonAction="add"
+				linkTo="/my-inventory/new"
+			/>
 		</div>
 	)
 }

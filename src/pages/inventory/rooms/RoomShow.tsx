@@ -1,10 +1,10 @@
 import { UserLocationData } from "../types"
 import { Link, useLocation, useParams } from "react-router-dom"
 
-import NewElementButton from "../../../components/NewElementButton"
 import NotFound from "../../not-found/NotFound"
 import BackButton from "../../../components/BackButton"
 import { ListGroup } from "react-bootstrap"
+import AddDeleteButton from "../../../components/AddDeleteButton"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
@@ -27,7 +27,6 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentRoom?.name}</h1>
-			<NewElementButton to="/my-inventory/items/new" />
 			<ListGroup className="m-2">
 				{itemsList?.map((item) => (
 					<div key={item.id}>
@@ -40,6 +39,7 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 					</div>
 				))}
 			</ListGroup>
+			<AddDeleteButton buttonText="Add an Item" buttonAction="add" linkTo="/my-inventory/items/new" />
 			<BackButton />
 		</div>
 	)

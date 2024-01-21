@@ -1,8 +1,14 @@
+#root {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+
 body {
 	margin: 0 auto;
-
 	background: linear-gradient(
-		90deg,
+		135deg,
 		rgb(186, 232, 255) 0%,
 		rgb(89, 197, 251) 50%,
     rgb(0, 170, 255) 100%,

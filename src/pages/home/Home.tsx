@@ -24,7 +24,13 @@ const Home: React.FC<Props> = ({ loggedInUser }) => {
 		)
 	}
 
-	return <h1>Welcome Back!</h1>
+	return (
+		<div className="m-2 text-center d-flex flex-column justify-content-center align-items-center">
+			<h1>Welcome Back!</h1>
+			<p>You've got no metrics to display yet ...</p>
+			<p>Click "My Inventory" in the top navigation bar to get started</p>
+		</div>
+	)
 }
 
 export default Home
