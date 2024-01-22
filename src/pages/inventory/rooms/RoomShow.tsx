@@ -14,9 +14,11 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 	const { id } = useParams()
 	const { state } = useLocation()
 
-	const currentRoom = userInventoryData?.find(
-		(location) => location.id === Number(state)
-	)?.rooms?.find((room) => room.id === Number(id))
+	debugger
+
+	const currentRoom = userInventoryData
+		?.find((location) => location.id === Number(state))
+		?.rooms?.find((room) => room.id === Number(id))
 
 	const itemsList = currentRoom?.items
 
@@ -34,12 +36,20 @@ const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
 							to={`/my-inventory/items/${item.id}`}
 							state={{ locationId: state, roomId: id, itemId: item.id }}
 						>
-							<ListGroup.Item key={item.id} className="m-1 rounded">{item.name}</ListGroup.Item>
+							<ListGroup.Item key={item.id} className="m-1 rounded">
+								{item.name}
+							</ListGroup.Item>
 						</Link>
 					</div>
 				))}
 			</ListGroup>
-			<AddDeleteButton buttonText="Add an Item" buttonAction="add" linkTo="/my-inventory/items/new" />
+			<AddDeleteButton
+				buttonText="Add an Item"
+				buttonAction="add"
+				linkTo="/my-inventory/items/new"
+				locationId={state}
+				roomId={Number(id)}
+			/>
 			<BackButton />
 		</div>
 	)

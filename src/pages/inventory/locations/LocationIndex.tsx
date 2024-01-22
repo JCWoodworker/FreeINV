@@ -7,6 +7,7 @@ import AddDeleteButton from "../../../components/AddDeleteButton"
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }
+
 const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	return (
 		<div className="location-indexm-2 vw-100 d-flex flex-column justify-content-center align-items-center">
@@ -36,7 +37,12 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 									</div>
 								))}
 							</div>
-							<AddDeleteButton buttonText="Add a Room" buttonAction="add" linkTo="/my-inventory/rooms/new" />
+							<AddDeleteButton
+								buttonText="Add a Room"
+								buttonAction="add"
+								linkTo="/my-inventory/rooms/new"
+								locationId={location.id}
+							/>
 						</Accordion.Body>
 					</Accordion.Item>
 				))}

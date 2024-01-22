@@ -24,7 +24,7 @@ const NewLocation: React.FC<Props> = ({
 	// This is for testing purposes.
 	// When sending a requests to the backend we only need name and description
 
-	const textInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleTextInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setNewLocationData({
 			...newLocationData,
 			[event.target.name]: event.target.value,
@@ -43,13 +43,13 @@ const NewLocation: React.FC<Props> = ({
 				<input
 					type="text"
 					name="name"
-					onChange={textInputChange}
+					onChange={handleTextInputChange}
 					placeholder="Name"
 				/>
 				<input
 					type="text"
 					name="description"
-					onChange={textInputChange}
+					onChange={handleTextInputChange}
 					placeholder="Description"
 				/>
 				<input type="submit" value="Submit" />

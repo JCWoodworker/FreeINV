@@ -123,14 +123,30 @@ function App() {
 								path=":id"
 								element={<RoomShow userInventoryData={userInventoryData} />}
 							/>
-							<Route path="new" element={<NewRoom />} />
+							<Route
+								path="new"
+								element={
+									<NewRoom
+										userInventoryData={userInventoryData}
+										setUserInventoryData={setUserInventoryData}
+									/>
+								}
+							/>
 						</Route>
 						<Route path="items">
 							<Route
 								path=":id"
 								element={<ItemShow userInventoryData={userInventoryData} />}
 							/>
-							<Route path="new" element={<NewItem />} />
+							<Route
+								path="new"
+								element={
+									<NewItem
+										userInventoryData={userInventoryData}
+										setUserInventoryData={setUserInventoryData}
+									/>
+								}
+							/>
 						</Route>
 					</Route>
 				</Routes>
