@@ -1,4 +1,4 @@
-import { UserLocationData } from "./types"
+import { UserLocationData } from "./inventoryTypes"
 
 export const fakeInventoryData: UserLocationData[] = [
 	{

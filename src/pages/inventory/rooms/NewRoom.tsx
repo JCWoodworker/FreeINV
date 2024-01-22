@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { Form } from "react-bootstrap"
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
-import { Room } from "../../inventory/types"
+import { Room } from "../inventoryTypes"
 
 import { UserInventoryDataContext } from "../../../App"
 

@@ -19,7 +19,7 @@ import ItemShow from "./pages/inventory/items/ItemShow.tsx"
 import NewItem from "./pages/inventory/items/NewItem.tsx"
 
 import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
-import { UserLocationData } from "./pages/inventory/types.ts"
+import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 
 import {
 	signedOutTopNavLinks,

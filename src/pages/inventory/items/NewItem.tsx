@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Form } from "react-bootstrap"
-import { Item } from "../../inventory/types"
+import { Item } from "../inventoryTypes"
 
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"

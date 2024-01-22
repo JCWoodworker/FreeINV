@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Room, Item } from "../types"
+import { Room, Item } from "../inventoryTypes"
 import { Link, useLocation, useParams } from "react-router-dom"
 import { ListGroup } from "react-bootstrap"
 

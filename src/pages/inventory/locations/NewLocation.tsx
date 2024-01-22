@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { UserLocationData } from "../../inventory/types.ts"
+import { UserLocationData } from "../inventoryTypes.ts"
 import { useNavigate } from "react-router-dom"
 
 import BackButton from "../../../components/BackButton.tsx"
