@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
 import getBackendUrl from "./config/getBackendUrl.ts"
 import "./app.scss"
@@ -30,6 +30,25 @@ export interface LoggedInUser {
 	id: number | undefined
 	email: string | undefined
 }
+
+interface UserInventoryDataContextInterface {
+	userInventoryData: UserLocationData[] | undefined
+	setUserInventoryData: (value: UserLocationData[] | undefined) => void
+}
+
+export const UserInventoryDataContext =
+	createContext<UserInventoryDataContextInterface>({
+		userInventoryData: [
+			{
+				id: 0,
+				name: "Test Location",
+				description: "Test location",
+				type: "location",
+				rooms: [],
+			},
+		],
+		setUserInventoryData: () => {},
+	})
 
 function App() {
 	const [backendUrl, setBackendUrl] = useState("")
@@ -74,7 +93,9 @@ function App() {
 	}, [])
 
 	return (
-		<>
+		<UserInventoryDataContext.Provider
+			value={{ userInventoryData, setUserInventoryData }}
+		>
 			{showUserNavLinks ? (
 				<TopNavLinks navLinkList={signedInTopNavLinks} />
 			) : (
@@ -101,57 +122,21 @@ function App() {
 					<Route path="*" element={<NotFoundPage />} />
 
 					<Route path="/my-inventory">
-						<Route
-							index
-							element={<LocationIndex userInventoryData={userInventoryData} />}
-						/>
-						<Route
-							path=":id"
-							element={<LocationShow userInventoryData={userInventoryData} />}
-						/>
-						<Route
-							path="new"
-							element={
-								<NewLocation
-									setUserInventoryData={setUserInventoryData}
-									userInventoryData={userInventoryData}
-								/>
-							}
-						/>
+						<Route index element={<LocationIndex />} />
+						<Route path=":id" element={<LocationShow />} />
+						<Route path="new" element={<NewLocation />} />
 						<Route path="rooms">
-							<Route
-								path=":id"
-								element={<RoomShow userInventoryData={userInventoryData} />}
-							/>
-							<Route
-								path="new"
-								element={
-									<NewRoom
-										userInventoryData={userInventoryData}
-										setUserInventoryData={setUserInventoryData}
-									/>
-								}
-							/>
+							<Route path=":id" element={<RoomShow />} />
+							<Route path="new" element={<NewRoom />} />
 						</Route>
 						<Route path="items">
-							<Route
-								path=":id"
-								element={<ItemShow userInventoryData={userInventoryData} />}
-							/>
-							<Route
-								path="new"
-								element={
-									<NewItem
-										userInventoryData={userInventoryData}
-										setUserInventoryData={setUserInventoryData}
-									/>
-								}
-							/>
+							<Route path=":id" element={<ItemShow />} />
+							<Route path="new" element={<NewItem />} />
 						</Route>
 					</Route>
 				</Routes>
 			</div>
-		</>
+		</UserInventoryDataContext.Provider>
 	)
 }
 

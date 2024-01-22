@@ -1,26 +1,26 @@
-import { UserLocationData } from "../types"
+import { useContext } from "react"
+import { Room, Item } from "../types"
 import { Link, useLocation, useParams } from "react-router-dom"
+import { ListGroup } from "react-bootstrap"
 
 import NotFound from "../../not-found/NotFound"
 import BackButton from "../../../components/BackButton"
-import { ListGroup } from "react-bootstrap"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
-interface Props {
-	userInventoryData: UserLocationData[] | undefined
-}
+import { UserInventoryDataContext } from "../../../App"
 
-const RoomShow: React.FC<Props> = ({ userInventoryData }) => {
+const RoomShow: React.FC = () => {
+	const { userInventoryData, } = useContext(
+		UserInventoryDataContext
+	)
 	const { id } = useParams()
 	const { state } = useLocation()
 
-	debugger
+	const currentRoom: Room | undefined = userInventoryData
+		?.flatMap((location) => location.rooms)
+		.find((room) => room.id === Number(id))
 
-	const currentRoom = userInventoryData
-		?.find((location) => location.id === Number(state))
-		?.rooms?.find((room) => room.id === Number(id))
-
-	const itemsList = currentRoom?.items
+	const itemsList: Item[] | undefined = currentRoom?.items
 
 	if (!currentRoom) {
 		return <NotFound />

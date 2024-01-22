@@ -1,17 +1,16 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { UserLocationData } from "../../inventory/types.ts"
 import { useNavigate } from "react-router-dom"
+
 import BackButton from "../../../components/BackButton.tsx"
 
-interface Props {
-	userInventoryData: UserLocationData[] | undefined
-	setUserInventoryData: (value: UserLocationData[] | undefined) => void
-}
+import { UserInventoryDataContext } from "../../../App.tsx"
 
-const NewLocation: React.FC<Props> = ({
-	userInventoryData,
-	setUserInventoryData,
-}) => {
+const NewLocation: React.FC = () => {
+	const { userInventoryData, setUserInventoryData } = useContext(
+		UserInventoryDataContext
+	)
+
 	const [newLocationData, setNewLocationData] = useState<UserLocationData>({
 		id: Math.floor(Math.random() * 1000),
 		name: "",
@@ -24,7 +23,9 @@ const NewLocation: React.FC<Props> = ({
 	// This is for testing purposes.
 	// When sending a requests to the backend we only need name and description
 
-	const handleTextInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleTextInputChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
 		setNewLocationData({
 			...newLocationData,
 			[event.target.name]: event.target.value,
@@ -39,7 +40,10 @@ const NewLocation: React.FC<Props> = ({
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h2>Add A New Location</h2>
-			<form onSubmit={formSubmit} className="d-flex m-2 flex-column justify-content-center align-items-center gap-2">
+			<form
+				onSubmit={formSubmit}
+				className="d-flex m-2 flex-column justify-content-center align-items-center gap-2"
+			>
 				<input
 					type="text"
 					name="name"

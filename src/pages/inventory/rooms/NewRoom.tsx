@@ -1,19 +1,16 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Form } from "react-bootstrap"
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
-import { UserLocationData, Room } from "../../inventory/types"
+import { Room } from "../../inventory/types"
 
-interface Props {
-	userInventoryData: UserLocationData[] | undefined
-	setUserInventoryData: (value: UserLocationData[] | undefined) => void
-}
+import { UserInventoryDataContext } from "../../../App"
 
-const NewRoom: React.FC<Props> = ({
-	userInventoryData,
-	setUserInventoryData,
-}) => {
+const NewRoom: React.FC = () => {
+	const { userInventoryData, setUserInventoryData } = useContext(
+		UserInventoryDataContext
+	)
 	const navigate = useNavigate()
 	const { state } = useLocation()
 	const [newRoomData, setNewRoomData] = useState({

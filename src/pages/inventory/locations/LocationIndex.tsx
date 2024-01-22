@@ -1,14 +1,13 @@
-import { UserLocationData } from "../types"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
 
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
-interface Props {
-	userInventoryData: UserLocationData[] | undefined
-}
+import { UserInventoryDataContext } from "../../../App"
 
-const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
+const LocationIndex: React.FC = () => {
+	const { userInventoryData } = useContext(UserInventoryDataContext)
 	return (
 		<div className="location-indexm-2 vw-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>

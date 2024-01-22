@@ -1,14 +1,14 @@
+import { useContext } from "react"
 import { useParams } from "react-router-dom"
-import { UserLocationData } from "../types"
 
 import NotFound from "../../not-found/NotFound"
 import BackButton from "../../../components/BackButton"
 
-interface Props {
-	userInventoryData: UserLocationData[] | undefined
-}
+import { UserInventoryDataContext } from "../../../App"
 
-const LocationShow: React.FC<Props> = ({ userInventoryData }) => {
+
+const LocationShow: React.FC = () => {
+	const { userInventoryData } = useContext(UserInventoryDataContext)
 	const { id } = useParams()
 	const currentLocation = userInventoryData?.find(
 		(location) => location.id === Number(id)
