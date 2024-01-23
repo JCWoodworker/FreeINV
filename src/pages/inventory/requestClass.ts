@@ -4,8 +4,6 @@ import axios from "axios"
 export class Request {
 	constructor() {}
 
-	private static backendUrl = this.getBackendUrl()
-
 	// static async get(url: string, options?: any): Promise<any> {
 	// 	// Implement GET request logic using fetch
 	// }
@@ -16,7 +14,7 @@ export class Request {
 		authorization: boolean
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Promise<any> {
-		const urlPrefix = await this.getEndpointUrl(data)
+		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const accessToken = await this.getLocalStorageTokens("accessToken")
 		const headers = authorization
@@ -26,6 +24,7 @@ export class Request {
 			: {
 					"Content-Type": "application/json",
 			}
+      debugger
 		try {
 			const response = await axios.post(fullUrl, data, { headers })
 			return response.data
@@ -43,17 +42,6 @@ export class Request {
 	// 	// Implement DELETE request logic using fetch
 	// }
 
-	static async getEndpointUrl(
-		payload: NewLocationDto | NewItemDto | NewRoomDto
-	) {
-		if (payload.type === "location") {
-			return `${this.backendUrl}/api/v1/freeinv/locations`
-		} else if (payload.type === "room") {
-			return `${this.backendUrl}/api/v1/freeinv/rooms`
-		} else if (payload.type === "item") {
-			return `${this.backendUrl}/api/v1/freeinv/items`
-		}
-	}
 
 	static async getBackendUrl() {
 		try {

@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { submitNewLocation, NewLocationDto } from "../postNewInventory.ts"
 import BackButton from "../../../components/BackButton.tsx"
+import { Request } from "../requestClass.ts"
 
 import { UserInventoryDataContext } from "../../../App.tsx"
 
@@ -28,7 +29,9 @@ const NewLocation: React.FC = () => {
 
 	const formSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
-		const newLocation = await submitNewLocation(newLocationData)
+		const newLocation = await Request.post("/freeinv/locations", newLocationData, true)
+		debugger
+		// const newLocation = await submitNewLocation(newLocationData)
 		if (!newLocation) {
 			console.log(`Failed to add new location`)
 			return false
