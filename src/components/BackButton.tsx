@@ -1,9 +1,7 @@
 import { Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-// import { useLocation } from "react-router-dom"
 
 const BackButton = () => {
-	// const location = useLocation()
 	const navigate = useNavigate()
 
 	return (

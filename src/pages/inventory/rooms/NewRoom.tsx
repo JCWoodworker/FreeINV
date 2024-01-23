@@ -6,7 +6,8 @@ import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import { submitNewRoom, NewRoomDto } from "../postNewInventory"
+import { NewRoomDto } from "../postNewInventory"
+import { Request } from "../../../utils/requestClass"
 
 const NewRoom: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
@@ -32,7 +33,7 @@ const NewRoom: React.FC = () => {
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const newRoom = await submitNewRoom(newRoomData)
+		const newRoom = await Request.post("/freeinv/rooms", newRoomData, true)
 		if (!newRoom) {
 			console.log(`Failed to add new room`)
 			return false
@@ -43,7 +44,7 @@ const NewRoom: React.FC = () => {
 				return {
 					...location,
 					rooms: location.rooms
-						? [...location.rooms, { ...newRoom , items: [] } ]
+						? [...location.rooms, { ...newRoom, items: [] }]
 						: [{ ...newRoom, items: [] }],
 				}
 			}

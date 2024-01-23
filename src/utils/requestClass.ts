@@ -1,4 +1,4 @@
-import { NewLocationDto, NewRoomDto, NewItemDto } from "./postNewInventory"
+import { NewLocationDto, NewRoomDto, NewItemDto } from "../pages/inventory/postNewInventory"
 import axios from "axios"
 
 export class Request {
@@ -24,7 +24,6 @@ export class Request {
 			: {
 					"Content-Type": "application/json",
 			}
-      debugger
 		try {
 			const response = await axios.post(fullUrl, data, { headers })
 			return response.data

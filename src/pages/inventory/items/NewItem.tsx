@@ -6,7 +6,8 @@ import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import { submitNewItem, NewItemDto } from "../postNewInventory"
+import { NewItemDto } from "../postNewInventory"
+import { Request } from "../../../utils/requestClass"
 import { Item } from "../inventoryTypes"
 
 const NewItem: React.FC = () => {
@@ -33,12 +34,15 @@ const NewItem: React.FC = () => {
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const newItem: Item = await submitNewItem(newItemData)
+		const newItem: Item = await Request.post(
+			"/freeinv/items",
+			newItemData,
+			true
+		)
 		if (!newItem) {
 			console.log(`Failed to add new item`)
 			return false
 		}
-		
 
 		const updatedInventoryData = userInventoryData?.map((location) => {
 			if (location.id === state.locationId) {
@@ -60,7 +64,7 @@ const NewItem: React.FC = () => {
 			}
 			return location
 		})
-		
+
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory/rooms/${state.roomId}`)
 	}
