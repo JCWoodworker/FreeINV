@@ -7,7 +7,7 @@ import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
 import { NewItemDto } from "../postNewInventory"
-import { Request } from "../../../utils/requestClass"
+import { Requests } from "../../../utils/Requests"
 import { Item } from "../inventoryTypes"
 
 const NewItem: React.FC = () => {
@@ -34,7 +34,7 @@ const NewItem: React.FC = () => {
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const newItem: Item = await Request.post(
+		const newItem: Item = await Requests.post(
 			"/freeinv/items",
 			newItemData,
 			true

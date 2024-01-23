@@ -1,7 +1,7 @@
 import { NewLocationDto, NewRoomDto, NewItemDto } from "../pages/inventory/postNewInventory"
 import axios from "axios"
 
-export class Request {
+export class Requests {
 	constructor() {}
 
 	// static async get(url: string, options?: any): Promise<any> {

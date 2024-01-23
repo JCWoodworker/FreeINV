@@ -7,7 +7,7 @@ import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
 import { NewRoomDto } from "../postNewInventory"
-import { Request } from "../../../utils/requestClass"
+import { Requests } from "../../../utils/Requests"
 
 const NewRoom: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
@@ -33,7 +33,7 @@ const NewRoom: React.FC = () => {
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const newRoom = await Request.post("/freeinv/rooms", newRoomData, true)
+		const newRoom = await Requests.post("/freeinv/rooms", newRoomData, true)
 		if (!newRoom) {
 			console.log(`Failed to add new room`)
 			return false
