@@ -1,27 +1,29 @@
 import { useState, useContext } from "react"
-import { UserLocationData } from "../inventoryTypes.ts"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { getLocalStorageTokens } from "../../../utils/getLocalStorageTokens.ts"
 
 import BackButton from "../../../components/BackButton.tsx"
 
 import { UserInventoryDataContext } from "../../../App.tsx"
+
+interface NewLocationDto {
+	name: string
+	description: string
+	type: "location"
+}
 
 const NewLocation: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
 		UserInventoryDataContext
 	)
 
-	const [newLocationData, setNewLocationData] = useState<UserLocationData>({
-		id: Math.floor(Math.random() * 1000),
+	const [newLocationData, setNewLocationData] = useState<NewLocationDto>({
 		name: "",
 		description: "",
 		type: "location",
-		rooms: [],
 	})
 	const navigate = useNavigate()
-
-	// This is for testing purposes.
-	// When sending a requests to the backend we only need name and description
 
 	const handleTextInputChange = (
 		event: React.ChangeEvent<HTMLInputElement>
@@ -31,16 +33,42 @@ const NewLocation: React.FC = () => {
 			[event.target.name]: event.target.value,
 		})
 	}
-	const formSubmit = (event: React.FormEvent) => {
-		event.preventDefault()
-		const newUserInventory = userInventoryData?.concat(newLocationData)
-		localStorage.setItem(
-			"userInventoryData",
-			JSON.stringify(newUserInventory)
-		)
-		setUserInventoryData(newUserInventory)
-		navigate("/my-inventory")
+
+	const submitNewLocation = async (payload: NewLocationDto) => {
+		try {
+			const accessToken = await getLocalStorageTokens("accessToken")
+			const response = await axios.post(
+				// `${backendUrl}/inventory/locations`,
+				`http://localhost:3000/api/v1/freeinv/locations`,
+				payload,
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			)
+			if (response) {
+				return response.data
+			}
+		} catch (error) {
+			console.log(error)
+		}
 	}
+
+	const formSubmit = async (event: React.FormEvent) => {
+		event.preventDefault()
+		const newLocation = await submitNewLocation(newLocationData)
+		if (!newLocation) {
+			console.log(`Failed to add new location`)
+			return false
+		}
+		const newUserInventory = userInventoryData?.concat({ ...newLocation, rooms: [] })
+		setUserInventoryData(newUserInventory)
+		console.log(`Added new location: ${JSON.stringify(newLocation)}`)
+		navigate("/my-inventory")
+		return true
+	}
+	
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h2>Add A New Location</h2>

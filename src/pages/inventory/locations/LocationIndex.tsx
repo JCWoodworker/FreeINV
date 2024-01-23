@@ -55,6 +55,7 @@ const LocationIndex: React.FC<Props> = ({
 								linkTo="/my-inventory/rooms/new"
 								locationId={location.id}
 							/>
+							<AddDeleteButton buttonText="Delete Location" buttonAction="delete" />
 						</Accordion.Body>
 					</Accordion.Item>
 				))}

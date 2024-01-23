@@ -29,6 +29,7 @@ const RoomShow: React.FC = () => {
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentRoom?.name}</h1>
+			<p>{currentRoom?.description}</p>
 			<ListGroup className="m-2">
 				{itemsList?.map((item) => (
 					<div key={item.id}>

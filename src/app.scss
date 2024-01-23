@@ -4,15 +4,14 @@
 	height: 100vh;
 }
 
+html {
+	scroll-behavior: smooth;
+}
 
 body {
 	margin: 0 auto;
-	background: linear-gradient(
-		135deg,
-		rgb(186, 232, 255) 0%,
-		rgb(89, 197, 251) 50%,
-    rgb(0, 170, 255) 100%,
-	);
+	background-color: rgb(175, 210, 255);
+
 }
 
 h1,

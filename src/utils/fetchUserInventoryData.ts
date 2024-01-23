@@ -5,7 +5,7 @@ export const fetchUserInventoryData = async (
 	accessToken: string
 ) => {
 	try {
-		const response = await axios.get(`${backendUrl}/freeinv/locations`, {
+		const response = await axios.get(`${backendUrl}/freeinv/complete-location`, {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},

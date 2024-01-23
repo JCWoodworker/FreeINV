@@ -1,11 +1,20 @@
 import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Form } from "react-bootstrap"
+import axios from "axios"
+
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
-import { Room } from "../inventoryTypes"
 
 import { UserInventoryDataContext } from "../../../App"
+import { getLocalStorageTokens } from "../../../utils"
+
+interface NewRoomDto {
+	name: string
+	description: string
+	type: "room"
+	locationId: number
+}
 
 const NewRoom: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
@@ -13,11 +22,9 @@ const NewRoom: React.FC = () => {
 	)
 	const navigate = useNavigate()
 	const { state } = useLocation()
-	const [newRoomData, setNewRoomData] = useState({
+	const [newRoomData, setNewRoomData] = useState<NewRoomDto>({
 		name: "",
 		description: "",
-		id: null,
-		items: [],
 		type: "room",
 		locationId: state.locationId,
 	})
@@ -31,25 +38,44 @@ const NewRoom: React.FC = () => {
 		})
 	}
 
-	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
+	const submitNewRoom = async (payload: NewRoomDto) => {
+		try {
+			const accessToken = await getLocalStorageTokens("accessToken")
+			const response = await axios.post(
+				// `${backendUrl}/inventory/rooms`,
+				`http://localhost:3000/api/v1/freeinv/rooms`,
+				payload,
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			)
+			return response.data
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
-		const newRoom = { ...newRoomData, id: Math.floor(Math.random() * 1000000) }
+	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		const newRoom = await submitNewRoom(newRoomData)
+		if (!newRoom) {
+			console.log(`Failed to add new room`)
+			return false
+		}
+
 		const updatedInventoryData = userInventoryData?.map((location) => {
 			if (location.id === state.locationId) {
 				return {
 					...location,
 					rooms: location.rooms
-						? [...location.rooms, newRoom as Room]
-						: [newRoom as Room],
+						? [...location.rooms, { ...newRoom , items: [] } ]
+						: [{ ...newRoom, items: [] }],
 				}
 			}
 			return location
 		})
-		localStorage.setItem(
-			"freeInvUserInventory",
-			JSON.stringify(updatedInventoryData)
-		)
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory`)
 	}

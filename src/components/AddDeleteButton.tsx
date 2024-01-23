@@ -19,8 +19,8 @@ const AddDeleteButton: React.FC<Props> = ({
 	const navigate = useNavigate()
 	let iconClassName
 	buttonAction.toLowerCase() === "add"
-		? (iconClassName = "bi bi-plus-circle-fill fs-2")
-		: (iconClassName = "bi bi-dash-circle-fill fs-2")
+		? (iconClassName = "bi-plus-circle-fill")
+		: (iconClassName = "bi-dash-circle-fill")
 
 	const buttonClickHandler = () => {
 		linkTo
@@ -34,10 +34,12 @@ const AddDeleteButton: React.FC<Props> = ({
 
 	return (
 		<Button
-			className="add-delete-button mt-3 d-flex flex-row align-items-center justify-content-center gap-2"
+			className={`add-delete-button mt-3 d-flex flex-row align-items-center justify-content-center gap-2 ${
+				buttonAction.toLowerCase() === "add" ? "btn-success" : "btn-danger"
+			}`}
 			onClick={buttonClickHandler}
 		>
-			<i className={`bi ${iconClassName} fs-2`}></i>
+			<i className={`bi ${iconClassName}`}></i>
 			{buttonText}
 		</Button>
 	)
