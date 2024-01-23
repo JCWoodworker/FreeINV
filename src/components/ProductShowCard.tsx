@@ -13,17 +13,19 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 
 	let monthlyFee
 	productSpec.monthlyFees > 0
-		? (monthlyFee = <ListGroup.Item>{`$${productSpec.monthlyFees} per month`}</ListGroup.Item>)
+		? (monthlyFee = (
+				<ListGroup.Item>{`$${productSpec.monthlyFees} per month`}</ListGroup.Item>
+		))
 		: (monthlyFee = null)
 
 	return (
 		<Link
 			to="/signup"
 			state={productSpec.tier}
-			className="text-decoration-none d-flex flex-column justify-content-center align-items-center"
+			className="product-show-card m-1 text-decoration-none d-flex flex-column justify-content-center align-items-center bg-dark-subtle rounded"
 		>
 			<h2>{productSpec.title}</h2>
-			<ListGroup variant="flush" className="rounded">
+			<ListGroup variant="flush" className="w-100 rounded-bottom">
 				<ListGroup.Item>
 					{`${sentencePrefix} `}
 					<strong>{productSpec.allowedLocations}</strong> locations

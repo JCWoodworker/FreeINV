@@ -15,7 +15,8 @@ const SignOut: React.FC<Props> = ({ setUser, setShowUserNavLinks }) => {
 		localStorage.removeItem("user")
 		setUser({
 			id: undefined,
-			email: undefined
+			email: undefined,
+			inventory: [],
 		})
 		setShowUserNavLinks(false)
 		navigate("/")

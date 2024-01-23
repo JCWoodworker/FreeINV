@@ -1,7 +1,7 @@
 export const fetchUserProfile = async (backendUrl: string) => {
 	try {
 		const { accessToken, refreshToken } = JSON.parse(
-			localStorage.getItem("loginTokens") || ""
+			localStorage.getItem("freeInvTokens") || ""
 		)
 
 		if (!accessToken || !refreshToken) {

@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
-import getBackendUrl from "./config/getBackendUrl.ts"
+import { getBackendUrl } from "./config/getBackendUrl.ts"
 import "./app.scss"
 
 import TopNavLinks from "./navigation/TopNavLinks.tsx"
@@ -18,8 +18,9 @@ import NewRoom from "./pages/inventory/rooms/NewRoom.tsx"
 import ItemShow from "./pages/inventory/items/ItemShow.tsx"
 import NewItem from "./pages/inventory/items/NewItem.tsx"
 
-import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
+// import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
+import { attemptTokenRefresh } from "./utils/attemptRefreshToken.ts"
 
 import {
 	signedOutTopNavLinks,
@@ -29,6 +30,7 @@ import {
 export interface LoggedInUser {
 	id: number | undefined
 	email: string | undefined
+	inventory: UserLocationData[]
 }
 
 interface UserInventoryDataContextInterface {
@@ -55,6 +57,7 @@ function App() {
 	const [user, setUser] = useState<LoggedInUser>({
 		id: undefined,
 		email: undefined,
+		inventory: [],
 	})
 	const [showUserNavLinks, setShowUserNavLinks] = useState(false)
 
@@ -63,21 +66,27 @@ function App() {
 		UserLocationData[] | undefined
 	>(undefined)
 
-	const checkForLoggedInUser = async () => {
-		const loggedInUser = await localStorage.getItem("user")
-		if (!loggedInUser) {
-			setShowUserNavLinks(false)
-			setUser({
-				id: undefined,
-				email: undefined,
-			})
-		} else {
-			const parsedUser = JSON.parse(loggedInUser)
-			setUser(parsedUser)
-			setShowUserNavLinks(true)
-			setUserInventoryData(fakeInventoryData)
-		}
-	}
+	// const checkForLoggedInUser = async () => {
+	// 	const loggedInUser = await localStorage.getItem("user")
+	// 	if (!loggedInUser) {
+	// 		setShowUserNavLinks(false)
+	// 		setUser({
+	// 			id: undefined,
+	// 			email: undefined,
+	// 			inventory: [],
+	// 		})
+	// 	} else {
+	// 		const parsedUser = JSON.parse(loggedInUser)
+	// 		setUser(() =>parsedUser)
+	// 		fetchUserInventoryData()
+	// 		setShowUserNavLinks(true)
+	// 	}
+	// }
+
+	// const fetchUserInventoryData = async () => {
+	// 	setUserInventoryData(fakeInventoryData)
+	// 	setUser({ ...user, inventory: fakeInventoryData })
+	// }
 
 	const getBaseBackendUrl = async () => {
 		const url = await getBackendUrl()
@@ -89,8 +98,13 @@ function App() {
 	}, [])
 
 	useEffect(() => {
-		checkForLoggedInUser()
-	}, [])
+		attemptTokenRefresh(backendUrl)
+	})
+
+	// useEffect(() => {
+	// 	checkForLoggedInUser()
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [])
 
 	return (
 		<UserInventoryDataContext.Provider

@@ -53,7 +53,10 @@ const NewItem: React.FC = () => {
 			}
 			return location
 		})
-
+		localStorage.setItem(
+			"userInventoryData",
+			JSON.stringify(updatedInventoryData)
+		)
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory/rooms/${state.roomId}`)
 	}

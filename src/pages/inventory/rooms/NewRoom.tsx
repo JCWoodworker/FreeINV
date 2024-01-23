@@ -44,10 +44,14 @@ const NewRoom: React.FC = () => {
 			}
 			return location
 		})
-
+		localStorage.setItem(
+			"freeInvUserInventory",
+			JSON.stringify(updatedInventoryData)
+		)
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory`)
 	}
+	
 
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">

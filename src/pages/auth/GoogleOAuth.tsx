@@ -24,9 +24,7 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 			})
 			if (response) {
 				const data = await response.json()
-				
-				localStorage.setItem("loginTokens", JSON.stringify(data.tokens))
-				localStorage.setItem("user", JSON.stringify(data.user))
+				localStorage.setItem("freeInvTokens", JSON.stringify(data.tokens))
 				navigate("/")
 				window.location.reload()
 			}

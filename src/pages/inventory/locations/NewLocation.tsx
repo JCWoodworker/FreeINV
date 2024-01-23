@@ -34,6 +34,10 @@ const NewLocation: React.FC = () => {
 	const formSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
 		const newUserInventory = userInventoryData?.concat(newLocationData)
+		localStorage.setItem(
+			"userInventoryData",
+			JSON.stringify(newUserInventory)
+		)
 		setUserInventoryData(newUserInventory)
 		navigate("/my-inventory")
 	}

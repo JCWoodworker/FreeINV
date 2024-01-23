@@ -1,37 +1,36 @@
-export const attemptTokenRefresh = async () => {
-  try {
-    const { accessToken, refreshToken } = JSON.parse(
-      localStorage.getItem("loginTokens") || ""
-    )
+import axios from "axios"
 
-    if (!accessToken || !refreshToken) {
-      console.log(
-        "attemptTokenRefresh: No access or refresh token found in local storage"
-      )
-      return false
-    }
+export const attemptTokenRefresh = async (backendUrl: string) => {
+	if (!localStorage.getItem("freeInvTokens")) {
+		console.log("attemptTokenRefresh: No tokens found in local storage")
+		return false
+	}
+	const { accessToken, refreshToken } = JSON.parse(
+		localStorage.getItem("freeInvTokens") || ""
+	)
 
-    const response = await fetch(
-      `http://localhost:3000/api/v1/authentication/refresh-tokens`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ refreshToken: refreshToken }),
-      }
-    )
-    if (response) {
-      const data = await response.json()
-      
-      localStorage.setItem("loginTokens", JSON.stringify(data))
-    } else {
-      console.log("Failed to refresh token")
-      return false
-    }
-  } catch (error) {
-    console.log(error)
+  if (!refreshToken) {
+    console.log("attemptTokenRefresh: No refresh token found in local storage")
     return false
   }
-  return true
+
+	try {
+		const response = await axios.post(
+			`${backendUrl}/authentication/refresh-tokens`,
+			{ refreshToken }
+		)
+
+		if (response) {
+			const data = await response
+      const { accessToken, refreshToken } = data.data
+			localStorage.setItem("freeInvTokens", JSON.stringify({accessToken, refreshToken}))
+		} else {
+			console.log("Failed to refresh token")
+			return false
+		}
+	} catch (error) {
+		console.log(error)
+		return false
+	}
+	return true
 }
