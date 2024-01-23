@@ -1,21 +1,13 @@
 import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Form } from "react-bootstrap"
-import axios from "axios"
 
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import { getLocalStorageTokens } from "../../../utils"
+import { submitNewItem, NewItemDto } from "../postNewInventory"
 import { Item } from "../inventoryTypes"
-
-interface NewItemDto {
-	name: string
-	description: string
-	type: "item"
-	roomId: number
-}
 
 const NewItem: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
@@ -37,25 +29,6 @@ const NewItem: React.FC = () => {
 			...newItemData,
 			[event.target.name]: event.target.value,
 		})
-	}
-
-	const submitNewItem = async (payload: NewItemDto) => {
-		try {
-			const accessToken = await getLocalStorageTokens("accessToken")
-			const response = await axios.post(
-				// `${backendUrl}/inventory/items`,
-				`http://localhost:3000/api/v1/freeinv/items`,
-				payload,
-				{
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
-					},
-				}
-			)
-			return response.data
-		} catch (error) {
-			console.log(error)
-		}
 	}
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

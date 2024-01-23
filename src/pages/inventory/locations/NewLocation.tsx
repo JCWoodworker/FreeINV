@@ -1,17 +1,9 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { getLocalStorageTokens } from "../../../utils/getLocalStorageTokens.ts"
-
+import { submitNewLocation, NewLocationDto } from "../postNewInventory.ts"
 import BackButton from "../../../components/BackButton.tsx"
 
 import { UserInventoryDataContext } from "../../../App.tsx"
-
-interface NewLocationDto {
-	name: string
-	description: string
-	type: "location"
-}
 
 const NewLocation: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
@@ -32,27 +24,6 @@ const NewLocation: React.FC = () => {
 			...newLocationData,
 			[event.target.name]: event.target.value,
 		})
-	}
-
-	const submitNewLocation = async (payload: NewLocationDto) => {
-		try {
-			const accessToken = await getLocalStorageTokens("accessToken")
-			const response = await axios.post(
-				// `${backendUrl}/inventory/locations`,
-				`http://localhost:3000/api/v1/freeinv/locations`,
-				payload,
-				{
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
-					},
-				}
-			)
-			if (response) {
-				return response.data
-			}
-		} catch (error) {
-			console.log(error)
-		}
 	}
 
 	const formSubmit = async (event: React.FormEvent) => {
