@@ -3,9 +3,10 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 
 interface Props {
 	backendUrl: string
+	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
+const GoogleOAuth: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
 
@@ -25,8 +26,8 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl }) => {
 			if (response) {
 				const data = await response.json()
 				localStorage.setItem("freeInvTokens", JSON.stringify(data.tokens))
+				setUserIsLoggedIn(true)
 				navigate("/")
-				window.location.reload()
 			}
 		} catch (error) {
 			console.log(error)

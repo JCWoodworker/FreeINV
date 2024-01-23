@@ -1,24 +1,17 @@
 import { useNavigate } from "react-router-dom"
-import { LoggedInUser } from "../../App"
 
 import SubmitButton from "../../components/SubmitButton"
 
 interface Props {
-	setUser: (value: LoggedInUser) => void
-	setShowUserNavLinks: (value: boolean) => void
+	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const SignOut: React.FC<Props> = ({ setUser, setShowUserNavLinks }) => {
+const SignOut: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 	const navigate = useNavigate()
 	const submitSignOut = async (event: React.FormEvent) => {
 		event.preventDefault()
-		localStorage.removeItem("user")
-		setUser({
-			id: undefined,
-			email: undefined,
-			inventory: [],
-		})
-		setShowUserNavLinks(false)
+		localStorage.clear()
+		setUserIsLoggedIn(false)
 		navigate("/")
 	}
 

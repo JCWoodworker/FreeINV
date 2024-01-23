@@ -9,9 +9,10 @@ import SubmitButton from "../../components/SubmitButton"
 
 interface Props {
 	backendUrl: string
+	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const SignIn: React.FC<Props> = ({ backendUrl }) => {
+const SignIn: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 	const [credentials, setCredentials] = useState({
 		email: "",
 		password: "",
@@ -33,8 +34,8 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 						"freeInvTokens",
 						JSON.stringify(response.data.tokens)
 					)
+					setUserIsLoggedIn(true)
 					navigate("/")
-					window.location.reload()
 				}
 			} catch (error) {
 				console.log(error)
@@ -55,30 +56,33 @@ const SignIn: React.FC<Props> = ({ backendUrl }) => {
 	return (
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign In</h1>
-			<GoogleOAuth backendUrl={backendUrl} />
+			<GoogleOAuth
+				backendUrl={backendUrl}
+				setUserIsLoggedIn={setUserIsLoggedIn}
+			/>
 			<h3>Or</h3>
 			<Form
 				onSubmit={handleSubmit}
 				className="d-flex flex-column justify-content-center align-items-center gap-3"
 			>
-					<Form.Group controlId="formBasicEmail">
-						<input
-							type="text"
-							placeholder="Email"
-							name="email"
-							value={credentials.email}
-							onChange={handleOnChange}
-						/>
-					</Form.Group>
-					<Form.Group controlId="formBasicPassword">
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							value={credentials.password}
-							onChange={handleOnChange}
-						/>
-					</Form.Group>
+				<Form.Group controlId="formBasicEmail">
+					<input
+						type="text"
+						placeholder="Email"
+						name="email"
+						value={credentials.email}
+						onChange={handleOnChange}
+					/>
+				</Form.Group>
+				<Form.Group controlId="formBasicPassword">
+					<input
+						type="password"
+						placeholder="Password"
+						name="password"
+						value={credentials.password}
+						onChange={handleOnChange}
+					/>
+				</Form.Group>
 
 				<Recaptcha setRecaptchaVerified={setRecaptchaVerified} />
 				<SubmitButton buttonText="Sign In" />

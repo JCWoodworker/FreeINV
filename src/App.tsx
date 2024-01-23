@@ -1,6 +1,5 @@
 import { useEffect, useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
-import { getBackendUrl } from "./config/getBackendUrl.ts"
 import "./app.scss"
 
 import TopNavLinks from "./navigation/TopNavLinks.tsx"
@@ -20,18 +19,16 @@ import NewItem from "./pages/inventory/items/NewItem.tsx"
 
 // import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
-import { attemptTokenRefresh } from "./utils/attemptRefreshToken.ts"
+
+import { getBackendUrl } from "./utils/getBackendUrl.ts"
+// import { attemptTokenRefresh } from "./utils/attemptRefreshToken.ts"
+// import { fetchUserProfile } from "./utils/fetchUserProfile.ts"
+// import { fetchUserInventoryData } from "./utils/fetchUserInventoryData.ts"
 
 import {
 	signedOutTopNavLinks,
 	signedInTopNavLinks,
 } from "./navigation/links.ts"
-
-export interface LoggedInUser {
-	id: number | undefined
-	email: string | undefined
-	inventory: UserLocationData[]
-}
 
 interface UserInventoryDataContextInterface {
 	userInventoryData: UserLocationData[] | undefined
@@ -54,83 +51,89 @@ export const UserInventoryDataContext =
 
 function App() {
 	const [backendUrl, setBackendUrl] = useState("")
-	const [user, setUser] = useState<LoggedInUser>({
-		id: undefined,
-		email: undefined,
-		inventory: [],
-	})
-	const [showUserNavLinks, setShowUserNavLinks] = useState(false)
-
-	// Testing this with fake data for now
+	const [userisLoggedIn, setUserIsLoggedIn] = useState<boolean>(false)
 	const [userInventoryData, setUserInventoryData] = useState<
 		UserLocationData[] | undefined
 	>(undefined)
-
-	// const checkForLoggedInUser = async () => {
-	// 	const loggedInUser = await localStorage.getItem("user")
-	// 	if (!loggedInUser) {
-	// 		setShowUserNavLinks(false)
-	// 		setUser({
-	// 			id: undefined,
-	// 			email: undefined,
-	// 			inventory: [],
-	// 		})
-	// 	} else {
-	// 		const parsedUser = JSON.parse(loggedInUser)
-	// 		setUser(() =>parsedUser)
-	// 		fetchUserInventoryData()
-	// 		setShowUserNavLinks(true)
-	// 	}
-	// }
-
-	// const fetchUserInventoryData = async () => {
-	// 	setUserInventoryData(fakeInventoryData)
-	// 	setUser({ ...user, inventory: fakeInventoryData })
-	// }
 
 	const getBaseBackendUrl = async () => {
 		const url = await getBackendUrl()
 		setBackendUrl(url)
 	}
 
+	// const getLoggedInUserData = async () => {
+	// 	const { accessToken, refreshToken } = JSON.parse(
+	// 		localStorage.getItem("freeInvTokens") || ""
+	// 	)
+	// 	if (!accessToken || !refreshToken) {
+	// 		console.log(
+	// 			"FetchUserProfile: No access or refresh token found in local storage"
+	// 		)
+	// 		return false
+	// 	}
+
+	// 	const refreshSuccess = await attemptTokenRefresh(backendUrl, refreshToken)
+	// 	if (refreshSuccess) {
+	// 		const userProfile = await fetchUserProfile(backendUrl, accessToken)
+	// 		const userInventory = await fetchUserInventoryData(
+	// 			backendUrl,
+	// 			accessToken
+	// 		)
+
+	// 		localStorage.setItem("user", JSON.stringify(userProfile))
+	// 		localStorage.setItem(
+	// 			"freeInvUserInventory",
+	// 			JSON.stringify(userInventory)
+	// 		)
+	// 		setUserInventoryData(userInventory)
+	// 		setShowUserNavLinks(true)
+	// 	}
+	// }
+
 	useEffect(() => {
 		getBaseBackendUrl()
 	}, [])
 
-	useEffect(() => {
-		attemptTokenRefresh(backendUrl)
-	})
-
 	// useEffect(() => {
-	// 	checkForLoggedInUser()
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [])
+	// 	getLoggedInUserData()
+	// })
 
 	return (
 		<UserInventoryDataContext.Provider
 			value={{ userInventoryData, setUserInventoryData }}
 		>
-			{showUserNavLinks ? (
+			{userisLoggedIn ? (
 				<TopNavLinks navLinkList={signedInTopNavLinks} />
 			) : (
 				<TopNavLinks navLinkList={signedOutTopNavLinks} />
 			)}
 			<div className="d-flex justify-content-center vw-100">
 				<Routes>
-					<Route path="/" element={<Home loggedInUser={user} />} />
-					<Route path="/signin" element={<SignIn backendUrl={backendUrl} />} />
-					<Route path="/signup" element={<SignUp backendUrl={backendUrl} />} />
+					<Route path="/" element={<Home userIsLoggedIn={userisLoggedIn} />} />
+					<Route
+						path="/signin"
+						element={
+							<SignIn
+								backendUrl={backendUrl}
+								setUserIsLoggedIn={setUserIsLoggedIn}
+							/>
+						}
+					/>
+					<Route
+						path="/signup"
+						element={
+							<SignUp
+								backendUrl={backendUrl}
+								setUserIsLoggedIn={setUserIsLoggedIn}
+							/>
+						}
+					/>
 
 					{/* Need logic to make sure user can't go to /signout if not logged in */}
 
 					<Route
 						path="/signout"
-						element={
-							<SignOut
-								setUser={setUser}
-								setShowUserNavLinks={setShowUserNavLinks}
-							/>
-						}
+						element={<SignOut setUserIsLoggedIn={setUserIsLoggedIn} />}
 					/>
 
 					<Route path="*" element={<NotFoundPage />} />

@@ -8,9 +8,10 @@ import { Stack, Form } from "react-bootstrap"
 
 interface Props {
 	backendUrl: string
+	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const SignUp: React.FC<Props> = ({ backendUrl }) => {
+const SignUp: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 	const [signupPayload, setSignupPayload] = useState({
 		email: "",
 		password: "",
@@ -56,31 +57,34 @@ const SignUp: React.FC<Props> = ({ backendUrl }) => {
 	return (
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign Up</h1>
-			<GoogleOAuth backendUrl={backendUrl} />
+			<GoogleOAuth
+				backendUrl={backendUrl}
+				setUserIsLoggedIn={setUserIsLoggedIn}
+			/>
 			<h2>Or</h2>
 
 			<Form
 				onSubmit={handleSubmit}
 				className="d-flex flex-column justify-content-center align-items-center gap-3"
 			>
-					<Form.Group>
-						<input
-							type="text"
-							placeholder="Email"
-							name="email"
-							value={signupPayload.email}
-							onChange={handleOnChange}
-						/>
-					</Form.Group>
-					<Form.Group>
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							value={signupPayload.password}
-							onChange={handleOnChange}
-						/>
-					</Form.Group>
+				<Form.Group>
+					<input
+						type="text"
+						placeholder="Email"
+						name="email"
+						value={signupPayload.email}
+						onChange={handleOnChange}
+					/>
+				</Form.Group>
+				<Form.Group>
+					<input
+						type="password"
+						placeholder="Password"
+						name="password"
+						value={signupPayload.password}
+						onChange={handleOnChange}
+					/>
+				</Form.Group>
 
 				<Link to="/">View Subscription Levels</Link>
 				<p>Select a subscription:</p>
