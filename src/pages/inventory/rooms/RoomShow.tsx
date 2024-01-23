@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useLocation, useParams } from "react-router-dom"
 import { ListGroup } from "react-bootstrap"
@@ -14,13 +14,13 @@ const RoomShow: React.FC = () => {
 		UserInventoryDataContext
 	)
 	const { id } = useParams()
-	const { state } = useLocation()
-
+	
 	const currentRoom: Room | undefined = userInventoryData
-		?.flatMap((location) => location.rooms)
-		.find((room) => room?.id === Number(id))
-
+	?.flatMap((location) => location.rooms)
+	.find((room) => room?.id === Number(id))
+	const locationId = Number(currentRoom?.locationId)
 	const itemsList: Item[] | undefined = currentRoom?.items
+	debugger
 
 	if (!currentRoom) {
 		return <NotFound />
@@ -35,7 +35,7 @@ const RoomShow: React.FC = () => {
 					<div key={item.id}>
 						<Link
 							to={`/my-inventory/items/${item.id}`}
-							state={{ locationId: state, roomId: id, itemId: item.id }}
+							state={{ locationId, roomId: id, itemId: item.id }}
 						>
 							<ListGroup.Item key={item.id} className="m-1 rounded">
 								{item.name}
@@ -48,7 +48,7 @@ const RoomShow: React.FC = () => {
 				buttonText="Add an Item"
 				buttonAction="add"
 				linkTo="/my-inventory/items/new"
-				locationId={state}
+				locationId={locationId}
 				roomId={Number(id)}
 			/>
 			<BackButton />

@@ -1,12 +1,21 @@
 import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Form } from "react-bootstrap"
-import { Item } from "../inventoryTypes"
+import axios from "axios"
 
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
+import { getLocalStorageTokens } from "../../../utils"
+import { Item } from "../inventoryTypes"
+
+interface NewItemDto {
+	name: string
+	description: string
+	type: "item"
+	roomId: number
+}
 
 const NewItem: React.FC = () => {
 	const { userInventoryData, setUserInventoryData } = useContext(
@@ -14,11 +23,10 @@ const NewItem: React.FC = () => {
 	)
 	const { state } = useLocation()
 	const navigate = useNavigate()
-	const [newItemData, setNewItemData] = useState<Item>({
+	const [newItemData, setNewItemData] = useState<NewItemDto>({
 		name: "",
 		description: "",
 		type: "item",
-		id: Math.floor(Math.random() * 1000000),
 		roomId: state.roomId,
 	})
 
@@ -31,10 +39,34 @@ const NewItem: React.FC = () => {
 		})
 	}
 
-	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
+	const submitNewItem = async (payload: NewItemDto) => {
+		try {
+			const accessToken = await getLocalStorageTokens("accessToken")
+			const response = await axios.post(
+				// `${backendUrl}/inventory/items`,
+				`http://localhost:3000/api/v1/freeinv/items`,
+				payload,
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			)
+			return response.data
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
-		const newItem = { ...newItemData }
+	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		const newItem: Item = await submitNewItem(newItemData)
+		if (!newItem) {
+			console.log(`Failed to add new item`)
+			return false
+		}
+		
+
 		const updatedInventoryData = userInventoryData?.map((location) => {
 			if (location.id === state.locationId) {
 				const targetRoom = location.rooms.find(
@@ -43,9 +75,11 @@ const NewItem: React.FC = () => {
 				if (targetRoom) {
 					return {
 						...location,
-						rooms: location.rooms.map((room) =>
+						rooms: location?.rooms?.map((room) =>
 							room === targetRoom
-								? { ...room, items: [...room.items, newItem] }
+								? room.items
+									? { ...room, items: [...room.items, newItem] }
+									: { ...room, items: [newItem] }
 								: room
 						),
 					}
@@ -53,10 +87,7 @@ const NewItem: React.FC = () => {
 			}
 			return location
 		})
-		localStorage.setItem(
-			"userInventoryData",
-			JSON.stringify(updatedInventoryData)
-		)
+		
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory/rooms/${state.roomId}`)
 	}
