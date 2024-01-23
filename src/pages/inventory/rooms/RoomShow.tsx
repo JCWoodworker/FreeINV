@@ -18,7 +18,7 @@ const RoomShow: React.FC = () => {
 
 	const currentRoom: Room | undefined = userInventoryData
 		?.flatMap((location) => location.rooms)
-		.find((room) => room.id === Number(id))
+		.find((room) => room?.id === Number(id))
 
 	const itemsList: Item[] | undefined = currentRoom?.items
 

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
+import axios from "axios"
 
 interface Props {
 	backendUrl: string
@@ -14,17 +15,11 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSuccess = async (credentialResponse: any) => {
 		try {
-			const response = await fetch(`${backendUrl}/authentication/google`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					token: credentialResponse.credential,
-				}),
+			const response = await axios.post(`${backendUrl}/authentication/google`, {
+				token: credentialResponse.credential,
 			})
 			if (response) {
-				const data = await response.json()
+				const data = await response.data
 				localStorage.setItem("freeInvTokens", JSON.stringify(data.tokens))
 				setUserIsLoggedIn(true)
 				navigate("/")

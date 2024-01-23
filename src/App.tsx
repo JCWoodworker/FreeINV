@@ -24,9 +24,8 @@ import {
 	getBackendUrl,
 	getLocalStorageTokens,
 	fetchUserInventoryData,
+	attemptTokenRefresh,
 } from "./utils/index.ts"
-// import { attemptTokenRefresh } from "./utils/attemptRefreshToken.ts"
-// import { fetchUserProfile } from "./utils/fetchUserProfile.ts"
 
 import {
 	signedOutTopNavLinks,
@@ -53,7 +52,7 @@ export const UserInventoryDataContext =
 	})
 
 function App() {
-	const [backendUrl, setBackendUrl] = useState("")
+	const [backendUrl, setBackendUrl] = useState("http://localhost:3000/api/v1")
 	const [userisLoggedIn, setUserIsLoggedIn] = useState<boolean>(false)
 	const [userInventoryData, setUserInventoryData] = useState<
 		UserLocationData[] | undefined
@@ -64,10 +63,41 @@ function App() {
 		setBackendUrl(url)
 	}
 
+	const checkForLoggedInUser = async () => {
+		try {
+			const refreshToken = await getLocalStorageTokens("refreshToken")
+			if (!refreshToken) {
+				setUserIsLoggedIn(false)
+				return false
+			}
+			const attemptRefresh = await attemptTokenRefresh(backendUrl, refreshToken)
+			if (!attemptRefresh) {
+				console.log("Failed to refresh token, please login again")
+				return false
+			}
+			setUserIsLoggedIn(true)
+			return true
+		} catch (error) {
+			console.log(error)
+			return false
+		}
+	}
+
 	const hydrateUserData = async () => {
-		const accessToken = await getLocalStorageTokens("accessToken")
-		const userData = await fetchUserInventoryData(backendUrl, accessToken)
-		setUserInventoryData(userData)
+		try {
+			const accessToken = await getLocalStorageTokens("accessToken")
+			if (!accessToken) {
+				return console.log(
+					"No access token found in local storage.  Cannot hydrate user data"
+				)
+			}
+			const userData = await fetchUserInventoryData(backendUrl, accessToken)
+			setUserInventoryData(userData)
+			return true
+		} catch (error) {
+			console.log(error)
+			return false
+		}
 	}
 
 	useEffect(() => {
@@ -75,11 +105,11 @@ function App() {
 	}, [])
 
 	useEffect(() => {
+		if (!userisLoggedIn) {
+			checkForLoggedInUser()
+		}
 		if (userisLoggedIn) {
 			hydrateUserData()
-		} else {
-			setUserInventoryData(undefined)
-			localStorage.clear()
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [userisLoggedIn])

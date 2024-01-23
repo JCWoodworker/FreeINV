@@ -9,7 +9,6 @@ export const attemptTokenRefresh = async (
 			`${backendUrl}/authentication/refresh-tokens`,
 			{ refreshToken }
 		)
-
 		if (response) {
 			const data = await response
 			const { accessToken, refreshToken } = data.data
@@ -17,6 +16,7 @@ export const attemptTokenRefresh = async (
 				"freeInvTokens",
 				JSON.stringify({ accessToken, refreshToken })
 			)
+			return true
 		} else {
 			console.log("Failed to refresh token")
 			return false
@@ -25,5 +25,4 @@ export const attemptTokenRefresh = async (
 		console.log(error)
 		return false
 	}
-	return true
 }

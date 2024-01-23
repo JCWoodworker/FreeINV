@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
 
@@ -15,9 +16,11 @@ const LocationIndex: React.FC<Props> = ({
 	userIsLoggedIn,
 }) => {
 	const navigate = useNavigate()
-	if (!userIsLoggedIn) {
-		navigate("/")
-	}
+	useEffect(() => {
+		if (!userIsLoggedIn) {
+			navigate("/")
+		}
+	})
 	return (
 		<div className="location-indexm-2 vw-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
