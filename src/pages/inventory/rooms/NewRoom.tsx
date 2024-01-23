@@ -39,7 +39,9 @@ const NewRoom: React.FC = () => {
 			if (location.id === state.locationId) {
 				return {
 					...location,
-					rooms: [...location.rooms, newRoom as Room],
+					rooms: location.rooms
+						? [...location.rooms, newRoom as Room]
+						: [newRoom as Room],
 				}
 			}
 			return location
@@ -51,7 +53,6 @@ const NewRoom: React.FC = () => {
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory`)
 	}
-	
 
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">

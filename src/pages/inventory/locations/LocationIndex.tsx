@@ -1,13 +1,23 @@
-import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Accordion } from "react-bootstrap"
 
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
-import { UserInventoryDataContext } from "../../../App"
+import { UserLocationData } from "../inventoryTypes"
 
-const LocationIndex: React.FC = () => {
-	const { userInventoryData } = useContext(UserInventoryDataContext)
+interface Props {
+	userInventoryData: UserLocationData[] | undefined
+	userIsLoggedIn: boolean
+}
+
+const LocationIndex: React.FC<Props> = ({
+	userInventoryData,
+	userIsLoggedIn,
+}) => {
+	const navigate = useNavigate()
+	if (!userIsLoggedIn) {
+		navigate("/")
+	}
 	return (
 		<div className="location-indexm-2 vw-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
@@ -25,7 +35,7 @@ const LocationIndex: React.FC = () => {
 						<Accordion.Body className="accordion-item-body d-flex flex-column justify-content-center align-items-center">
 							<div className="accordion-item-description-and-list d-flex flex-column justify-content-center align-items-center gap-2">
 								{location.description}
-								{location.rooms.map((room) => (
+								{location?.rooms?.map((room) => (
 									<div key={room.id}>
 										<Link
 											to={`/my-inventory/rooms/${room.id}`}

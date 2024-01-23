@@ -20,10 +20,13 @@ import NewItem from "./pages/inventory/items/NewItem.tsx"
 // import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 
-import { getBackendUrl } from "./utils/getBackendUrl.ts"
+import {
+	getBackendUrl,
+	getLocalStorageTokens,
+	fetchUserInventoryData,
+} from "./utils/index.ts"
 // import { attemptTokenRefresh } from "./utils/attemptRefreshToken.ts"
 // import { fetchUserProfile } from "./utils/fetchUserProfile.ts"
-// import { fetchUserInventoryData } from "./utils/fetchUserInventoryData.ts"
 
 import {
 	signedOutTopNavLinks,
@@ -61,42 +64,25 @@ function App() {
 		setBackendUrl(url)
 	}
 
-	// const getLoggedInUserData = async () => {
-	// 	const { accessToken, refreshToken } = JSON.parse(
-	// 		localStorage.getItem("freeInvTokens") || ""
-	// 	)
-	// 	if (!accessToken || !refreshToken) {
-	// 		console.log(
-	// 			"FetchUserProfile: No access or refresh token found in local storage"
-	// 		)
-	// 		return false
-	// 	}
-
-	// 	const refreshSuccess = await attemptTokenRefresh(backendUrl, refreshToken)
-	// 	if (refreshSuccess) {
-	// 		const userProfile = await fetchUserProfile(backendUrl, accessToken)
-	// 		const userInventory = await fetchUserInventoryData(
-	// 			backendUrl,
-	// 			accessToken
-	// 		)
-
-	// 		localStorage.setItem("user", JSON.stringify(userProfile))
-	// 		localStorage.setItem(
-	// 			"freeInvUserInventory",
-	// 			JSON.stringify(userInventory)
-	// 		)
-	// 		setUserInventoryData(userInventory)
-	// 		setShowUserNavLinks(true)
-	// 	}
-	// }
+	const hydrateUserData = async () => {
+		const accessToken = await getLocalStorageTokens("accessToken")
+		const userData = await fetchUserInventoryData(backendUrl, accessToken)
+		setUserInventoryData(userData)
+	}
 
 	useEffect(() => {
 		getBaseBackendUrl()
 	}, [])
 
-	// useEffect(() => {
-	// 	getLoggedInUserData()
-	// })
+	useEffect(() => {
+		if (userisLoggedIn) {
+			hydrateUserData()
+		} else {
+			setUserInventoryData(undefined)
+			localStorage.clear()
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [userisLoggedIn])
 
 	return (
 		<UserInventoryDataContext.Provider
@@ -139,7 +125,15 @@ function App() {
 					<Route path="*" element={<NotFoundPage />} />
 
 					<Route path="/my-inventory">
-						<Route index element={<LocationIndex />} />
+						<Route
+							index
+							element={
+								<LocationIndex
+									userInventoryData={userInventoryData}
+									userIsLoggedIn={userisLoggedIn}
+								/>
+							}
+						/>
 						<Route path=":id" element={<LocationShow />} />
 						<Route path="new" element={<NewLocation />} />
 						<Route path="rooms">
