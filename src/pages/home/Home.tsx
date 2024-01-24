@@ -32,22 +32,24 @@ const Home: React.FC<Props> = ({ userIsLoggedIn }) => {
 			<p>You've got the following:</p>
 			<br />
 			<ListGroup>
-				<ListGroup.Item>{userInventoryData?.length} Locations</ListGroup.Item>
+				<ListGroup.Item>{`${userInventoryData?.length} Locations`}</ListGroup.Item>
 				<ListGroup.Item>
-					{userInventoryData?.flatMap((location) => location.rooms).length}
-					Rooms
+					{`${
+						userInventoryData?.flatMap((location) => location.rooms).length
+					} Rooms`}
 				</ListGroup.Item>
 				<ListGroup.Item>
-					{
+					{`${
 						userInventoryData
 							?.flatMap((location) => location.rooms)
 							.flatMap((room) => room.items).length
-					}
-					Items
+					} Items`}
 				</ListGroup.Item>
 			</ListGroup>
 			<br />
-			<p>Click "My Inventory" in the top navigation bar manage your inventory</p>
+			<p>
+				Click "My Inventory" in the top navigation bar manage your inventory
+			</p>
 		</div>
 	)
 }

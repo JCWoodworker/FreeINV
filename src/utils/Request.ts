@@ -66,6 +66,12 @@ export class Request {
 		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const accessToken = await this.getLocalStorageTokens("accessToken")
+		if (!accessToken) {
+			console.log(
+				"No access token found in local storage while attempting to send a POST request"
+			)
+			return false
+		}
 		let headers = {}
 		if (authorization) {
 			headers = {
@@ -74,6 +80,7 @@ export class Request {
 		}
 		try {
 			const response = await axios.post(fullUrl, data, { headers })
+			debugger
 			return response.data
 		} catch (error) {
 			console.error("Request error:", error)

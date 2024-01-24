@@ -15,11 +15,13 @@ const GoogleOAuth: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 	const onSuccess = async (credentialResponse: any) => {
 		try {
 			const token: GoogleOAuthDto = { token: credentialResponse.credential }
+			debugger
 			const response = await Request.post(
 				"/authentication/google",
 				token,
 				false
 			)
+			debugger
 			if (response) {
 				localStorage.setItem("freeInvTokens", JSON.stringify(response))
 				setUserIsLoggedIn(true)
