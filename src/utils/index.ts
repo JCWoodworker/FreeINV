@@ -2,7 +2,6 @@ import { fetchUserInventoryData } from "./fetchUserInventoryData"
 import { fetchUserProfile } from "./fetchUserProfile"
 import { getLocalStorageTokens } from "./getLocalStorageTokens"
 import { Request } from "./Request"
-import { ENVIRONMENT } from "./constants"
 
 import {
 	NewLocationDto,
@@ -17,7 +16,6 @@ export {
 	fetchUserProfile,
 	getLocalStorageTokens,
 	Request,
-	ENVIRONMENT,
 }
 export type {
 	NewLocationDto,

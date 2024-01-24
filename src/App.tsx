@@ -19,7 +19,6 @@ import NewItem from "./pages/inventory/items/NewItem.tsx"
 
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { Request, getLocalStorageTokens } from "./utils/index.ts"
-import ImageUploader from "./components/imageUploader.tsx"
 
 
 import {
@@ -124,7 +123,6 @@ function App() {
 							/>
 							<Route path="*" element={<NotFoundPage />} />
 						</Routes>
-						<ImageUploader />
 					</div>
 				</>
 			) : (
