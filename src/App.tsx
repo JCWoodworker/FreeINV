@@ -122,9 +122,6 @@ function App() {
 								path="/signup"
 								element={<SignUp setUserIsLoggedIn={setUserIsLoggedIn} />}
 							/>
-
-							{/* Need logic to make sure user can't go to /signout if not logged in */}
-
 							<Route path="*" element={<NotFoundPage />} />
 						</Routes>
 					</div>
