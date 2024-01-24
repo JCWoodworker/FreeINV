@@ -34,7 +34,7 @@ const Home: React.FC<Props> = ({ userIsLoggedIn }) => {
 			<ListGroup>
 				<ListGroup.Item>{userInventoryData?.length} Locations</ListGroup.Item>
 				<ListGroup.Item>
-					{userInventoryData?.flatMap((location) => location.rooms).length}{" "}
+					{userInventoryData?.flatMap((location) => location.rooms).length}
 					Rooms
 				</ListGroup.Item>
 				<ListGroup.Item>
@@ -42,7 +42,7 @@ const Home: React.FC<Props> = ({ userIsLoggedIn }) => {
 						userInventoryData
 							?.flatMap((location) => location.rooms)
 							.flatMap((room) => room.items).length
-					}{" "}
+					}
 					Items
 				</ListGroup.Item>
 			</ListGroup>
