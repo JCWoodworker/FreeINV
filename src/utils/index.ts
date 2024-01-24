@@ -1,4 +1,3 @@
-import { attemptTokenRefresh } from "./attemptRefreshToken"
 import { fetchUserInventoryData } from "./fetchUserInventoryData"
 import { fetchUserProfile } from "./fetchUserProfile"
 import { getLocalStorageTokens } from "./getLocalStorageTokens"
@@ -13,7 +12,6 @@ import {
 } from "./Request"
 
 export {
-	attemptTokenRefresh,
 	fetchUserInventoryData,
 	fetchUserProfile,
 	getLocalStorageTokens,

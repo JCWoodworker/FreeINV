@@ -35,13 +35,12 @@ export class Request {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	static async get(urlEndpoint: string, authorization: boolean): Promise<any> {
 		const accessToken = await this.getLocalStorageTokens("accessToken")
-		const headers = authorization
-			? {
-					Authorization: `Bearer ${accessToken}`,
+		let headers = {}
+		if (authorization) {
+			headers = {
+				Authorization: `Bearer ${accessToken}`,
 			}
-			: {
-					"Content-Type": "application/json",
-			}
+		}
 		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		try {
@@ -67,13 +66,12 @@ export class Request {
 		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const accessToken = await this.getLocalStorageTokens("accessToken")
-		const headers = authorization
-			? {
-					Authorization: `Bearer ${accessToken}`,
+		let headers = {}
+		if (authorization) {
+			headers = {
+				Authorization: `Bearer ${accessToken}`,
 			}
-			: {
-					"Content-Type": "application/json",
-			}
+		}
 		try {
 			const response = await axios.post(fullUrl, data, { headers })
 			return response.data
@@ -90,6 +88,23 @@ export class Request {
 	// static async delete(url: string, options?: any): Promise<any> {
 	// 	// Implement DELETE request logic using fetch
 	// }
+
+	static async refresh() {
+		const urlPrefix = await this.getBackendUrl()
+		const refreshToken = await this.getLocalStorageTokens("refreshToken")
+		try {
+			const response = await axios.post(
+				`${urlPrefix}/authentication/refresh-tokens`,
+				{ refreshToken }
+			)
+			if (response) {
+				return response.data
+			}
+		} catch (error) {
+			console.log(error)
+			return false
+		}
+	}
 
 	static async getBackendUrl() {
 		try {

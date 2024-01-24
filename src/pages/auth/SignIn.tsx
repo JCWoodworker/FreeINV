@@ -54,9 +54,7 @@ const SignIn: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 	return (
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign In</h1>
-			<GoogleOAuth
-				setUserIsLoggedIn={setUserIsLoggedIn}
-			/>
+			<GoogleOAuth setUserIsLoggedIn={setUserIsLoggedIn} />
 			<h3>Or</h3>
 			<Form
 				onSubmit={handleSubmit}
