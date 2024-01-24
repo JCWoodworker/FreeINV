@@ -1,8 +1,7 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { Requests } from "../../../utils/Requests.ts"
-import { NewLocationDto } from "../postNewInventory.ts"
+import { Request, NewLocationDto } from "../../../utils/index"
 import { UserInventoryDataContext } from "../../../App.tsx"
 
 import BackButton from "../../../components/BackButton.tsx"
@@ -31,7 +30,7 @@ const NewLocation: React.FC = () => {
 
 	const formSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
-		const newLocation = await Requests.post("/freeinv/locations", newLocationData, true)
+		const newLocation = await Request.post("/freeinv/locations", newLocationData, true)
 		if (!newLocation) {
 			console.log(`Failed to add new location`)
 			return false

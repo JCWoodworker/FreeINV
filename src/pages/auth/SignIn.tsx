@@ -1,19 +1,19 @@
 import { useState } from "react"
-import GoogleOAuth from "./GoogleOAuth"
-import axios from "axios"
-import Recaptcha from "./Recaptcha"
 import { useNavigate } from "react-router-dom"
 import { Form, Stack } from "react-bootstrap"
 
+import { Request, SignInSignUpDto } from "../../utils/index"
+
+import GoogleOAuth from "./GoogleOAuth"
+import Recaptcha from "./Recaptcha"
 import SubmitButton from "../../components/SubmitButton"
 
 interface Props {
-	backendUrl: string
 	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const SignIn: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
-	const [credentials, setCredentials] = useState({
+const SignIn: React.FC<Props> = ({ setUserIsLoggedIn }) => {
+	const [credentials, setCredentials] = useState<SignInSignUpDto>({
 		email: "",
 		password: "",
 	})
@@ -25,15 +25,13 @@ const SignIn: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 		if (recaptchaVerified) {
 			const payload = credentials
 			try {
-				const response = await axios.post(
-					`${backendUrl}/authentication/sign-in`,
-					payload
+				const response = await Request.post(
+					"/authentication/sign-in",
+					payload,
+					false
 				)
 				if (response) {
-					localStorage.setItem(
-						"freeInvTokens",
-						JSON.stringify(response.data.tokens)
-					)
+					localStorage.setItem("freeInvTokens", JSON.stringify(response.tokens))
 					setUserIsLoggedIn(true)
 					navigate("/")
 				}
@@ -57,7 +55,6 @@ const SignIn: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign In</h1>
 			<GoogleOAuth
-				backendUrl={backendUrl}
 				setUserIsLoggedIn={setUserIsLoggedIn}
 			/>
 			<h3>Or</h3>

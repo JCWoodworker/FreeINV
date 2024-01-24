@@ -1,16 +1,66 @@
-import { NewLocationDto, NewRoomDto, NewItemDto } from "../pages/inventory/postNewInventory"
 import axios from "axios"
 
-export class Requests {
+export interface NewLocationDto {
+	name: string
+	description: string
+	type: "location"
+}
+
+export interface NewRoomDto {
+	name: string
+	description: string
+	type: "room"
+	locationId: number
+}
+
+export interface NewItemDto {
+	name: string
+	description: string
+	type: "item"
+	roomId: number
+}
+
+export interface SignInSignUpDto {
+	email: string
+	password: string
+}
+
+export interface GoogleOAuthDto {
+	token: string
+}
+
+export class Request {
 	constructor() {}
 
-	// static async get(url: string, options?: any): Promise<any> {
-	// 	// Implement GET request logic using fetch
-	// }
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	static async get(urlEndpoint: string, authorization: boolean): Promise<any> {
+		const accessToken = await this.getLocalStorageTokens("accessToken")
+		const headers = authorization
+			? {
+					Authorization: `Bearer ${accessToken}`,
+			}
+			: {
+					"Content-Type": "application/json",
+			}
+		const urlPrefix = await this.getBackendUrl()
+		const fullUrl = `${urlPrefix}${urlEndpoint}`
+		try {
+			const response = await axios.get(fullUrl, { headers })
+			return response.data
+		} catch (error) {
+			console.error("Request error:", error)
+			throw error
+		}
+	}
 
 	static async post(
 		urlEndpoint: string,
-		data: NewLocationDto | NewItemDto | NewRoomDto,
+		data:
+			| NewLocationDto
+			| NewItemDto
+			| NewRoomDto
+			| SignInSignUpDto
+			| GoogleOAuthDto,
 		authorization: boolean
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Promise<any> {
@@ -40,7 +90,6 @@ export class Requests {
 	// static async delete(url: string, options?: any): Promise<any> {
 	// 	// Implement DELETE request logic using fetch
 	// }
-
 
 	static async getBackendUrl() {
 		try {

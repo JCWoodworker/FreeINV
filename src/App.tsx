@@ -17,11 +17,9 @@ import NewRoom from "./pages/inventory/rooms/NewRoom.tsx"
 import ItemShow from "./pages/inventory/items/ItemShow.tsx"
 import NewItem from "./pages/inventory/items/NewItem.tsx"
 
-// import { fakeInventoryData } from "./pages/inventory/fakeInventoryData.ts"
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 
 import {
-	getBackendUrl,
 	getLocalStorageTokens,
 	fetchUserInventoryData,
 	attemptTokenRefresh,
@@ -52,16 +50,10 @@ export const UserInventoryDataContext =
 	})
 
 function App() {
-	const [backendUrl, setBackendUrl] = useState("http://localhost:3000/api/v1")
 	const [userisLoggedIn, setUserIsLoggedIn] = useState<boolean>(false)
 	const [userInventoryData, setUserInventoryData] = useState<
 		UserLocationData[] | undefined
 	>(undefined)
-
-	const getBaseBackendUrl = async () => {
-		const url = await getBackendUrl()
-		setBackendUrl(url)
-	}
 
 	const checkForLoggedInUser = async () => {
 		try {
@@ -70,7 +62,10 @@ function App() {
 				setUserIsLoggedIn(false)
 				return false
 			}
-			const attemptRefresh = await attemptTokenRefresh(backendUrl, refreshToken)
+			const attemptRefresh = await attemptTokenRefresh(
+				"http://localhost:3000/api/v1",
+				refreshToken
+			)
 			if (!attemptRefresh) {
 				console.log("Failed to refresh token, please login again")
 				return false
@@ -91,7 +86,7 @@ function App() {
 					"No access token found in local storage.  Cannot hydrate user data"
 				)
 			}
-			const userData = await fetchUserInventoryData(backendUrl, accessToken)
+			const userData = await fetchUserInventoryData("http://localhost:3000/api/v1", accessToken)
 			setUserInventoryData(userData)
 			return true
 		} catch (error) {
@@ -99,10 +94,6 @@ function App() {
 			return false
 		}
 	}
-
-	useEffect(() => {
-		getBaseBackendUrl()
-	}, [])
 
 	useEffect(() => {
 		if (!userisLoggedIn) {
@@ -128,21 +119,11 @@ function App() {
 					<Route path="/" element={<Home userIsLoggedIn={userisLoggedIn} />} />
 					<Route
 						path="/signin"
-						element={
-							<SignIn
-								backendUrl={backendUrl}
-								setUserIsLoggedIn={setUserIsLoggedIn}
-							/>
-						}
+						element={<SignIn setUserIsLoggedIn={setUserIsLoggedIn} />}
 					/>
 					<Route
 						path="/signup"
-						element={
-							<SignUp
-								backendUrl={backendUrl}
-								setUserIsLoggedIn={setUserIsLoggedIn}
-							/>
-						}
+						element={<SignUp setUserIsLoggedIn={setUserIsLoggedIn} />}
 					/>
 
 					{/* Need logic to make sure user can't go to /signout if not logged in */}

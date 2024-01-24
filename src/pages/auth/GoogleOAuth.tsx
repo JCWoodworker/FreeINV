@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
-import axios from "axios"
+import { Request, GoogleOAuthDto } from "../../utils/index"
 
 interface Props {
-	backendUrl: string
 	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const GoogleOAuth: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
+const GoogleOAuth: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
 
@@ -15,12 +14,14 @@ const GoogleOAuth: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSuccess = async (credentialResponse: any) => {
 		try {
-			const response = await axios.post(`${backendUrl}/authentication/google`, {
-				token: credentialResponse.credential,
-			})
+			const token: GoogleOAuthDto = { token: credentialResponse.credential }
+			const response = await Request.post(
+				"/authentication/google",
+				token,
+				false
+			)
 			if (response) {
-				const data = await response.data
-				localStorage.setItem("freeInvTokens", JSON.stringify(data.tokens))
+				localStorage.setItem("freeInvTokens", JSON.stringify(response.tokens))
 				setUserIsLoggedIn(true)
 				navigate("/")
 			}

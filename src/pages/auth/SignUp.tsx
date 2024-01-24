@@ -1,18 +1,19 @@
 import { useState } from "react"
 import { useNavigate, Link, useLocation } from "react-router-dom"
-import Recaptcha from "./Recaptcha"
-import axios from "axios"
-import GoogleOAuth from "./GoogleOAuth"
-import SubmitButton from "../../components/SubmitButton"
 import { Stack, Form } from "react-bootstrap"
 
+import Recaptcha from "./Recaptcha"
+import GoogleOAuth from "./GoogleOAuth"
+import SubmitButton from "../../components/SubmitButton"
+
+import { Request, SignInSignUpDto } from "../../utils/index"
+
 interface Props {
-	backendUrl: string
 	setUserIsLoggedIn: (value: boolean) => void
 }
 
-const SignUp: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
-	const [signupPayload, setSignupPayload] = useState({
+const SignUp: React.FC<Props> = ({ setUserIsLoggedIn }) => {
+	const [signupPayload, setSignupPayload] = useState<SignInSignUpDto>({
 		email: "",
 		password: "",
 	})
@@ -26,9 +27,10 @@ const SignUp: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 		if (recaptchaVerified) {
 			const payload = signupPayload
 			try {
-				const response = await axios.post(
-					`${backendUrl}/authentication/sign-up`,
-					payload
+				const response = await Request.post(
+					"/authentication/sign-up",
+					payload,
+					false
 				)
 				if (response) {
 					alert("Success! Click OK to continue to the login page")
@@ -58,7 +60,6 @@ const SignUp: React.FC<Props> = ({ backendUrl, setUserIsLoggedIn }) => {
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign Up</h1>
 			<GoogleOAuth
-				backendUrl={backendUrl}
 				setUserIsLoggedIn={setUserIsLoggedIn}
 			/>
 			<h2>Or</h2>
