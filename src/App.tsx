@@ -20,9 +20,7 @@ import NewItem from "./pages/inventory/items/NewItem.tsx"
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { Request } from "./utils/index.ts"
 
-import {
-	getLocalStorageTokens,
-} from "./utils/index.ts"
+import { getLocalStorageTokens } from "./utils/index.ts"
 
 import {
 	signedOutTopNavLinks,
@@ -61,7 +59,6 @@ function App() {
 				setUserIsLoggedIn(false)
 				return
 			}
-
 
 			const refreshedTokens = await Request.refresh()
 			if (!refreshedTokens) {
@@ -108,55 +105,69 @@ function App() {
 		<UserInventoryDataContext.Provider
 			value={{ userInventoryData, setUserInventoryData }}
 		>
-			{userIsLoggedIn ? (
-				<TopNavLinks navLinkList={signedInTopNavLinks} />
+			{!userIsLoggedIn ? (
+				<>
+					<TopNavLinks navLinkList={signedOutTopNavLinks} />
+					<div className="d-flex justify-content-center vw-100">
+						<Routes>
+							<Route
+								path="/"
+								element={<Home userIsLoggedIn={userIsLoggedIn} />}
+							/>
+							<Route
+								path="/signin"
+								element={<SignIn setUserIsLoggedIn={setUserIsLoggedIn} />}
+							/>
+							<Route
+								path="/signup"
+								element={<SignUp setUserIsLoggedIn={setUserIsLoggedIn} />}
+							/>
+
+							{/* Need logic to make sure user can't go to /signout if not logged in */}
+
+							<Route path="*" element={<NotFoundPage />} />
+						</Routes>
+					</div>
+				</>
 			) : (
-				<TopNavLinks navLinkList={signedOutTopNavLinks} />
-			)}
-			<div className="d-flex justify-content-center vw-100">
-				<Routes>
-					<Route path="/" element={<Home userIsLoggedIn={userIsLoggedIn} />} />
-					<Route
-						path="/signin"
-						element={<SignIn setUserIsLoggedIn={setUserIsLoggedIn} />}
-					/>
-					<Route
-						path="/signup"
-						element={<SignUp setUserIsLoggedIn={setUserIsLoggedIn} />}
-					/>
-
-					{/* Need logic to make sure user can't go to /signout if not logged in */}
-
-					<Route
-						path="/signout"
-						element={<SignOut setUserIsLoggedIn={setUserIsLoggedIn} />}
-					/>
-
-					<Route path="*" element={<NotFoundPage />} />
-
-					<Route path="/my-inventory">
-						<Route
-							index
-							element={
-								<LocationIndex
-									userInventoryData={userInventoryData}
-									userIsLoggedIn={userIsLoggedIn}
+				<>
+					<TopNavLinks navLinkList={signedInTopNavLinks} />
+					<div className="d-flex justify-content-center vw-100">
+						<Routes>
+							<Route
+								path="/"
+								element={<Home userIsLoggedIn={userIsLoggedIn} />}
+							/>
+							<Route
+								path="/signout"
+								element={<SignOut setUserIsLoggedIn={setUserIsLoggedIn} />}
+							/>
+							<Route path="/my-inventory">
+								<Route
+									index
+									element={
+										<LocationIndex
+											userInventoryData={userInventoryData}
+											userIsLoggedIn={userIsLoggedIn}
+										/>
+									}
 								/>
-							}
-						/>
-						<Route path=":id" element={<LocationShow />} />
-						<Route path="new" element={<NewLocation />} />
-						<Route path="rooms">
-							<Route path=":id" element={<RoomShow />} />
-							<Route path="new" element={<NewRoom />} />
-						</Route>
-						<Route path="items">
-							<Route path=":id" element={<ItemShow />} />
-							<Route path="new" element={<NewItem />} />
-						</Route>
-					</Route>
-				</Routes>
-			</div>
+								<Route path=":id" element={<LocationShow />} />
+								<Route path="new" element={<NewLocation />} />
+								<Route path="rooms">
+									<Route path=":id" element={<RoomShow />} />
+									<Route path="new" element={<NewRoom />} />
+								</Route>
+								<Route path="items">
+									<Route path=":id" element={<ItemShow />} />
+									<Route path="new" element={<NewItem />} />
+								</Route>
+							</Route>
+							<Route path="*" element={<NotFoundPage />} />
+						</Routes>
+					</div>
+				</>
+			)}
 		</UserInventoryDataContext.Provider>
 	)
 }
