@@ -1,15 +1,15 @@
 export const getLocalStorageTokens = async (token: string) => {
 	try {
-		const { accessToken, refreshToken } = JSON.parse(
-			localStorage.getItem("freeInvTokens") || ""
-		)
-
-		if (!accessToken || !refreshToken) {
+		if (!localStorage.getItem("freeInvTokens")) {
 			console.log(
 				"FetchUserProfile: No access or refresh token found in local storage"
 			)
 			return false
 		}
+
+		const { accessToken, refreshToken } = JSON.parse(
+			localStorage.getItem("freeInvTokens") || ""
+		)
 
 		if (token === "accessToken") {
 			return accessToken
