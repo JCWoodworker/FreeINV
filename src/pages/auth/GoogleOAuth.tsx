@@ -21,7 +21,7 @@ const GoogleOAuth: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 				false
 			)
 			if (response) {
-				localStorage.setItem("freeInvTokens", JSON.stringify(response.tokens))
+				localStorage.setItem("freeInvTokens", JSON.stringify(response))
 				setUserIsLoggedIn(true)
 				navigate("/")
 			}
