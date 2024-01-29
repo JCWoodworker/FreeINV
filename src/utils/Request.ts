@@ -106,7 +106,7 @@ export class Request {
 		}
 	}
 
-	static async getBackendUrl() {
+	private static async getBackendUrl() {
 		try {
 			const environment: string = import.meta.env.VITE_ENVIRONMENT
 			switch (environment) {
@@ -125,7 +125,7 @@ export class Request {
 		}
 	}
 
-	static async getLocalStorageTokens(token: string) {
+	private static async getLocalStorageTokens(token: string) {
 		try {
 			const { accessToken, refreshToken } = JSON.parse(
 				localStorage.getItem("freeInvTokens") || ""
