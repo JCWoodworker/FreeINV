@@ -132,9 +132,6 @@ export class Request {
 			)
 
 			if (!accessToken || !refreshToken) {
-				console.log(
-					"FetchUserProfile: No access or refresh token found in local storage"
-				)
 				return false
 			}
 
