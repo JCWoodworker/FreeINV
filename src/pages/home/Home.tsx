@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { productList } from "./productSpecs"
-import { Stack, ListGroup, Image } from "react-bootstrap"
+import { Stack, ListGroup } from "react-bootstrap"
 
 import ProductShowCard from "../../components/ProductShowCard"
 import { UserInventoryDataContext } from "../../App"
@@ -53,7 +53,6 @@ const Home: React.FC<Props> = ({ userIsLoggedIn }) => {
 			<p>
 				Click "My Inventory" in the top navigation bar manage your inventory
 			</p>
-			<Image src="https://free-inv-images.s3.amazonaws.com/castlehill" style={{ maxWidth: "100%", height: "auto" }}></Image>
 		</div>
 	)
 }
