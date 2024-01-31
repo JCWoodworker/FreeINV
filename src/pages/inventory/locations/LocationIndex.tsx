@@ -5,6 +5,7 @@ import { Accordion } from "react-bootstrap"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserLocationData } from "../inventoryTypes"
+import AddImage from "../../../components/AddImage"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
@@ -66,6 +67,7 @@ const LocationIndex: React.FC<Props> = ({
 				buttonAction="add"
 				linkTo="/my-inventory/new"
 			/>
+			<AddImage />
 		</div>
 	)
 }
