@@ -59,7 +59,8 @@ export class Request {
 			| NewItemDto
 			| NewRoomDto
 			| SignInSignUpDto
-			| GoogleOAuthDto,
+			| GoogleOAuthDto
+			| FormData,
 		authorization: boolean
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Promise<any> {
@@ -67,10 +68,11 @@ export class Request {
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const accessToken = await this.getLocalStorageTokens("accessToken")
 		let headers = {}
+		if (data instanceof File) {
+			headers = { ...headers, "Content-Type": "multipart/form-data" }
+		}
 		if (authorization) {
-			headers = {
-				Authorization: `Bearer ${accessToken}`,
-			}
+			headers = { ...headers, Authorization: `Bearer ${accessToken}` }
 		}
 		try {
 			const response = await axios.post(fullUrl, data, { headers })
