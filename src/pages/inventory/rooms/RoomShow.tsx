@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
-import { Link, useParams, useLocation } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { ListGroup } from "react-bootstrap"
 
 import NotFound from "../../not-found/NotFound"
