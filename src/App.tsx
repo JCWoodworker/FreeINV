@@ -148,8 +148,8 @@ function App() {
 										/>
 									}
 								/>
-								<Route path=":id" element={<LocationShow />} />
-								<Route path="new" element={<NewLocation />} />
+								<Route path="locations/:id" element={<LocationShow />} />
+								<Route path="locations/new" element={<NewLocation />} />
 								<Route path="rooms">
 									<Route path=":id" element={<RoomShow />} />
 									<Route path="new" element={<NewRoom />} />

@@ -21,6 +21,7 @@ const LocationIndex: React.FC<Props> = ({
 			navigate("/")
 		}
 	})
+
 	return (
 		<div className="location-index m-2 w-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
@@ -30,8 +31,11 @@ const LocationIndex: React.FC<Props> = ({
 					<div
 						key={location.id}
 						className="d-flex flex-row justify-content-center align-items-center text-center"
+					>
+						<Link
+							to={`/my-inventory/locations/${location.id}`}
+							className="w-sm-100, w-50"
 						>
-						<Link to={`/my-inventory/locations/${location.id}`} className="w-sm-100, w-50">
 							<ListGroup.Item
 								key={location.id}
 								eventKey={location.id.toString()}
