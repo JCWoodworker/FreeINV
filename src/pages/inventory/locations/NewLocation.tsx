@@ -63,7 +63,7 @@ const NewLocation: React.FC = () => {
 				/>
 				<input type="submit" value="Submit" />
 			</form>
-			<BackButton />
+			
 		</div>
 	)
 }

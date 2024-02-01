@@ -77,7 +77,7 @@ const NewRoom: React.FC = () => {
 				</Form.Group>
 				<SubmitButton buttonText="Create Room" />
 			</Form>
-			<BackButton />
+			
 		</div>
 	)
 }

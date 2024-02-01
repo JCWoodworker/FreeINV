@@ -92,7 +92,7 @@ const NewItem: React.FC = () => {
 				</Form.Group>
 				<SubmitButton buttonText="Create Item" />
 			</Form>
-			<BackButton />
+			
 		</div>
 	)
 }

@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom"
 import { ListGroup } from "react-bootstrap"
 
 import NotFound from "../../not-found/NotFound"
-import BackButton from "../../../components/BackButton"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserInventoryDataContext } from "../../../App"
@@ -50,7 +49,7 @@ const RoomShow: React.FC = () => {
 				locationId={locationId}
 				roomId={Number(id)}
 			/>
-			<BackButton />
+			
 		</div>
 	)
 }

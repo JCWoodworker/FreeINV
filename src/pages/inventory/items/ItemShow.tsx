@@ -1,8 +1,6 @@
 import { useContext } from "react"
 import { useLocation } from "react-router-dom"
 
-import BackButton from "../../../components/BackButton"
-
 import { UserInventoryDataContext } from "../../../App"
 
 const ItemShow: React.FC = () => {
@@ -20,7 +18,7 @@ const ItemShow: React.FC = () => {
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentItem?.name}</h1>
 			<p>{currentItem?.description}</p>
-			<BackButton />
+			
 		</div>
 	)
 }
