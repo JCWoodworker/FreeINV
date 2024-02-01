@@ -50,7 +50,7 @@ const NewRoom: React.FC = () => {
 			return location
 		})
 		setUserInventoryData(updatedInventoryData)
-		navigate(`/my-inventory`)
+		navigate(`/my-inventory/locations/${state.locationId}`)
 	}
 
 	return (

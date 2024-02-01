@@ -53,7 +53,7 @@ const LocationIndex: React.FC<Props> = ({
 			<AddDeleteButton
 				buttonText="New Location"
 				buttonAction="add"
-				linkTo="/my-inventory/new"
+				linkTo="/my-inventory/locations/new"
 			/>
 		</div>
 	)

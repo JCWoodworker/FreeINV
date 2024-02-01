@@ -34,6 +34,7 @@ const AddDeleteButton: React.FC<Props> = ({
 				? navigate(linkTo, { state: { locationId, roomId, roomName } })
 				: navigate(linkTo)
 			: null
+		buttonAction.toLowerCase() === "delete" ? alert("Feature coming soon!") : null
 	}
 
 	return (
