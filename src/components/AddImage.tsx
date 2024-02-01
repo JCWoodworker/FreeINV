@@ -4,11 +4,40 @@ import { Request } from "../utils/index"
 import { Button, Image } from "react-bootstrap"
 import AddDeleteButton from "./AddDeleteButton"
 
-const AddImage: React.FC = () => {
+interface Props {
+	locationId?: number | undefined
+	roomId?: number | undefined
+	itemId?: number | undefined
+}
+
+interface InventoryId {
+	inventoryId: string
+	inventoryType: "location" | "room" | "item"
+}
+
+const AddImage: React.FC<Props> = ({
+	locationId = undefined,
+	roomId = undefined,
+	itemId = undefined,
+}) => {
+	const [inventoryId, setInventoryId] = useState({} as InventoryId)
 	const [image, setImage] = useState<File | null>(null)
+
+	if (locationId) {
+		setInventoryId({
+			inventoryId: locationId.toString(),
+			inventoryType: "location",
+		})
+	} else if (roomId) {
+		setInventoryId({ inventoryId: roomId.toString(), inventoryType: "room" })
+	} else if (itemId) {
+		setInventoryId({ inventoryId: itemId.toString(), inventoryType: "item" })
+	}
+
 	const maxSize: number = 5 * 1024 * 1024
 	const maxSizeValidator = (file: File): FileError | null => {
 		if (file.size > maxSize) {
+			alert("File is too large, must be less than 5MB")
 			return {
 				code: "file-too-large",
 				message: "File is too large, must be less than 5MB",
@@ -32,6 +61,8 @@ const AddImage: React.FC = () => {
 		try {
 			const formData = new FormData()
 			formData.append("image", file)
+			formData.append("inventoryId", inventoryId.inventoryId)
+			formData.append("inventoryType", inventoryId.inventoryType)
 			const response = await Request.post(
 				"/freeinv/image-upload",
 				formData,
