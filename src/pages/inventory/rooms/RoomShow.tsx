@@ -13,7 +13,7 @@ const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
 	const { userInventoryData } = useContext(UserInventoryDataContext)
 	const { id } = useParams()
-	const { state } = useLocation()
+	// const { state } = useLocation()
 	// setLocationName(state.locationName)
 
 	const currentRoom: Room | undefined = userInventoryData
