@@ -63,14 +63,13 @@ const NewItem: React.FC = () => {
 			}
 			return location
 		})
-
 		setUserInventoryData(updatedInventoryData)
 		navigate(`/my-inventory/rooms/${state.roomId}`)
 	}
 
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
-			<h1>New Item</h1>
+			<h1>New item in {state.roomName}</h1>
 			<Form onSubmit={onSubmit}>
 				<Form.Group className="mb-3" controlId="formItemName">
 					<Form.Label>Item Name</Form.Label>
@@ -79,6 +78,7 @@ const NewItem: React.FC = () => {
 						placeholder="Enter Item Name"
 						name="name"
 						onChange={handleTextInputChange}
+						required={true}
 					/>
 				</Form.Group>
 				<Form.Group className="mb-3" controlId="formItemDescription">
@@ -92,7 +92,7 @@ const NewItem: React.FC = () => {
 				</Form.Group>
 				<SubmitButton buttonText="Create Item" />
 			</Form>
-			
+			<BackButton />
 		</div>
 	)
 }

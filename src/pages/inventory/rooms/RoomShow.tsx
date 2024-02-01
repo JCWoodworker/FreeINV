@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useLocation } from "react-router-dom"
 import { ListGroup } from "react-bootstrap"
 
 import NotFound from "../../not-found/NotFound"
@@ -13,6 +13,7 @@ const RoomShow: React.FC = () => {
 		UserInventoryDataContext
 	)
 	const { id } = useParams()
+	const { state } = useLocation()
 	
 	const currentRoom: Room | undefined = userInventoryData
 	?.flatMap((location) => location.rooms)
@@ -26,7 +27,7 @@ const RoomShow: React.FC = () => {
 
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
-			<h1>{currentRoom?.name}</h1>
+			<h1><strong>{state.locationName}</strong> - {currentRoom?.name}</h1>
 			<p>{currentRoom?.description}</p>
 			<ListGroup className="m-2">
 				{itemsList?.map((item) => (
@@ -48,6 +49,7 @@ const RoomShow: React.FC = () => {
 				linkTo="/my-inventory/items/new"
 				locationId={locationId}
 				roomId={Number(id)}
+				roomName={currentRoom?.name}
 			/>
 			
 		</div>

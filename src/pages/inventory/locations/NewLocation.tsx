@@ -54,6 +54,7 @@ const NewLocation: React.FC = () => {
 					name="name"
 					onChange={handleTextInputChange}
 					placeholder="Name"
+					required={true}
 				/>
 				<input
 					type="text"
@@ -63,7 +64,7 @@ const NewLocation: React.FC = () => {
 				/>
 				<input type="submit" value="Submit" />
 			</form>
-			
+			<BackButton />
 		</div>
 	)
 }

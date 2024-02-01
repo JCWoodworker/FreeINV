@@ -5,7 +5,9 @@ interface Props {
 	buttonText: string
 	buttonAction: string
 	linkTo?: string
+	locationName?: string
 	locationId?: number
+	roomName?: string
 	roomId?: number
 }
 
@@ -13,7 +15,9 @@ const AddDeleteButton: React.FC<Props> = ({
 	buttonText,
 	buttonAction,
 	linkTo,
+	locationName,
 	locationId,
+	roomName,
 	roomId,
 }) => {
 	const navigate = useNavigate()
@@ -25,9 +29,9 @@ const AddDeleteButton: React.FC<Props> = ({
 	const buttonClickHandler = () => {
 		linkTo
 			? linkTo === "/my-inventory/rooms/new"
-				? navigate(linkTo, { state: { locationId } })
+				? navigate(linkTo, { state: { locationId, locationName } })
 				: linkTo === "/my-inventory/items/new"
-				? navigate(linkTo, { state: { locationId, roomId } })
+				? navigate(linkTo, { state: { locationId, roomId, roomName } })
 				: navigate(linkTo)
 			: null
 	}

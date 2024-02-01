@@ -55,7 +55,7 @@ const NewRoom: React.FC = () => {
 
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
-			<h1>New Room</h1>
+			<h1>New room in {state.locationName}</h1>
 			<Form onSubmit={onSubmit}>
 				<Form.Group className="mb-3" controlId="formRoomName">
 					<Form.Label>Room Name</Form.Label>
@@ -64,6 +64,7 @@ const NewRoom: React.FC = () => {
 						placeholder="Enter Room Name"
 						name="name"
 						onChange={handleTextInputChange}
+						required={true}
 					/>
 				</Form.Group>
 				<Form.Group className="mb-3" controlId="formRoomDescription">
@@ -77,7 +78,7 @@ const NewRoom: React.FC = () => {
 				</Form.Group>
 				<SubmitButton buttonText="Create Room" />
 			</Form>
-			
+			<BackButton />
 		</div>
 	)
 }

@@ -27,7 +27,11 @@ const LocationShow: React.FC = () => {
 					<div key={room.id}>
 						<Link
 							to={`/my-inventory/rooms/${room.id}`}
-							state={{ locationId: id, roomId: room.id }}
+							state={{
+								locationId: id,
+								roomId: room.id,
+								locationName: currentLocation?.name,
+							}}
 						>
 							<ListGroup.Item key={room.id} className="m-1 rounded">
 								{room.name}
@@ -41,6 +45,7 @@ const LocationShow: React.FC = () => {
 				buttonText="Add Room"
 				buttonAction="Add"
 				linkTo="/my-inventory/rooms/new"
+				locationName={currentLocation?.name}
 			/>
 		</div>
 	)

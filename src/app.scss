@@ -10,7 +10,7 @@ html {
 
 body {
 	margin: 0 auto;
-	background-color: rgb(175, 210, 255);
+	background-color: rgb(176, 180, 255);
 
 }
 
@@ -22,4 +22,8 @@ h3 {
 
 a {
 	text-decoration: none;
+	color: black;
+	&:visited {
+		color: black;
+	}
 }
