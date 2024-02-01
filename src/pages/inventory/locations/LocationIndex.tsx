@@ -22,21 +22,24 @@ const LocationIndex: React.FC<Props> = ({
 		}
 	})
 	return (
-		<div className="location-indexm-2 vw-100 d-flex flex-column justify-content-center align-items-center">
+		<div className="location-index m-2 w-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
 			<h2>Locations:</h2>
-			<ListGroup>
+			<ListGroup className="m-2 w-100">
 				{userInventoryData?.map((location) => (
-					<div key={location.id} className="d-flex flex-row justify-content-center align-items-center text-center">
-						<ListGroup.Item
-							key={location.id}
-							eventKey={location.id.toString()}
-							className="m-1 rounded w-100"
+					<div
+						key={location.id}
+						className="d-flex flex-row justify-content-center align-items-center text-center"
 						>
-							<Link to={`/my-inventory/locations/${location.id}`}>
+						<Link to={`/my-inventory/locations/${location.id}`} className="w-sm-100, w-50">
+							<ListGroup.Item
+								key={location.id}
+								eventKey={location.id.toString()}
+								className="m-1 rounded"
+							>
 								<strong>{location.name}</strong>
-							</Link>
-						</ListGroup.Item>
+							</ListGroup.Item>
+						</Link>
 					</div>
 				))}
 			</ListGroup>
