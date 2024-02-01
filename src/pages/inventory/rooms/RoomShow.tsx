@@ -27,44 +27,46 @@ const RoomShow: React.FC = () => {
 	}
 
 	return (
-		<div className="room-show w-100 m-2 d-flex flex-column justify-content-center align-items-center">
-			<h1>
-				{currentRoom?.name}
-			</h1>
-			<p>{currentRoom?.description}</p>
-			<ListGroup className="m-2 w-100">
-				{itemsList?.map((item) => (
-					<div
-						key={item.id}
-						className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
-					>
-						<Link
-							to={`/my-inventory/items/${item.id}`}
-							state={{ locationId, roomId: id, itemId: item.id }}
-							className="w-sm-100, w-50"
+		<>
+			<div className="room-show w-100 m-2 d-flex flex-column justify-content-center align-items-center">
+				<h1>{currentRoom?.name}</h1>
+				<p>{currentRoom?.description}</p>
+				<ListGroup className="m-2 w-100">
+					{itemsList?.map((item) => (
+						<div
+							key={item.id}
+							className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
 						>
-							<ListGroup.Item
-								action
-								variant="light"
-								key={item.id}
-								className="m-1 rounded"
+							<Link
+								to={`/my-inventory/items/${item.id}`}
+								state={{ locationId, roomId: id, itemId: item.id }}
+								className="w-sm-100, w-50"
 							>
-								<strong>{item.name}</strong>
-							</ListGroup.Item>
-						</Link>
-					</div>
-				))}
-			</ListGroup>
-			<AddDeleteButton
-				buttonText="Add an Item"
-				buttonAction="add"
-				linkTo="/my-inventory/items/new"
-				locationId={locationId}
-				roomId={Number(id)}
-				roomName={currentRoom?.name}
-			/>
-			<BackButton />
-		</div>
+								<ListGroup.Item
+									action
+									variant="light"
+									key={item.id}
+									className="m-1 rounded"
+								>
+									<strong>{item.name}</strong>
+								</ListGroup.Item>
+							</Link>
+						</div>
+					))}
+				</ListGroup>
+				<div className="m-2 d-flex flex-row flex-wrap justify-content-center align-items-center gap-2">
+					<AddDeleteButton
+						buttonText="Add an Item"
+						buttonAction="add"
+						linkTo="/my-inventory/items/new"
+						locationId={locationId}
+						roomId={Number(id)}
+						roomName={currentRoom?.name}
+					/>
+					<BackButton />
+				</div>
+			</div>
+		</>
 	)
 }
 

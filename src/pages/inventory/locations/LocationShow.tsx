@@ -52,7 +52,7 @@ const LocationShow: React.FC = () => {
 					</div>
 				))}
 			</ListGroup>
-			<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+			<div className="m-2 d-flex flex-row flex-wrap justify-content-center align-items-center gap-2">
 				<AddDeleteButton
 					buttonAction="add"
 					buttonText="Add Room"
@@ -60,8 +60,8 @@ const LocationShow: React.FC = () => {
 					locationName={currentLocation?.name}
 					locationId={currentLocation?.id}
 				/>
-				<BackButton />
 				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" />
+				<BackButton />
 			</div>
 		</div>
 	)
