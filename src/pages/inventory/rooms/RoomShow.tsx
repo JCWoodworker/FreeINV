@@ -7,17 +7,16 @@ import NotFound from "../../not-found/NotFound"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserInventoryDataContext } from "../../../App"
+import BackButton from "../../../components/BackButton"
 
 const RoomShow: React.FC = () => {
-	const { userInventoryData, } = useContext(
-		UserInventoryDataContext
-	)
+	const { userInventoryData } = useContext(UserInventoryDataContext)
 	const { id } = useParams()
 	const { state } = useLocation()
-	
+
 	const currentRoom: Room | undefined = userInventoryData
-	?.flatMap((location) => location.rooms)
-	.find((room) => room?.id === Number(id))
+		?.flatMap((location) => location.rooms)
+		.find((room) => room?.id === Number(id))
 	const locationId = Number(currentRoom?.locationId)
 	const itemsList: Item[] | undefined = currentRoom?.items
 
@@ -26,18 +25,29 @@ const RoomShow: React.FC = () => {
 	}
 
 	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
-			<h1><strong>{state.locationName}</strong> - {currentRoom?.name}</h1>
+		<div className="room-show w-100 m-2 d-flex flex-column justify-content-center align-items-center">
+			<h1>
+				<strong>{state.locationName}</strong> - {currentRoom?.name}
+			</h1>
 			<p>{currentRoom?.description}</p>
-			<ListGroup className="m-2">
+			<ListGroup className="m-2 w-100">
 				{itemsList?.map((item) => (
-					<div key={item.id}>
+					<div
+						key={item.id}
+						className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
+					>
 						<Link
 							to={`/my-inventory/items/${item.id}`}
 							state={{ locationId, roomId: id, itemId: item.id }}
+							className="w-sm-100, w-50"
 						>
-							<ListGroup.Item key={item.id} className="m-1 rounded">
-								{item.name}
+							<ListGroup.Item
+								action
+								variant="light"
+								key={item.id}
+								className="m-1 rounded"
+							>
+								<strong>{item.name}</strong>
 							</ListGroup.Item>
 						</Link>
 					</div>
@@ -51,7 +61,7 @@ const RoomShow: React.FC = () => {
 				roomId={Number(id)}
 				roomName={currentRoom?.name}
 			/>
-			
+			<BackButton />
 		</div>
 	)
 }

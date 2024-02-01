@@ -10,7 +10,9 @@ html {
 
 body {
 	margin: 0 auto;
-	background-color: rgb(176, 180, 255);
+	// background-color: rgb(176, 180, 255);
+	background-color: rgb(65, 65, 65);
+	color: white;
 
 }
 
@@ -22,8 +24,11 @@ h3 {
 
 a {
 	text-decoration: none;
-	color: black;
+	color: white;
+	&:hover {
+		color: rgb(160, 255, 244);
+	}
 	&:visited {
-		color: black;
+		color: white;
 	}
 }

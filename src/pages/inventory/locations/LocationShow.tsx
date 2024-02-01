@@ -7,6 +7,7 @@ import NotFound from "../../not-found/NotFound"
 
 import { UserInventoryDataContext } from "../../../App"
 import AddDeleteButton from "../../../components/AddDeleteButton"
+import BackButton from "../../../components/BackButton"
 
 const LocationShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
@@ -19,12 +20,15 @@ const LocationShow: React.FC = () => {
 	}
 
 	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+		<div className="location-show m-2 w-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>{currentLocation?.name}</h1>
 			<p>{currentLocation?.description}</p>
-			<ListGroup className="m-2">
+			<ListGroup className="m-2 w-100">
 				{currentLocation?.rooms?.map((room) => (
-					<div key={room.id}>
+					<div
+						key={room.id}
+						className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
+					>
 						<Link
 							to={`/my-inventory/rooms/${room.id}`}
 							state={{
@@ -32,9 +36,14 @@ const LocationShow: React.FC = () => {
 								roomId: room.id,
 								locationName: currentLocation?.name,
 							}}
+							className="w-sm-100, w-50"
 						>
-							<ListGroup.Item key={room.id} className="m-1 rounded">
-								{room.name}
+							<ListGroup.Item
+								action variant="light"
+								key={room.id}
+								className="m-1 rounded"
+							>
+								<strong>{room.name}</strong>
 							</ListGroup.Item>
 						</Link>
 					</div>
@@ -47,6 +56,7 @@ const LocationShow: React.FC = () => {
 				linkTo="/my-inventory/rooms/new"
 				locationName={currentLocation?.name}
 			/>
+			<BackButton />
 		</div>
 	)
 }
