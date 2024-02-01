@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react"
 import { useDropzone, FileError } from "react-dropzone"
 import { Request } from "../utils/index"
-import { Button } from "react-bootstrap"
+import { Button, Image } from "react-bootstrap"
+import AddDeleteButton from "./AddDeleteButton"
 
 const AddImage: React.FC = () => {
 	const [image, setImage] = useState<File | null>(null)
@@ -51,29 +52,30 @@ const AddImage: React.FC = () => {
 				{isDragActive ? (
 					<p>Drop the files here ...</p>
 				) : image ? (
-					<p>Image loaded</p>
+					<></>
 				) : (
-					<>
-						<Button className="d-flex flex-column justify-content-center align-items-center gap-2">
-							Click here to upload an image
-							<em>
-								Only .png, .jpeg, .jpg, .webp files under 5MB will be accepted
-							</em>
-						</Button>
-					</>
+					<div className="d-flex flex-column justify-content-center align-items-center gap-2">
+						<AddDeleteButton buttonText="Upload Image" buttonAction="Add" />
+						<em>
+							Only .png, .jpeg, .jpg, .webp files under 5MB will be accepted
+						</em>
+					</div>
 				)}
 			</div>
 			<div className="d-flex flex-column justify-content-center align-items-center gap-2">
 				{image && (
-					<img
-						src={`${URL.createObjectURL(image)}`}
-						alt=""
-						style={{ width: "200px", height: "auto" }}
-					/>
+					<>
+						<Image
+							src={`${URL.createObjectURL(image)}`}
+							alt=""
+							style={{ width: "200px", height: "auto" }}
+						/>
+						<p>Image loaded</p>
+					</>
 				)}
 				<div className="d-flex flex-row justify-content-center align-items-center gap-2">
-					{image && <button onClick={() => onUpload(image)}>Upload</button>}
-					{image && <button onClick={() => setImage(null)}>Cancel</button>}
+					{image && <Button onClick={() => onUpload(image)}>Upload</Button>}
+					{image && <Button onClick={() => setImage(null)}>Cancel</Button>}
 				</div>
 			</div>
 		</div>
