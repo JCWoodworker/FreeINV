@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useParams, useLocation } from "react-router-dom"
 import { ListGroup } from "react-bootstrap"
@@ -10,9 +10,11 @@ import { UserInventoryDataContext } from "../../../App"
 import BackButton from "../../../components/BackButton"
 
 const RoomShow: React.FC = () => {
+	// const [locationName, setLocationName] = useState<string>("")
 	const { userInventoryData } = useContext(UserInventoryDataContext)
 	const { id } = useParams()
 	const { state } = useLocation()
+	// setLocationName(state.locationName)
 
 	const currentRoom: Room | undefined = userInventoryData
 		?.flatMap((location) => location.rooms)
@@ -27,7 +29,7 @@ const RoomShow: React.FC = () => {
 	return (
 		<div className="room-show w-100 m-2 d-flex flex-column justify-content-center align-items-center">
 			<h1>
-				<strong>{state.locationName}</strong> - {currentRoom?.name}
+				{currentRoom?.name}
 			</h1>
 			<p>{currentRoom?.description}</p>
 			<ListGroup className="m-2 w-100">
