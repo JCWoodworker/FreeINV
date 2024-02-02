@@ -4,14 +4,12 @@ import { Stack, ListGroup } from "react-bootstrap"
 
 import ProductShowCard from "../../components/ProductShowCard"
 import { UserInventoryDataContext } from "../../App"
+import useAuth from "../../hooks/useAuth"
 
-interface Props {
-	userIsLoggedIn: boolean
-}
-
-const Home: React.FC<Props> = ({ userIsLoggedIn }) => {
+const Home: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
-	if (!userIsLoggedIn) {
+	const { persist } = useAuth()
+	if (!persist) {
 		return (
 			<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 				<h1>Welcome to Free INV!</h1>

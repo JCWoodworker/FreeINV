@@ -1,6 +1,5 @@
 import { fetchUserInventoryData } from "./fetchUserInventoryData"
 import { fetchUserProfile } from "./fetchUserProfile"
-import { getLocalStorageTokens } from "./getLocalStorageTokens"
 import { Request } from "./Request"
 
 import {
@@ -14,7 +13,6 @@ import {
 export {
 	fetchUserInventoryData,
 	fetchUserProfile,
-	getLocalStorageTokens,
 	Request,
 }
 export type {

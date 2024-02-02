@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import { Request, GoogleOAuthDto } from "../../utils/index"
+import useAuth from "../../hooks/useAuth"
 
-interface Props {
-	setUserIsLoggedIn: (value: boolean) => void
-}
 
-const GoogleOAuth: React.FC<Props> = ({ setUserIsLoggedIn }) => {
+const GoogleOAuth: React.FC = () => {
+	const { setAuth, setPersist } = useAuth()
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
 
@@ -21,8 +20,14 @@ const GoogleOAuth: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 				false
 			)
 			if (response) {
-				localStorage.setItem("freeInvTokens", JSON.stringify(response.tokens))
-				setUserIsLoggedIn(true)
+				setPersist && setPersist(true)
+				setAuth &&
+						setAuth({
+							user: "USER",
+							accessToken: response.tokens.accessToken,
+							refreshToken: response.tokens.refreshToken,
+							apps: [],
+						})
 				navigate("/")
 			}
 		} catch (error) {

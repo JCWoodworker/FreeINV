@@ -32,9 +32,12 @@ export interface GoogleOAuthDto {
 export class Request {
 	constructor() {}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	static async get(urlEndpoint: string, authorization: boolean): Promise<any> {
-		const accessToken = await this.getLocalStorageTokens("accessToken")
+	static async get(
+		urlEndpoint: string,
+		authorization: boolean,
+		accessToken: string
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	): Promise<any> {
 		let headers = {}
 		if (authorization) {
 			headers = {
@@ -61,12 +64,12 @@ export class Request {
 			| SignInSignUpDto
 			| GoogleOAuthDto
 			| FormData,
-		authorization: boolean
+		authorization: boolean,
+		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Promise<any> {
 		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
-		const accessToken = await this.getLocalStorageTokens("accessToken")
 		let headers = {}
 		if (data instanceof File) {
 			headers = { ...headers, "Content-Type": "multipart/form-data" }
@@ -91,13 +94,13 @@ export class Request {
 	// 	// Implement DELETE request logic using fetch
 	// }
 
-	static async refresh() {
+	static async refresh(refreshToken: string) {
 		const urlPrefix = await this.getBackendUrl()
-		const refreshToken = await this.getLocalStorageTokens("refreshToken")
 		try {
 			const response = await axios.post(
 				`${urlPrefix}/authentication/refresh-tokens`,
-				{ refreshToken }
+				{ refreshToken },
+				{ headers: { withCredentials: true } }
 			)
 			if (response) {
 				return response.data
@@ -124,29 +127,6 @@ export class Request {
 		} catch (error) {
 			console.log(error)
 			return "http://localhost:3000/api/v1"
-		}
-	}
-
-	private static async getLocalStorageTokens(token: string) {
-		try {
-			const { accessToken, refreshToken } = JSON.parse(
-				localStorage.getItem("freeInvTokens") || ""
-			)
-
-			if (!accessToken || !refreshToken) {
-				return false
-			}
-
-			if (token === "accessToken") {
-				return accessToken
-			} else if (token === "refreshToken") {
-				return refreshToken
-			} else if (token === "both") {
-				return { accessToken, refreshToken }
-			}
-		} catch (error) {
-			console.log(error)
-			return false
 		}
 	}
 }

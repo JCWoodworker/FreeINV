@@ -5,19 +5,19 @@ import { ListGroup } from "react-bootstrap"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserLocationData } from "../inventoryTypes"
+import useAuth from "../../../hooks/useAuth"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
-	userIsLoggedIn: boolean
 }
 
 const LocationIndex: React.FC<Props> = ({
 	userInventoryData,
-	userIsLoggedIn,
 }) => {
+	const { persist } = useAuth()
 	const navigate = useNavigate()
 	useEffect(() => {
-		if (!userIsLoggedIn) {
+		if (!persist) {
 			navigate("/")
 		}
 	})

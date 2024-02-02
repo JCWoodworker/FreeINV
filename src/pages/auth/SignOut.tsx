@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router-dom"
 
 import SubmitButton from "../../components/SubmitButton"
+import useAuth from "../../hooks/useAuth"
 
-interface Props {
-	setUserIsLoggedIn: (value: boolean) => void
-}
-
-const SignOut: React.FC<Props> = ({ setUserIsLoggedIn }) => {
+const SignOut: React.FC = () => {
+	const { setAuth, setPersist } = useAuth()
 	const navigate = useNavigate()
 	const submitSignOut = async (event: React.FormEvent) => {
 		event.preventDefault()
-		localStorage.clear()
-		setUserIsLoggedIn(false)
+		setPersist && setPersist(false)
+		setAuth &&
+			setAuth({ user: "", accessToken: "", refreshToken: "", apps: [] })
 		navigate("/")
 	}
 

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Form, Stack } from "react-bootstrap"
+import useAuth from "../../hooks/useAuth"
 
 import { Request, SignInSignUpDto } from "../../utils/index"
 
@@ -8,11 +9,8 @@ import GoogleOAuth from "./GoogleOAuth"
 import Recaptcha from "./Recaptcha"
 import SubmitButton from "../../components/SubmitButton"
 
-interface Props {
-	setUserIsLoggedIn: (value: boolean) => void
-}
-
-const SignIn: React.FC<Props> = ({ setUserIsLoggedIn }) => {
+const SignIn: React.FC = () => {
+	const { auth, setAuth, setPersist } = useAuth()
 	const [credentials, setCredentials] = useState<SignInSignUpDto>({
 		email: "",
 		password: "",
@@ -28,11 +26,18 @@ const SignIn: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 				const response = await Request.post(
 					"/authentication/sign-in",
 					payload,
-					false
+					false,
+					auth?.accessToken
 				)
 				if (response) {
-					localStorage.setItem("freeInvTokens", JSON.stringify(response.tokens))
-					setUserIsLoggedIn(true)
+					setAuth &&
+						setAuth({
+							user: "USER",
+							accessToken: response.tokens.accessToken,
+							refreshToken: response.tokens.refreshToken,
+							apps: [],
+						})
+					setPersist && setPersist(true)
 					navigate("/")
 				}
 			} catch (error) {
@@ -54,7 +59,7 @@ const SignIn: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 	return (
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign In</h1>
-			<GoogleOAuth setUserIsLoggedIn={setUserIsLoggedIn} />
+			<GoogleOAuth />
 			<h3>Or</h3>
 			<Form
 				onSubmit={handleSubmit}

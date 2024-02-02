@@ -8,11 +8,7 @@ import SubmitButton from "../../components/SubmitButton"
 
 import { Request, SignInSignUpDto } from "../../utils/index"
 
-interface Props {
-	setUserIsLoggedIn: (value: boolean) => void
-}
-
-const SignUp: React.FC<Props> = ({ setUserIsLoggedIn }) => {
+const SignUp: React.FC = () => {
 	const [signupPayload, setSignupPayload] = useState<SignInSignUpDto>({
 		email: "",
 		password: "",
@@ -59,9 +55,7 @@ const SignUp: React.FC<Props> = ({ setUserIsLoggedIn }) => {
 	return (
 		<Stack className="m-2 d-flex justify-content-center align-items-center">
 			<h1>Sign Up</h1>
-			<GoogleOAuth
-				setUserIsLoggedIn={setUserIsLoggedIn}
-			/>
+			<GoogleOAuth />
 			<h2>Or</h2>
 
 			<Form

@@ -18,8 +18,9 @@ import ItemShow from "./pages/inventory/items/ItemShow.tsx"
 import NewItem from "./pages/inventory/items/NewItem.tsx"
 
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
-import { Request, getLocalStorageTokens } from "./utils/index.ts"
+import { Request } from "./utils/index.ts"
 
+import useAuth from "./hooks/useAuth.tsx"
 
 import {
 	signedOutTopNavLinks,
@@ -46,42 +47,24 @@ export const UserInventoryDataContext =
 	})
 
 function App() {
-	const [userIsLoggedIn, setUserIsLoggedIn] = useState<boolean>(false)
+	const { auth, persist } = useAuth()
 	const [userInventoryData, setUserInventoryData] = useState<
 		UserLocationData[] | undefined
 	>(undefined)
 
-	const checkForLoggedInUser = async () => {
-		try {
-			const doTokensExist = await getLocalStorageTokens("both")
-			if (!doTokensExist) {
-				setUserIsLoggedIn(false)
-				return
-			}
-
-			const refreshedTokens = await Request.refresh()
-			if (!refreshedTokens) {
-				console.log("Failed to refresh token, please login again")
-				return false
-			}
-			localStorage.setItem("freeInvTokens", JSON.stringify(refreshedTokens))
-			setUserIsLoggedIn(true)
-			return true
-		} catch (error) {
-			console.log(error)
-			return false
-		}
-	}
-
 	const hydrateUserData = async () => {
 		try {
-			const accessToken = await getLocalStorageTokens("accessToken")
+			const accessToken = auth?.accessToken
 			if (!accessToken) {
 				return console.log(
-					"No access token found in local storage.  Cannot hydrate user data"
+					"No access token in auth context.  Cannot hydrate user data"
 				)
 			}
-			const userData = await Request.get("/freeinv/complete-location", true)
+			const userData = await Request.get(
+				"/freeinv/complete-location",
+				true,
+				accessToken
+			)
 			setUserInventoryData(userData)
 			return true
 		} catch (error) {
@@ -91,36 +74,24 @@ function App() {
 	}
 
 	useEffect(() => {
-		if (!userIsLoggedIn) {
-			checkForLoggedInUser()
-		}
-		if (userIsLoggedIn) {
+		if (persist) {
 			hydrateUserData()
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [userIsLoggedIn])
+	}, [persist])
 
 	return (
 		<UserInventoryDataContext.Provider
 			value={{ userInventoryData, setUserInventoryData }}
 		>
-			{!userIsLoggedIn ? (
+			{!persist ? (
 				<>
 					<TopNavLinks navLinkList={signedOutTopNavLinks} />
 					<div className="d-flex justify-content-center vw-100">
 						<Routes>
-							<Route
-								path="/"
-								element={<Home userIsLoggedIn={userIsLoggedIn} />}
-							/>
-							<Route
-								path="/signin"
-								element={<SignIn setUserIsLoggedIn={setUserIsLoggedIn} />}
-							/>
-							<Route
-								path="/signup"
-								element={<SignUp setUserIsLoggedIn={setUserIsLoggedIn} />}
-							/>
+							<Route path="/" element={<Home />} />
+							<Route path="/signin" element={<SignIn />} />
+							<Route path="/signup" element={<SignUp />} />
 							<Route path="*" element={<NotFoundPage />} />
 						</Routes>
 					</div>
@@ -130,22 +101,13 @@ function App() {
 					<TopNavLinks navLinkList={signedInTopNavLinks} />
 					<div className="d-flex justify-content-center vw-100">
 						<Routes>
-							<Route
-								path="/"
-								element={<Home userIsLoggedIn={userIsLoggedIn} />}
-							/>
-							<Route
-								path="/signout"
-								element={<SignOut setUserIsLoggedIn={setUserIsLoggedIn} />}
-							/>
+							<Route path="/" element={<Home />} />
+							<Route path="/signout" element={<SignOut />} />
 							<Route path="/my-inventory">
 								<Route
 									index
 									element={
-										<LocationIndex
-											userInventoryData={userInventoryData}
-											userIsLoggedIn={userIsLoggedIn}
-										/>
+										<LocationIndex userInventoryData={userInventoryData} />
 									}
 								/>
 								<Route path="locations/:id" element={<LocationShow />} />
