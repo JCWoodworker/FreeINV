@@ -9,7 +9,10 @@ import { UserInventoryDataContext } from "../../../App"
 import { Request, NewItemDto } from "../../../utils/index"
 import { Item } from "../inventoryTypes"
 
+import useAuth from "../../../hooks/useAuth"
+
 const NewItem: React.FC = () => {
+	const { auth } = useAuth()
 	const { userInventoryData, setUserInventoryData } = useContext(
 		UserInventoryDataContext
 	)
@@ -33,10 +36,12 @@ const NewItem: React.FC = () => {
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
+		const accessToken = auth?.accessToken
 		const newItem: Item = await Request.post(
 			"/freeinv/items",
 			newItemData,
-			true
+			true,
+			accessToken
 		)
 		if (!newItem) {
 			console.log(`Failed to add new item`)

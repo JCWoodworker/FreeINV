@@ -34,10 +34,12 @@ const SignIn: React.FC = () => {
 						setAuth({
 							user: "USER",
 							accessToken: response.tokens.accessToken,
-							refreshToken: response.tokens.refreshToken,
 							apps: [],
 						})
 					setPersist && setPersist(true)
+					// JUST FOR TESTING UNTIL I SET UP HTTP ONLY COOKIES
+					localStorage.setItem("refreshToken", response.tokens.refreshToken)
+					// END OF TEST
 					navigate("/")
 				}
 			} catch (error) {

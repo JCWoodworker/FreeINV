@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 interface Props {
 	children: JSX.Element
@@ -7,7 +7,6 @@ interface Props {
 export interface AuthInterface {
 	user: string
 	accessToken: string
-	refreshToken: string
 	apps: string[]
 }
 
@@ -26,10 +25,17 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 	const [auth, setAuth] = useState<AuthInterface>({
 		user: "",
 		accessToken: "",
-		refreshToken: "",
 		apps: [],
 	})
 	const [persist, setPersist] = useState(initialPersistState)
+
+	useEffect(() => {
+		localStorage.setItem("persist", JSON.stringify(persist))
+	}, [persist])
+
+	useEffect(() => {
+		console.log(`auth: ${JSON.stringify(auth)}`)
+	}, [auth])
 
 	return (
 		<AuthContext.Provider value={{ auth, setAuth, persist, setPersist }}>

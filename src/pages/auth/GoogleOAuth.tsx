@@ -3,7 +3,6 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import { Request, GoogleOAuthDto } from "../../utils/index"
 import useAuth from "../../hooks/useAuth"
 
-
 const GoogleOAuth: React.FC = () => {
 	const { setAuth, setPersist } = useAuth()
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
@@ -22,12 +21,15 @@ const GoogleOAuth: React.FC = () => {
 			if (response) {
 				setPersist && setPersist(true)
 				setAuth &&
-						setAuth({
-							user: "USER",
-							accessToken: response.tokens.accessToken,
-							refreshToken: response.tokens.refreshToken,
-							apps: [],
-						})
+					setAuth({
+						user: "USER",
+						accessToken: response.tokens.accessToken,
+						apps: [],
+					})
+				// JUST FOR TESTING UNTIL I SET UP HTTP ONLY COOKIES
+				localStorage.setItem("refreshToken", response.tokens.refreshToken)
+				// END OF TEST
+
 				navigate("/")
 			}
 		} catch (error) {

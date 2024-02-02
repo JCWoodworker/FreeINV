@@ -94,13 +94,14 @@ export class Request {
 	// 	// Implement DELETE request logic using fetch
 	// }
 
-	static async refresh(refreshToken: string) {
+	static async refresh() {
 		const urlPrefix = await this.getBackendUrl()
+		const refreshToken = localStorage.getItem("refreshToken")
 		try {
 			const response = await axios.post(
 				`${urlPrefix}/authentication/refresh-tokens`,
-				{ refreshToken },
-				{ headers: { withCredentials: true } }
+				{ refreshToken }
+				// { headers: { withCredentials: true } }
 			)
 			if (response) {
 				return response.data

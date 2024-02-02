@@ -6,8 +6,10 @@ import { UserInventoryDataContext } from "../../../App.tsx"
 
 import BackButton from "../../../components/BackButton.tsx"
 
+import useAuth from "../../../hooks/useAuth.tsx"
 
 const NewLocation: React.FC = () => {
+	const { auth } = useAuth()
 	const { userInventoryData, setUserInventoryData } = useContext(
 		UserInventoryDataContext
 	)
@@ -30,18 +32,27 @@ const NewLocation: React.FC = () => {
 
 	const formSubmit = async (event: React.FormEvent) => {
 		event.preventDefault()
-		const newLocation = await Request.post("/freeinv/locations", newLocationData, true)
+		const accessToken = auth?.accessToken
+		const newLocation = await Request.post(
+			"/freeinv/locations",
+			newLocationData,
+			true,
+			accessToken
+		)
 		if (!newLocation) {
 			console.log(`Failed to add new location`)
 			return false
 		}
-		const newUserInventory = userInventoryData?.concat({ ...newLocation, rooms: [] })
+		const newUserInventory = userInventoryData?.concat({
+			...newLocation,
+			rooms: [],
+		})
 		setUserInventoryData(newUserInventory)
 		console.log(`Added new location: ${JSON.stringify(newLocation)}`)
 		navigate("/my-inventory")
 		return true
 	}
-	
+
 	return (
 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 			<h2>Add A New Location</h2>

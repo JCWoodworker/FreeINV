@@ -8,7 +8,10 @@ import SubmitButton from "../../../components/SubmitButton"
 import { UserInventoryDataContext } from "../../../App"
 import { Request, NewRoomDto } from "../../../utils/index"
 
+import useAuth from "../../../hooks/useAuth"
+
 const NewRoom: React.FC = () => {
+	const { auth } = useAuth()
 	const { userInventoryData, setUserInventoryData } = useContext(
 		UserInventoryDataContext
 	)
@@ -32,7 +35,13 @@ const NewRoom: React.FC = () => {
 
 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const newRoom = await Request.post("/freeinv/rooms", newRoomData, true)
+		const accessToken = auth?.accessToken
+		const newRoom = await Request.post(
+			"/freeinv/rooms",
+			newRoomData,
+			true,
+			accessToken
+		)
 		if (!newRoom) {
 			console.log(`Failed to add new room`)
 			return false

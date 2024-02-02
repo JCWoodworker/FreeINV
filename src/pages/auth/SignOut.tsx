@@ -10,7 +10,12 @@ const SignOut: React.FC = () => {
 		event.preventDefault()
 		setPersist && setPersist(false)
 		setAuth &&
-			setAuth({ user: "", accessToken: "", refreshToken: "", apps: [] })
+			setAuth({ user: "", accessToken: "", apps: [] })
+			
+		// JUST FOR TESTING UNTIL I SET UP HTTP ONLY COOKIES
+		localStorage.removeItem("refreshToken")
+		// END OF TEST
+
 		navigate("/")
 	}
 

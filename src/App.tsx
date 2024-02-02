@@ -2,30 +2,29 @@ import { useEffect, useState, createContext } from "react"
 import { Routes, Route } from "react-router-dom"
 import "./app.scss"
 
-import TopNavLinks from "./navigation/TopNavLinks.tsx"
+import TopNavLinks from "./navigation/TopNavLinks"
 import Home from "./pages/home/Home"
 import SignIn from "./pages/auth/SignIn"
 import SignUp from "./pages/auth/SignUp"
-import SignOut from "./pages/auth/SignOut.tsx"
+import SignOut from "./pages/auth/SignOut"
 import NotFoundPage from "./pages/not-found/NotFound"
+import Layout from "./pages/Layout.tsx"
+import PersistLogin from "./components/PersistLogin.tsx"
+// import ManualRefreshToken from "./components/ManualRefreshToken"
 
-import LocationIndex from "./pages/inventory/locations/LocationIndex.tsx"
-import LocationShow from "./pages/inventory/locations/LocationShow.tsx"
-import NewLocation from "./pages/inventory/locations/NewLocation.tsx"
-import RoomShow from "./pages/inventory/rooms/RoomShow.tsx"
-import NewRoom from "./pages/inventory/rooms/NewRoom.tsx"
-import ItemShow from "./pages/inventory/items/ItemShow.tsx"
-import NewItem from "./pages/inventory/items/NewItem.tsx"
+import LocationIndex from "./pages/inventory/locations/LocationIndex"
+import LocationShow from "./pages/inventory/locations/LocationShow"
+import NewLocation from "./pages/inventory/locations/NewLocation"
+import RoomShow from "./pages/inventory/rooms/RoomShow"
+import NewRoom from "./pages/inventory/rooms/NewRoom"
+import ItemShow from "./pages/inventory/items/ItemShow"
+import NewItem from "./pages/inventory/items/NewItem"
 
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { Request } from "./utils/index.ts"
 
-import useAuth from "./hooks/useAuth.tsx"
+import useAuth from "./hooks/useAuth"
 
-import {
-	signedOutTopNavLinks,
-	signedInTopNavLinks,
-} from "./navigation/links.ts"
 
 interface UserInventoryDataContextInterface {
 	userInventoryData: UserLocationData[] | undefined
@@ -84,48 +83,41 @@ function App() {
 		<UserInventoryDataContext.Provider
 			value={{ userInventoryData, setUserInventoryData }}
 		>
-			{!persist ? (
-				<>
-					<TopNavLinks navLinkList={signedOutTopNavLinks} />
-					<div className="d-flex justify-content-center vw-100">
-						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="/signin" element={<SignIn />} />
-							<Route path="/signup" element={<SignUp />} />
-							<Route path="*" element={<NotFoundPage />} />
-						</Routes>
-					</div>
-				</>
-			) : (
-				<>
-					<TopNavLinks navLinkList={signedInTopNavLinks} />
-					<div className="d-flex justify-content-center vw-100">
-						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="/signout" element={<SignOut />} />
-							<Route path="/my-inventory">
-								<Route
-									index
-									element={
-										<LocationIndex userInventoryData={userInventoryData} />
-									}
-								/>
-								<Route path="locations/:id" element={<LocationShow />} />
-								<Route path="locations/new" element={<NewLocation />} />
-								<Route path="rooms">
-									<Route path=":id" element={<RoomShow />} />
-									<Route path="new" element={<NewRoom />} />
-								</Route>
-								<Route path="items">
-									<Route path=":id" element={<ItemShow />} />
-									<Route path="new" element={<NewItem />} />
-								</Route>
+			<TopNavLinks />
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					{/* Public routes */}
+					<Route index element={<Home />} />
+					<Route path="/signin" element={<SignIn />} />
+					<Route path="/signup" element={<SignUp />} />
+
+					{/* Protected routes */}
+					<Route element={<PersistLogin />}>
+						<Route path="/" element={<Home />} />
+						<Route path="/signout" element={<SignOut />} />
+						<Route path="/my-inventory">
+							<Route
+								index
+								element={
+									<LocationIndex userInventoryData={userInventoryData} />
+								}
+							/>
+							<Route path="locations/:id" element={<LocationShow />} />
+							<Route path="locations/new" element={<NewLocation />} />
+							<Route path="rooms">
+								<Route path=":id" element={<RoomShow />} />
+								<Route path="new" element={<NewRoom />} />
 							</Route>
-							<Route path="*" element={<NotFoundPage />} />
-						</Routes>
-					</div>
-				</>
-			)}
+							<Route path="items">
+								<Route path=":id" element={<ItemShow />} />
+								<Route path="new" element={<NewItem />} />
+							</Route>
+						</Route>
+					</Route>
+					{/* catch all */}
+					<Route path="*" element={<NotFoundPage />} />
+				</Route>
+			</Routes>
 		</UserInventoryDataContext.Provider>
 	)
 }

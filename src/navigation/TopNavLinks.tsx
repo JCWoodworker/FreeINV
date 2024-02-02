@@ -1,18 +1,17 @@
-import { TopNavLink } from "./links"
+import { signedInTopNavLinks, signedOutTopNavLinks } from "./links"
 import { NavLink } from "react-router-dom"
 import { Nav } from "react-bootstrap"
+import useAuth from "../hooks/useAuth"
 
-interface Props {
-	navLinkList: TopNavLink[]
-}
-
-const TopNavLinks: React.FC<Props> = ({ navLinkList }) => {
+const TopNavLinks: React.FC = () => {
+	const {persist} = useAuth()
+	const linkList = persist ? signedInTopNavLinks : signedOutTopNavLinks
 	return (
 		<Nav
 			variant="pills"
 			className="top-nav-links mt-1 pb-1 pt-1 d-flex flex-row justify-content-center align-items-center"
 		>
-			{navLinkList.map((link) => (
+			{linkList.map((link) => (
 				<Nav.Item key={link.path}>
 					<Nav.Link as={NavLink} to={link.path}>
 						{link.name} {link.icon}
