@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
 import { Button } from "react-bootstrap"
-import useAuth from "../../Hooks/useAuth"
+import useAuth from "../../hooks/useAuth"
 
 const Logout = () => {
   const navigate = useNavigate()
