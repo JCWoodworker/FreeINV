@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
-import { Request, GoogleOAuthDto } from "../../Utils/Request"
-import useAuth from "../../Hooks/useAuth"
+import { Request, GoogleOAuthDto } from "../../utils/Request"
+import useAuth from "../../hooks/useAuth"
 
 const GoogleOAuth: React.FC = () => {
 	const { setAuth, setPersist } = useAuth()

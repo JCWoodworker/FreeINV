@@ -1,11 +1,11 @@
 import axios from "axios"
 
-interface SignUpAndLoginDto {
+export interface SignUpAndLoginDto {
 	email: string
 	password: string
 }
 
-interface GoogleOAuthDto {
+export interface GoogleOAuthDto {
 	token: string
 }
 
