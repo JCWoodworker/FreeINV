@@ -1,95 +1,95 @@
-import { useState, useContext } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
-import { Form } from "react-bootstrap"
+// import { useState, useContext } from "react"
+// import { useLocation, useNavigate } from "react-router-dom"
+// import { Form } from "react-bootstrap"
 
-import BackButton from "../../../components/BackButton"
-import SubmitButton from "../../../components/SubmitButton"
+// import BackButton from "../../../components/BackButton"
+// import SubmitButton from "../../../components/SubmitButton"
 
-import { UserInventoryDataContext } from "../../../App"
-import { Request, NewRoomDto } from "../../../utils/index"
+// import { UserInventoryDataContext } from "../../../App"
+// import { Request, NewRoomDto } from "../../../utils/index"
 
-import useAuth from "../../../hooks/useAuth"
+// import useAuth from "../../../hooks/useAuth"
 
-const NewRoom: React.FC = () => {
-	const { auth } = useAuth()
-	const { userInventoryData, setUserInventoryData } = useContext(
-		UserInventoryDataContext
-	)
-	const navigate = useNavigate()
-	const { state } = useLocation()
-	const [newRoomData, setNewRoomData] = useState<NewRoomDto>({
-		name: "",
-		description: "",
-		type: "room",
-		locationId: state.locationId,
-	})
+// const NewRoom: React.FC = () => {
+// 	const { auth } = useAuth()
+// 	const { userInventoryData, setUserInventoryData } = useContext(
+// 		UserInventoryDataContext
+// 	)
+// 	const navigate = useNavigate()
+// 	const { state } = useLocation()
+// 	const [newRoomData, setNewRoomData] = useState<NewRoomDto>({
+// 		name: "",
+// 		description: "",
+// 		type: "room",
+// 		locationId: state.locationId,
+// 	})
 
-	const handleTextInputChange = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setNewRoomData({
-			...newRoomData,
-			[event.target.name]: event.target.value,
-		})
-	}
+// 	const handleTextInputChange = (
+// 		event: React.ChangeEvent<HTMLInputElement>
+// 	) => {
+// 		setNewRoomData({
+// 			...newRoomData,
+// 			[event.target.name]: event.target.value,
+// 		})
+// 	}
 
-	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-		const accessToken = auth?.accessToken
-		const newRoom = await Request.post(
-			"/freeinv/rooms",
-			newRoomData,
-			true,
-			accessToken
-		)
-		if (!newRoom) {
-			console.log(`Failed to add new room`)
-			return false
-		}
+// 	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+// 		event.preventDefault()
+// 		const accessToken = auth?.accessToken
+// 		const newRoom = await Request.post(
+// 			"/freeinv/rooms",
+// 			newRoomData,
+// 			true,
+// 			accessToken
+// 		)
+// 		if (!newRoom) {
+// 			console.log(`Failed to add new room`)
+// 			return false
+// 		}
 
-		const updatedInventoryData = userInventoryData?.map((location) => {
-			if (location.id === state.locationId) {
-				return {
-					...location,
-					rooms: location.rooms
-						? [...location.rooms, { ...newRoom, items: [] }]
-						: [{ ...newRoom, items: [] }],
-				}
-			}
-			return location
-		})
-		setUserInventoryData(updatedInventoryData)
-		navigate(`/my-inventory/locations/${state.locationId}`)
-	}
+// 		const updatedInventoryData = userInventoryData?.map((location) => {
+// 			if (location.id === state.locationId) {
+// 				return {
+// 					...location,
+// 					rooms: location.rooms
+// 						? [...location.rooms, { ...newRoom, items: [] }]
+// 						: [{ ...newRoom, items: [] }],
+// 				}
+// 			}
+// 			return location
+// 		})
+// 		setUserInventoryData(updatedInventoryData)
+// 		navigate(`/my-inventory/locations/${state.locationId}`)
+// 	}
 
-	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
-			<h1>New room in {state.locationName}</h1>
-			<Form onSubmit={onSubmit}>
-				<Form.Group className="mb-3" controlId="formRoomName">
-					<Form.Label>Room Name</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Enter Room Name"
-						name="name"
-						onChange={handleTextInputChange}
-						required={true}
-					/>
-				</Form.Group>
-				<Form.Group className="mb-3" controlId="formRoomDescription">
-					<Form.Label>Room Description</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Enter Room Description"
-						name="description"
-						onChange={handleTextInputChange}
-					/>
-				</Form.Group>
-				<SubmitButton buttonText="Create Room" />
-			</Form>
-			<BackButton />
-		</div>
-	)
-}
+// 	return (
+// 		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+// 			<h1>New room in {state.locationName}</h1>
+// 			<Form onSubmit={onSubmit}>
+// 				<Form.Group className="mb-3" controlId="formRoomName">
+// 					<Form.Label>Room Name</Form.Label>
+// 					<Form.Control
+// 						type="text"
+// 						placeholder="Enter Room Name"
+// 						name="name"
+// 						onChange={handleTextInputChange}
+// 						required={true}
+// 					/>
+// 				</Form.Group>
+// 				<Form.Group className="mb-3" controlId="formRoomDescription">
+// 					<Form.Label>Room Description</Form.Label>
+// 					<Form.Control
+// 						type="text"
+// 						placeholder="Enter Room Description"
+// 						name="description"
+// 						onChange={handleTextInputChange}
+// 					/>
+// 				</Form.Group>
+// 				<SubmitButton buttonText="Create Room" />
+// 			</Form>
+// 			<BackButton />
+// 		</div>
+// 	)
+// }
 
-export default NewRoom
+// export default NewRoom

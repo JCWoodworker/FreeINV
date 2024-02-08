@@ -1,6 +1,7 @@
 import { Nav } from "react-bootstrap"
 import useAuth from "../hooks/useAuth"
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
+
 const Navigation = () => {
 	const { persist } = useAuth()
 
@@ -28,7 +29,7 @@ const Navigation = () => {
 	}
 
 	return (
-		<div className="top-nav p-2 d-flex flex-row justify-content-center align-items-center border-bottom">
+		<div className="top-nav p-2 d-flex flex-row justify-content-center align-items-center">
 			{links}
 		</div>
 	)
