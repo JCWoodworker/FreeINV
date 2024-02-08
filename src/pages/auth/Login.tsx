@@ -1,31 +1,14 @@
-import { useLocation } from "react-router-dom"
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { useLocation, Link } from "react-router-dom"
+import { Form, FormLabel } from "react-bootstrap"
 
 import GoogleOAuth from "./GoogleOAuth"
+import FormCheckInput from "react-bootstrap/esm/FormCheckInput"
 
 const Login = () => {
-	let { state } = useLocation()
-	let subscriptionLink = (
-		<Link to="/" className="p-2 w-75 border rounded">
-			Click here to change your subscription selection
-		</Link>
-	)
-
-	console.log(`BEFORE: ${state}`)
-	if (
-		state !== "basic" &&
-		state !== "mid" &&
-		state !== "high" &&
-		state !== "unlimited"
-	) {
-		state = "Please follow the link above to select a tier"
-		subscriptionLink = (
-			<Link to="/" className="p-2 border rounded">
-				Click here to view subscription tiers
-			</Link>
-		)
-	}
-	console.log(`AFTER: ${state}`)
+	const { state } = useLocation()
+	const validSubscriptionTiers = ["basic", "mid", "high", "unlimited"]
+	const [selectedTier, setSelectedTier] = useState("basic")
 
 	return (
 		<div className="google-oauth mt-2 p-2 d-flex flex-column justify-content-center align-items-center gap-4">
@@ -35,9 +18,23 @@ const Login = () => {
 				with Google
 			</h1>
 			<div className="google-oauth d-flex justify-content-center align-items-center">
-				<GoogleOAuth />
+				<GoogleOAuth subscriptionTier={selectedTier} />
 			</div>
-			{subscriptionLink}
+			<Link to="/" className="p-2 border rounded">
+				Click here to view subscription tiers
+			</Link>
+			<Form className="d-flex flex-row gap-2">
+				{validSubscriptionTiers.map((tier) => (
+					<FormLabel key={tier}>
+						{`${tier[0].toUpperCase() + tier.slice(1)} -> `}
+						<FormCheckInput
+							type="checkbox"
+							checked={tier === selectedTier}
+							onChange={() => setSelectedTier(tier)}
+						/>
+					</FormLabel>
+				))}
+			</Form>
 			<p>{`Your subscription selection: ${state}`}</p>
 		</div>
 	)

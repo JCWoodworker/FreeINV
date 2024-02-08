@@ -3,10 +3,16 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import { Request, GoogleOAuthDto } from "../../utils/Request"
 import useAuth from "../../hooks/useAuth"
 
-const GoogleOAuth: React.FC = () => {
+interface Props {
+	subscriptionTier: string
+}
+
+const GoogleOAuth: React.FC<Props> = ({ subscriptionTier }) => {
 	const { setAuth, setPersist } = useAuth()
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
+
+	console.log(`OAuth - Subscription tier: ${subscriptionTier}`)
 
 	// Fix this later and don't use "any" you lazy-ass!!
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
