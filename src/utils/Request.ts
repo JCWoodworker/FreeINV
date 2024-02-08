@@ -1,31 +1,11 @@
 import axios from "axios"
 
-export interface NewLocationDto {
-	name: string
-	description: string
-	type: "location"
-}
-
-export interface NewRoomDto {
-	name: string
-	description: string
-	type: "room"
-	locationId: number
-}
-
-export interface NewItemDto {
-	name: string
-	description: string
-	type: "item"
-	roomId: number
-}
-
-export interface SignInSignUpDto {
+interface SignUpAndLoginDto {
 	email: string
 	password: string
 }
 
-export interface GoogleOAuthDto {
+interface GoogleOAuthDto {
 	token: string
 }
 
@@ -34,12 +14,12 @@ export class Request {
 
 	static async get(
 		urlEndpoint: string,
-		authorization: boolean,
-		accessToken: string
+		authorizationRequired: boolean,
+		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Promise<any> {
 		let headers = {}
-		if (authorization) {
+		if (authorizationRequired) {
 			headers = {
 				Authorization: `Bearer ${accessToken}`,
 			}
@@ -50,21 +30,15 @@ export class Request {
 			const response = await axios.get(fullUrl, { headers })
 			return response.data
 		} catch (error) {
-			console.error("Request error:", error)
+			console.error("GET request error:", error)
 			throw error
 		}
 	}
 
 	static async post(
 		urlEndpoint: string,
-		data:
-			| NewLocationDto
-			| NewItemDto
-			| NewRoomDto
-			| SignInSignUpDto
-			| GoogleOAuthDto
-			| FormData,
-		authorization: boolean,
+		data: SignUpAndLoginDto | GoogleOAuthDto | FormData,
+		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	): Promise<any> {
@@ -74,14 +48,14 @@ export class Request {
 		if (data instanceof File) {
 			headers = { ...headers, "Content-Type": "multipart/form-data" }
 		}
-		if (authorization) {
+		if (authorizationRequired) {
 			headers = { ...headers, Authorization: `Bearer ${accessToken}` }
 		}
 		try {
 			const response = await axios.post(fullUrl, data, { headers })
 			return response.data
 		} catch (error) {
-			console.error("Request error:", error)
+			console.error("POST request error:", error)
 			throw error
 		}
 	}
@@ -101,12 +75,31 @@ export class Request {
 			const response = await axios.post(
 				`${urlPrefix}/authentication/refresh-tokens`,
 				{ refreshToken }
-				// { headers: { withCredentials: true } }
+				/*
+				We'll need the following headers once refresh tokens are in HTTP only cookies:
+				{ headers: { withCredentials: true } }
+				*/
 			)
-			if (response) {
-				return response.data
+
+			if (response.status === 401) {
+				localStorage.removeItem("refreshToken")
+				console.log(
+					"401 Unauthorized, removing token from local storage - it can only be used once"
+				)
+				return false
 			}
-		} catch (error) {
+
+			localStorage.setItem("refreshToken", response.data.refreshToken)
+			return response.data
+
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
+			if (error.response.status === 401) {
+				console.log("401 Unauthorized, removing token from local storage")
+				localStorage.removeItem("refreshToken")
+				localStorage.setItem("persist", "false")
+				return false
+			}
 			console.log(error)
 			return false
 		}

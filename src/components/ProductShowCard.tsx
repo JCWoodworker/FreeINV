@@ -22,7 +22,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 		<Link
 			to="/signup"
 			state={productSpec.tier}
-			className="product-show-card m-1 text-decoration-none d-flex flex-column justify-content-center align-items-center bg-dark-subtle rounded"
+			className="product-show-card m-1 text-decoration-none d-flex flex-column justify-content-center align-items-center bg-dark rounded"
 		>
 			<h2>{productSpec.title}</h2>
 			<ListGroup variant="flush" className="w-100 rounded-bottom">
