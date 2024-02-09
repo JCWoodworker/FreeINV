@@ -34,14 +34,11 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 	})
 	const [persist, setPersist] = useState(initialPersistState)
 
-	useEffect(() => {
-		localStorage.setItem("persistUser", JSON.stringify(persist))
-	}, [persist])
-
-	useEffect(() => {
-		const user = localStorage.getItem("user")
-		const authToken = localStorage.getItem("accessToken")
-		const refreshToken = localStorage.getItem("refreshToken")
+	const checkForPersistedUser = async (
+		user: string | null,
+		authToken: string | null,
+		refreshToken: string | null
+	) => {
 		if (user !== "" && authToken !== "") {
 			setAuth({ user: user || "", accessToken: authToken || "" })
 		}
@@ -69,7 +66,18 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 			localStorage.setItem("persistUser", "false")
 			navigate("/")
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}
+
+	useEffect(() => {
+		localStorage.setItem("persistUser", JSON.stringify(persist))
+	}, [persist])
+
+	useEffect(() => {
+		const user = localStorage.getItem("user")
+		const authToken = localStorage.getItem("accessToken")
+		const refreshToken = localStorage.getItem("refreshToken")
+		checkForPersistedUser(user, authToken, refreshToken)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
