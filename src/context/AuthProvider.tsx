@@ -49,6 +49,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 			Request.refresh().then((response) => {
 				if (response.status === 200) {
 					setAuth({
+						// This should actually set the user but we're using GOOGLE-USER-REFRESH for now
+						// since nothing is being returned from the backend besides tokens.
 						user: "GOOGLE-USER-REFRESH" || "",
 						accessToken: authToken || "",
 					})
@@ -60,13 +62,14 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 					navigate("/")
 				}
 			})
-		} else if (persist &&!refreshToken) {
+		} else if (persist && !refreshToken) {
 			localStorage.removeItem("user")
 			localStorage.removeItem("accessToken")
 			localStorage.removeItem("refreshToken")
 			localStorage.setItem("persistUser", "false")
 			navigate("/")
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (

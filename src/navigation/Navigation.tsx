@@ -1,4 +1,4 @@
-import { Nav } from "react-bootstrap"
+import { Nav, Navbar } from "react-bootstrap"
 import useAuth from "../hooks/useAuth"
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
 
@@ -29,9 +29,9 @@ const Navigation = () => {
 	}
 
 	return (
-		<div className="top-nav p-2 d-flex flex-row justify-content-center align-items-center">
+		<Navbar className="top-nav p-2 d-flex flex-row justify-content-center align-items-center">
 			{links}
-		</div>
+		</Navbar>
 	)
 }
 
