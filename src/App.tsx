@@ -1,4 +1,4 @@
-import { useState, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import "./app.scss"
 
@@ -47,12 +47,12 @@ function App() {
 		UserLocationData[] | undefined
 	>(undefined)
 
-	// useEffect(() => {
-	// 	if (persist) {
-	// 		hydrateUserData(auth?.accessToken, setUserInventoryData)
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [persist])
+	useEffect(() => {
+		if (persist) {
+			// hydrateUserData(auth?.accessToken, setUserInventoryData)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [persist])
 
 	return (
 		<UserInventoryDataContext.Provider
