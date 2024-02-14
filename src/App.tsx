@@ -42,7 +42,6 @@ export const UserInventoryDataContext =
 
 function App() {
 	const { auth, persist } = useAuth()
-	console.log(JSON.stringify(auth))
 
 	const [userInventoryData, setUserInventoryData] = useState<
 		UserLocationData[] | undefined

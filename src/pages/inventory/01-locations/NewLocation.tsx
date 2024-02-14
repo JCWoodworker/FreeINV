@@ -49,7 +49,6 @@ const NewLocation: React.FC = () => {
 			rooms: [],
 		})
 		setUserInventoryData(newUserInventory)
-		console.log(`Added new location: ${JSON.stringify(newLocation)}`)
 		navigate("/my-inventory")
 		return true
 	}
