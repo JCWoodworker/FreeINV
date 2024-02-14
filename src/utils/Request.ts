@@ -30,6 +30,13 @@ export class Request {
 			const response = await axios.get(fullUrl, { headers })
 			return response.data
 		} catch (error) {
+			const refreshToken = localStorage.getItem("refreshToken")
+			if (refreshToken) {
+				const response = await this.refresh(refreshToken)
+				if (response) {
+					return this.get(urlEndpoint, true, response.accessToken)
+				}
+			}
 			console.error("GET request error:", error)
 			throw error
 		}
@@ -68,9 +75,8 @@ export class Request {
 	// 	// Implement DELETE request logic using fetch
 	// }
 
-	static async refresh() {
+	static async refresh(refreshToken: string) {
 		const urlPrefix = await this.getBackendUrl()
-		const refreshToken = localStorage.getItem("refreshToken")
 		try {
 			const response = await axios.post(
 				`${urlPrefix}/authentication/refresh-tokens`,
@@ -82,7 +88,7 @@ export class Request {
 			)
 
 			if (response.status === 401) {
-				localStorage.removeItem("refreshToken")
+				localStorage.setItem("persist", "false")
 				console.log(
 					"401 Unauthorized, removing token from local storage - it can only be used once"
 				)
@@ -90,6 +96,7 @@ export class Request {
 			}
 
 			localStorage.setItem("refreshToken", response.data.refreshToken)
+			localStorage.setItem("accessToken", response.data.accessToken)
 			return response.data
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any

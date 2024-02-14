@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react"
-import { useNavigate } from "react-router"
-import { Request } from "../utils/Request"
+// import { useNavigate } from "react-router"
+// import { Request } from "../utils/Request"
 interface Props {
 	children: JSX.Element
 }
@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContext>({
 })
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 	const persistedData = localStorage.getItem("persistUser")
 	const initialPersistState = persistedData ? JSON.parse(persistedData) : false
 	const [auth, setAuth] = useState<AuthInterface>({
@@ -34,43 +34,29 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 	})
 	const [persist, setPersist] = useState(initialPersistState)
 
+	useEffect(() => {
+		localStorage.setItem("persistUser", JSON.stringify(persist))
+		if (!persist) {
+			localStorage.removeItem("user")
+			localStorage.removeItem("accessToken")
+			localStorage.removeItem("refreshToken")
+			setAuth({ user: "", accessToken: "" })
+		}
+	}, [persist])
+
+
 	const checkForPersistedUser = async (
 		user: string | null,
 		authToken: string | null,
 		refreshToken: string | null
 	) => {
-		if (user !== "" && authToken !== "") {
+		if (user && authToken && refreshToken) {
 			setAuth({ user: user || "", accessToken: authToken || "" })
+			return true
 		}
-		if (refreshToken) {
-			Request.refresh().then((response) => {
-				if (response.status === 200) {
-					setAuth({
-						// This should actually set the user but we're using GOOGLE-USER-REFRESH for now
-						// since nothing is being returned from the backend besides tokens.
-						user: "GOOGLE-USER-REFRESH" || "",
-						accessToken: authToken || "",
-					})
-				} else if (response.status === 401) {
-					localStorage.removeItem("user")
-					localStorage.removeItem("accessToken")
-					localStorage.removeItem("refreshToken")
-					localStorage.setItem("persistUser", "false")
-					navigate("/")
-				}
-			})
-		} else if (persist && !refreshToken) {
-			localStorage.removeItem("user")
-			localStorage.removeItem("accessToken")
-			localStorage.removeItem("refreshToken")
-			localStorage.setItem("persistUser", "false")
-			navigate("/")
-		}
+		return false
 	}
 
-	useEffect(() => {
-		localStorage.setItem("persistUser", JSON.stringify(persist))
-	}, [persist])
 
 	useEffect(() => {
 		const user = localStorage.getItem("user")

@@ -18,6 +18,7 @@ import UserHome from "./pages/users/UserHome.tsx"
 // import NewItem from "./pages/inventory/items/NewItem"
 
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
+import { hydrateUserData } from "./utils/hydrateUserData.ts"
 import useAuth from "./hooks/useAuth.tsx"
 
 interface UserInventoryDataContextInterface {
@@ -49,7 +50,7 @@ function App() {
 
 	useEffect(() => {
 		if (persist) {
-			// hydrateUserData(auth?.accessToken, setUserInventoryData)
+			hydrateUserData(auth?.accessToken, setUserInventoryData)
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [persist])
