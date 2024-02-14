@@ -82,8 +82,10 @@ function App() {
 									<LocationIndex userInventoryData={userInventoryData} />
 								}
 							/>
-							<Route path="locations/:id" element={<LocationShow />} />
-							<Route path="locations/new" element={<NewLocation />} />
+							<Route path="locations">
+								<Route path=":id" element={<LocationShow />} />
+								<Route path="new" element={<NewLocation />} />
+							</Route>
 							<Route path="rooms">
 								<Route path=":id" element={<RoomShow />} />
 								<Route path="new" element={<NewRoom />} />
