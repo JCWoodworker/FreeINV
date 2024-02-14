@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
-import { Request, GoogleOAuthDto } from "../../utils/Request"
+import { Request, GoogleOAuthDto } from "../../utils/requests/Request"
 import useAuth from "../../hooks/useAuth"
 
 interface Props {

@@ -1,4 +1,4 @@
-import { Request } from "./Request"
+import { Request } from "./requests/Request"
 import { UserLocationData } from "../pages/inventory/inventoryTypes"
 
 export const hydrateUserData = async (

@@ -6,7 +6,8 @@ import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import { Request, NewItemDto } from "../../../utils/Request"
+import { Request } from "../../../utils/requests/Request"
+import { NewItemDto } from "../../../utils/requests/types"
 import { Item } from "../inventoryTypes"
 
 import useAuth from "../../../hooks/useAuth"

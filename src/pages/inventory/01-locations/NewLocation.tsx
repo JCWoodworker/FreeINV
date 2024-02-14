@@ -1,7 +1,8 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { Request, NewLocationDto } from "../../../utils/Request.ts"
+import { Request } from "../../../utils/requests/Request.ts"
+import { NewLocationDto } from "../../../utils/requests/types.ts"
 import { UserInventoryDataContext } from "../../../App.tsx"
 
 import BackButton from "../../../components/BackButton.tsx"

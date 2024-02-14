@@ -6,8 +6,8 @@ import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import { Request, NewRoomDto } from "../../../utils/Request"
-
+import { Request } from "../../../utils/requests/Request"
+import { NewRoomDto } from "../../../utils/requests/types"
 import useAuth from "../../../hooks/useAuth"
 
 const NewRoom: React.FC = () => {
