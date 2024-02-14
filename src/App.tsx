@@ -9,13 +9,13 @@ import Logout from "./pages/auth/Logout.tsx"
 import NotFound from "./pages/not-found/NotFound.tsx"
 
 import UserHome from "./pages/users/UserHome.tsx"
-// import LocationIndex from "./pages/inventory/locations/LocationIndex"
-// import LocationShow from "./pages/inventory/locations/LocationShow"
-// import NewLocation from "./pages/inventory/locations/NewLocation"
-// import RoomShow from "./pages/inventory/rooms/RoomShow"
-// import NewRoom from "./pages/inventory/rooms/NewRoom"
-// import ItemShow from "./pages/inventory/items/ItemShow"
-// import NewItem from "./pages/inventory/items/NewItem"
+import LocationIndex from "./pages/inventory/01-locations/LocationIndex.tsx"
+import LocationShow from "./pages/inventory/01-locations/LocationShow"
+// import NewLocation from "./pages/inventory/01-locations/NewLocation.tsx"
+import RoomShow from "./pages/inventory/02-rooms/RoomShow"
+// import NewRoom from "./pages/inventory/02-rooms/NewRoom"
+import ItemShow from "./pages/inventory/03-items/ItemShow"
+// import NewItem from "./pages/inventory/03-items/NewItem"
 
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { hydrateUserData } from "./utils/hydrateUserData.ts"
@@ -75,7 +75,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<UserHome />} />
 						<Route path="/logout" element={<Logout />} />
-						{/* <Route path="/my-inventory">
+						<Route path="/my-inventory">
 							<Route
 								index
 								element={
@@ -83,16 +83,16 @@ function App() {
 								}
 							/>
 							<Route path="locations/:id" element={<LocationShow />} />
-							<Route path="locations/new" element={<NewLocation />} />
+							{/* <Route path="locations/new" element={<NewLocation />} /> */}
 						</Route>
 						<Route path="rooms">
 							<Route path=":id" element={<RoomShow />} />
-							<Route path="new" element={<NewRoom />} />
+							{/* <Route path="new" element={<NewRoom />} /> */}
 						</Route>
 						<Route path="items">
 							<Route path=":id" element={<ItemShow />} />
-							<Route path="new" element={<NewItem />} />
-						</Route> */}
+							{/* <Route path="new" element={<NewItem />} /> */}
+						</Route>
 					</Routes>
 				</>
 			)}
