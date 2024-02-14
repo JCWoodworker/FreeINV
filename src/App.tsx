@@ -11,11 +11,11 @@ import NotFound from "./pages/not-found/NotFound.tsx"
 import UserHome from "./pages/users/UserHome.tsx"
 import LocationIndex from "./pages/inventory/01-locations/LocationIndex.tsx"
 import LocationShow from "./pages/inventory/01-locations/LocationShow"
-// import NewLocation from "./pages/inventory/01-locations/NewLocation.tsx"
+import NewLocation from "./pages/inventory/01-locations/NewLocation.tsx"
 import RoomShow from "./pages/inventory/02-rooms/RoomShow"
-// import NewRoom from "./pages/inventory/02-rooms/NewRoom"
+import NewRoom from "./pages/inventory/02-rooms/NewRoom"
 import ItemShow from "./pages/inventory/03-items/ItemShow"
-// import NewItem from "./pages/inventory/03-items/NewItem"
+import NewItem from "./pages/inventory/03-items/NewItem"
 
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { hydrateUserData } from "./utils/hydrateUserData.ts"
@@ -83,15 +83,15 @@ function App() {
 								}
 							/>
 							<Route path="locations/:id" element={<LocationShow />} />
-							{/* <Route path="locations/new" element={<NewLocation />} /> */}
-						</Route>
-						<Route path="rooms">
-							<Route path=":id" element={<RoomShow />} />
-							{/* <Route path="new" element={<NewRoom />} /> */}
-						</Route>
-						<Route path="items">
-							<Route path=":id" element={<ItemShow />} />
-							{/* <Route path="new" element={<NewItem />} /> */}
+							<Route path="locations/new" element={<NewLocation />} />
+							<Route path="rooms">
+								<Route path=":id" element={<RoomShow />} />
+								<Route path="new" element={<NewRoom />} />
+							</Route>
+							<Route path="items">
+								<Route path=":id" element={<ItemShow />} />
+								<Route path="new" element={<NewItem />} />
+							</Route>
 						</Route>
 					</Routes>
 				</>

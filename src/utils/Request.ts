@@ -1,5 +1,25 @@
 import axios from "axios"
 
+export interface NewLocationDto {
+	name: string
+	description: string
+	type: string
+}
+
+export interface NewRoomDto {
+	name: string
+	description: string
+	type: string
+	locationId: number
+}
+
+export interface NewItemDto {
+	name: string
+	description: string
+	type: string
+	roomId: number
+}
+
 export interface SignUpAndLoginDto {
 	email: string
 	password: string
@@ -44,7 +64,13 @@ export class Request {
 
 	static async post(
 		urlEndpoint: string,
-		data: SignUpAndLoginDto | GoogleOAuthDto | FormData,
+		data:
+			| SignUpAndLoginDto
+			| GoogleOAuthDto
+			| NewLocationDto
+			| NewRoomDto
+			| NewItemDto
+			| FormData,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
