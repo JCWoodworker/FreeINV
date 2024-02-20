@@ -11,15 +11,15 @@ export const loggedOutLinks = [
 		icon: "🏠",
 	},
 	{
-		name: "Sign Up / Login",
+		name: "Sign Up",
+		path: "/signup",
+		icon: "👤",
+	},
+	{
+		name: "Login",
 		path: "/login",
 		icon: "👤",
 	},
-	// {
-	// 	name: "Sign Up",
-	// 	path: "/signup",
-	// 	icon: "👤",
-	// },
 ]
 
 export const loggedInLinks = [

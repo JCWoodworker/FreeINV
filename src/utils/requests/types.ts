@@ -18,11 +18,20 @@ export interface NewItemDto {
 	roomId: number
 }
 
-export interface SignUpAndLoginDto {
+export interface LoginDto {
 	email: string
 	password: string
 }
 
+export interface SignupDto {
+	email: string
+	password: string
+	subappId: string
+}
+
 export interface GoogleOAuthDto {
 	token: string
+	signUpOrIn: string
+	subappId?: string
+	subscriptionTier?: string
 }

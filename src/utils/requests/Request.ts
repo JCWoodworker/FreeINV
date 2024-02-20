@@ -1,6 +1,7 @@
 import axios from "axios"
 import {
-	SignUpAndLoginDto,
+	SignupDto,
+	LoginDto,
 	GoogleOAuthDto,
 	NewLocationDto,
 	NewRoomDto,
@@ -43,7 +44,8 @@ export class Request {
 	static async post(
 		urlEndpoint: string,
 		data:
-			| SignUpAndLoginDto
+			| SignupDto
+			| LoginDto
 			| GoogleOAuthDto
 			| NewLocationDto
 			| NewRoomDto

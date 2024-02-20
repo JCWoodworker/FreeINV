@@ -4,8 +4,8 @@ import "./app.scss"
 
 import Navigation from "./navigation/Navigation.tsx"
 import Home from "./pages/home/Home.tsx"
-import Login from "./pages/auth/Login.tsx"
 import Logout from "./pages/auth/Logout.tsx"
+import SignUp from "./pages/auth/SignUp.tsx"
 import NotFound from "./pages/not-found/NotFound.tsx"
 
 import UserHome from "./pages/users/UserHome.tsx"
@@ -20,6 +20,7 @@ import NewItem from "./pages/inventory/03-items/NewItem"
 import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { hydrateUserData } from "./utils/hydrateUserData.ts"
 import useAuth from "./hooks/useAuth.tsx"
+import Login from "./pages/auth/Login.tsx"
 
 interface UserInventoryDataContextInterface {
 	userInventoryData: UserLocationData[] | undefined
@@ -63,8 +64,8 @@ function App() {
 					<Navigation />
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/signup" element={<SignUp />} />
 						<Route path="/login" element={<Login />} />
-						{/* <Route path="/signup" element={<SignUp />} /> */}
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</>

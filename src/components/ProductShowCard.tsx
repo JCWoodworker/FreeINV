@@ -20,7 +20,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 
 	return (
 		<Link
-			to="/login"
+			to="/signup"
 			state={productSpec.tier}
 			className="product-show-card m-1 text-decoration-none d-flex flex-column justify-content-center align-items-center bg-dark rounded"
 		>

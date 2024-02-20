@@ -20,18 +20,18 @@ const AddImage: React.FC<Props> = ({
 	roomId = undefined,
 	itemId = undefined,
 }) => {
-	const [inventoryId, setInventoryId] = useState({} as InventoryId)
 	const [image, setImage] = useState<File | null>(null)
 
+	let inventoryId: InventoryId = {} as InventoryId
 	if (locationId) {
-		setInventoryId({
+		inventoryId = {
 			inventoryId: locationId.toString(),
 			inventoryType: "location",
-		})
+		}
 	} else if (roomId) {
-		setInventoryId({ inventoryId: roomId.toString(), inventoryType: "room" })
+		inventoryId = { inventoryId: roomId.toString(), inventoryType: "room" }
 	} else if (itemId) {
-		setInventoryId({ inventoryId: itemId.toString(), inventoryType: "item" })
+		inventoryId = { inventoryId: itemId.toString(), inventoryType: "item" }
 	}
 
 	const maxSize: number = 5 * 1024 * 1024
