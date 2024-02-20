@@ -48,3 +48,19 @@ a {
 	gap: 0.5rem;
 }
 
+.location-list,
+.room-list,
+.item-list {
+	text-align: center;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	justify-items: center;
+}
+
+.location-item,
+.room-item,
+.item-item {
+	height: 10rem;
+	width: 10rem;
+}

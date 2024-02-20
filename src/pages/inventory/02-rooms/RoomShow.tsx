@@ -31,22 +31,20 @@ const RoomShow: React.FC = () => {
 			<div className="room-show w-100 m-2 d-flex flex-column justify-content-center align-items-center">
 				<h1>{currentRoom?.name}</h1>
 				<p>{currentRoom?.description}</p>
-				<ListGroup className="m-2 w-100">
+				<ListGroup className="item-list">
 					{itemsList?.map((item) => (
 						<div
 							key={item.id}
-							className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
 						>
 							<Link
 								to={`/my-inventory/items/${item.id}`}
 								state={{ locationId, roomId: id, itemId: item.id }}
-								className="w-sm-100, w-50"
 							>
 								<ListGroup.Item
 									action
 									variant="light"
 									key={item.id}
-									className="m-1 rounded"
+									className="item-item m-1 rounded"
 								>
 									<strong>{item.name}</strong>
 								</ListGroup.Item>

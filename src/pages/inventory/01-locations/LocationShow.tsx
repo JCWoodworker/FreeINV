@@ -19,19 +19,15 @@ const LocationShow: React.FC = () => {
 		return <NotFound />
 	}
 
-
 	return (
 		<div className="w-100 d-flex flex-column justify-content-center align-items-center">
 			<div className="m-2 d-flex flex-column justify-content-center align-items-center">
 				<h1>{currentLocation?.name}</h1>
 				<p>{currentLocation?.description}</p>
 			</div>
-			<ListGroup className="m-2 w-100">
+			<ListGroup className="room-list">
 				{currentLocation?.rooms?.map((room) => (
-					<div
-						key={room.id}
-						className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
-					>
+					<div key={room.id}>
 						<Link
 							to={`/my-inventory/rooms/${room.id}`}
 							state={{
@@ -39,12 +35,12 @@ const LocationShow: React.FC = () => {
 								roomId: room.id,
 								locationName: currentLocation?.name,
 							}}
-							className="w-sm-100, w-50"
 						>
 							<ListGroup.Item
-								action variant="light"
+								action
+								variant="light"
 								key={room.id}
-								className="m-1 rounded"
+								className="room-item m-1 rounded"
 							>
 								<strong>{room.name}</strong>
 							</ListGroup.Item>

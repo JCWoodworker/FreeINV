@@ -26,11 +26,10 @@ const LocationIndex: React.FC<Props> = ({
 		<div className="location-index m-2 w-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
 			<h2>Locations:</h2>
-			<ListGroup className="m-2 w-100">
+			<ListGroup className="location-list">
 				{userInventoryData?.map((location) => (
 					<div
 						key={location.id}
-						className="w-100 d-flex flex-row justify-content-center align-items-center text-center"
 					>
 						<Link
 							to={`/my-inventory/locations/${location.id}`}
@@ -41,7 +40,7 @@ const LocationIndex: React.FC<Props> = ({
 								variant="light"
 								key={location.id}
 								eventKey={location.id.toString()}
-								className="m-1 rounded"
+								className="location-item m-1 rounded"
 							>
 								<strong>{location.name}</strong>
 							</ListGroup.Item>
