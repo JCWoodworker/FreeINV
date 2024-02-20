@@ -26,9 +26,6 @@ const LocationIndex: React.FC<Props> = ({
 	return (
 		<div className="location-index m-2 w-100 d-flex flex-column justify-content-center align-items-center">
 			<h1>My Inventory</h1>
-
-			<AddImage locationId={99}/>
-			
 			<h2>Locations:</h2>
 			<ListGroup className="m-2 w-100">
 				{userInventoryData?.map((location) => (
