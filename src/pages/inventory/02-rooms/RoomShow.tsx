@@ -33,9 +33,7 @@ const RoomShow: React.FC = () => {
 				<p>{currentRoom?.description}</p>
 				<ListGroup className="item-list">
 					{itemsList?.map((item) => (
-						<div
-							key={item.id}
-						>
+						<div key={item.id}>
 							<Link
 								to={`/my-inventory/items/${item.id}`}
 								state={{ locationId, roomId: id, itemId: item.id }}
