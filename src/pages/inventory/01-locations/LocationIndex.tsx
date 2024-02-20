@@ -23,7 +23,7 @@ const LocationIndex: React.FC<Props> = ({
 	})
 
 	return (
-		<div className="location-index m-2 w-100 d-flex flex-column justify-content-center align-items-center">
+		<div className="location-index">
 			<h1>My Inventory</h1>
 			<h2>Locations:</h2>
 			<ListGroup className="location-list">

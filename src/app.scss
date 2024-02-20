@@ -48,6 +48,13 @@ a {
 	gap: 0.5rem;
 }
 
+.location-index {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .location-list,
 .room-list,
 .item-list {
