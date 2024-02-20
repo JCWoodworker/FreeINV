@@ -6,7 +6,6 @@ import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserLocationData } from "../inventoryTypes"
 import useAuth from "../../../hooks/useAuth"
-import AddImage from "../../../components/AddImage"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
