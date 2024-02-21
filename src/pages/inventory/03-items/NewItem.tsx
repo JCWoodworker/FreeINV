@@ -39,7 +39,7 @@ const NewItem: React.FC = () => {
 		event.preventDefault()
 		const accessToken = auth?.accessToken
 		const newItem: Item = await Request.post(
-			"/subapps/freeinv/items",
+			"/items",
 			newItemData,
 			true,
 			accessToken

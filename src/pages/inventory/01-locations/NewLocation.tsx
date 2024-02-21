@@ -35,7 +35,7 @@ const NewLocation: React.FC = () => {
 		event.preventDefault()
 		const accessToken = auth?.accessToken
 		const newLocation = await Request.post(
-			"/subapps/freeinv/locations",
+			"/locations",
 			newLocationData,
 			true,
 			accessToken
