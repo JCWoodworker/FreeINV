@@ -5,12 +5,13 @@ import { Form } from "react-bootstrap"
 import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
+import useAuth from "../../../hooks/useAuth"
 import { UserInventoryDataContext } from "../../../App"
-import { Request } from "../../../utils/requests/Request"
-import { NewItemDto } from "../../../utils/requests/types"
 import { Item } from "../inventoryTypes"
 
-import useAuth from "../../../hooks/useAuth"
+import { Request } from "../../../utils/requests/Request"
+import { NewItemDto } from "../../../utils/requests/types"
+
 
 const NewItem: React.FC = () => {
 	const { auth } = useAuth()
