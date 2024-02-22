@@ -7,7 +7,7 @@ export const hydrateUserData = async (
 	setUserInventoryData: React.SetStateAction<any>
 ) => {
 	const response: UserLocationData[] = await Request.get(
-		"/all-user-data",
+		"/subapps/freeinv/all-user-data",
 		true,
 		accessToken
 	)
