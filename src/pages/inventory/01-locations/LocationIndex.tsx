@@ -34,7 +34,6 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 					</div>
 				))}
 			</ul>
-			<br />
 			<AddDeleteButton
 				buttonText="New Location"
 				buttonAction="add"
