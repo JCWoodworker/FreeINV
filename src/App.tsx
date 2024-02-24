@@ -26,6 +26,7 @@ import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { hydrateUserData } from "./utils/hydrateUserData.ts"
 import useAuth from "./hooks/useAuth.tsx"
 import Login from "./pages/auth/Login.tsx"
+import CustomThemeProvider from "./context/CustomThemeProvider.tsx"
 
 interface UserInventoryDataContextInterface {
 	userInventoryData: UserLocationData[] | undefined
@@ -64,45 +65,47 @@ function App() {
 		<UserInventoryDataContext.Provider
 			value={{ userInventoryData, setUserInventoryData }}
 		>
-			{!persist ? (
-				<>
-					<Navigation />
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/signup" element={<SignUp />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
-				</>
-			) : (
-				<>
-					<Navigation />
-					<Routes>
-						<Route path="/" element={<UserHome />} />
-						<Route path="/logout" element={<Logout />} />
-						<Route path="/my-inventory">
-							<Route
-								index
-								element={
-									<LocationIndex userInventoryData={userInventoryData} />
-								}
-							/>
-							<Route path="locations">
-								<Route path=":id" element={<LocationShow />} />
-								<Route path="new" element={<NewLocation />} />
+			<CustomThemeProvider>
+				{!persist ? (
+					<>
+						<Navigation />
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/signup" element={<SignUp />} />
+							<Route path="/login" element={<Login />} />
+							<Route path="*" element={<NotFound />} />
+						</Routes>
+					</>
+				) : (
+					<>
+						<Navigation />
+						<Routes>
+							<Route path="/" element={<UserHome />} />
+							<Route path="/logout" element={<Logout />} />
+							<Route path="/my-inventory">
+								<Route
+									index
+									element={
+										<LocationIndex userInventoryData={userInventoryData} />
+									}
+								/>
+								<Route path="locations">
+									<Route path=":id" element={<LocationShow />} />
+									<Route path="new" element={<NewLocation />} />
+								</Route>
+								<Route path="rooms">
+									<Route path=":id" element={<RoomShow />} />
+									<Route path="new" element={<NewRoom />} />
+								</Route>
+								<Route path="items">
+									<Route path=":id" element={<ItemShow />} />
+									<Route path="new" element={<NewItem />} />
+								</Route>
 							</Route>
-							<Route path="rooms">
-								<Route path=":id" element={<RoomShow />} />
-								<Route path="new" element={<NewRoom />} />
-							</Route>
-							<Route path="items">
-								<Route path=":id" element={<ItemShow />} />
-								<Route path="new" element={<NewItem />} />
-							</Route>
-						</Route>
-					</Routes>
-				</>
-			)}
+						</Routes>
+					</>
+				)}
+			</CustomThemeProvider>
 		</UserInventoryDataContext.Provider>
 	)
 }
