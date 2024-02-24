@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { ProductSpec } from "./productSpecs"
-import { Card } from "@mui/material"
+import { Card, Typography } from "@mui/material"
 
 interface Props {
 	productSpec: ProductSpec
@@ -28,7 +28,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 			}}
 		>
 			<Link to="/signup" state={productSpec.tier}>
-				<h2>{productSpec.title}</h2>
+				<Typography variant="h5">{productSpec.title}</Typography>
 				<ul>
 					<li>
 						{`${sentencePrefix} `}
