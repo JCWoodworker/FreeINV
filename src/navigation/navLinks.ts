@@ -6,11 +6,6 @@ export interface NavLink {
 
 export const loggedOutLinks = [
 	{
-		name: "Home",
-		path: "/",
-		icon: "🏠",
-	},
-	{
 		name: "Sign Up",
 		path: "/signup",
 		icon: "👤",
@@ -23,11 +18,6 @@ export const loggedOutLinks = [
 ]
 
 export const loggedInLinks = [
-	{
-		name: "Home",
-		path: "/",
-		icon: "🏠",
-	},
 	{
 		name: "My Inventory",
 		path: "/my-inventory",
