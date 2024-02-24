@@ -1,7 +1,7 @@
 import { Switch } from "@mui/material"
 import useTheme from "../hooks/useTheme"
 
-const DayNightSwitch = () => {
+const DarkModeSwitch = () => {
 	const { darkMode, setDarkMode } = useTheme()
 
 	const handleSwitchChange = () => {
@@ -11,11 +11,9 @@ const DayNightSwitch = () => {
 
 	return (
 		<>
-			🌞
-			<Switch onChange={handleSwitchChange} checked={darkMode} id="dark-mode-switch"/>
-			🌚
+			☀️<Switch onChange={handleSwitchChange} checked={darkMode} id="dark-mode-switch"/>🌙
 		</>
 	)
 }
 
-export default DayNightSwitch
+export default DarkModeSwitch

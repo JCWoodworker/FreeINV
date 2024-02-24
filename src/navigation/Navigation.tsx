@@ -12,7 +12,7 @@ import {
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
 import useAuth from "../hooks/useAuth"
 
-import DayNightSwitch from "../components/DayNightSwitch"
+import DayNightSwitch from "../components/DarkModeSwitch"
 
 const Navigation = () => {
 	const { persist } = useAuth()
