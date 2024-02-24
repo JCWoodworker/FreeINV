@@ -28,12 +28,9 @@ const SignUpManual: React.FC<Props> = ({ subscriptionTier }) => {
 	}
 
 	return (
-		<div className="google-oauth mt-2 p-2 d-flex flex-column justify-content-center align-items-center gap-4">
+		<div>
 			<h1>Signup</h1>
-			<form
-				className="w-100 d-flex flex-column justify-content-center align-item-center"
-				onSubmit={onSubmit}
-			>
+			<form onSubmit={onSubmit}>
 				<label>
 					email-
 					<input

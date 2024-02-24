@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { ProductSpec } from "../pages/home/productSpecs"
-import { ListGroup } from "react-bootstrap"
 
 interface Props {
 	productSpec: ProductSpec
@@ -13,35 +12,32 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 
 	let monthlyFee
 	productSpec.monthlyFees > 0
-		? (monthlyFee = (
-				<ListGroup.Item>{`$${productSpec.monthlyFees} per month`}</ListGroup.Item>
-		))
+		? (monthlyFee = <li>{`$${productSpec.monthlyFees} per month`}</li>)
 		: (monthlyFee = null)
 
 	return (
 		<Link
 			to="/signup"
 			state={productSpec.tier}
-			className="product-show-card m-1 text-decoration-none d-flex flex-column justify-content-center align-items-center bg-dark rounded"
 		>
 			<h2>{productSpec.title}</h2>
-			<ListGroup variant="flush" className="w-100 rounded-bottom">
-				<ListGroup.Item>
+			<ul>
+				<li>
 					{`${sentencePrefix} `}
 					<strong>{productSpec.allowedLocations}</strong> locations
-				</ListGroup.Item>
-				<ListGroup.Item>
+				</li>
+				<li>
 					{`${sentencePrefix} `}
 					<strong>{productSpec.allowedRoomsPerLocation}</strong> rooms per
 					location
-				</ListGroup.Item>
-				<ListGroup.Item>
+				</li>
+				<li>
 					{`${sentencePrefix} `}
 					<strong>{productSpec.allowedItemsPerRoom}</strong> items per room
-				</ListGroup.Item>
+				</li>
 				{monthlyFee}
-				<ListGroup.Item>{`Must opt in to receive ${productSpec.emailFrequency} blog emails with affiliate links`}</ListGroup.Item>
-			</ListGroup>
+				<li>{`Must opt in to receive ${productSpec.emailFrequency} blog emails with affiliate links`}</li>
+			</ul>
 		</Link>
 	)
 }

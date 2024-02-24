@@ -1,31 +1,24 @@
 import { useNavigate } from "react-router"
-import { Button } from "react-bootstrap"
 import useAuth from "../../hooks/useAuth"
 
 const Logout = () => {
-  const navigate = useNavigate()
-  const { setAuth, setPersist } = useAuth()
-  const onClick = () => {
-    localStorage.removeItem("user")
-    localStorage.removeItem("accessToken")
-    localStorage.removeItem("refreshToken")
-    setAuth({ user: "", accessToken: "" })
-    setPersist(false)
-    navigate("/")
+	const navigate = useNavigate()
+	const { setAuth, setPersist } = useAuth()
+	const onClick = () => {
+		localStorage.removeItem("user")
+		localStorage.removeItem("accessToken")
+		localStorage.removeItem("refreshToken")
+		setAuth({ user: "", accessToken: "" })
+		setPersist(false)
+		navigate("/")
 	}
 
-
-  return (
-		<div className="google-oauth mt-2 p-2 d-flex flex-column justify-content-center align-items-center gap-4">
-      <h1>Logout</h1>
-      <Button
-				variant="primary"
-				onClick={() => onClick()}
-			>
-				Logout
-			</Button>
-    </div>
-  )
+	return (
+		<div>
+			<h1>Logout</h1>
+			<button onClick={() => onClick()}>Logout</button>
+		</div>
+	)
 }
 
 export default Logout

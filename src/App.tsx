@@ -1,3 +1,8 @@
+/*
+TODO: all "new" pages should open in a modal instead of their own page
+this will allow for better UX since the "back" button will work as expected
+*/
+
 import { useState, createContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import "./app.scss"

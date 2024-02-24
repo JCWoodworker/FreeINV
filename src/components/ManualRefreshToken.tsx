@@ -1,4 +1,3 @@
-// import { Button } from "react-bootstrap"
 // import { Request } from "../utils"
 // import useAuth from "../hooks/useAuth"
 
@@ -24,9 +23,9 @@
 // 	return (
 // 		<div>
 // 			<h1>Manual Refresh Token</h1>
-// 			<Button variant="primary" onClick={refresh}>
+// 			<button onClick={refresh}>
 // 				Refresh
-// 			</Button>
+// 			</button>
 // 		</div>
 // 	)
 // }

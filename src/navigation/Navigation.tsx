@@ -1,6 +1,6 @@
-import { Nav, Navbar } from "react-bootstrap"
 import useAuth from "../hooks/useAuth"
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
+import { Link } from "react-router-dom"
 
 const Navigation = () => {
 	const { persist } = useAuth()
@@ -9,30 +9,24 @@ const Navigation = () => {
 	if (persist) {
 		links = loggedInLinks.map((link) => {
 			return (
-				<Nav key={link.name}>
-					<Nav.Item>
-						<Nav.Link href={link.path}>{`${link.name} ${link.icon}`}</Nav.Link>
-					</Nav.Item>
-				</Nav>
+				<Link
+					to={link.path}
+					key={link.name}
+				>{`${link.name} ${link.icon}`}</Link>
 			)
 		})
 	} else {
 		links = loggedOutLinks.map((link) => {
 			return (
-				<Nav key={link.name}>
-					<Nav.Item>
-						<Nav.Link href={link.path}>{`${link.name} ${link.icon}`}</Nav.Link>
-					</Nav.Item>
-				</Nav>
+				<Link
+					to={link.path}
+					key={link.name}
+				>{`${link.name} ${link.icon}`}</Link>
 			)
 		})
 	}
 
-	return (
-		<Navbar className="top-nav p-2 d-flex flex-row justify-content-center align-items-center">
-			{links}
-		</Navbar>
-	)
+	return <nav>{links}</nav>
 }
 
 export default Navigation

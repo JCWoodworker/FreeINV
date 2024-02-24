@@ -5,8 +5,6 @@ import { Request } from "../../../utils/requests/Request.ts"
 import { NewLocationDto } from "../../../utils/requests/types.ts"
 import { UserInventoryDataContext } from "../../../App.tsx"
 
-import BackButton from "../../../components/BackButton.tsx"
-
 import useAuth from "../../../hooks/useAuth.tsx"
 
 const NewLocation: React.FC = () => {
@@ -54,12 +52,9 @@ const NewLocation: React.FC = () => {
 	}
 
 	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+		<div>
 			<h2>Add A New Location</h2>
-			<form
-				onSubmit={formSubmit}
-				className="d-flex m-2 flex-column justify-content-center align-items-center gap-2"
-			>
+			<form onSubmit={formSubmit}>
 				<input
 					type="text"
 					name="name"
@@ -75,7 +70,6 @@ const NewLocation: React.FC = () => {
 				/>
 				<input type="submit" value="Submit" />
 			</form>
-			<BackButton />
 		</div>
 	)
 }

@@ -1,16 +1,12 @@
 import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { Form } from "react-bootstrap"
-
-import BackButton from "../../../components/BackButton"
-import SubmitButton from "../../../components/SubmitButton"
-
-import { UserInventoryDataContext } from "../../../App"
-import { Request } from "../../../utils/requests/Request"
-import { NewItemDto } from "../../../utils/requests/types"
-import { Item } from "../inventoryTypes"
 
 import useAuth from "../../../hooks/useAuth"
+import { UserInventoryDataContext } from "../../../App"
+import { Item } from "../inventoryTypes"
+
+import { Request } from "../../../utils/requests/Request"
+import { NewItemDto } from "../../../utils/requests/types"
 
 const NewItem: React.FC = () => {
 	const { auth } = useAuth()
@@ -74,31 +70,26 @@ const NewItem: React.FC = () => {
 	}
 
 	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+		<div>
 			<h1>New item in {state.roomName}</h1>
-			<Form onSubmit={onSubmit}>
-				<Form.Group className="mb-3" controlId="formItemName">
-					<Form.Label>Item Name</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Enter Item Name"
-						name="name"
-						onChange={handleTextInputChange}
-						required={true}
-					/>
-				</Form.Group>
-				<Form.Group className="mb-3" controlId="formItemDescription">
-					<Form.Label>Item Description</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Enter Item Description"
-						name="description"
-						onChange={handleTextInputChange}
-					/>
-				</Form.Group>
-				<SubmitButton buttonText="Create Item" />
-			</Form>
-			<BackButton />
+			<form onSubmit={onSubmit}>
+				<label>Item Name</label>
+				<input
+					type="text"
+					placeholder="Enter Item Name"
+					name="name"
+					onChange={handleTextInputChange}
+					required={true}
+				/>
+				<label>Item Description</label>
+				<input
+					type="text"
+					placeholder="Enter Item Description"
+					name="description"
+					onChange={handleTextInputChange}
+				/>
+				<button type="submit">Submit</button>
+			</form>
 		</div>
 	)
 }
