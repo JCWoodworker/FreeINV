@@ -16,7 +16,7 @@ const ItemShow: React.FC = () => {
 
 
 	return (
-		<div className="w-100 m-2 d-flex flex-column justify-content-center align-items-center">
+		<div>
 			<h1>{currentItem?.name}</h1>
 			<p>{currentItem?.description}</p>
 			<BackButton />

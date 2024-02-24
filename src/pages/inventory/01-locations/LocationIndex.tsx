@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { ListGroup } from "react-bootstrap"
 
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
@@ -11,9 +10,7 @@ interface Props {
 	userInventoryData: UserLocationData[] | undefined
 }
 
-const LocationIndex: React.FC<Props> = ({
-	userInventoryData,
-}) => {
+const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	const { persist } = useAuth()
 	const navigate = useNavigate()
 	useEffect(() => {
@@ -23,31 +20,20 @@ const LocationIndex: React.FC<Props> = ({
 	})
 
 	return (
-		<div className="location-index">
+		<div>
 			<h1>My Inventory</h1>
 			<h2>Locations:</h2>
-			<ListGroup className="location-list">
+			<ul>
 				{userInventoryData?.map((location) => (
-					<div
-						key={location.id}
-					>
-						<Link
-							to={`/my-inventory/locations/${location.id}`}
-							className="w-sm-100, w-50"
-						>
-							<ListGroup.Item
-								action
-								variant="light"
-								key={location.id}
-								eventKey={location.id.toString()}
-								className="location-item m-1 rounded"
-							>
+					<div key={location.id}>
+						<Link to={`/my-inventory/locations/${location.id}`}>
+							<li key={location.id}>
 								<strong>{location.name}</strong>
-							</ListGroup.Item>
+							</li>
 						</Link>
 					</div>
 				))}
-			</ListGroup>
+			</ul>
 			<br />
 			<AddDeleteButton
 				buttonText="New Location"

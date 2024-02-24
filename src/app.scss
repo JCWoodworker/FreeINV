@@ -39,36 +39,3 @@ a {
 		color: white;
 	}
 }
-
-.signup-form {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	align-items: center;
-	justify-items: center;
-	gap: 0.5rem;
-}
-
-.location-index {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.location-list,
-.room-list,
-.item-list {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	place-items: center;
-	place-content: center;
-
-}
-
-.location-item,
-.room-item,
-.item-item {
-	height: 10rem;
-	width: 10rem;
-}
-

@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
 interface Props {
@@ -21,10 +20,6 @@ const AddDeleteButton: React.FC<Props> = ({
 	roomId,
 }) => {
 	const navigate = useNavigate()
-	let iconClassName
-	buttonAction.toLowerCase() === "add"
-		? (iconClassName = "bi-plus-circle-fill")
-		: (iconClassName = "bi-dash-circle-fill")
 
 	const buttonClickHandler = () => {
 		linkTo
@@ -34,19 +29,17 @@ const AddDeleteButton: React.FC<Props> = ({
 				? navigate(linkTo, { state: { locationId, roomId, roomName } })
 				: navigate(linkTo)
 			: null
-		buttonAction.toLowerCase() === "delete" ? alert("Feature coming soon!") : null
+		buttonAction.toLowerCase() === "delete"
+			? alert("Feature coming soon!")
+			: null
 	}
 
 	return (
-		<Button
-			className={`add-delete-button mt-3 d-flex flex-row align-items-center justify-content-center gap-2 ${
-				buttonAction.toLowerCase() === "add" ? "btn-success" : "btn-danger"
-			}`}
+		<button
 			onClick={buttonClickHandler}
 		>
-			<i className={`bi ${iconClassName}`}></i>
 			{buttonText}
-		</Button>
+		</button>
 	)
 }
 

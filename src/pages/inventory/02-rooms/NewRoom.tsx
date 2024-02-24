@@ -1,8 +1,6 @@
 import { useState, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import { Form } from "react-bootstrap"
 
-import BackButton from "../../../components/BackButton"
 import SubmitButton from "../../../components/SubmitButton"
 
 import { UserInventoryDataContext } from "../../../App"
@@ -63,31 +61,26 @@ const NewRoom: React.FC = () => {
 	}
 
 	return (
-		<div className="m-2 d-flex flex-column justify-content-center align-items-center">
+		<div>
 			<h1>New room in {state.locationName}</h1>
-			<Form onSubmit={onSubmit}>
-				<Form.Group className="mb-3" controlId="formRoomName">
-					<Form.Label>Room Name</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Enter Room Name"
-						name="name"
-						onChange={handleTextInputChange}
-						required={true}
-					/>
-				</Form.Group>
-				<Form.Group className="mb-3" controlId="formRoomDescription">
-					<Form.Label>Room Description</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Enter Room Description"
-						name="description"
-						onChange={handleTextInputChange}
-					/>
-				</Form.Group>
+			<form onSubmit={onSubmit}>
+				<label>Room Name</label>
+				<input
+					type="text"
+					placeholder="Enter Room Name"
+					name="name"
+					onChange={handleTextInputChange}
+					required={true}
+				/>
+				<label>Room Description</label>
+				<input
+					type="text"
+					placeholder="Enter Room Description"
+					name="description"
+					onChange={handleTextInputChange}
+				/>
 				<SubmitButton buttonText="Create Room" />
-			</Form>
-			<BackButton />
+			</form>
 		</div>
 	)
 }
