@@ -1,13 +1,11 @@
 import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useParams } from "react-router-dom"
-import { ListGroup } from "react-bootstrap"
 
 import NotFound from "../../not-found/NotFound"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import BackButton from "../../../components/BackButton"
 
 const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
@@ -28,29 +26,24 @@ const RoomShow: React.FC = () => {
 
 	return (
 		<>
-			<div className="room-show w-100 m-2 d-flex flex-column justify-content-center align-items-center">
+			<div>
 				<h1>{currentRoom?.name}</h1>
 				<p>{currentRoom?.description}</p>
-				<ListGroup className="item-list">
+				<ul>
 					{itemsList?.map((item) => (
 						<div key={item.id}>
 							<Link
 								to={`/my-inventory/items/${item.id}`}
 								state={{ locationId, roomId: id, itemId: item.id }}
 							>
-								<ListGroup.Item
-									action
-									variant="light"
-									key={item.id}
-									className="item-item m-1 rounded"
-								>
+								<li key={item.id}>
 									<strong>{item.name}</strong>
-								</ListGroup.Item>
+								</li>
 							</Link>
 						</div>
 					))}
-				</ListGroup>
-				<div className="m-2 d-flex flex-row flex-wrap justify-content-center align-items-center gap-2">
+				</ul>
+				<div>
 					<AddDeleteButton
 						buttonText="Add an Item"
 						buttonAction="add"
@@ -59,7 +52,6 @@ const RoomShow: React.FC = () => {
 						roomId={Number(id)}
 						roomName={currentRoom?.name}
 					/>
-					<BackButton />
 				</div>
 			</div>
 		</>

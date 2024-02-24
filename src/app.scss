@@ -2,73 +2,11 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 #root {
-	margin: 0;
-	padding: 0;
 	height: 100vh;
 	width: 100vw;
 	text-align: center;
 }
-
-html {
-	scroll-behavior: smooth;
-}
-
-body {
-	margin: 0 auto;
-	// background-color: rgb(176, 180, 255);
-	background-color: rgb(65, 65, 65);
-	color: white;
-}
-
-h1,
-h2,
-h3 {
-	margin: 1rem;
-}
-
-a {
-	text-decoration: none;
-	color: white;
-	&:hover {
-		color: rgb(160, 255, 244);
-	}
-	&:visited {
-		color: white;
-	}
-}
-
-.signup-form {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	align-items: center;
-	justify-items: center;
-	gap: 0.5rem;
-}
-
-.location-index {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.location-list,
-.room-list,
-.item-list {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	place-items: center;
-	place-content: center;
-
-}
-
-.location-item,
-.room-item,
-.item-item {
-	height: 10rem;
-	width: 10rem;
-}
-

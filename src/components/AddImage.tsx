@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react"
 import { useDropzone, FileError } from "react-dropzone"
 import { Request } from "../utils/requests/Request"
-import { Button, Image } from "react-bootstrap"
 import AddDeleteButton from "./AddDeleteButton"
 
 interface Props {
@@ -77,7 +76,7 @@ const AddImage: React.FC<Props> = ({
 	}
 
 	return (
-		<div className="image-upload-component m-2 p-2 d-flex flex-column justify-content-center align-items-center">
+		<div>
 			<div {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
@@ -85,7 +84,7 @@ const AddImage: React.FC<Props> = ({
 				) : image ? (
 					<></>
 				) : (
-					<div className="d-flex flex-column justify-content-center align-items-center gap-2">
+					<div>
 						<AddDeleteButton buttonText="Upload Image" buttonAction="Add" />
 						<em>
 							Only .png, .jpeg, .jpg, .webp files under 5MB will be accepted
@@ -93,20 +92,19 @@ const AddImage: React.FC<Props> = ({
 					</div>
 				)}
 			</div>
-			<div className="d-flex flex-column justify-content-center align-items-center gap-2">
+			<div>
 				{image && (
 					<>
-						<Image
-							src={`${URL.createObjectURL(image)}`}
-							alt=""
+						<image
+							href={`${URL.createObjectURL(image)}`}
 							style={{ width: "200px", height: "auto" }}
 						/>
 						<p>Image loaded</p>
 					</>
 				)}
-				<div className="d-flex flex-row justify-content-center align-items-center gap-2">
-					{image && <Button onClick={() => onUpload(image)}>Upload</Button>}
-					{image && <Button onClick={() => setImage(null)}>Cancel</Button>}
+				<div>
+					{image && <button onClick={() => onUpload(image)}>Upload</button>}
+					{image && <button onClick={() => setImage(null)}>Cancel</button>}
 				</div>
 			</div>
 		</div>
