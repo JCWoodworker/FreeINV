@@ -1,14 +1,19 @@
 import ProductShowCard from "./ProductShowCard"
 import { productList } from "./productSpecs"
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 const Home = () => {
 	return (
-		<div>
-			<h1>Welcome to Free INV!</h1>
-			<p>Your FREE inventory management application</p>
-			<p>{`Tap any subscription below to sign up -->`}</p>
+		<>
+			<Box sx={{ textAlign: "center", mt: 1, p: 2 }}>
+				<Typography variant="h2">
+					Welcome to <strong>My Free INV!</strong>
+				</Typography>
+				<p>Your FREE inventory management application</p>
+				<p>{`Tap any subscription below to sign up -->`}</p>
+			</Box>
 			<Box
 				sx={{
+					mt: 2,
 					display: "flex",
 					flexWrap: "wrap",
 					alignItems: "center",
@@ -20,7 +25,7 @@ const Home = () => {
 					<ProductShowCard key={product.title} productSpec={product} />
 				))}
 			</Box>
-		</div>
+		</>
 	)
 }
 
