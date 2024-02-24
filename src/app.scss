@@ -2,40 +2,11 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
-
-#root {
-	margin: 0;
-	padding: 0;
-	height: 100vh;
-	width: 100vw;
-	text-align: center;
-}
-
-html {
 	scroll-behavior: smooth;
 }
 
-body {
-	margin: 0 auto;
-	// background-color: rgb(176, 180, 255);
-	background-color: rgb(65, 65, 65);
-	color: white;
-}
-
-h1,
-h2,
-h3 {
-	margin: 1rem;
-}
-
-a {
-	text-decoration: none;
-	color: white;
-	&:hover {
-		color: rgb(160, 255, 244);
-	}
-	&:visited {
-		color: white;
-	}
+#root {
+	height: 100vh;
+	width: 100vw;
+	text-align: center;
 }
