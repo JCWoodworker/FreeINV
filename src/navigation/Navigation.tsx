@@ -1,7 +1,5 @@
 import { useState } from "react"
-import { loggedInLinks, loggedOutLinks } from "./navLinks"
 import { Link } from "react-router-dom"
-import useAuth from "../hooks/useAuth"
 import MenuIcon from "@mui/icons-material/Menu"
 import {
 	AppBar,
@@ -9,8 +7,12 @@ import {
 	IconButton,
 	Typography,
 	Menu,
-	MenuItem,
+	MenuItem
 } from "@mui/material"
+import { loggedInLinks, loggedOutLinks } from "./navLinks"
+import useAuth from "../hooks/useAuth"
+
+import DayNightSwitch from "../components/DayNightSwitch"
 
 const Navigation = () => {
 	const { persist } = useAuth()
@@ -35,6 +37,7 @@ const Navigation = () => {
 				</Link>
 
 				<div>
+					<DayNightSwitch />
 					<IconButton
 						size="large"
 						aria-label="account of current user"
