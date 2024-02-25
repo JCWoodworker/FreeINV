@@ -42,6 +42,7 @@ export const UserInventoryDataContext =
 				description: "Test location",
 				type: "location",
 				rooms: [],
+				image_url: ""
 			},
 		],
 		setUserInventoryData: () => {},

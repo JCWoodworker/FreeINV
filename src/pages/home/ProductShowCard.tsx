@@ -23,7 +23,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 				display: "flex",
 				placeItems: "center",
 				width: 350,
-				height: 200,
+				height: 220,
 				padding: 2,
 			}}
 		>
@@ -44,6 +44,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 						<strong>{productSpec.allowedItemsPerRoom}</strong> items per room
 					</li>
 					{monthlyFee}
+					<br />
 					<li>{`Must opt in to receive ${productSpec.emailFrequency} blog emails with affiliate links`}</li>
 				</ul>
 			</Link>

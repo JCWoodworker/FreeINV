@@ -4,6 +4,7 @@ export interface UserLocationData {
 	description: string
 	type: "location"
 	rooms: Room[]
+	image_url: string
 }
 
 export interface Room {
@@ -13,6 +14,7 @@ export interface Room {
 	type: "room"
 	locationId: number
 	items: Item[]
+	image_url: string
 }
 
 export interface Item {
@@ -21,5 +23,6 @@ export interface Item {
 	description: string
 	type: "item"
 	roomId: number
+	image_url: string
 }
 
