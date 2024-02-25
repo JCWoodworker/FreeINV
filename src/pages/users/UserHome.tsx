@@ -6,7 +6,6 @@ import InventoryPageBox from "../../layouts/InventoryPageBox"
 
 const UserHome: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
-	console.log("refreshed home page")
 
 	return (
 		<InventoryPageBox>
