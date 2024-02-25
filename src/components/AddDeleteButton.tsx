@@ -33,7 +33,7 @@ const AddDeleteButton: React.FC<Props> = ({
 			: null
 		if (buttonAction.toLowerCase() === "delete") {
 			const response = await Request.delete(`/subapps/freeinv/locations/`, "accesstoken")
-			//need to get access tokena dn pass in location id a query param
+			//need to get access tokena dn pass in location/room/item id a query param
 		}
 	}
 
