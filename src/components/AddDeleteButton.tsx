@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "@mui/material"
+import { Request } from "../utils/requests/Request"
 
 interface Props {
 	buttonText: string
@@ -22,7 +23,7 @@ const AddDeleteButton: React.FC<Props> = ({
 }) => {
 	const navigate = useNavigate()
 
-	const buttonClickHandler = () => {
+	const buttonClickHandler = async () => {
 		linkTo
 			? linkTo === "/my-inventory/rooms/new"
 				? navigate(linkTo, { state: { locationId, locationName } })
@@ -30,17 +31,14 @@ const AddDeleteButton: React.FC<Props> = ({
 				? navigate(linkTo, { state: { locationId, roomId, roomName } })
 				: navigate(linkTo)
 			: null
-		buttonAction.toLowerCase() === "delete"
-			? alert("Feature coming soon!")
-			: null
+		if (buttonAction.toLowerCase() === "delete") {
+			const response = await Request.delete(`/subapps/freeinv/locations/`, "accesstoken")
+			//need to get access tokena dn pass in location id a query param
+		}
 	}
 
 	return (
-		<Button
-			variant="contained"
-			onClick={buttonClickHandler}
-			sx={{ m: 1 }}
-		>
+		<Button variant="contained" onClick={buttonClickHandler} sx={{ m: 1 }}>
 			{buttonText}
 		</Button>
 	)

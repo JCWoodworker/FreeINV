@@ -77,9 +77,23 @@ export class Request {
 	// 	// Implement PATCH request logic using fetch
 	// }
 
-	// static async delete(url: string, options?: any): Promise<any> {
-	// 	// Implement DELETE request logic using fetch
-	// }
+	static async delete(
+		urlEndpoint: string,
+		accessToken: string
+	): Promise<unknown> {
+		const urlPrefix = await this.getBackendUrl()
+		const fullUrl = `${urlPrefix}${urlEndpoint}`
+		const headers = { Authorization: `Bearer ${accessToken}` }
+		try {
+			debugger
+			const response = await axios.delete(fullUrl, { headers })
+			debugger
+			return response.data
+		} catch (error) {
+			console.error("DELETE request error:", error)
+			throw error
+		}
+	}
 
 	static async refresh(refreshToken: string) {
 		const urlPrefix = await this.getBackendUrl()
