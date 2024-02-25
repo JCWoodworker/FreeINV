@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react"
+import { Box, Card } from "@mui/material"
 import { useDropzone, FileError } from "react-dropzone"
 import { Request } from "../utils/requests/Request"
 import AddDeleteButton from "./AddDeleteButton"
@@ -76,7 +77,7 @@ const AddImage: React.FC<Props> = ({
 	}
 
 	return (
-		<div>
+		<Box sx={{ mt: 2}}>
 			<div {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
@@ -84,19 +85,28 @@ const AddImage: React.FC<Props> = ({
 				) : image ? (
 					<></>
 				) : (
-					<div>
+					<Card
+						sx={{
+							p: 2,
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "center",
+							alignItems: "center",
+							width: 300,
+						}}
+					>
 						<AddDeleteButton buttonText="Upload Image" buttonAction="Add" />
 						<em>
 							Only .png, .jpeg, .jpg, .webp files under 5MB will be accepted
 						</em>
-					</div>
+					</Card>
 				)}
 			</div>
 			<div>
 				{image && (
 					<>
-						<image
-							href={`${URL.createObjectURL(image)}`}
+						<img
+							src={`${URL.createObjectURL(image)}`}
 							style={{ width: "200px", height: "auto" }}
 						/>
 						<p>Image loaded</p>
@@ -107,7 +117,7 @@ const AddImage: React.FC<Props> = ({
 					{image && <button onClick={() => setImage(null)}>Cancel</button>}
 				</div>
 			</div>
-		</div>
+		</Box>
 	)
 }
 

@@ -1,11 +1,17 @@
 import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useParams } from "react-router-dom"
+import { CardMedia, Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserInventoryDataContext } from "../../../App"
+import InventoryElementBox from "../../../layouts/InventoryElementBox"
+import InventoryElementCard from "../../../layouts/InventoryElementCard"
+import InventoryShowBox from "../../../layouts/InventoryPageBox"
+import AddImage from "../../../components/AddImage"
+import ShowHideComponent from "../../../components/ShowHideComponent"
 
 const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
@@ -26,23 +32,31 @@ const RoomShow: React.FC = () => {
 
 	return (
 		<>
-			<div>
-				<h1>{currentRoom?.name}</h1>
-				<p>{currentRoom?.description}</p>
-				<ul>
+			<InventoryShowBox>
+				<Typography variant="h3">{currentRoom?.name}</Typography>
+				<Typography variant="caption">{currentRoom?.description}</Typography>
+				<InventoryElementBox>
 					{itemsList?.map((item) => (
-						<div key={item.id}>
-							<Link
-								to={`/my-inventory/items/${item.id}`}
-								state={{ locationId, roomId: id, itemId: item.id }}
-							>
-								<li key={item.id}>
-									<strong>{item.name}</strong>
-								</li>
-							</Link>
-						</div>
+						<Link
+							key={item.id}
+							to={`/my-inventory/items/${item.id}`}
+							state={{ locationId, roomId: id, itemId: item.id }}
+						>
+							<InventoryElementCard>
+								<CardMedia
+									component="img"
+									height="150"
+									image={
+										item.image_url ||
+										"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
+									}
+									alt={item.name}
+								></CardMedia>
+								<strong>{item.name}</strong>
+							</InventoryElementCard>
+						</Link>
 					))}
-				</ul>
+				</InventoryElementBox>
 				<div>
 					<AddDeleteButton
 						buttonText="Add an Item"
@@ -53,7 +67,14 @@ const RoomShow: React.FC = () => {
 						roomName={currentRoom?.name}
 					/>
 				</div>
-			</div>
+				<ShowHideComponent
+				showMessage="Add/Update Image"
+				hideMessage="Cancel Adding Image"
+			>
+				<AddImage itemId={currentRoom?.id} />
+			</ShowHideComponent>
+
+			</InventoryShowBox>
 		</>
 	)
 }

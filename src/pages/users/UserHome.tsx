@@ -1,14 +1,15 @@
 import { useContext } from "react"
+import { Typography } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../App"
+import InventoryPageBox from "../../layouts/InventoryPageBox"
 
 const UserHome: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
-	console.log("refreshed home page")
 
 	return (
-		<div>
-			<h1>Welcome Back!</h1>
+		<InventoryPageBox>
+			<Typography variant="h3">Welcome Back!</Typography>
 			<p>You've got the following:</p>
 			<ul>
 				<li>
@@ -31,7 +32,7 @@ const UserHome: React.FC = () => {
 			<p>
 				Click "My Inventory" in the top navigation bar manage your inventory
 			</p>
-		</div>
+		</InventoryPageBox>
 	)
 }
 
