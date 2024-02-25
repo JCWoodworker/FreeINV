@@ -80,7 +80,7 @@ const AddImage: React.FC<Props> = ({
 
 	return (
 		<Box sx={{ mb: 1, display: "flex", justifyContent: "center" }}>
-			<div {...getRootProps()}>
+			<Box {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
 					<p>Drop the files here ...</p>
@@ -89,8 +89,8 @@ const AddImage: React.FC<Props> = ({
 				) : (
 						<Button variant="text">Add/Update {inventoryId.inventoryType} Image</Button>
 				)}
-			</div>
-			<div>
+			</Box>
+			<Box>
 				{image && (
 					<>
 						<img
@@ -100,7 +100,7 @@ const AddImage: React.FC<Props> = ({
 						<p>Image loaded</p>
 					</>
 				)}
-				<div>
+				<Box>
 					{image && (
 						<Button variant="text" onClick={() => onUpload(image)}>
 							Upload
@@ -111,8 +111,8 @@ const AddImage: React.FC<Props> = ({
 							Cancel
 						</Button>
 					)}
-				</div>
-			</div>
+				</Box>
+			</Box>
 		</Box>
 	)
 }

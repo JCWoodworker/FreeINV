@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import { Typography, CardMedia } from "@mui/material"
+import { Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 
@@ -43,15 +43,6 @@ const LocationShow: React.FC = () => {
 						}}
 					>
 						<InventoryElementCard key={room.id}>
-							<CardMedia
-								component="img"
-								height="150"
-								image={
-									room.image_url ||
-									"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
-								}
-								alt={room.name}
-							></CardMedia>
 							<strong>{room.name}</strong>
 						</InventoryElementCard>
 					</Link>

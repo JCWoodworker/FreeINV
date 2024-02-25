@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { CardMedia, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
@@ -31,15 +31,6 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				{userInventoryData?.map((location) => (
 					<Link to={`/my-inventory/locations/${location.id}`} key={location.id}>
 						<InventoryElementCard key={location.id}>
-							<CardMedia
-								component="img"
-								height="150"
-								image={
-									location.image_url ||
-									"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
-								}
-								alt={location.name}
-							></CardMedia>
 							<strong>{location.name}</strong>
 						</InventoryElementCard>
 					</Link>
