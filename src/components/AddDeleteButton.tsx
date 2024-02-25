@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { Button } from "@mui/material"
 
 interface Props {
 	buttonText: string
@@ -35,11 +36,13 @@ const AddDeleteButton: React.FC<Props> = ({
 	}
 
 	return (
-		<button
+		<Button
+			variant="contained"
 			onClick={buttonClickHandler}
+			sx={{ m: 1 }}
 		>
 			{buttonText}
-		</button>
+		</Button>
 	)
 }
 

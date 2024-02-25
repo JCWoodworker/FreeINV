@@ -11,7 +11,6 @@ import { UserInventoryDataContext } from "../../../App"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
 import AddImage from "../../../components/AddImage"
-import ShowHideComponent from "../../../components/ShowHideComponent"
 
 const LocationShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
@@ -30,6 +29,7 @@ const LocationShow: React.FC = () => {
 				<Typography variant="caption">
 					{currentLocation?.description}
 				</Typography>
+					<AddImage locationId={currentLocation?.id} />
 			</div>
 			<InventoryElementBox>
 				{currentLocation?.rooms?.map((room) => (
@@ -67,12 +67,6 @@ const LocationShow: React.FC = () => {
 				/>
 				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" />
 			</div>
-			<ShowHideComponent
-				showMessage="Add/Update Image"
-				hideMessage="Cancel Adding Image"
-			>
-				<AddImage locationId={currentLocation?.id} />
-			</ShowHideComponent>
 		</InventoryShowBox>
 	)
 }

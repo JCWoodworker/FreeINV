@@ -19,7 +19,7 @@ export const loggedOutLinks = [
 
 export const loggedInLinks = [
 	{
-		name: "My Inventory",
+		name: "My Locations",
 		path: "/my-inventory",
 		icon: "📦",
 	},

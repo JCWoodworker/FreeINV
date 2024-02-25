@@ -1,5 +1,6 @@
 import { useContext } from "react"
-import { Typography } from "@mui/material"
+import { Typography, Button } from "@mui/material"
+import { Link } from "react-router-dom"
 
 import { UserInventoryDataContext } from "../../App"
 import InventoryPageBox from "../../layouts/InventoryPageBox"
@@ -29,9 +30,9 @@ const UserHome: React.FC = () => {
 					{` `}Items
 				</li>
 			</ul>
-			<p>
-				Click "My Inventory" in the top navigation bar manage your inventory
-			</p>
+			<Link to="/my-inventory">
+				<Button variant="contained">View Locations</Button>
+			</Link>
 		</InventoryPageBox>
 	)
 }
