@@ -12,8 +12,6 @@ import {
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
 import useAuth from "../hooks/useAuth"
 
-import DayNightSwitch from "../components/DarkModeSwitch"
-
 const Navigation = () => {
 	const { persist } = useAuth()
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -37,7 +35,6 @@ const Navigation = () => {
 				</Link>
 
 				<div>
-					<DayNightSwitch />
 					<IconButton
 						size="large"
 						aria-label="account of current user"

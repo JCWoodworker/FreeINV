@@ -26,7 +26,9 @@ import { UserLocationData } from "./pages/inventory/inventoryTypes.ts"
 import { hydrateUserData } from "./utils/hydrateUserData.ts"
 import useAuth from "./hooks/useAuth.tsx"
 import Login from "./pages/auth/Login.tsx"
-import CustomThemeProvider from "./context/CustomThemeProvider.tsx"
+
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import CssBaseline from "@mui/material/CssBaseline"
 
 interface UserInventoryDataContextInterface {
 	userInventoryData: UserLocationData[] | undefined
@@ -42,11 +44,17 @@ export const UserInventoryDataContext =
 				description: "Test location",
 				type: "location",
 				rooms: [],
-				image_url: ""
+				image_url: "",
 			},
 		],
 		setUserInventoryData: () => {},
 	})
+
+const darkTheme = createTheme({
+	palette: {
+		mode: "dark",
+	},
+})
 
 function App() {
 	const { auth, persist } = useAuth()
@@ -66,7 +74,7 @@ function App() {
 		<UserInventoryDataContext.Provider
 			value={{ userInventoryData, setUserInventoryData }}
 		>
-			<CustomThemeProvider>
+			<ThemeProvider theme={darkTheme}>
 				{!persist ? (
 					<>
 						<Navigation />
@@ -106,7 +114,8 @@ function App() {
 						</Routes>
 					</>
 				)}
-			</CustomThemeProvider>
+				<CssBaseline />
+			</ThemeProvider>
 		</UserInventoryDataContext.Provider>
 	)
 }
