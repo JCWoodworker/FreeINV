@@ -68,7 +68,7 @@ const LocationShow: React.FC = () => {
 				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" />
 			</div>
 			<ShowHideComponent
-				showMessage="Add Image"
+				showMessage="Add/Update Image"
 				hideMessage="Cancel Adding Image"
 			>
 				<AddImage locationId={currentLocation?.id} />

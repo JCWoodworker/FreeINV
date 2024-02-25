@@ -4,6 +4,8 @@ import { Typography } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../../App"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
+import AddImage from "../../../components/AddImage"
+import ShowHideComponent from "../../../components/ShowHideComponent"
 
 const ItemShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
@@ -27,6 +29,12 @@ const ItemShow: React.FC = () => {
 				style={{ width: "300px", height: "auto" }}
 				alt={currentItem?.name}
 			/>
+			<ShowHideComponent
+				showMessage="Add/Update Image"
+				hideMessage="Cancel Adding Image"
+			>
+				<AddImage itemId={currentItem?.id} />
+			</ShowHideComponent>
 		</InventoryShowBox>
 	)
 }

@@ -10,6 +10,8 @@ import { UserInventoryDataContext } from "../../../App"
 import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
+import AddImage from "../../../components/AddImage"
+import ShowHideComponent from "../../../components/ShowHideComponent"
 
 const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
@@ -65,6 +67,13 @@ const RoomShow: React.FC = () => {
 						roomName={currentRoom?.name}
 					/>
 				</div>
+				<ShowHideComponent
+				showMessage="Add/Update Image"
+				hideMessage="Cancel Adding Image"
+			>
+				<AddImage itemId={currentRoom?.id} />
+			</ShowHideComponent>
+
 			</InventoryShowBox>
 		</>
 	)
