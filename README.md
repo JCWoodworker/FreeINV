@@ -2,17 +2,26 @@
 
 After much consideration I've come up with the basic business plan for this app.  This is definitely subject to change, but should provide a guideline for why things are the way they are.
 
+## Table of Contents
+[Business Plan](#business-plan)
+[CI/CD](#deployment)
+[TODOs](#todos)
+
+<a name="business-plan"></a>
+
 ## Business Plan - Strict rules for the app
 
 * This app SHOULD be the SIMPLIST inventory app in terms of UX ... PERIOD
   * Users will immediately see the overview of their inventory locations updon signing in, and will easily be able to navigate between locations, rooms, and the items in those rooms.
     * WE FAILED TO FOLLOW THIS ONE .. SEE [TODO](#todos) AND NOTES BELOW WITH INSTRUCTIONS
   * Users should also have the choice to view all locations, rooms, or items in one big, organized list, and these lists should be accessable via the navigation bar directing to the pages ```/locations```, ```/rooms``` and ```/items```
+    * AGAIN - SEE [TODO](#todos) FOR HOW WE PLAN TO IMPLEMENT THIS
   * Any page a user sees should be able to be identically reaccessable if the user copies and pasts the url into another tab, window, or browser, and should still pop up if the user has to first sign back in.
+    * NOT QUITE THERE YET ON THIS ONE
 
 * This app will make money in the following way
   * This app will remain 100% free of charge with NO visible ads and NO in-app purchases
-    * Save for a ONE-TIME purchase for the app to be 100% functional, unlimited data, and no affiliate blog emails
+    * Except when purchasing the unlimited tier with ONE-TIME purchase for the app to be 100% functional, unlimited data, and no affiliate blog emails
   * SUBSCRIPTION LEVEL 1:
     * Up to 1 location
     * Up to 2 rooms
@@ -51,12 +60,17 @@ After much consideration I've come up with the basic business plan for this app.
 
 * ANY analytical data collected will be from the user's actions in the web app, and we will never collect or track anything a user does outside Free INV.
 
-## Below are mostly notes for me until I write a proper readme
-  
+<a name="deployment"></a>
+
+## NOTES ABOUT CI/CD, NETLIFY, AND DEPLOYMENT
+
 * When using react-router-dom and deploying on netlify, be sure to create a file named ```_redirects``` in ```/public``` in the root of your project.
+* Pushing to branch ```preprod``` auto-deploys to ```https://myfreeinvpreprod.netlify.app/```
+* Pushing to branch ```main``` auto-deploys to ```https://myfreeinv.com/```
 
 <a name="todos"></a>
-## FEATURES TO ADD & TODOs
+
+## NEW FEATURES & TODOs
 
 * Users will be able to add meta tags to items in their inventory
 * Users will be able to add images to items in their inventory
