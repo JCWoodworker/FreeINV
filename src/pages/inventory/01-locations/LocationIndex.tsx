@@ -1,6 +1,6 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Typography } from "@mui/material"
+import { Typography, Card } from "@mui/material"
 
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
@@ -22,25 +22,70 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 			navigate("/")
 		}
 	})
+	const [orphanLocation, setOrphanLocation] = useState<UserLocationData>({
+		id: 0,
+		name: "",
+		description: "",
+		type: "location",
+		rooms: [],
+		image_url: "",
+		orphan_location: false,
+	})
+
+	useEffect(() => {
+		const findOrphanLocation = () => {
+			const orphan = userInventoryData?.find(
+				(location) => location.orphan_location
+			)
+			if (!orphan) return
+			setOrphanLocation(orphan)
+		}
+
+		findOrphanLocation()
+	}, [userInventoryData])
+
+	let showOrphanLocation = null
+	if (orphanLocation.id != 0) {
+		showOrphanLocation = (
+			<Link
+				to={`/my-inventory/locations/${orphanLocation.id}`}
+				key={orphanLocation.id}
+			>
+				<Card 
+				variant="outlined"
+				key={orphanLocation.id}
+				sx={{ m: 1, p: 1, display: "grid", placeItems: "center" }}
+				>
+					<strong>{orphanLocation.name}</strong>
+				</Card>
+			</Link>
+		)
+	}
 
 	return (
 		<InventoryPageBox>
 			<Typography variant="h2">My Inventory</Typography>
 			<Typography variant="h3">Locations:</Typography>
 			<InventoryElementBox>
-				{userInventoryData?.map((location) => (
-					<Link to={`/my-inventory/locations/${location.id}`} key={location.id}>
-						<InventoryElementCard key={location.id}>
-							<strong>{location.name}</strong>
-						</InventoryElementCard>
-					</Link>
-				))}
+				{userInventoryData
+					?.filter((location) => !location.orphan_location)
+					.map((location) => (
+						<Link
+							to={`/my-inventory/locations/${location.id}`}
+							key={location.id}
+						>
+							<InventoryElementCard key={location.id}>
+								<strong>{location.name}</strong>
+							</InventoryElementCard>
+						</Link>
+					))}
 			</InventoryElementBox>
 			<AddDeleteButton
 				buttonText="New Location"
 				buttonAction="add"
 				linkTo="/my-inventory/locations/new"
 			/>
+			{showOrphanLocation}
 		</InventoryPageBox>
 	)
 }

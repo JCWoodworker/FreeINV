@@ -45,6 +45,7 @@ export const UserInventoryDataContext =
 				type: "location",
 				rooms: [],
 				image_url: "",
+				orphan_location: false,
 			},
 		],
 		setUserInventoryData: () => {},
