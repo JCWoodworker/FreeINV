@@ -91,6 +91,9 @@ export class Request {
 		}
 		if (response.status === 200) {
 			console.log(response.data.message)
+			if (response.data.orphanRoom) {
+				return response.data
+			}
 			return true
 		}
 	}

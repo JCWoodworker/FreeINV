@@ -43,7 +43,7 @@ const RoomShow: React.FC = () => {
 							state={{ locationId, roomId: id, itemId: item.id }}
 						>
 							<InventoryElementCard>
-								<CardMedia
+								{/* <CardMedia
 									component="img"
 									height="150"
 									image={
@@ -51,7 +51,7 @@ const RoomShow: React.FC = () => {
 										"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
 									}
 									alt={item.name}
-								></CardMedia>
+								></CardMedia> */}
 								<strong>{item.name}</strong>
 							</InventoryElementCard>
 						</Link>

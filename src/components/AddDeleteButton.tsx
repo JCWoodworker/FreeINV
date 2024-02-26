@@ -55,8 +55,8 @@ const AddDeleteButton: React.FC<Props> = ({
 				auth.accessToken
 			)
 			navigate("/my-inventory")
-			const success = await response
-			if (!success) {
+			const data = await response
+			if (!data) {
 				console.log(`Failed to delete ${currentType}`)
 				return false
 			}
