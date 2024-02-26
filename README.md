@@ -2,6 +2,8 @@
 
 After much consideration I've come up with the basic business plan for this app.  This is definitely subject to change, but should provide a guideline for why things are the way they are.
 
+<a name="table-of-contents"></a>
+
 ## Table of Contents
 [Business Plan](#business-plan)
 [CI/CD](#deployment)
@@ -10,6 +12,7 @@ After much consideration I've come up with the basic business plan for this app.
 <a name="business-plan"></a>
 
 ## Business Plan - Strict rules for the app
+[Back To Table of Contents](#table-of-contents)
 
 * This app SHOULD be the SIMPLIST inventory app in terms of UX ... PERIOD
   * Users will immediately see the overview of their inventory locations updon signing in, and will easily be able to navigate between locations, rooms, and the items in those rooms.
@@ -63,6 +66,7 @@ After much consideration I've come up with the basic business plan for this app.
 <a name="deployment"></a>
 
 ## NOTES ABOUT CI/CD, NETLIFY, AND DEPLOYMENT
+[Back To Table of Contents](#table-of-contents)
 
 * When using react-router-dom and deploying on netlify, be sure to create a file named ```_redirects``` in ```/public``` in the root of your project.
 * Pushing to branch ```preprod``` auto-deploys to ```https://myfreeinvpreprod.netlify.app/```
@@ -71,6 +75,7 @@ After much consideration I've come up with the basic business plan for this app.
 <a name="todos"></a>
 
 ## NEW FEATURES & TODOs
+[Back To Table of Contents](#table-of-contents)
 
 * Users will be able to add meta tags to items in their inventory
 * Users will be able to add images to items in their inventory
