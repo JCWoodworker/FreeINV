@@ -56,26 +56,28 @@ After much consideration I've come up with the basic business plan for this app.
 
 ## BUGS, ISSUES, NOTES, etc
 
-* BUG - When signing up with google for the first time, the user is taken to the regular (signed out) home page instead of the logged in user page.  Signing out and back in fixes this.  The problem lies in how the app checks for a logged in user.  It expects "user" to be in localStorage, but when signing up with google we only set the access and refresh tokens to localStorage.  This same issues does not happen when creating a user account through the app's regular sign up option, since that actually returns and sets the user ID and email to "user" in localStorage upon signing up successfully.
-
 * I added two new functions in a ```utils``` folder:
-  * ```fetchUserProfile()```
-    * This will eventually be used in the app to fetch the user's data once the tokens are in localStorage.  We will want to stop adding any user info to localStorage on sign in, and instead fetch it once the user has successfully signed in and tokens have been recieved.  This will separate the receiving of the tokens and the user data so that we can fetch user data when other situations call for it that don't involve signing in or (especially) up.
-  * ```attemptRefreshToken()```
-    * I've not yet decided how to implement this yet, but it will be useful to throw into a function that returns a 401 response when sending authorization requests to the backend.
-  * Perhaps these should be custom React hooks?
 
-* Perhaps all fetch requests should either be a custom hook or a class with methods that can be called upon based on the necessities of the fetch?
+## FEATURES TO ADD & TODOs
 
-* I've added a LOT of styling that I wil ABSOLUTELY UNDO thanks to my constant changing of my mind.  I'm about ready to remove ALL styling from the app and starting over once I've got the main mechanics down ... but I haven't had any beer so I'm not as quick to the delete button tonight.
+* Users will be able to add meta tags to items in their inventory
+* Users will be able to add images to items in their inventory
+* Users can delete items
+* Users can edit items (name + description)
+* Users can easily move items to another room
+* Users can add new items from any screen and THEN select the room they belong in OR add a new room and/or location at that time
 
-* If the user copies the url and pasts it into a new tab, window, or browser, the following will need to happen:
-  * We need to check if there is already a valid user in localStorage
-  * We should do further verification by checking the refresh token and returning fresh tokens
-  * If they cannot be auto-verified this way, they will be redirected to sign in instead
-  * The user should still be redirected to the page that they ORIGINALLY intended to visit after a successful sign in.
-    * This is easily acheived by accessing state witin useNavigate(), and passing it the url that was originally intended to be visited while redirecting the user back to sign in, and adding a check if that state exists in the sign in functionality.
+* Users can delete rooms
+* Users can edit rooms (name + description)
 
-* Users will be able to tag their items and use a tag as a search term to retrieve a list of those items.
+* Users can delete locations - DONE
+* Users can edit locations (name + description)
+* When deleting a location and items are moved to the orphan location AND the orphan
+location did NOT exist before, it does not auto-populate without a refresh.  We need to
+check if the orphan location existed, then add it to userInventoryData context if not.
 
+* Do we just get rid of the user home page and go straight to locations index?
 
+* Add feature for cropping images as they are uploaded.  One, unchangeable square box that
+can be dragged around the image to capture the exact box that will be the final image.
+* We need better/custom image placeholders - [Placehold Image Generator Website]("https://placehold.co/")
