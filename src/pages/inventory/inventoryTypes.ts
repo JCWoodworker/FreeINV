@@ -5,6 +5,7 @@ export interface UserLocationData {
 	type: "location"
 	rooms: Room[]
 	image_url: string
+	orphan_location: boolean
 }
 
 export interface Room {

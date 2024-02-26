@@ -77,9 +77,26 @@ export class Request {
 	// 	// Implement PATCH request logic using fetch
 	// }
 
-	// static async delete(url: string, options?: any): Promise<any> {
-	// 	// Implement DELETE request logic using fetch
-	// }
+	static async delete(
+		urlEndpoint: string,
+		accessToken: string
+	): Promise<unknown> {
+		const urlPrefix = await this.getBackendUrl()
+		const fullUrl = `${urlPrefix}${urlEndpoint}`
+		const headers = { Authorization: `Bearer ${accessToken}` }
+		const response = await axios.delete(fullUrl, { headers })
+		if (response.status === 401 || response.status === 403) {
+			console.log(response.data.message)
+			return false
+		}
+		if (response.status === 200) {
+			console.log(response.data.message)
+			if (response.data.orphanRoom) {
+				return response.data
+			}
+			return true
+		}
+	}
 
 	static async refresh(refreshToken: string) {
 		const urlPrefix = await this.getBackendUrl()

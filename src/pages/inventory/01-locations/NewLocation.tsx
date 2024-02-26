@@ -58,6 +58,7 @@ const NewLocation: React.FC = () => {
 				<input
 					type="text"
 					name="name"
+					maxLength={30}			
 					onChange={handleTextInputChange}
 					placeholder="Name"
 					required={true}

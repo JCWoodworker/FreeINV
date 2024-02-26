@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useParams } from "react-router-dom"
-import { CardMedia, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 import AddDeleteButton from "../../../components/AddDeleteButton"
@@ -11,7 +11,6 @@ import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
 import AddImage from "../../../components/AddImage"
-import ShowHideComponent from "../../../components/ShowHideComponent"
 
 const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
@@ -35,6 +34,7 @@ const RoomShow: React.FC = () => {
 			<InventoryShowBox>
 				<Typography variant="h3">{currentRoom?.name}</Typography>
 				<Typography variant="caption">{currentRoom?.description}</Typography>
+				<AddImage roomId={currentRoom?.id} />
 				<InventoryElementBox>
 					{itemsList?.map((item) => (
 						<Link
@@ -43,7 +43,7 @@ const RoomShow: React.FC = () => {
 							state={{ locationId, roomId: id, itemId: item.id }}
 						>
 							<InventoryElementCard>
-								<CardMedia
+								{/* <CardMedia
 									component="img"
 									height="150"
 									image={
@@ -51,7 +51,7 @@ const RoomShow: React.FC = () => {
 										"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
 									}
 									alt={item.name}
-								></CardMedia>
+								></CardMedia> */}
 								<strong>{item.name}</strong>
 							</InventoryElementCard>
 						</Link>
@@ -67,13 +67,6 @@ const RoomShow: React.FC = () => {
 						roomName={currentRoom?.name}
 					/>
 				</div>
-				<ShowHideComponent
-				showMessage="Add/Update Image"
-				hideMessage="Cancel Adding Image"
-			>
-				<AddImage itemId={currentRoom?.id} />
-			</ShowHideComponent>
-
 			</InventoryShowBox>
 		</>
 	)

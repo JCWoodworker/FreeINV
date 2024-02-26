@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react"
-import { Box, Card } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import { useDropzone, FileError } from "react-dropzone"
 import { Request } from "../utils/requests/Request"
-import AddDeleteButton from "./AddDeleteButton"
+import useAuth from "../hooks/useAuth"
 
 interface Props {
 	locationId?: number | undefined
@@ -21,6 +21,7 @@ const AddImage: React.FC<Props> = ({
 	itemId = undefined,
 }) => {
 	const [image, setImage] = useState<File | null>(null)
+	const { auth } = useAuth()
 
 	let inventoryId: InventoryId = {} as InventoryId
 	if (locationId) {
@@ -66,7 +67,8 @@ const AddImage: React.FC<Props> = ({
 			const response = await Request.post(
 				"/subapps/image-upload",
 				formData,
-				true
+				true,
+				auth?.accessToken
 			)
 			const data = await response
 			alert(data.message)
@@ -77,32 +79,18 @@ const AddImage: React.FC<Props> = ({
 	}
 
 	return (
-		<Box sx={{ mt: 2}}>
-			<div {...getRootProps()}>
+		<Box sx={{ mb: 1, display: "flex", justifyContent: "center" }}>
+			<Box {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
 					<p>Drop the files here ...</p>
 				) : image ? (
 					<></>
 				) : (
-					<Card
-						sx={{
-							p: 2,
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-							width: 300,
-						}}
-					>
-						<AddDeleteButton buttonText="Upload Image" buttonAction="Add" />
-						<em>
-							Only .png, .jpeg, .jpg, .webp files under 5MB will be accepted
-						</em>
-					</Card>
+						<Button variant="text">Add/Update {inventoryId.inventoryType} Image</Button>
 				)}
-			</div>
-			<div>
+			</Box>
+			<Box>
 				{image && (
 					<>
 						<img
@@ -112,11 +100,19 @@ const AddImage: React.FC<Props> = ({
 						<p>Image loaded</p>
 					</>
 				)}
-				<div>
-					{image && <button onClick={() => onUpload(image)}>Upload</button>}
-					{image && <button onClick={() => setImage(null)}>Cancel</button>}
-				</div>
-			</div>
+				<Box>
+					{image && (
+						<Button variant="text" onClick={() => onUpload(image)}>
+							Upload
+						</Button>
+					)}
+					{image && (
+						<Button variant="text" onClick={() => setImage(null)}>
+							Cancel
+						</Button>
+					)}
+				</Box>
+			</Box>
 		</Box>
 	)
 }

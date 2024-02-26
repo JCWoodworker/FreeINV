@@ -5,7 +5,20 @@ interface Props {
 }
 
 const InventoryPageBox: React.FC<Props> = ({ children }) => {
-	return <Box sx={{ mt: 3 }}>{children}</Box>
+	return (
+		<Box
+			sx={{
+				mt: 2,
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "center",
+				alignItems: "center",
+				gap: 1,
+			}}
+		>
+			{children}
+		</Box>
+	)
 }
 
 export default InventoryPageBox

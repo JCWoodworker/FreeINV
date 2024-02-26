@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import { Typography, CardMedia } from "@mui/material"
+import { Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 
@@ -11,7 +11,6 @@ import { UserInventoryDataContext } from "../../../App"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
 import AddImage from "../../../components/AddImage"
-import ShowHideComponent from "../../../components/ShowHideComponent"
 
 const LocationShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
@@ -30,6 +29,7 @@ const LocationShow: React.FC = () => {
 				<Typography variant="caption">
 					{currentLocation?.description}
 				</Typography>
+					<AddImage locationId={currentLocation?.id} />
 			</div>
 			<InventoryElementBox>
 				{currentLocation?.rooms?.map((room) => (
@@ -43,15 +43,6 @@ const LocationShow: React.FC = () => {
 						}}
 					>
 						<InventoryElementCard key={room.id}>
-							<CardMedia
-								component="img"
-								height="150"
-								image={
-									room.image_url ||
-									"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
-								}
-								alt={room.name}
-							></CardMedia>
 							<strong>{room.name}</strong>
 						</InventoryElementCard>
 					</Link>
@@ -65,14 +56,8 @@ const LocationShow: React.FC = () => {
 					locationName={currentLocation?.name}
 					locationId={currentLocation?.id}
 				/>
-				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" />
+				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" locationId={currentLocation?.id}/>
 			</div>
-			<ShowHideComponent
-				showMessage="Add/Update Image"
-				hideMessage="Cancel Adding Image"
-			>
-				<AddImage locationId={currentLocation?.id} />
-			</ShowHideComponent>
 		</InventoryShowBox>
 	)
 }

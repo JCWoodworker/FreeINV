@@ -1,4 +1,9 @@
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { Button } from "@mui/material"
+import { Request } from "../utils/requests/Request"
+import useAuth from "../hooks/useAuth"
+import { UserInventoryDataContext } from "../App"
 
 interface Props {
 	buttonText: string
@@ -8,6 +13,7 @@ interface Props {
 	locationId?: number
 	roomName?: string
 	roomId?: number
+	itemId?: number
 }
 
 const AddDeleteButton: React.FC<Props> = ({
@@ -18,10 +24,24 @@ const AddDeleteButton: React.FC<Props> = ({
 	locationId,
 	roomName,
 	roomId,
+	itemId,
 }) => {
 	const navigate = useNavigate()
+	const { auth } = useAuth()
+	const { userInventoryData, setUserInventoryData } = useContext(
+		UserInventoryDataContext
+	)
 
-	const buttonClickHandler = () => {
+	const currentId = locationId || roomId || itemId || null
+	const currentType = locationId
+		? "locations"
+		: roomId
+		? "rooms"
+		: itemId
+		? "items"
+		: null
+
+	const buttonClickHandler = async () => {
 		linkTo
 			? linkTo === "/my-inventory/rooms/new"
 				? navigate(linkTo, { state: { locationId, locationName } })
@@ -29,17 +49,31 @@ const AddDeleteButton: React.FC<Props> = ({
 				? navigate(linkTo, { state: { locationId, roomId, roomName } })
 				: navigate(linkTo)
 			: null
-		buttonAction.toLowerCase() === "delete"
-			? alert("Feature coming soon!")
-			: null
+		if (buttonAction.toLowerCase() === "delete") {
+			const response = await Request.delete(
+				`/subapps/freeinv/${currentType}/${currentId}`,
+				auth.accessToken
+			)
+			navigate("/my-inventory")
+			const data = await response
+			if (!data) {
+				console.log(`Failed to delete ${currentType}`)
+				return false
+			}
+			if (currentType === "locations") {
+				const newUserInventoryData = userInventoryData?.filter(
+					(location) => location.id !== currentId
+				)
+				setUserInventoryData(newUserInventoryData)
+			}
+			return true
+		}
 	}
 
 	return (
-		<button
-			onClick={buttonClickHandler}
-		>
+		<Button variant="contained" onClick={buttonClickHandler} sx={{ m: 1 }}>
 			{buttonText}
-		</button>
+		</Button>
 	)
 }
 
