@@ -6,7 +6,7 @@ After much consideration I've come up with the basic business plan for this app.
 
 * This app SHOULD be the SIMPLIST inventory app in terms of UX ... PERIOD
   * Users will immediately see the overview of their inventory locations updon signing in, and will easily be able to navigate between locations, rooms, and the items in those rooms.
-    * WE FAILED TO FOLLOW THIS ONE .. SEE [TODO](#features-to-add--todos) AND NOTES BELOW WITH INSTRUCTIONS
+    * WE FAILED TO FOLLOW THIS ONE .. SEE [TODO](#todos) AND NOTES BELOW WITH INSTRUCTIONS
   * Users should also have the choice to view all locations, rooms, or items in one big, organized list, and these lists should be accessable via the navigation bar directing to the pages ```/locations```, ```/rooms``` and ```/items```
   * Any page a user sees should be able to be identically reaccessable if the user copies and pasts the url into another tab, window, or browser, and should still pop up if the user has to first sign back in.
 
@@ -55,6 +55,7 @@ After much consideration I've come up with the basic business plan for this app.
   
 * When using react-router-dom and deploying on netlify, be sure to create a file named ```_redirects``` in ```/public``` in the root of your project.
 
+<a name="todos"></a>
 ## FEATURES TO ADD & TODOs
 
 * Users will be able to add meta tags to items in their inventory
