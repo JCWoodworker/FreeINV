@@ -1,7 +1,9 @@
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@mui/material"
 import { Request } from "../utils/requests/Request"
 import useAuth from "../hooks/useAuth"
+import { UserInventoryDataContext } from "../App"
 
 interface Props {
 	buttonText: string
@@ -11,6 +13,7 @@ interface Props {
 	locationId?: number
 	roomName?: string
 	roomId?: number
+	itemId?: number
 }
 
 const AddDeleteButton: React.FC<Props> = ({
@@ -21,9 +24,22 @@ const AddDeleteButton: React.FC<Props> = ({
 	locationId,
 	roomName,
 	roomId,
+	itemId,
 }) => {
 	const navigate = useNavigate()
 	const { auth } = useAuth()
+	const { userInventoryData, setUserInventoryData } = useContext(
+		UserInventoryDataContext
+	)
+
+	const currentId = locationId || roomId || itemId || null
+	const currentType = locationId
+		? "locations"
+		: roomId
+		? "rooms"
+		: itemId
+		? "items"
+		: null
 
 	const buttonClickHandler = async () => {
 		linkTo
@@ -34,19 +50,23 @@ const AddDeleteButton: React.FC<Props> = ({
 				: navigate(linkTo)
 			: null
 		if (buttonAction.toLowerCase() === "delete") {
-			try {
-				await Request.delete(
-					`/subapps/freeinv/locations/${locationId}`,
-					auth.accessToken
-				)
-				// window.location.reload()
-				navigate("/my-inventory")
-				return true
-			} catch (error) {
-				console.log(`DELETE request error: ${error}`)
+			const response = await Request.delete(
+				`/subapps/freeinv/${currentType}/${currentId}`,
+				auth.accessToken
+			)
+			navigate("/my-inventory")
+			const success = await response
+			if (!success) {
+				console.log(`Failed to delete ${currentType}`)
 				return false
 			}
-			//need to get access tokena dn pass in location/room/item id a query param
+			if (currentType === "locations") {
+				const newUserInventoryData = userInventoryData?.filter(
+					(location) => location.id !== currentId
+				)
+				setUserInventoryData(newUserInventoryData)
+			}
+			return true
 		}
 	}
 

@@ -84,12 +84,14 @@ export class Request {
 		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const headers = { Authorization: `Bearer ${accessToken}` }
-		try {
-			const response = await axios.delete(fullUrl, { headers })
-			return response.data
-		} catch (error) {
-			console.error("DELETE request error:", error)
-			throw error
+		const response = await axios.delete(fullUrl, { headers })
+		if (response.status === 401 || response.status === 403) {
+			console.log(response.data.message)
+			return false
+		}
+		if (response.status === 200) {
+			console.log(response.data.message)
+			return true
 		}
 	}
 
