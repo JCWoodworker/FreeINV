@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useParams } from "react-router-dom"
-import { CardMedia, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 import AddDeleteButton from "../../../components/AddDeleteButton"
