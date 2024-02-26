@@ -56,7 +56,7 @@ const LocationShow: React.FC = () => {
 					locationName={currentLocation?.name}
 					locationId={currentLocation?.id}
 				/>
-				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" />
+				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" locationId={currentLocation?.id}/>
 			</div>
 		</InventoryShowBox>
 	)

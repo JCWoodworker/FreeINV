@@ -85,9 +85,7 @@ export class Request {
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const headers = { Authorization: `Bearer ${accessToken}` }
 		try {
-			debugger
 			const response = await axios.delete(fullUrl, { headers })
-			debugger
 			return response.data
 		} catch (error) {
 			console.error("DELETE request error:", error)

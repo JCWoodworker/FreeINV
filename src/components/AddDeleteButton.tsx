@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "@mui/material"
 import { Request } from "../utils/requests/Request"
+import useAuth from "../hooks/useAuth"
 
 interface Props {
 	buttonText: string
@@ -22,6 +23,7 @@ const AddDeleteButton: React.FC<Props> = ({
 	roomId,
 }) => {
 	const navigate = useNavigate()
+	const { auth } = useAuth()
 
 	const buttonClickHandler = async () => {
 		linkTo
@@ -32,7 +34,18 @@ const AddDeleteButton: React.FC<Props> = ({
 				: navigate(linkTo)
 			: null
 		if (buttonAction.toLowerCase() === "delete") {
-			const response = await Request.delete(`/subapps/freeinv/locations/`, "accesstoken")
+			try {
+				await Request.delete(
+					`/subapps/freeinv/locations/${locationId}`,
+					auth.accessToken
+				)
+				// window.location.reload()
+				navigate("/my-inventory")
+				return true
+			} catch (error) {
+				console.log(`DELETE request error: ${error}`)
+				return false
+			}
 			//need to get access tokena dn pass in location/room/item id a query param
 		}
 	}
