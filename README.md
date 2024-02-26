@@ -72,9 +72,9 @@ After much consideration I've come up with the basic business plan for this app.
 * Pushing to branch ```preprod``` auto-deploys to ```https://myfreeinvpreprod.netlify.app/```
 * Pushing to branch ```main``` auto-deploys to ```https://myfreeinv.com/```
 
+<a name="todos"></a>
 
 ## NEW FEATURES & TODOs
-<a name="todos"></a>
 [Back To Table of Contents](#table-of-contents)
 
 * Users will be able to add meta tags to items in their inventory
