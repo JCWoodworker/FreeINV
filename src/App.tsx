@@ -13,7 +13,7 @@ import Logout from "./pages/auth/Logout.tsx"
 import SignUp from "./pages/auth/SignUp.tsx"
 import NotFound from "./pages/not-found/NotFound.tsx"
 
-import UserHome from "./pages/users/UserHome.tsx"
+import UserHome from "./pages/home/UserHome.tsx"
 import LocationIndex from "./pages/inventory/01-locations/LocationIndex.tsx"
 import LocationShow from "./pages/inventory/01-locations/LocationShow"
 import NewLocation from "./pages/inventory/01-locations/NewLocation.tsx"
