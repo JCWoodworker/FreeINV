@@ -26,22 +26,22 @@ After much consideration I've come up with the basic business plan for this app.
   * This app will remain 100% free of charge with NO visible ads and NO in-app purchases
     * Except when purchasing the unlimited tier with ONE-TIME purchase for the app to be 100% functional, unlimited data, and no affiliate blog emails
   * SUBSCRIPTION LEVEL 1:
-    * Up to 1 location
+    * Up to 2 locations
     * Up to 2 rooms
-    * Up to 10 items per room
-    * User will opt in to receive blog/newsletter emails twice per month that include articles with affiliate links
+    * Up to 20 items per room
+    * User will opt in to receive weekly blog/newsletter emails that include articles with affiliate links
   * SUBSCRIPTION LEVEL 2:
-    * Up to 3 locations
+    * Up to 5 locations
     * Up to 5 rooms per location
-    * Up to 50 items per room
-    * User will opt in to receive blog/newsletter emails once per week that include articles with affiliate links
+    * Up to 30 items per room
+    * User will opt in to receive twice-weekly blog/newsletter emails that include articles with affiliate links
   * SUBSCRIPTION LEVEL 3:
-    * Up to 6 locations
+    * Up to 10 locations
     * Up to 10 rooms per location
     * Up to 100 items per room
-    * User will opt in to receive blog/newsletter emails once per day that include articles with affiliate links and/or paid ads.
+    * User will opt in to receive daily blog/newsletter emails that include articles with affiliate links and/or paid ads.
   * SUBSCRIPTION LEVEL 4:
-    * One time payment of $XX.XX???
+    * One time payment of XX.XX or XX.XX/month
     * Unlimited locations
     * Unlimited rooms
     * Unlimited items
@@ -78,7 +78,7 @@ After much consideration I've come up with the basic business plan for this app.
 [Back To Table of Contents](#table-of-contents)
 
 * Users will be able to add meta tags to items in their inventory
-* Users will be able to add images to items in their inventory
+* Users will be able to add images to the items in their inventory
 * Users can delete items
 * Users can edit items (name + description, tags)
 * Users can easily move items to another room
