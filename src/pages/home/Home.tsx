@@ -5,7 +5,7 @@ const Home = () => {
 	return (
 		<>
 			<Box sx={{ textAlign: "center", mt: 1, p: 2 }}>
-				<Typography variant="h2">
+				<Typography variant="h3">
 					Welcome to <strong>My Free INV!</strong>
 				</Typography>
 				<p>Your FREE inventory management application</p>
