@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useLocation, Link } from "react-router-dom"
-import { Box, Typography, Button } from "@mui/material"
+import { Box, Typography, Button, Checkbox, FormGroup } from "@mui/material"
 
 import GoogleOAuth from "./GoogleOAuth"
 
@@ -26,18 +26,17 @@ const SignUp = () => {
 				Sign Up Using Google
 			</Typography>
 			<p>Select a subscription tier:</p>
-			<form>
+			<FormGroup>
 				{validSubscriptionTiers.map((tier) => (
 					<label key={tier}>
 						{`${tier[0].toUpperCase() + tier.slice(1)} `}
-						<input
-							type="checkbox"
+						<Checkbox
 							checked={tier === selectedTier}
 							onChange={() => setSelectedTier(tier)}
 						/>
 					</label>
 				))}
-			</form>
+			</FormGroup>
 			<Button variant="contained" sx={{ mb: 5 }}>
 				<Link to="/">Click here to review subscription tiers</Link>
 			</Button>
