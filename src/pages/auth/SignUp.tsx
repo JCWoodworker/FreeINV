@@ -22,7 +22,7 @@ const SignUp = () => {
 				gap: 1,
 			}}
 		>
-			<Typography variant="h3" sx={{ mb: 3 }}>
+			<Typography variant="h4" sx={{ mb: 3 }}>
 				Sign Up Using Google
 			</Typography>
 			<p>Select a subscription tier:</p>

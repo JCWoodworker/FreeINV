@@ -64,7 +64,9 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<InventoryPageBox>
-			<Typography variant="h3">My Inventory</Typography>
+			<Typography sx={{ borderBottom: "1px solid gray" }} variant="h3">
+				My Inventory
+			</Typography>
 			<Typography variant="h4">Locations:</Typography>
 			<InventoryElementBox>
 				{userInventoryData

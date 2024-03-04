@@ -25,11 +25,11 @@ const LocationShow: React.FC = () => {
 	return (
 		<InventoryShowBox>
 			<div>
-				<Typography variant="h3">{currentLocation?.name}</Typography>
+				<Typography variant="h4">{currentLocation?.name}</Typography>
 				<Typography variant="caption">
 					{currentLocation?.description}
 				</Typography>
-					<AddImage locationId={currentLocation?.id} />
+				<AddImage locationId={currentLocation?.id} />
 			</div>
 			<InventoryElementBox>
 				{currentLocation?.rooms?.map((room) => (
@@ -56,7 +56,11 @@ const LocationShow: React.FC = () => {
 					locationName={currentLocation?.name}
 					locationId={currentLocation?.id}
 				/>
-				<AddDeleteButton buttonAction="delete" buttonText="Delete Location" locationId={currentLocation?.id}/>
+				<AddDeleteButton
+					buttonAction="delete"
+					buttonText="Delete Location"
+					locationId={currentLocation?.id}
+				/>
 			</div>
 		</InventoryShowBox>
 	)

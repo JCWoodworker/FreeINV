@@ -18,7 +18,7 @@ const ItemShow: React.FC = () => {
 
 	return (
 		<InventoryShowBox>
-			<Typography variant="h3">{currentItem?.name}</Typography>
+			<Typography variant="h4">{currentItem?.name}</Typography>
 			<Typography variant="caption">{currentItem?.description}</Typography>
 			<AddImage itemId={currentItem?.id} />
 			<img

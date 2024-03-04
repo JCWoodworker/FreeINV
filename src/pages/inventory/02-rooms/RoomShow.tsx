@@ -32,7 +32,7 @@ const RoomShow: React.FC = () => {
 	return (
 		<>
 			<InventoryShowBox>
-				<Typography variant="h3">{currentRoom?.name}</Typography>
+				<Typography variant="h4">{currentRoom?.name}</Typography>
 				<Typography variant="caption">{currentRoom?.description}</Typography>
 				<AddImage roomId={currentRoom?.id} />
 				<InventoryElementBox>
