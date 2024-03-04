@@ -8,12 +8,12 @@ const InventoryPageBox: React.FC<Props> = ({ children }) => {
 	return (
 		<Box
 			sx={{
-				mt: 2,
+				mt: 5,
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "center",
 				alignItems: "center",
-				gap: 1,
+				gap: 5,
 			}}
 		>
 			{children}

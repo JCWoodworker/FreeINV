@@ -51,10 +51,10 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				to={`/my-inventory/locations/${orphanLocation.id}`}
 				key={orphanLocation.id}
 			>
-				<Card 
-				variant="outlined"
-				key={orphanLocation.id}
-				sx={{ m: 1, p: 1, display: "grid", placeItems: "center" }}
+				<Card
+					variant="outlined"
+					key={orphanLocation.id}
+					sx={{ m: 1, p: 1, display: "grid", placeItems: "center" }}
 				>
 					<strong>{orphanLocation.name}</strong>
 				</Card>
@@ -64,8 +64,8 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<InventoryPageBox>
-			<Typography variant="h2">My Inventory</Typography>
-			<Typography variant="h3">Locations:</Typography>
+			<Typography variant="h3">My Inventory</Typography>
+			<Typography variant="h4">Locations:</Typography>
 			<InventoryElementBox>
 				{userInventoryData
 					?.filter((location) => !location.orphan_location)
