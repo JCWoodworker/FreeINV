@@ -35,7 +35,7 @@ const NewRoom: React.FC = () => {
 		event.preventDefault()
 		const accessToken = auth?.accessToken
 		const newRoom = await Request.post(
-			"/subapps/freeinv/rooms",
+			"/subapps/myfreeinv/rooms",
 			newRoomData,
 			true,
 			accessToken

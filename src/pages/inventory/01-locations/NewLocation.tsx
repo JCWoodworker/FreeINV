@@ -33,7 +33,7 @@ const NewLocation: React.FC = () => {
 		event.preventDefault()
 		const accessToken = auth?.accessToken
 		const newLocation = await Request.post(
-			"/subapps/freeinv/locations",
+			"/subapps/myfreeinv/locations",
 			newLocationData,
 			true,
 			accessToken
@@ -58,7 +58,7 @@ const NewLocation: React.FC = () => {
 				<input
 					type="text"
 					name="name"
-					maxLength={30}			
+					maxLength={30}
 					onChange={handleTextInputChange}
 					placeholder="Name"
 					required={true}

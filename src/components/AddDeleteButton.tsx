@@ -51,7 +51,7 @@ const AddDeleteButton: React.FC<Props> = ({
 			: null
 		if (buttonAction.toLowerCase() === "delete") {
 			const response = await Request.delete(
-				`/subapps/freeinv/${currentType}/${currentId}`,
+				`/subapps/myfreeinv/${currentType}/${currentId}`,
 				auth.accessToken
 			)
 			navigate("/my-inventory")
