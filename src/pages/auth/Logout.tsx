@@ -13,10 +13,13 @@ const Logout = () => {
 		setPersist(false)
 	}
 
-	logout()
 	useEffect(() => {
-		navigate("/")
-	}, [navigate, persist])
+		if (persist) {
+			logout()
+			navigate("/")
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [persist])
 
 	return (
 		<div>
