@@ -19,9 +19,19 @@ export const loggedOutLinks = [
 
 export const loggedInLinks = [
 	{
-		name: "My Locations",
+		name: "All Locations",
 		path: "/my-inventory",
 		icon: "📦",
+	},
+	{
+		name: "All Rooms",
+		path: "/my-inventory/rooms",
+		icon: "🚪",
+	},
+	{
+		name: "All Items",
+		path: "/my-inventory/items",
+		icon: "🏷️",
 	},
 	{
 		name: "Sign Out",

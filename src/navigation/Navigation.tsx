@@ -7,7 +7,7 @@ import {
 	IconButton,
 	Typography,
 	Menu,
-	MenuItem
+	MenuItem,
 } from "@mui/material"
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
 import useAuth from "../hooks/useAuth"
@@ -58,7 +58,11 @@ const Navigation = () => {
 					>
 						{linkList.map((link) => (
 							<Link to={link.path} key={link.name} onClick={handleClose}>
-								<MenuItem key={link.name}>{link.name}</MenuItem>
+								<MenuItem key={link.name}>
+									{link.icon}
+									{` - `}
+									{link.name}
+								</MenuItem>
 							</Link>
 						))}
 					</Menu>

@@ -64,10 +64,7 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<InventoryPageBox>
-			<Typography sx={{ borderBottom: "1px solid gray" }} variant="h3">
-				My Inventory
-			</Typography>
-			<Typography variant="h4">Locations:</Typography>
+			<Typography variant="h4">Locations</Typography>
 			<InventoryElementBox>
 				{userInventoryData
 					?.filter((location) => !location.orphan_location)

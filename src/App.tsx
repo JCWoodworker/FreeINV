@@ -29,6 +29,8 @@ import Login from "./pages/auth/Login.tsx"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
+import RoomIndex from "./pages/inventory/02-rooms/RoomIndex.tsx"
+import ItemIndex from "./pages/inventory/03-items/ItemIndex.tsx"
 
 interface UserInventoryDataContextInterface {
 	userInventoryData: UserLocationData[] | undefined
@@ -100,14 +102,32 @@ function App() {
 									}
 								/>
 								<Route path="locations">
+									<Route
+										index
+										element={
+											<LocationIndex userInventoryData={userInventoryData} />
+										}
+									/>
 									<Route path=":id" element={<LocationShow />} />
 									<Route path="new" element={<NewLocation />} />
 								</Route>
 								<Route path="rooms">
+									<Route
+										index
+										element={
+											<RoomIndex userInventoryData={userInventoryData} />
+										}
+									/>
 									<Route path=":id" element={<RoomShow />} />
 									<Route path="new" element={<NewRoom />} />
 								</Route>
 								<Route path="items">
+									<Route
+										index
+										element={
+											<ItemIndex userInventoryData={userInventoryData} />
+										}
+									/>
 									<Route path=":id" element={<ItemShow />} />
 									<Route path="new" element={<NewItem />} />
 								</Route>
