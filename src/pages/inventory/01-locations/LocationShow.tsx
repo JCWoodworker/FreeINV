@@ -29,7 +29,7 @@ const LocationShow: React.FC = () => {
 				<Typography variant="caption">
 					{currentLocation?.description}
 				</Typography>
-				<AddImage locationId={currentLocation?.id} />
+				{/* <AddImage locationId={currentLocation?.id} /> */}
 			</div>
 			<InventoryElementBox>
 				{currentLocation?.rooms?.map((room) => (

@@ -20,7 +20,7 @@ const ItemShow: React.FC = () => {
 		<InventoryShowBox>
 			<Typography variant="h4">{currentItem?.name}</Typography>
 			<Typography variant="caption">{currentItem?.description}</Typography>
-			<AddImage itemId={currentItem?.id} />
+			{/* <AddImage itemId={currentItem?.id} /> */}
 			<img
 				src={
 					currentItem?.image_url ||

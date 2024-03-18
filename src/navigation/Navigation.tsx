@@ -7,7 +7,7 @@ import {
 	IconButton,
 	Typography,
 	Menu,
-	MenuItem
+	MenuItem,
 } from "@mui/material"
 import { loggedInLinks, loggedOutLinks } from "./navLinks"
 import useAuth from "../hooks/useAuth"
@@ -16,6 +16,7 @@ const Navigation = () => {
 	const { persist } = useAuth()
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 	const linkList = persist ? loggedInLinks : loggedOutLinks
+	const homeMessage = persist ? "All Locations" : "My Free INV"
 
 	const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget)
@@ -30,7 +31,7 @@ const Navigation = () => {
 			<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
 				<Link to="/">
 					<Typography variant="h6" component="div">
-						My Free INV
+						{homeMessage}
 					</Typography>
 				</Link>
 
@@ -58,7 +59,11 @@ const Navigation = () => {
 					>
 						{linkList.map((link) => (
 							<Link to={link.path} key={link.name} onClick={handleClose}>
-								<MenuItem key={link.name}>{link.name}</MenuItem>
+								<MenuItem key={link.name}>
+									{link.icon}
+									{` - `}
+									{link.name}
+								</MenuItem>
 							</Link>
 						))}
 					</Menu>
