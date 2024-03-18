@@ -34,7 +34,7 @@ const RoomShow: React.FC = () => {
 			<InventoryShowBox>
 				<Typography variant="h4">{currentRoom?.name}</Typography>
 				<Typography variant="caption">{currentRoom?.description}</Typography>
-				<AddImage roomId={currentRoom?.id} />
+				{/* <AddImage roomId={currentRoom?.id} /> */}
 				<InventoryElementBox>
 					{itemsList?.map((item) => (
 						<Link
