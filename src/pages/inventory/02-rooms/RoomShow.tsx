@@ -9,7 +9,7 @@ import AddDeleteButton from "../../../components/AddDeleteButton"
 import { UserInventoryDataContext } from "../../../App"
 import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import InventoryShowBox from "../../../layouts/InventoryPageBox"
+import InventoryShowBox from "../../../layouts/InventoryShowBox"
 // import AddImage from "../../../components/AddImage"
 
 const RoomShow: React.FC = () => {

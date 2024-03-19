@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"
 import { Typography } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../../App"
-import InventoryShowBox from "../../../layouts/InventoryPageBox"
+import InventoryShowBox from "../../../layouts/InventoryShowBox"
 // import AddImage from "../../../components/AddImage"
 
 const ItemShow: React.FC = () => {

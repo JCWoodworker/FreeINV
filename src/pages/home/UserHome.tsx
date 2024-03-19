@@ -3,13 +3,22 @@ import { Link } from "react-router-dom"
 import { Typography, Button, Card } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../App"
-import InventoryPageBox from "../../layouts/InventoryPageBox"
+import { Box } from "@mui/system"
 
 const UserHome: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
 
 	return (
-		<InventoryPageBox>
+		<Box
+			sx={{
+				mt: 5,
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "center",
+				alignItems: "center",
+				gap: 2
+			}}
+		>
 			<Typography variant="h3">Welcome Back!</Typography>
 			<Card
 				variant="outlined"
@@ -46,7 +55,7 @@ const UserHome: React.FC = () => {
 			<Link to="/my-inventory">
 				<Button variant="contained">View Locations</Button>
 			</Link>
-		</InventoryPageBox>
+		</Box>
 	)
 }
 
