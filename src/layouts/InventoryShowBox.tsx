@@ -4,13 +4,13 @@ interface Props {
 	children: React.ReactNode
 }
 
-const InventoryPageBox: React.FC<Props> = ({ children }) => {
+const InventoryShowBox: React.FC<Props> = ({ children }) => {
 	return (
 		<Box
 			sx={{
 				mt: 5,
 				display: "flex",
-				flexFlow: "row wrap",
+				flexDirection: "column",
 				justifyContent: "center",
 				alignItems: "center",
 				gap: 2,
@@ -21,4 +21,4 @@ const InventoryPageBox: React.FC<Props> = ({ children }) => {
 	)
 }
 
-export default InventoryPageBox
+export default InventoryShowBox

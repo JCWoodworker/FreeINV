@@ -63,29 +63,31 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 	}
 
 	return (
-		<InventoryPageBox>
-			<Typography variant="h4">Locations</Typography>
-			<InventoryElementBox>
-				{userInventoryData
-					?.filter((location) => !location.orphan_location)
-					.map((location) => (
-						<Link
-							to={`/my-inventory/locations/${location.id}`}
-							key={location.id}
-						>
-							<InventoryElementCard key={location.id}>
-								<strong>{location.name}</strong>
-							</InventoryElementCard>
-						</Link>
-					))}
-			</InventoryElementBox>
-			<AddDeleteButton
-				buttonText="New Location"
-				buttonAction="add"
-				linkTo="/my-inventory/locations/new"
-			/>
-			{showOrphanLocation}
-		</InventoryPageBox>
+		<>
+			<Typography variant="h4" sx={{ mt: 5 }}>Locations</Typography>
+			<InventoryPageBox>
+				<InventoryElementBox>
+					{userInventoryData
+						?.filter((location) => !location.orphan_location)
+						.map((location) => (
+							<Link
+								to={`/my-inventory/locations/${location.id}`}
+								key={location.id}
+							>
+								<InventoryElementCard key={location.id}>
+									<strong>{location.name}</strong>
+								</InventoryElementCard>
+							</Link>
+						))}
+				</InventoryElementBox>
+				<AddDeleteButton
+					buttonText="New Location"
+					buttonAction="add"
+					linkTo="/my-inventory/locations/new"
+				/>
+				{showOrphanLocation}
+			</InventoryPageBox>
+		</>
 	)
 }
 

@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom"
 import { Typography } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../../App"
-import InventoryShowBox from "../../../layouts/InventoryPageBox"
-import AddImage from "../../../components/AddImage"
+import InventoryShowBox from "../../../layouts/InventoryShowBox"
+// import AddImage from "../../../components/AddImage"
 
 const ItemShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
@@ -18,7 +18,7 @@ const ItemShow: React.FC = () => {
 
 	return (
 		<InventoryShowBox>
-			<Typography variant="h4">{currentItem?.name}</Typography>
+			<Typography variant="h5">{currentItem?.name}</Typography>
 			<Typography variant="caption">{currentItem?.description}</Typography>
 			{/* <AddImage itemId={currentItem?.id} /> */}
 			<img

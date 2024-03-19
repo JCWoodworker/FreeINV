@@ -9,8 +9,8 @@ import NotFound from "../../not-found/NotFound"
 
 import { UserInventoryDataContext } from "../../../App"
 import AddDeleteButton from "../../../components/AddDeleteButton"
-import InventoryShowBox from "../../../layouts/InventoryPageBox"
-import AddImage from "../../../components/AddImage"
+import InventoryShowBox from "../../../layouts/InventoryShowBox"
+// import AddImage from "../../../components/AddImage"
 
 const LocationShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
@@ -24,13 +24,9 @@ const LocationShow: React.FC = () => {
 
 	return (
 		<InventoryShowBox>
-			<div>
-				<Typography variant="h4">{currentLocation?.name}</Typography>
-				<Typography variant="caption">
-					{currentLocation?.description}
-				</Typography>
-				{/* <AddImage locationId={currentLocation?.id} /> */}
-			</div>
+			<Typography variant="h5">{currentLocation?.name}</Typography>
+			<Typography variant="caption">{currentLocation?.description}</Typography>
+			{/* <AddImage locationId={currentLocation?.id} /> */}
 			<InventoryElementBox>
 				{currentLocation?.rooms?.map((room) => (
 					<Link

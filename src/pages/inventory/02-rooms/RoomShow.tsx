@@ -9,8 +9,8 @@ import AddDeleteButton from "../../../components/AddDeleteButton"
 import { UserInventoryDataContext } from "../../../App"
 import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import InventoryShowBox from "../../../layouts/InventoryPageBox"
-import AddImage from "../../../components/AddImage"
+import InventoryShowBox from "../../../layouts/InventoryShowBox"
+// import AddImage from "../../../components/AddImage"
 
 const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
@@ -32,7 +32,7 @@ const RoomShow: React.FC = () => {
 	return (
 		<>
 			<InventoryShowBox>
-				<Typography variant="h4">{currentRoom?.name}</Typography>
+				<Typography variant="h5">{currentRoom?.name}</Typography>
 				<Typography variant="caption">{currentRoom?.description}</Typography>
 				{/* <AddImage roomId={currentRoom?.id} /> */}
 				<InventoryElementBox>
