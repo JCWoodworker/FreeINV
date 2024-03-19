@@ -22,7 +22,7 @@ const ItemIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<>
-			<Typography variant="h5" sx={{ mt: 5 }}>Items</Typography>
+			<Typography variant="h4" sx={{ mt: 5 }}>Items</Typography>
 			<InventoryPageBox>
 				{itemList?.map((item) => (
 					<Link

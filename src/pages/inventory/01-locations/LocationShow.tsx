@@ -24,7 +24,7 @@ const LocationShow: React.FC = () => {
 
 	return (
 		<InventoryShowBox>
-			<Typography variant="h4">{currentLocation?.name}</Typography>
+			<Typography variant="h5">{currentLocation?.name}</Typography>
 			<Typography variant="caption">{currentLocation?.description}</Typography>
 			{/* <AddImage locationId={currentLocation?.id} /> */}
 			<InventoryElementBox>

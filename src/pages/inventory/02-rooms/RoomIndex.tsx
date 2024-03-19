@@ -18,7 +18,7 @@ const RoomIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<>
-			<Typography variant="h5" sx={{ mt: 5 }}>
+			<Typography variant="h4" sx={{ mt: 5 }}>
 				Rooms
 			</Typography>
 			<InventoryPageBox>
