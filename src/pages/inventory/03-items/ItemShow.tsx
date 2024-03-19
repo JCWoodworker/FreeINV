@@ -4,7 +4,7 @@ import { Typography } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../../App"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
-import AddImage from "../../../components/AddImage"
+// import AddImage from "../../../components/AddImage"
 
 const ItemShow: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)

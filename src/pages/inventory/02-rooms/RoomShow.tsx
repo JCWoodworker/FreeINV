@@ -10,7 +10,7 @@ import { UserInventoryDataContext } from "../../../App"
 import InventoryElementBox from "../../../layouts/InventoryElementBox"
 import InventoryElementCard from "../../../layouts/InventoryElementCard"
 import InventoryShowBox from "../../../layouts/InventoryPageBox"
-import AddImage from "../../../components/AddImage"
+// import AddImage from "../../../components/AddImage"
 
 const RoomShow: React.FC = () => {
 	// const [locationName, setLocationName] = useState<string>("")
