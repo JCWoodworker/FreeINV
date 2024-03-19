@@ -11,16 +11,16 @@ const InventoryElementCard: React.FC<Props> = ({ children }) => {
 			sx={{
 				p: 1,
 				display: "flex",
-				flexFlow: "row wrap",
+				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "center",
 				width: {
 					xs: 220,
 					sm: 300,
 				},
-				height: {
-					xs: 50,
-					sm: 80,
+				minHeight: {
+					xs: 100,
+					sm: 100,
 				},
 				gap: 1,
 			}}

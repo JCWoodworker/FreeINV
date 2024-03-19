@@ -10,10 +10,10 @@ const InventoryPageBox: React.FC<Props> = ({ children }) => {
 			sx={{
 				mt: 5,
 				display: "flex",
-				flexDirection: "column",
+				flexFlow: "row wrap",
 				justifyContent: "center",
 				alignItems: "center",
-				gap: 5,
+				gap: 2,
 			}}
 		>
 			{children}
