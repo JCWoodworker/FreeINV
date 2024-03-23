@@ -27,7 +27,7 @@
 		"build": "tsc && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
-		"test": "vitest --reporter verbose",
+		"test": "jest",
 		"coverage": "vitest run --coverage"
 	},
 	"dependencies": {
