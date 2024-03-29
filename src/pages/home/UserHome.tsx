@@ -7,6 +7,7 @@ import { Box } from "@mui/system"
 
 const UserHome: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
+	console.log(JSON.stringify(userInventoryData, null, 2))
 
 	return (
 		<Box
@@ -18,6 +19,7 @@ const UserHome: React.FC = () => {
 				alignItems: "center",
 				gap: 2
 			}}
+			data-testid="user-home"
 		>
 			<Typography variant="h3">Welcome Back!</Typography>
 			<Card

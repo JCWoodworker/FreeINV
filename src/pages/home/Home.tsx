@@ -6,7 +6,7 @@ const Home = () => {
 		<>
 			<Box sx={{ textAlign: "center", mt: 1, p: 2 }}>
 				<Typography variant="h3">
-					Welcome to <strong>My Free INV!</strong>
+					Welcome to My Free INV!
 				</Typography>
 				<p>Your FREE inventory management application</p>
 				<p>{`Tap any subscription below to sign up -->`}</p>

@@ -26,6 +26,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 				height: 220,
 				padding: 2,
 			}}
+			data-testid="product-card"
 		>
 			<Link to="/signup" state={productSpec.tier}>
 				<Typography variant="h5">{productSpec.title}</Typography>
