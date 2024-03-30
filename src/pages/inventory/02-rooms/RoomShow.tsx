@@ -28,7 +28,7 @@ const RoomShow: React.FC = () => {
 	return (
 		<>
 			<div>
-				<p>{currentRoom?.name}</p>
+				<h5>{currentRoom?.name}</h5>
 				<p>{currentRoom?.description}</p>
 				{/* <AddImage roomId={currentRoom?.id} /> */}
 				<div>
