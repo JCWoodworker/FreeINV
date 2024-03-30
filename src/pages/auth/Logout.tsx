@@ -23,7 +23,7 @@ const Logout = () => {
 
 	return (
 		<div>
-			<h1>Logout</h1>
+			<p>Logout</p>
 		</div>
 	)
 }

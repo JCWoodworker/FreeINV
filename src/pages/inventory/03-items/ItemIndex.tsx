@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom"
-import { Typography } from "@mui/material"
 import { UserLocationData } from "../inventoryTypes"
-import InventoryPageBox from "../../../layouts/InventoryPageBox"
-import InventoryElementCard from "../../../layouts/InventoryElementCard"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
@@ -22,8 +19,8 @@ const ItemIndex: React.FC<Props> = ({ userInventoryData }) => {
 
 	return (
 		<>
-			<Typography variant="h4" sx={{ mt: 5 }}>Items</Typography>
-			<InventoryPageBox>
+			<p>Items</p>
+			<div>
 				{itemList?.map((item) => (
 					<Link
 						key={item.id}
@@ -34,14 +31,14 @@ const ItemIndex: React.FC<Props> = ({ userInventoryData }) => {
 							itemId: item.id,
 						}}
 					>
-						<InventoryElementCard key={item.id}>
+						<div key={item.id}>
 							<strong>{item.name}</strong>
 							<p>Room: {item.roomName}</p>
 							<p>Location: {item.locationName}</p>
-						</InventoryElementCard>
+						</div>
 					</Link>
 				))}
-			</InventoryPageBox>
+			</div>
 		</>
 	)
 }

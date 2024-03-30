@@ -71,7 +71,7 @@ const NewItem: React.FC = () => {
 
 	return (
 		<div>
-			<h1>New item in {state.roomName}</h1>
+			<p>New item in {state.roomName}</p>
 			<form onSubmit={onSubmit}>
 				<label>Item Name</label>
 				<input

@@ -62,7 +62,7 @@ const NewRoom: React.FC = () => {
 
 	return (
 		<div>
-			<h1>New room in {state.locationName}</h1>
+			<p>New room in {state.locationName}</p>
 			<form onSubmit={onSubmit}>
 				<label>Room Name</label>
 				<input

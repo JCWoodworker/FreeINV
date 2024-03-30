@@ -14,7 +14,7 @@ const NotFound = () => {
 
 	return (
 		<div>
-			<h1>Not Found</h1>
+			<p>Not Found</p>
 			<p>Auto-navigating home in a second</p>
 		</div>
 	)

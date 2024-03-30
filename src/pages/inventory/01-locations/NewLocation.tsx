@@ -53,7 +53,7 @@ const NewLocation: React.FC = () => {
 
 	return (
 		<div>
-			<h2>Add A New Location</h2>
+			<p>Add A New Location</p>
 			<form onSubmit={formSubmit}>
 				<input
 					type="text"
