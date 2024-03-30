@@ -22,7 +22,7 @@
 
 // 	return (
 // 		<div>
-// 			<h1>Manual Refresh Token</h1>
+// 			<p>Manual Refresh Token</p>
 // 			<button onClick={refresh}>
 // 				Refresh
 // 			</button>

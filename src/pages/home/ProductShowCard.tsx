@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { ProductSpec } from "./productSpecs"
-import { Card, Typography } from "@mui/material"
 
 interface Props {
 	productSpec: ProductSpec
@@ -17,18 +16,9 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 		: (monthlyFee = null)
 
 	return (
-		<Card
-			variant="elevation"
-			sx={{
-				display: "flex",
-				placeItems: "center",
-				width: 350,
-				height: 220,
-				padding: 2,
-			}}
-		>
+		<div data-testid="product-card">
 			<Link to="/signup" state={productSpec.tier}>
-				<Typography variant="h5">{productSpec.title}</Typography>
+				<p>{productSpec.title}</p>
 				<ul>
 					<li>
 						{`${sentencePrefix} `}
@@ -48,7 +38,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 					<li>{`Must opt in to receive ${productSpec.emailFrequency} blog emails with affiliate links`}</li>
 				</ul>
 			</Link>
-		</Card>
+		</div>
 	)
 }
 

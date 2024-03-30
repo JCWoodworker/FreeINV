@@ -1,9 +1,7 @@
 import { useContext } from "react"
 import { useLocation } from "react-router-dom"
-import { Typography } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../../App"
-import InventoryShowBox from "../../../layouts/InventoryShowBox"
 // import AddImage from "../../../components/AddImage"
 
 const ItemShow: React.FC = () => {
@@ -17,9 +15,9 @@ const ItemShow: React.FC = () => {
 		?.items?.find((item) => item.id === Number(itemId))
 
 	return (
-		<InventoryShowBox>
-			<Typography variant="h5">{currentItem?.name}</Typography>
-			<Typography variant="caption">{currentItem?.description}</Typography>
+		<div>
+			<p>{currentItem?.name}</p>
+			<p>{currentItem?.description}</p>
 			{/* <AddImage itemId={currentItem?.id} /> */}
 			<img
 				src={
@@ -29,7 +27,7 @@ const ItemShow: React.FC = () => {
 				style={{ width: "300px", height: "auto" }}
 				alt={currentItem?.name}
 			/>
-		</InventoryShowBox>
+		</div>
 	)
 }
 

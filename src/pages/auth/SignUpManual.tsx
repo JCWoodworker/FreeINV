@@ -29,7 +29,7 @@ const SignUpManual: React.FC<Props> = ({ subscriptionTier }) => {
 
 	return (
 		<div>
-			<h1>Signup</h1>
+			<p>Signup</p>
 			<form onSubmit={onSubmit}>
 				<label>
 					email-

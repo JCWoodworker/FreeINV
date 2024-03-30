@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button } from "@mui/material"
 import { Request } from "../utils/requests/Request"
 import useAuth from "../hooks/useAuth"
 import { UserInventoryDataContext } from "../App"
@@ -71,9 +70,9 @@ const AddDeleteButton: React.FC<Props> = ({
 	}
 
 	return (
-		<Button variant="contained" onClick={buttonClickHandler} sx={{ m: 1 }}>
+		<button onClick={buttonClickHandler}>
 			{buttonText}
-		</Button>
+		</button>
 	)
 }
 

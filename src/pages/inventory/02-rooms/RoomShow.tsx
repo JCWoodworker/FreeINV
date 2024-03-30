@@ -1,15 +1,11 @@
 import { useContext } from "react"
 import { Room, Item } from "../inventoryTypes"
 import { Link, useParams } from "react-router-dom"
-import { Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserInventoryDataContext } from "../../../App"
-import InventoryElementBox from "../../../layouts/InventoryElementBox"
-import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import InventoryShowBox from "../../../layouts/InventoryShowBox"
 // import AddImage from "../../../components/AddImage"
 
 const RoomShow: React.FC = () => {
@@ -31,18 +27,18 @@ const RoomShow: React.FC = () => {
 
 	return (
 		<>
-			<InventoryShowBox>
-				<Typography variant="h5">{currentRoom?.name}</Typography>
-				<Typography variant="caption">{currentRoom?.description}</Typography>
+			<div>
+				<p>{currentRoom?.name}</p>
+				<p>{currentRoom?.description}</p>
 				{/* <AddImage roomId={currentRoom?.id} /> */}
-				<InventoryElementBox>
+				<div>
 					{itemsList?.map((item) => (
 						<Link
 							key={item.id}
 							to={`/my-inventory/items/${item.id}`}
 							state={{ locationId, roomId: id, itemId: item.id }}
 						>
-							<InventoryElementCard>
+							<div>
 								{/* <CardMedia
 									component="img"
 									height="150"
@@ -53,10 +49,10 @@ const RoomShow: React.FC = () => {
 									alt={item.name}
 								></CardMedia> */}
 								<strong>{item.name}</strong>
-							</InventoryElementCard>
+							</div>
 						</Link>
 					))}
-				</InventoryElementBox>
+				</div>
 				<div>
 					<AddDeleteButton
 						buttonText="Add an Item"
@@ -67,7 +63,7 @@ const RoomShow: React.FC = () => {
 						roomName={currentRoom?.name}
 					/>
 				</div>
-			</InventoryShowBox>
+			</div>
 		</>
 	)
 }

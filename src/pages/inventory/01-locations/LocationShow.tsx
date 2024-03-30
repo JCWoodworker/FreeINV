@@ -1,15 +1,11 @@
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
-import InventoryElementBox from "../../../layouts/InventoryElementBox"
-import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import { Typography } from "@mui/material"
 
 import NotFound from "../../not-found/NotFound"
 
 import { UserInventoryDataContext } from "../../../App"
 import AddDeleteButton from "../../../components/AddDeleteButton"
-import InventoryShowBox from "../../../layouts/InventoryShowBox"
 // import AddImage from "../../../components/AddImage"
 
 const LocationShow: React.FC = () => {
@@ -23,11 +19,11 @@ const LocationShow: React.FC = () => {
 	}
 
 	return (
-		<InventoryShowBox>
-			<Typography variant="h5">{currentLocation?.name}</Typography>
-			<Typography variant="caption">{currentLocation?.description}</Typography>
+		<div>
+			<p>{currentLocation?.name}</p>
+			<p>{currentLocation?.description}</p>
 			{/* <AddImage locationId={currentLocation?.id} /> */}
-			<InventoryElementBox>
+			<div>
 				{currentLocation?.rooms?.map((room) => (
 					<Link
 						key={room.id}
@@ -38,12 +34,12 @@ const LocationShow: React.FC = () => {
 							locationName: currentLocation?.name,
 						}}
 					>
-						<InventoryElementCard key={room.id}>
+						<div key={room.id}>
 							<strong>{room.name}</strong>
-						</InventoryElementCard>
+						</div>
 					</Link>
 				))}
-			</InventoryElementBox>
+			</div>
 			<div>
 				<AddDeleteButton
 					buttonAction="add"
@@ -58,7 +54,7 @@ const LocationShow: React.FC = () => {
 					locationId={currentLocation?.id}
 				/>
 			</div>
-		</InventoryShowBox>
+		</div>
 	)
 }
 

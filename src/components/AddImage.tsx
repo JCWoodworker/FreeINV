@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react"
-import { Box, Button } from "@mui/material"
 import { useDropzone, FileError } from "react-dropzone"
 import { Request } from "../utils/requests/Request"
 import useAuth from "../hooks/useAuth"
@@ -79,18 +78,18 @@ const AddImage: React.FC<Props> = ({
 	}
 
 	return (
-		<Box sx={{ mb: 1, display: "flex", justifyContent: "center" }}>
-			<Box {...getRootProps()}>
+		<div>
+			<div {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
 					<p>Drop the files here ...</p>
 				) : image ? (
 					<></>
 				) : (
-						<Button variant="text">Add/Update {inventoryId.inventoryType} Image</Button>
+						<button>Add/Update {inventoryId.inventoryType} Image</button>
 				)}
-			</Box>
-			<Box>
+			</div>
+			<div>
 				{image && (
 					<>
 						<img
@@ -100,20 +99,20 @@ const AddImage: React.FC<Props> = ({
 						<p>Image loaded</p>
 					</>
 				)}
-				<Box>
+				<div>
 					{image && (
-						<Button variant="text" onClick={() => onUpload(image)}>
+						<button onClick={() => onUpload(image)}>
 							Upload
-						</Button>
+						</button>
 					)}
 					{image && (
-						<Button variant="text" onClick={() => setImage(null)}>
+						<button onClick={() => setImage(null)}>
 							Cancel
-						</Button>
+						</button>
 					)}
-				</Box>
-			</Box>
-		</Box>
+				</div>
+			</div>
+		</div>
 	)
 }
 

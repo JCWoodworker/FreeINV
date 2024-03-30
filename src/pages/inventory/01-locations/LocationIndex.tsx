@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Typography, Card } from "@mui/material"
 
 import AddDeleteButton from "../../../components/AddDeleteButton"
 
 import { UserLocationData } from "../inventoryTypes"
 import useAuth from "../../../hooks/useAuth"
-import InventoryElementBox from "../../../layouts/InventoryElementBox"
-import InventoryElementCard from "../../../layouts/InventoryElementCard"
-import InventoryPageBox from "../../../layouts/InventoryPageBox"
 
 interface Props {
 	userInventoryData: UserLocationData[] | undefined
@@ -51,22 +47,18 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 				to={`/my-inventory/locations/${orphanLocation.id}`}
 				key={orphanLocation.id}
 			>
-				<Card
-					variant="outlined"
-					key={orphanLocation.id}
-					sx={{ m: 1, p: 1, display: "grid", placeItems: "center" }}
-				>
+				<div key={orphanLocation.id}>
 					<strong>{orphanLocation.name}</strong>
-				</Card>
+				</div>
 			</Link>
 		)
 	}
 
 	return (
 		<>
-			<Typography variant="h4" sx={{ mt: 5 }}>Locations</Typography>
-			<InventoryPageBox>
-				<InventoryElementBox>
+			<p>Locations</p>
+			<div>
+				<div>
 					{userInventoryData
 						?.filter((location) => !location.orphan_location)
 						.map((location) => (
@@ -74,19 +66,19 @@ const LocationIndex: React.FC<Props> = ({ userInventoryData }) => {
 								to={`/my-inventory/locations/${location.id}`}
 								key={location.id}
 							>
-								<InventoryElementCard key={location.id}>
+								<div key={location.id}>
 									<strong>{location.name}</strong>
-								</InventoryElementCard>
+								</div>
 							</Link>
 						))}
-				</InventoryElementBox>
+				</div>
 				<AddDeleteButton
 					buttonText="New Location"
 					buttonAction="add"
 					linkTo="/my-inventory/locations/new"
 				/>
 				{showOrphanLocation}
-			</InventoryPageBox>
+			</div>
 		</>
 	)
 }

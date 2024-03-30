@@ -1,37 +1,16 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { Typography, Button, Card } from "@mui/material"
 
 import { UserInventoryDataContext } from "../../App"
-import { Box } from "@mui/system"
 
 const UserHome: React.FC = () => {
 	const { userInventoryData } = useContext(UserInventoryDataContext)
+	console.log(JSON.stringify(userInventoryData, null, 2))
 
 	return (
-		<Box
-			sx={{
-				mt: 5,
-				display: "flex",
-				flexDirection: "column",
-				justifyContent: "center",
-				alignItems: "center",
-				gap: 2
-			}}
-		>
-			<Typography variant="h3">Welcome Back!</Typography>
-			<Card
-				variant="outlined"
-				sx={{
-					p: 2,
-					width: 300,
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-					gap: 1,
-				}}
-			>
+		<div data-testid="user-home">
+			<p>Welcome Back!</p>
+			<div>
 				<p>You've got the following:</p>
 				<ul>
 					<li>
@@ -51,11 +30,11 @@ const UserHome: React.FC = () => {
 						{` `}Items
 					</li>
 				</ul>
-			</Card>
+			</div>
 			<Link to="/my-inventory">
-				<Button variant="contained">View Locations</Button>
+				<button>View Locations</button>
 			</Link>
-		</Box>
+		</div>
 	)
 }
 
