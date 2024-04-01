@@ -18,7 +18,7 @@ const ProductShowCard: React.FC<Props> = ({ productSpec }) => {
 	return (
 		<div data-testid="product-card">
 			<Link to="/signup" state={productSpec.tier}>
-				<p>{productSpec.title}</p>
+				<h5>{productSpec.title}</h5>
 				<ul>
 					<li>
 						{`${sentencePrefix} `}

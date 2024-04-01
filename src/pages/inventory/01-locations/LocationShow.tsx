@@ -20,8 +20,8 @@ const LocationShow: React.FC = () => {
 
 	return (
 		<div>
-			<p>{currentLocation?.name}</p>
-			<p>{currentLocation?.description}</p>
+			<h5>{currentLocation?.name}</h5>
+			<h5>{currentLocation?.description}</h5>
 			{/* <AddImage locationId={currentLocation?.id} /> */}
 			<div>
 				{currentLocation?.rooms?.map((room) => (

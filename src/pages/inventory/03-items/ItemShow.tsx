@@ -16,7 +16,7 @@ const ItemShow: React.FC = () => {
 
 	return (
 		<div>
-			<p>{currentItem?.name}</p>
+			<h5>{currentItem?.name}</h5>
 			<p>{currentItem?.description}</p>
 			{/* <AddImage itemId={currentItem?.id} /> */}
 			<img
@@ -24,7 +24,7 @@ const ItemShow: React.FC = () => {
 					currentItem?.image_url ||
 					"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
 				}
-				style={{ width: "300px", height: "auto" }}
+				style={{ width: "200px", height: "auto" }}
 				alt={currentItem?.name}
 			/>
 		</div>
