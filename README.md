@@ -69,6 +69,8 @@ After much consideration I've come up with the basic business plan for this app.
 [Back To Table of Contents](#table-of-contents)
 
 * When using react-router-dom and deploying on netlify, be sure to create a file named ```_redirects``` in ```/public``` in the root of your project.
+  * This file should have one line:
+    * ```/*    /index.html   200```
 * Pushing to branch ```preprod``` auto-deploys to ```https://myfreeinvpreprod.netlify.app/```
 * Pushing to branch ```main``` auto-deploys to ```https://myfreeinv.com/```
 
@@ -77,39 +79,45 @@ After much consideration I've come up with the basic business plan for this app.
 ## NEW FEATURES & TODOs
 [Back To Table of Contents](#table-of-contents)
 
-* Users will be able to add meta tags to items in their inventory
-* Users will be able to add images to the items in their inventory
-* Users can delete items
-* Users can edit items (name + description, tags)
-* Users can easily move items to another room
-* Users can add new items from any screen and THEN select the room they belong in OR add a new room and/or location at that time
+* [] Users will be able to add meta tags to items in their inventory
+* [] Users will be able to add images to the items in their inventory
+* [] Users can delete items
+* [] Users can edit items (name + description, tags)
+* [] Users can easily move items to another room
+* [] Users can add new items from any screen and THEN select the room they belong in OR add a new room and/or location at that time
 
-* Users can delete rooms
-* Users will be able to add meta tags to rooms
-* Users can edit rooms (name + description, tags)
+* [] Users can delete rooms
+* [] Users will be able to add meta tags to rooms
+* [] Users can edit rooms (name + description, tags) 
 
-* Users can delete locations - DONE
-* Users will be able to add meta tags to locations
-* Users can edit locations (name + description, tags)
-* When deleting a location and items are moved to the orphan location AND the orphan
+* [x] Users can delete locations
+* [] Users will be able to add meta tags to locations
+* [] Users can edit locations (name + description, tags)
+* [] When deleting a location and items are moved to the orphan location AND the orphan
 location did NOT exist before, it does not auto-populate without a refresh.  We need to
 check if the orphan location existed, then add it to userInventoryData context if not.
 
-* We should list out the orphanded items instead of making a user click "Orphan Home", then
+* [] We should list out the orphanded items instead of making a user click "Orphan Home", then
 "Orphan Room"
 
-* Do we just get rid of the user home page and go straight to locations index?
-* Better UI/UX if dropdown has [locations, rooms, items, settings]?
-  * Rooms Index list shows - "Room name @ Location name has XX items"
-  * Items Index list shows - "Item name in Room name @ Location name"
-* "Locations" link always available at the top of the page instead of "home"
-* Need to update the back button to go back to the previous step
-  * When viewing item, it says "Back to XXX room"
-  * When viewing room, it says "Back to XXX location"
-  * When viewing location, it says "Back locations list"
-* Search bar when logged in that allows searching across all items, rooms, and locations
-  * Includes names, descriptions, and meta tags
+* [] Do we just get rid of the user home page and go straight to locations index?
+* [] Better UI/UX if dropdown has [locations, rooms, items, settings]?
+  * [] Rooms Index list shows - "Room name @ Location name has XX items"
+  * [] Items Index list shows - "Item name in Room name @ Location name"
+* [] "Locations" link always available at the top of the page instead of "home"
+* [] Need to update the back button to go back to the previous step
+  * [] When viewing item, it says "Back to XXX room"
+  * [] When viewing room, it says "Back to XXX location"
+  * [] When viewing location, it says "Back locations list"
+* [] Search bar when logged in that allows searching across all items, rooms, and locations
+  * [] Includes names, descriptions, and meta tags
 
-* Add feature for cropping images as they are uploaded.  One, unchangeable square box that
+* [] Add feature for cropping images as they are uploaded.  One, unchangeable square box that
 can be dragged around the image to capture the exact box that will be the final image.
-* We need better/custom image placeholders - [Placehold Image Generator Website]("https://placehold.co/")
+* [] We need better/custom image placeholders - [Placehold Image Generator Website]("https://placehold.co/")
+* [] We need to create a back button
+  * [] When viewing item, it says "Back to XXX room"
+  * [] When viewing room, it says "Back to XXX location"
+  * [] When viewing location, it says "Back locations list"
+  * [] When viewing settings, it says "Back to locations list"
+  * [] Ween viewing any other page it defafaults to "Back" and goes back to previous page
